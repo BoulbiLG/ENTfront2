@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.CaseItem {
+    display: block;
+    box-sizing: border-box;
+}
+
+.CaseItem .case {
+    padding: 1vh;
+    box-sizing: border-box;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.314);
+    transition: all 0.1s;
+}
+
+.CaseItem .case:hover {
+    filter: brightness(125%);
+}
+
+.CaseItem .case:active {
+    filter: brightness(150%);
+}
+
+.CaseItem .quantite {
+    padding: 0.3vh 0.8vh;
+    box-sizing: border-box;
+    background-color: rgb(140, 140, 195);
+    border: 5px solid rgb(100, 100, 155);
+    color: white;
+    border-radius: 1vh;
+}

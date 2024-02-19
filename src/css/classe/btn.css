@@ -1,0 +1,49 @@
+
+/* ==================== BTN ==================== */
+
+.btnClasse {
+    padding: 1.5vh;
+    width: 20vh;
+    border: none;
+    margin: 1vh;
+    background-color: rgb(100, 100, 155);
+    color: white;
+    transition: all 0.1s;
+    cursor: pointer;
+    border-radius: 1vh;
+}
+
+.btnClasse:hover {
+    filter: brightness(125%);
+    box-shadow: 2px 2px 1px rgb(73, 73, 113);
+}
+
+.btnClasse:active {
+    filter: brightness(150%);
+}
+
+/* ==================== DIV ==================== */
+
+.btnClasseDiv {
+    padding: 1.5vh;
+    width: 20vh;
+    border: none;
+    margin: 1vh;
+    background-color: rgb(100, 100, 155);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 1vh;
+    transition: all 0.1s;
+}
+
+.btnClasseDiv:hover {
+    filter: brightness(125%);
+    box-shadow: 2px 2px 1px rgb(73, 73, 113);
+}
+
+.btnClasseDiv:active {
+    filter: brightness(150%);
+}

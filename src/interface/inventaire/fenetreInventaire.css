@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.FenetreInventaire {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreInventaire hr {
+    margin-top: 1vh;
+}
+
+.FenetreInventaire .milieu {
+    display: flex;
+    height: 100%;
+}
+
+.FenetreInventaire .exGauche {
+    flex: 1;
+    padding: 2vh;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: rgb(78, 78, 109);
+    border-radius: 1vh;
+    margin-top: 1vh;
+    overflow-y: scroll;
+}
+
+.FenetreInventaire .ok {
+    flex: 3;
+}
+
+.FenetreInventaire .gauche {
+    margin-top: 1vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 3;
+    overflow-y: scroll;
+}
+
+.FenetreInventaire .droite {
+    flex: 1;
+    margin-top: 1vh;
+    padding: 2vh;
+    box-sizing: border-box;
+    background-color: rgb(78, 78, 109);
+    border-radius: 1vh;
+    height: 100%;
+}
+
+.FenetreInventaire .ligne {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreInventaire p.index {
+    margin-right: 0.5vh;
+    font-weight: 300;
+}
+
+.FenetreInventaire .droite img {
+    border-radius: 1vh;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.314);
+    display: block;
+}
+
+.FenetreInventaire .bas {
+    display: flex;
+}
+
+.FenetreInventaire .exGauche .listeProfil {
+    flex: 3;
+    box-sizing: border-box;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+    box-sizing: border-box;
+    margin-right: 1vh;
+}
+
+.FenetreInventaire .bas .avertissement {
+    flex: 1.5;
+    padding: 2vh;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+}

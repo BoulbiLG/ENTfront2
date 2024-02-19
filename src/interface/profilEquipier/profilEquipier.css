@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ProfilEquipier {
+    padding: 1vh;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.1s;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+}
+
+.ProfilEquipier:hover {
+    filter: brightness(125%);
+}
+
+.ProfilEquipier:active {
+    filter: brightness(150%);
+}
+
+.ProfilEquipier span {
+    margin-right: 2vh;
+}
+
+.basic {
+    background-color: rgb(100, 100, 155);
+}
+
+.courant {
+    background-color: rgb(255, 243, 106);
+    color: black;
+}

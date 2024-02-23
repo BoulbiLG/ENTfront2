@@ -23,12 +23,10 @@ const Stat = () => {
         const index = storeFenetre.modifierCourante('stat');
         indexFenetreSet(index);
         affichageFenetreSet('true');
-        console.log(storeFenetre.courante);
     }
 
     const fermerFenetre = () => {
         affichageFenetreSet('false');
-        console.log(storeFenetre.courante);
     }
 
 

@@ -3,6 +3,16 @@ import React, {useState, useEffect} from 'react';
 import './fenetreStat.css';
 import '../../css/classe/fenetreDrag.css';
 
+import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique';
+import { retirerObjetEffet } from '../inventaire/retirerEffetItem';
+
+import Jauge from '../../components/jauge/Jauge';
+import Item from '../../components/item/CaseItem';
+
+import ProfilEquipier from '../profilEquipier/ProfilEquipier';
+import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
+
 const FenetreStat = ({ indexFenetre }) => {
 
 
@@ -15,6 +25,32 @@ const FenetreStat = ({ indexFenetre }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
+    const [statJoueur, statJoueurSet] = useState([]);
+
+    const storeEquipier = equipeStore();
+    const storeInventaire = inventaireStore();
+    
+    const storeJoueur = recupererStoreDynamique(storeEquipier.courant);
+    
+    useEffect(() => {
+        const set = () => {
+            statJoueurSet(storeJoueur);
+        }
+        set();
+    }, [storeJoueur]);
+
+
+
+    const retirerEquipement = (id, type, inventaireStore, joueurStore) => {
+
+        joueurStore.modifierIdParType(type, '');
+    
+        const infoItem = inventaireStore.inventaire.find((element) => element.id === id);
+    
+        if (infoItem) {
+            retirerObjetEffet(id, infoItem.type, infoItem.action, inventaireStore, joueurStore);
+        }
+    }
 
 
     // ==================== FENETRE BOUGEABLE ==================== //
@@ -82,6 +118,59 @@ const FenetreStat = ({ indexFenetre }) => {
             <p>{indexFenetre}</p>
             <p>Stat</p>
             <hr />
+            <div className="haut">
+                <div className="listeInfo">
+                    <p>Nom : {statJoueur.nom}</p>
+                    <p>Body count : {statJoueur.bodycount}</p>
+                </div>
+            </div>
+            <div className="milieu">
+                <div className="gauche">
+                    <div className="listeProfil">
+                        {storeEquipier.nom.map((nom) => (
+                            <ProfilEquipier nom={nom} courant={storeEquipier.courant} />
+                        ))}
+                    </div>
+                </div>
+                <div className="centre">
+                    <div className="image">
+                        <img src={statJoueur.img} alt="" />
+                    </div>
+                    <div className="inventaire">
+                        <p>Inventaire de {statJoueur.nom} :</p>
+                        <div className="centralisation2">
+                            <div className="liste">
+                                {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ id, type }) => (
+                                    <Item key={id} img={id} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="droite">
+                    <div className="centralisation">
+                        <div className='basic'>
+                            <Jauge valeur={statJoueur.vie} max={statJoueur.vieMax} couleur='green' fond='grey' titre='PV' solo='non' dimension='non'/>
+                            <Jauge valeur={statJoueur.exp} max={statJoueur.expMax} couleur='blue' fond='grey' titre='Exp' solo='non' dimension='non'/>
+                            <Jauge valeur={statJoueur.magie} max={statJoueur.magieMax} couleur='blue' fond='grey' titre='Magie' solo='non' dimension='non'/>
+                        </div>
+                        <br />
+                        <div className="ensembleTexte">
+                            <div className="texte"><p>Attaque : </p><p>{statJoueur.attaque}</p></div>
+                            <div className="texte"><p>Défense : </p><p>{statJoueur.defense}</p></div>
+                            <div className="texte"><p>Vitesse : </p><p>{statJoueur.vitesse}</p></div>
+                            <div className="texte"><p>Testostérone : </p><p>{statJoueur.testo}</p></div>
+                        </div>
+                        <br />
+                        <div className="humeur">
+                            <Jauge valeur={statJoueur.joie} max={100} couleur='yellow' fond='grey' titre='Joie' solo='non' dimension='non'/>
+                            <Jauge valeur={statJoueur.tristesse} max={100} couleur='violet' fond='grey' titre='Tristesse' solo='non' dimension='non'/>
+                            <Jauge valeur={statJoueur.peur} max={100} couleur='black' fond='grey' titre='Peur' solo='non' dimension='non'/>
+                            <Jauge valeur={statJoueur.colere} max={100} couleur='red' fond='grey' titre='Colère' solo='non' dimension='non'/>
+                        </div>  
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -17,26 +17,30 @@ const CelestinStore = create((set) => ({
 
   // STAT
 
+  vieMax: 100,
+  vie: 100,
   niveau: 1, 
-  exp: 0, 
+  expMax: 100,
+  exp: 23,
   attaque: 10,
   defense: 10,
   vitesse: 10,
   courage: 5,
+  magieMax: 100,
   magie: 100,
   argent: 0,
   testo: 0,
   bodycount: 0,
-  vie: 100,
-  PV: 100,
   nom: 'Celestin',
 
   // HUMEUR
 
   joie: 10,
-  colere: 0,
-  tristesse: 0,
-  peur: 0,
+  colere: 56,
+  tristesse: 12,
+  peur: 72,
+
+  img: 'https://risibank.fr/cache/medias/0/9/958/95803/full.png',
 
 
 
@@ -46,7 +50,7 @@ const CelestinStore = create((set) => ({
 
   // ajoute valeur
 
-  ajouterValeurAuChamp: (champ, valeur) => {
+  ajouter: (champ, valeur) => {
     set((state) => ({
       [champ]: state[champ] + valeur,
     }));
@@ -54,7 +58,7 @@ const CelestinStore = create((set) => ({
 
   // retire valeur
 
-  retirerValeurDuChamp: (champ, valeur) => {
+  retirer: (champ, valeur) => {
     set((state) => ({
       [champ]: state[champ] - valeur,
     }));
@@ -62,7 +66,7 @@ const CelestinStore = create((set) => ({
 
   // modifie valeur
 
-  modifierValeurDuChamp: (champ, nouvelleValeur) => {
+  modifier: (champ, nouvelleValeur) => {
     set({ [champ]: nouvelleValeur });
   },
 

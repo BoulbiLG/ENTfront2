@@ -8,8 +8,10 @@ import CaseItem from '../../components/item/CaseItem';
 import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 
 import { utiliserItem } from './utiliserItem';
+import { jeterItem } from './jeterItem';
 
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique';
 
 const FenetreInventaire = ({ indexFenetre }) => {
 
@@ -29,24 +31,13 @@ const FenetreInventaire = ({ indexFenetre }) => {
     const equipierCourant = storeEquipier.courant;
     const equipierNom = storeEquipier.nom;
     const [itemCourant, itemCourantSet] = useState('');
-    const [joueurStore, setJoueurStore] = useState(null);
+
+    const storeJoueur = recupererStoreDynamique(equipierCourant);
 
     //const [avertissement, avertissementSet] = useState('Aucun avertissement.');
+    
+    
 
-/*
-    useEffect(() => {
-        const loadDynamicStore = async () => {
-            try {
-                const dynamicStore = await import(`../../variableGlobal/personnage/${equipierCourant}Store`);
-                setJoueurStore(dynamicStore.default());
-            } catch (error) {
-                console.error(`Erreur lors de l'importation du store ${equipierCourant}:`, error);
-            }
-        };
-
-        loadDynamicStore();
-    }, [equipierCourant]);
-*/
 
 
     // ==================== FONCTION UTILISER ITEM ==================== //
@@ -54,8 +45,17 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
 
     const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe) => {
-        console.log(joueurStore);
-        utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, joueurStore)
+         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur)
+    }
+
+
+
+    // ==================== FONCTION JETER ITEM ==================== //
+
+
+
+    const jeterItemEnvoie = (id, type, cible, action, quantite, equipe) => {
+        jeterItem(id, type, storeInventaire, storeJoueur)
     }
 
 
@@ -164,7 +164,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
                                 </div>
                                 <br />
                                 <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe)}}>Utiliser</button>
-                                <button className='btnClasse' onClick={() => {utiliserItem()}}>Jeter</button>
+                                <button className='btnClasse' onClick={() => {jeterItemEnvoie(id, type, cible, action, quantite, equipe)}}>Jeter</button>
                                 <div className="action">
                                     <div className="avertissement"></div>
                                 </div>

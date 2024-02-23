@@ -2,7 +2,7 @@ import create from 'zustand';
 
 const equipeStore = create((set) => ({
   courant: 'Celestin',
-  nom: ['Celestin', 'Benzemonstre', 'StopCensure'],
+  nom: ['Celestin', 'Benzemonstre'],
 
   ajouterNom: (nouveauNom) => {
     set((state) => ({

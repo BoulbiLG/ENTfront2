@@ -1,0 +1,13 @@
+Ajouter un item :
+
+    - ./graphisme/item :
+    
+        - ajouter le chemin d'URL
+
+    - ./lexique :
+
+        - ajouter la ligne au lexique correspondant à l'item
+
+    - ./verification objet :
+
+        - ajouter la ligne de verificationd d'effet

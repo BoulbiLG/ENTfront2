@@ -6,3 +6,27 @@
 .FenetreStat hr {
     margin-top: 1vh;
 }
+
+.FenetreStat .centralisation2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.FenetreStat .inventaire {
+    background-color: rgb(78, 78, 109);
+    margin: 2vh;
+    box-sizing: border-box;
+    padding: 1vh;
+    border-radius: 1vh;
+    height: 30vh;
+}
+
+.FenetreStat .inventaire .liste {
+    width: 100%;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}

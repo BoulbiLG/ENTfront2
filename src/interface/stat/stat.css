@@ -2,3 +2,95 @@
     margin: 0;
     padding: 0;
 }
+
+.FenetreStat {
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreStat .haut {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.FenetreStat .milieu {
+    flex: 4;
+    display: flex;
+}
+
+.FenetreStat .bas {
+    flex: 1;
+}
+
+.FenetreStat .milieu .gauche {
+    flex: 1.5;
+}
+
+.FenetreStat .milieu .centre {
+    flex: 3;
+}
+
+.FenetreStat .centre .image {
+    display: flex;
+    justify-content: center;
+}
+
+.FenetreStat .milieu .centre img {
+    width: 50%;
+    height: auto;
+    border-radius: 1vh;
+    border: 5px dotted rgb(2, 2, 2);
+    background-color: aliceblue;
+}
+
+.FenetreStat .milieu .droite {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FenetreStat .gauche {
+    flex: 1;
+}
+
+.FenetreStat .basic {
+    background-color: rgb(78, 78, 109);
+    padding: 1vh;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 1vh;
+}
+
+.FenetreStat .texte {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FenetreStat .ensembleTexte {
+    background-color: rgb(78, 78, 109);
+    padding: 1vh;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 1vh;
+}
+
+.FenetreStat .humeur {
+    background-color: rgb(78, 78, 109);
+    padding: 1vh;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 1vh;
+}
+
+/*
+.FenetreStat .listeInfo {
+    display: flex;
+}
+
+.FenetreStat .listeInfo p {
+    margin-right: 1vh;
+}
+*/

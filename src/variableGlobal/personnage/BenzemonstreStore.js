@@ -3,7 +3,7 @@ import create from 'zustand';
 import { pommeURL } from '../../graphisme/item/item';
 
 const BenzemonstreStore = create((set) => ({
-  nom: 'David',
+  nom: 'Benzemonstre',
   zoneX: 0,
   zoneY: 2,
   zoneZ: 0,
@@ -12,13 +12,15 @@ const BenzemonstreStore = create((set) => ({
   etat: 'ennemi',
   soumis: 'non',
   URL: 'https://cloud.onche.org/d682eecd-0f0e-42a8-86bc-5e2e2d5f4598!xMhG6dJaYD/128',
+  img: 'https://risibank.fr/cache/medias/0/22/2242/224230/full.png',
 
   // STAT
 
+  vieMax: 100,
   vie: 50,
-  PV: 50,
   niveau: 1, 
-  exp: 0, 
+  expMax: 10,
+  exp: 0,
   attaque: 10,
   defense: 10,
   vitesse: 10,
@@ -90,7 +92,7 @@ const BenzemonstreStore = create((set) => ({
 
   // ajoute valeur
 
-  ajouterValeurAuChamp: (champ, valeur) => {
+  ajouter: (champ, valeur) => {
     set((state) => ({
       [champ]: state[champ] + valeur,
     }));
@@ -98,7 +100,7 @@ const BenzemonstreStore = create((set) => ({
 
   // retire valeur
 
-  retirerValeurDuChamp: (champ, valeur) => {
+  retirer: (champ, valeur) => {
     set((state) => ({
       [champ]: state[champ] - valeur,
     }));
@@ -106,7 +108,7 @@ const BenzemonstreStore = create((set) => ({
 
   // modifie valeur
 
-  modifierValeurDuChamp: (champ, nouvelleValeur) => {
+  modifier: (champ, nouvelleValeur) => {
     set({ [champ]: nouvelleValeur });
   },
 

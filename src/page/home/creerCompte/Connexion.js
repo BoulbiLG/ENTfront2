@@ -7,7 +7,7 @@ const Connexion = () => {
 
     const seConnecter = async (pseudo, mdp) => {
         try {
-            const response = await fetch('http://localhost:1234/connexion', {
+            const response = await fetch('http://127.0.0.1:5000/connexion', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

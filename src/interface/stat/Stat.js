@@ -43,13 +43,13 @@ const Stat = () => {
             {affichageFenetre === 'false' ? (
                 <div className='affichageFenetre btnClasseDiv' onClick={() => {ouvrirFenetre()}} >
                     <span class="material-symbols-outlined">bar_chart</span>
-                    <p>Ouvir les statistiques</p>
+                    <p>Ouvir équipement</p>
                 </div>
             ) :
                 <>
                     <div className='affichageFenetre btnClasseDiv' onClick={() => {fermerFenetre()}} >
                         <span class="material-symbols-outlined">bar_chart</span>
-                        <p>Fermer les statistiques</p>
+                        <p>Fermer équipement</p>
                     </div>
                     <FenetreStat indexFenetre={indexFenetre} />
                 </>

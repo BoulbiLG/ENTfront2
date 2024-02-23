@@ -1,6 +1,6 @@
 import { verificationTypeObjet } from "./verificationTypeObjet";
 
-export const utiliserItem = async (id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, joueurStore) => {
+export const utiliserItem = async (id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, joueurStore, poid) => {
 
     const inventaire = storeInventaire.inventaire;
 
@@ -18,13 +18,14 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
     
         if (ligneASupprimer) {
             if (ligneASupprimer.important === 'non') {
-                console.log('non');
                 if (ligneASupprimer.quantite > 1) {
-                    console.log('quantite superieur a 1');
                     storeInventaire.retireQuantiteItem(id, 'quantite', 1);
+                    storeInventaire.calculerPoid();
+                    storeInventaire.retirer('poid', poid);
                 } else {
-                    console.log('quantite brise');
                     storeInventaire.retirerLigneInventaire(id);
+                    storeInventaire.calculerPoid();
+                    storeInventaire.retirer('poid', poid);
                 }
                 verificationTypeObjet(id, type, action, inventaire, joueurStore);
             } else {

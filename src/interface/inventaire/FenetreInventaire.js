@@ -32,20 +32,23 @@ const FenetreInventaire = ({ indexFenetre }) => {
     const equipierNom = storeEquipier.nom;
     const [itemCourant, itemCourantSet] = useState('');
 
+    const poid = storeInventaire.poid; 
+    const poidMax = storeInventaire.poidMax; 
+
     const storeJoueur = recupererStoreDynamique(equipierCourant);
+
+    console.log('poid : ', poid);
 
     //const [avertissement, avertissementSet] = useState('Aucun avertissement.');
     
     
 
-
-
     // ==================== FONCTION UTILISER ITEM ==================== //
 
 
 
-    const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe) => {
-         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur)
+    const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe, poid) => {
+         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur, poid)
     }
 
 
@@ -54,8 +57,8 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
 
 
-    const jeterItemEnvoie = (id, type, cible, action, quantite, equipe) => {
-        jeterItem(id, type, storeInventaire, storeJoueur)
+    const jeterItemEnvoie = (id, type, cible, action, quantite, equipe, poid) => {
+        jeterItem(id, type, storeInventaire, storeJoueur, poid)
     }
 
 
@@ -123,8 +126,8 @@ const FenetreInventaire = ({ indexFenetre }) => {
             }}
         >
             <div className="haut">
-                <p>{indexFenetre}</p>
                 <p>Inventaire</p>
+                <p>Poid : {poid} / {poidMax}</p>
                 <hr />
             </div>
             <div className="milieu">
@@ -145,14 +148,14 @@ const FenetreInventaire = ({ indexFenetre }) => {
                 </div>
                 </div>
                 <div className="droite">
-                    {inventaire.map(({ id, nom, quantite, description, important, valeur, type, cible, action, equipe, img }) => (
+                    {inventaire.map(({ id, nom, quantite, description, important, valeur, type, cible, action, equipe, img, poid }) => (
                         id === itemCourant ? (
                             <div key={id} className="infosSection">
                                 <div className="info">
                                     <div className="ligne"><p className='index'>Nom : </p><p className='valeur'>{nom}</p></div>
                                     <div className="ligne"><p className='index'>Quantité : </p><p className='valeur'>{quantite}</p></div>
                                     <div className="ligne"><p className='index'>Valeur à la vente : </p><p className='valeur'>{valeur}€</p></div>
-                                    <div className="ligne"><p className='index'>Important : </p><p className='valeur'>{important}</p></div>
+                                    <div className="ligne"><p className='index'>Poid : </p><p className='valeur'>{poid}</p></div>
                                     <p className='index'>Description : </p>
                                     <div className="description">
                                         <p>{description}</p>
@@ -163,8 +166,8 @@ const FenetreInventaire = ({ indexFenetre }) => {
                                     <img src={img} alt={nom} style={{height: '20vh', width: '20vh',}} />
                                 </div>
                                 <br />
-                                <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe)}}>Utiliser</button>
-                                <button className='btnClasse' onClick={() => {jeterItemEnvoie(id, type, cible, action, quantite, equipe)}}>Jeter</button>
+                                <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe, poid)}}>Utiliser</button>
+                                <button className='btnClasse' onClick={() => {jeterItemEnvoie(id, type, cible, action, quantite, equipe, poid)}}>Jeter</button>
                                 <div className="action">
                                     <div className="avertissement"></div>
                                 </div>

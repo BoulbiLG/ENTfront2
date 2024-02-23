@@ -1,6 +1,6 @@
 import { retirerObjetEffet } from "./retirerEffetItem";
 
-export const jeterItem = (id, type, inventaireStore, joueurStore) => {
+export const jeterItem = (id, type, inventaireStore, joueurStore, poid) => {
 
     const inventaire = inventaireStore.inventaire;
 
@@ -26,8 +26,12 @@ export const jeterItem = (id, type, inventaireStore, joueurStore) => {
         if (ligneASupprimer.important === 'non') {
             if (ligneASupprimer.quantite > 1) {
                 inventaireStore.retireQuantiteItem(id, 'quantite', 1);
+                inventaireStore.calculerPoid();
+                inventaireStore.retirer('poid', poid);
             } else {
                 inventaireStore.retirerLigneInventaire(id);
+                inventaireStore.calculerPoid();
+                inventaireStore.retirer('poid', poid);
             }
         } else {
             return;

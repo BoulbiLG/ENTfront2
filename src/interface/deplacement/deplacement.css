@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.limitation {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.Deplacement {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 30vh;
+    border: none;
+    margin: 1vh;
+    background-color: rgb(126, 126, 192);
+    color: white;
+    transition: all 0.1s;
+    cursor: pointer;
+    border-radius: 1vh;
+    padding: 1vh;
+    box-sizing: border-box;
+}
+
+.indication {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 30vh;
+    border: none;
+    margin: 1vh;
+    margin-left: 0;
+    background-color: rgb(126, 126, 192);
+    color: white;
+    transition: all 0.1s;
+    cursor: pointer;
+    border-radius: 1vh;
+    padding: 1vh;
+    box-sizing: border-box;
+}
+
+.Deplacement .haut {
+    display: flex;
+    align-items: center;
+}
+
+.Deplacement .bas {
+    display: flex;
+    align-items: center;
+}
+
+.Deplacement button.activer {
+    background-color: rgb(78, 78, 109);
+    border: 1px dotted rgb(78, 78, 109);
+    color: white;
+    width: 9vh;
+    height: 5vh;
+    cursor: pointer;
+    margin: 0.2vh;
+    border-radius: 1vh;
+    border: none;
+    outline: none;
+    transition: all 0.1s;
+}
+
+.Deplacement button.desactiver {
+    border: 1px dotted rgb(78, 78, 109);
+    color: rgb(78, 78, 109);
+    background-color: rgb(78, 78, 109);;
+    width: 9vh;
+    height: 5vh;
+    cursor: default;
+    margin: 0.2vh;
+    border-radius: 1vh;
+    border: none;
+    outline: none;
+    transition: all 0.1s;
+}
+
+.Deplacement button.activer:hover {
+    filter: brightness(125%);
+}
+
+.Deplacement button.activer:active {
+    filter: brightness(150%);
+}

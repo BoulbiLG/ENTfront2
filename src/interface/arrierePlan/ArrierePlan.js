@@ -11,6 +11,9 @@ const ArrierePlan = () => {
 
     // ==================== DECLARATION VARIABLE ==================== //
 
+
+
+    const heroURL = 'https://image.noelshack.com/fichiers/2024/08/5/1708722354-dos.png';
     const storeDeplacement = deplacementStore();
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;
@@ -27,7 +30,8 @@ const ArrierePlan = () => {
 
     return (
         <div className='ArrierePlan'>
-            <img src={arrierePlan} alt={arrierePlan} />
+            <img className='arrierePlan' src={arrierePlan} alt={arrierePlan} />
+            <img className='hero' src={heroURL} alt={heroURL} />
         </div>
     )
 }

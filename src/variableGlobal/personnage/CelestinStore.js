@@ -41,6 +41,7 @@ const CelestinStore = create((set) => ({
   peur: 72,
 
   img: 'https://risibank.fr/cache/medias/0/9/958/95803/full.png',
+  comportement: '',
 
 
 

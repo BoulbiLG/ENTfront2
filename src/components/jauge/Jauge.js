@@ -8,6 +8,10 @@ const Jauge = ({ valeur, max, couleur, fond, titre, solo, dimension }) => {
         style = {
             display: 'flex', flexDirection: 'column', width: '300px', margin: '1vh 0'
         }
+    } else if (dimension === 'non') {
+        style = {
+            display: 'flex', flexDirection: 'column', margin: '1vh 0'
+        }
     } else {
         style = {
             display: 'flex', flexDirection: 'column', width: '100%', margin: '1vh 0'
@@ -31,7 +35,6 @@ const Jauge = ({ valeur, max, couleur, fond, titre, solo, dimension }) => {
                     width: '100%',
                     borderRadius: '1vh',
                     overflow: 'hidden',
-                    //border: '2px solid white',
                     boxShadow: '4px 4px 0px black',
                     backgroundColor: fond
                 }}>

@@ -6,6 +6,8 @@ import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import colisionStore from '../../variableGlobal/global/colisionStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 
+import { verificationMusique } from './verificationMusique';
+
 const Deplacement = () => {
 
 
@@ -45,7 +47,7 @@ const Deplacement = () => {
             if (direction === 'bas') storeDeplacement.retirer('zoneY', 1);
             if (direction === 'droite') storeDeplacement.ajouter('zoneX', 1);
             resolve();
-          }, 1000);
+          }, 500);
         });
       
         storeCelestin.modifier('comportement', '');

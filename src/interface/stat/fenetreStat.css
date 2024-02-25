@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: start;
 }
 
 .FenetreStat .inventaire {
@@ -29,4 +30,45 @@
     position: relative;
     display: flex;
     flex-direction: row;
+}
+
+.FenetreStat .centreHaut {
+    display: flex;
+}
+
+.FenetreStat .centreHaut .image {
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: 2vh;
+}
+
+.FenetreStat .centreHaut .inventaire {
+    flex: 0.5;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.FenetreStat .centreHaut img {
+    width: 100%;
+}
+
+.FenetreStat .centreBas {
+    background-color: rgb(78, 78, 109);
+    margin: 2vh;
+    box-sizing: border-box;
+    padding: 1vh;
+    border-radius: 1vh;
+    max-height: 42%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.FenetreStat .centreBas button {
+    width: 100%;
+    position: relative;
+    margin: 0.3vh auto;
+    display: block;
 }

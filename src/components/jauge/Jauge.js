@@ -19,7 +19,6 @@ const Jauge = ({ valeur, max, couleur, fond, titre, solo, dimension }) => {
     }
 
     const taux = valeur * 100 / max;
-    console.log(taux);
 
     return (
         <div style={style}>

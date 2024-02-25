@@ -5,6 +5,7 @@ import '../../css/classe/fenetreDrag.css';
 
 import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique';
 import { retirerObjetEffet } from '../inventaire/retirerEffetItem';
+import { verificationDialogue } from '../dialogue/verificationDialogue';
 
 import Jauge from '../../components/jauge/Jauge';
 import Item from '../../components/item/CaseItem';
@@ -12,6 +13,8 @@ import Item from '../../components/item/CaseItem';
 import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
+
+import { replique } from '../dialogue/repliqueJoueur';
 
 const FenetreStat = ({ indexFenetre }) => {
 
@@ -31,6 +34,8 @@ const FenetreStat = ({ indexFenetre }) => {
     const storeInventaire = inventaireStore();
     
     const storeJoueur = recupererStoreDynamique(storeEquipier.courant);
+
+    const [dialogueAffichage, dialogueAffichageSet] = useState('');
     
     useEffect(() => {
         const set = () => {
@@ -133,18 +138,40 @@ const FenetreStat = ({ indexFenetre }) => {
                     </div>
                 </div>
                 <div className="centre">
-                    <div className="image">
-                        <img src={statJoueur.img} alt="" />
-                    </div>
-                    <div className="inventaire">
-                        <p>Inventaire de {statJoueur.nom} :</p>
-                        <div className="centralisation2">
-                            <div className="liste">
-                                {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ id, type }) => (
-                                    <Item key={id} img={id} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
-                                ))}
+                    <div className="centreHaut">
+                        <div className="image">
+                            <img src={statJoueur.img} alt="" />
+                        </div>
+                        <div className="inventaire">
+                            <p>Inventaire de {statJoueur.nom} :</p>
+                            <div className="centralisation2">
+                                <div className="liste">
+                                    {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ id, type }) => (
+                                        <Item key={id} img={id} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
+                                    ))}
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="centreBas">
+                        <p>Que voulez vous dire à {storeEquipier.courant}</p>
+                        <hr />
+                        <p>{dialogueAffichage}</p>
+                        {storeEquipier.courant !== 'Celestin' ? (
+                            <>
+                                {replique.map(({ phrase, id, type, consequence }) => (
+                                    !storeJoueur.questionPose.includes(id) && (
+                                    <>
+                                        {type != 'don' ? (
+                                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(storeJoueur.nom, id, type, consequence, dialogueAffichageSet, storeJoueur);}}>
+                                                {phrase}
+                                            </button>
+                                        ) : null }
+                                    </>
+                                    )
+                                ))}
+                            </>
+                        ) : null }
                     </div>
                 </div>
                 <div className="droite">

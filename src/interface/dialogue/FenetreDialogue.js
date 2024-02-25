@@ -30,9 +30,15 @@ const FenetreDialogue = ({ storePersonnage }) => {
     };
 
     const handleNext = () => {
-        // Modifiez 2 en fonction du nombre total de parties du dialogue
-        compteurDialogueSet((prev) => (prev < 2 ? prev + 1 : prev));
+        if (storePersonnage.dialogue && storePersonnage.dialogue.dialogueNormal) {
+            const totalDialogues = Object.keys(storePersonnage.dialogue.dialogueNormal).length;
+    
+            compteurDialogueSet((prev) => (prev < totalDialogues ? prev + 1 : prev));
+        } else {
+            console.error("storePersonnage.dialogue.dialogueNormal est indéfini");
+        }
     };
+    
 
     const dialogueAffichage2 = storePersonnage.dialogue.dialogueNormal[`r${compteurDialogue}`];
 

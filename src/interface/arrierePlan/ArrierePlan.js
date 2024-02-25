@@ -28,7 +28,6 @@ const ArrierePlan = () => {
     const [arrierePlan, arrierePlanSet] = useState('');
 
     const analysePositionBrut = analysePositionPNJ(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
-    console.log(analysePositionBrut);
         
     useEffect(() => {
         const arrierePlanLigne = arrierePlanURL.find((colision) => colision.position === position);

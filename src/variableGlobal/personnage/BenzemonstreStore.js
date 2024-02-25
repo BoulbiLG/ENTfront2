@@ -126,7 +126,7 @@ const BenzemonstreStore = create((set) => ({
 
   // ajoute element tableau questionPose
 
-  ajouterElementTexte: (id) => {
+  ajouterQuestion: (id) => {
     set((state) => ({
       questionPose: [...state.questionPose, id],
     }));
@@ -134,7 +134,7 @@ const BenzemonstreStore = create((set) => ({
 
   // vide tableau questionPose
   
-  viderQuestionPose: () => {
+  viderQuestion: () => {
     set({ questionPose: [] });
   },
 }));

@@ -94,3 +94,8 @@
 .dialogueConteneur .dialogueJoueur {
     width: 100%;
 }
+
+.dialogueConteneur .donner {
+    background-color:rgb(240, 238, 140);
+    color: black;
+}

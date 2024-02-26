@@ -5,6 +5,7 @@ import './arrierePlan.css';
 import { arrierePlanURL } from '../../graphisme/arrierePlan/URL';
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
+import refreshStore from '../../variableGlobal/global/refresh';
 import Personnage from '../../graphisme/personnage/Personnage';
 
 import { analysePositionPNJ } from '../../fonction/analysePositionPNJ';
@@ -21,6 +22,7 @@ const ArrierePlan = () => {
     const [analysePosition, analysePositionSet] = useState([]);
     const storeDeplacement = deplacementStore();
     const storeCelestin = CelestinStore();
+    const storeRefresh = refreshStore();
     const comportement = storeCelestin.comportement;
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;

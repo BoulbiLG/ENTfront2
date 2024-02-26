@@ -1,6 +1,7 @@
-export const verificationDialogue = (nom, id, type, consequence, dialogueAffichageSet, storePersonnage) => {
+
+export const verificationDialogue = (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh) => {
     
-    let repliqueReturn = 'Rien compris . . .';
+    let repliqueReturn = [];
 
     // incrementation
 
@@ -26,25 +27,43 @@ export const verificationDialogue = (nom, id, type, consequence, dialogueAfficha
     // gestion dialogue
 
     if (type == 'colere') {
-        if(storePersonnage.colere >= 0 && storePersonnage.colere <= 20) {repliqueReturn = storePersonnage.replique.colere.r1;}
-        if(storePersonnage.colere >= 20 && storePersonnage.colere <= 40) {repliqueReturn = storePersonnage.replique.colere.r2;}
-        if(storePersonnage.colere >= 40 && storePersonnage.colere <= 60) {repliqueReturn = storePersonnage.replique.colere.r3;}
-        if(storePersonnage.colere >= 60 && storePersonnage.colere <= 80) {repliqueReturn = storePersonnage.replique.colere.r4;}
-        if(storePersonnage.colere >= 80) {repliqueReturn = storePersonnage.replique.colere.r5;}
+        if(storePersonnage.colere >= 0 && storePersonnage.colere <= 80) {repliqueReturn.push(storePersonnage.dialogue.replique.colere);}
+        if(storePersonnage.colere >= 80) {repliqueReturn.push(storePersonnage.dialogue.replique.combat);}
     }
 
     if (type == 'confiance') {
-        if(storePersonnage.confiance >= 0 && storePersonnage.confiance <= 30) {repliqueReturn = storePersonnage.replique.confiance.r1;}
-        if(storePersonnage.confiance >= 30 && storePersonnage.confiance <= 60) {repliqueReturn = storePersonnage.replique.confiance.r2;}
-        if(storePersonnage.confiance >= 60) {repliqueReturn = storePersonnage.replique.confiance.r3;}
+        if(storePersonnage.confiance >= 0 && storePersonnage.confiance <= 60) {repliqueReturn.push(storePersonnage.dialogue.replique.confiance);}
+        if(storePersonnage.confiance >= 90) {repliqueReturn.push(storePersonnage.dialogue.replique.confiance);}
     }
 
-    if (type == 'joie') {repliqueReturn = storePersonnage.replique.joie;}
-    if (type == 'tristesse') {repliqueReturn = storePersonnage.replique.tristesse;}
-    if (type == 'empathie') {repliqueReturn = storePersonnage.replique.empathie;}
-    if (type == 'peur') {repliqueReturn = storePersonnage.replique.peur;}
+    if (type == 'joie') {repliqueReturn.push(storePersonnage.dialogue.replique.joie);}
+    if (type == 'tristesse') {repliqueReturn.push(storePersonnage.dialogue.replique.tristesse);}
+    if (type == 'empathie') {repliqueReturn.push(storePersonnage.dialogue.replique.empathie);}
+    if (type == 'peur') {repliqueReturn.push(storePersonnage.dialogue.replique.peur);}
 
-    if (type == 'don') {repliqueReturn = 'Vraiment ?'}
+    if (type == 'don') {repliqueReturn.push({texte: 'Vraiment ?', sticker: 'https://image.noelshack.com/fichiers/2019/19/4/1557437332-ace383ce-418a-47f9-91b0-a862161adaac.jpeg'});}
+
+    console.log('storePersonnage.etat : ', storePersonnage.etat);
+    console.log('storePersonnage.soumis : ', storePersonnage.soumis);
+
+    if (type == 'recruter' && storePersonnage.confiance >= 100 || type == 'recruter' && storePersonnage.etat == 'equipier' && storePersonnage.soumis == 'oui') {
+        if (storePersonnage.nom === 'Souritima') {
+
+        } else {
+            storePersonnage.modifier('zoneZ', 99999999999);
+            storePersonnage.modifier('soumis', 'oui');
+            storePersonnage.modifier('etat', 'equipier');
+
+            equipeStore.ajouterNom(storePersonnage.nom);
+            storeRefresh.ajouter('refresh', 1);
+
+            repliqueReturn.push({texte: 'Ok ça marche !', sticker: 'https://image.noelshack.com/fichiers/2018/10/4/1520520305-pupute-cr7.png'});
+        }
+    } else {
+        repliqueReturn.push({texte: 'Ptdr t ki ?', sticker: 'https://image.noelshack.com/fichiers/2020/50/2/1607386908-enxt.png'});
+    }
+
+    console.log(repliqueReturn);
 
     dialogueAffichageSet(repliqueReturn);
 

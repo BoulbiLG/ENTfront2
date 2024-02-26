@@ -5,6 +5,9 @@ import { pommeURL } from '../../graphisme/item/item';
 
 const BenzemonstreStore = create((set) => ({
   nom: 'Jouhn_ingroum',
+  zoneXBase: 0,
+  zoneYBase: -2,
+  zoneZBase: 0,
   zoneX: 0,
   zoneY: -2,
   zoneZ: 0,
@@ -62,12 +65,13 @@ const BenzemonstreStore = create((set) => ({
     questionPose: [],
 
     replique: {
-      colere: {r1: 'Tu peux me laisser ?', r2: "T'as compris oh ?", r3: "OH sale pédé c'est quoi ton soucis ??", r4: "Va te faire niquer", r5: "Vazy tu l'auras voulu !!!"},
-      tristesse: "C'est pas gentil ! *snif snif...",
-      joie: "Ayaaaa énorme !",
-      peur: "Tu... tu en sûr ?",
-      confiance: {r1: "Arrête tu vas me faire rougir ahah.", r2: "Tu sais ? Je t'aime bien", r3: "Sache que tu es pour moi un ami !"},
-      empathie: "Oh ! C'est gentil.",
+      colere: {texte: "OH sale pédé c'est quoi ton soucis ??", sticker: 'https://image.noelshack.com/fichiers/2017/05/1485991738-risitas3.png'},
+      tristesse: {texte: "C'est pas gentil ! *snif snif...", sticker: 'https://image.noelshack.com/fichiers/2017/15/1492145702-bloggif-58f055f33c5de.png'},
+      joie: {texte: "Ayaaaa énorme !", sticker: 'https://image.noelshack.com/fichiers/2016/26/1467335935-jesus1.png'},
+      peur: {texte: "Tu... tu en sûr ?", sticker: 'https://image.noelshack.com/fichiers/2021/10/2/1615328575-unitinu-1.png'},
+      confiance: {texte: "Arrête tu vas me faire rougir ahah.", sticker: 'https://image.noelshack.com/fichiers/2017/39/3/1506463228-risibg.png'},
+      empathie: {texte: "Oh ! C'est gentil.", sticker: 'https://image.noelshack.com/fichiers/2018/36/2/1536096048-i-know-that-feel-bro-owen-07.png'},
+      combat: {texte: "Tu l'auras voulu enculé !!!", sticker: 'https://image.noelshack.com/fichiers/2021/43/4/1635454847-elton-john-tison-golem.png'},
     },
 
     compteurReplique: 0,
@@ -76,19 +80,7 @@ const BenzemonstreStore = create((set) => ({
 
   },
 
-  dialogue1: 'Ces rumeurs au sujet de la destruction de Onche sont elles vraies ?',
-  dialogueDesir: "J'aime beaucoup les épée.",
-  desir: ['epee'],
   questionPose: [],
-  replique: {
-      colere: {r1: 'Tu peux me laisser ?', r2: "T'as compris oh ?", r3: "OH sale pédé c'est quoi ton soucis ??", r4: "Va te faire niquer", r5: "Vazy tu l'auras voulu !!!"},
-      tristesse: "C'est pas gentil ! *snif snif...",
-      joie: "Ayaaaa énorme !",
-      peur: "Tu... tu en sûr ?",
-      confiance: {r1: "Arrête tu vas me faire rougir ahah.", r2: "Tu sais ? Je t'aime bien", r3: "Sache que tu es pour moi un ami !"},
-      empathie: "Oh ! C'est gentil.",
-  },
-  compteurReplique: 0,
 
   // EQUIPEMENT
 

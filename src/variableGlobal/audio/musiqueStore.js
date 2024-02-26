@@ -1,7 +1,7 @@
 import create from 'zustand';
 
 const musiqueStore = create((set) => ({
-  courante: 'onche',
+  courante: '',
   modifierCourante: (nouvelleValeur) => {
     set({ courante: nouvelleValeur });
   },

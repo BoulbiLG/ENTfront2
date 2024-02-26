@@ -13,6 +13,7 @@ import Item from '../../components/item/CaseItem';
 import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
+import deplacementStore from '../../variableGlobal/global/deplacementStore'
 
 import { replique } from '../dialogue/repliqueJoueur';
 
@@ -32,6 +33,7 @@ const FenetreStat = ({ indexFenetre }) => {
 
     const storeEquipier = equipeStore();
     const storeInventaire = inventaireStore();
+    const storeDeplacement = deplacementStore();
     
     const storeJoueur = recupererStoreDynamique(storeEquipier.courant);
 
@@ -103,6 +105,34 @@ const FenetreStat = ({ indexFenetre }) => {
         setDragStart({ x: e.clientX, y: e.clientY });
         }
     };
+
+    const attendsMoiIci = () => {
+        storeJoueur.modifier('zoneX', storeDeplacement.zoneX);
+        storeJoueur.modifier('zoneY', storeDeplacement.zoneY);
+        storeJoueur.modifier('zoneZ', storeDeplacement.zoneZ);
+
+        storeEquipier.retirerNom(storeJoueur.nom);
+    }
+
+    const rentreChezToi = () => {
+        storeJoueur.modifier('zoneX', storeJoueur.zoneXBase);
+        storeJoueur.modifier('zoneY', storeJoueur.zoneYBase);
+        storeJoueur.modifier('zoneZ', storeJoueur.zoneZBase);
+
+        storeEquipier.retirerNom(storeJoueur.nom);
+    }
+
+    const plusAmi = () => {
+        storeJoueur.modifier('zoneX', storeJoueur.zoneXBase);
+        storeJoueur.modifier('zoneY', storeJoueur.zoneYBase);
+        storeJoueur.modifier('zoneZ', storeJoueur.zoneZBase);
+
+        storeEquipier.retirerNom(storeJoueur.nom);
+        storeJoueur.modifier('etat', 'PNJ');
+        storeJoueur.modifier('soumis', 'non');
+        storeJoueur.modifier('confiance', 0);
+        storeJoueur.modifier('empathie', 0);
+    }
     
 
 
@@ -163,13 +193,20 @@ const FenetreStat = ({ indexFenetre }) => {
                                     !storeJoueur.questionPose.includes(id) && (
                                     <>
                                         {type != 'don' ? (
-                                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(storeJoueur.nom, id, type, consequence, dialogueAffichageSet, storeJoueur);}}>
-                                                {phrase}
-                                            </button>
+                                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(storeJoueur.nom, id, type, consequence, dialogueAffichageSet, storeJoueur);}}>{phrase}</button>
                                         ) : null }
                                     </>
                                     )
                                 ))}
+                                <button className='btnClasse dialogueJoueur' onClick={() => {attendsMoiIci();}}>
+                                    Attends moi ici
+                                </button>
+                                <button className='btnClasse dialogueJoueur' onClick={() => {rentreChezToi();}}>
+                                    Quitte mon équipe, rentre chez toi mais on reste ami
+                                </button>
+                                <button className='btnClasse dialogueJoueur' onClick={() => {plusAmi();}}>
+                                    T'es plus mon ami, dégage
+                                </button>
                             </>
                         ) : null }
                     </div>

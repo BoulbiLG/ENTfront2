@@ -4,6 +4,9 @@ import { replique } from './repliqueJoueur';
 import { verificationDialogue } from './verificationDialogue';
 import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique';
 
+import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import refreshStore from '../../variableGlobal/global/refresh';
+
 import FenetreDon from './FenetreDon';
 import Jauge from '../../components/jauge/Jauge';
 
@@ -13,7 +16,7 @@ import './fenetreDialogue.css';
 
 const FenetreDialogue = ({ storePersonnage }) => {
 
-    const [dialogueAffichage, dialogueAffichageSet] = useState([storePersonnage.dialogue.dialogueNormal]);
+    const [dialogueAffichage, dialogueAffichageSet] = useState(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
@@ -22,6 +25,9 @@ const FenetreDialogue = ({ storePersonnage }) => {
     const [compteurDialogue, compteurDialogueSet] = useState(1);
 
     const personnageStore = recupererStoreDynamique(storePersonnage.nom);
+
+    const storeEquipe = equipeStore();
+    const storeRefresh = refreshStore();
 
     //
 
@@ -91,7 +97,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
         className='dialogueConteneur fenetreDrag'
         style={{
             position: 'absolute',
-            left: `${position.x - 430}px`,
+            left: `${position.x - 600}px`,
             top: `${position.y - 330}px`,
         }}
         onMouseDown={handleMouseDown}
@@ -101,10 +107,17 @@ const FenetreDialogue = ({ storePersonnage }) => {
         <p>{storePersonnage.nom} :</p>
         <div className="dialogue">
             <div className="texte">
-            <div className="ligne">
-                <p>{dialogueAffichage2.texte}</p>
-                <img src={dialogueAffichage2.sticker} alt={dialogueAffichage2.sticker} style={{height: '70px', width: '100px'}} />
-            </div>
+                {dialogueAffichage === null ? (
+                    <div className="ligne">
+                        <p>{dialogueAffichage2.texte}</p>
+                        <img src={dialogueAffichage2.sticker} alt={dialogueAffichage2.sticker} style={{height: '70px', width: '100px'}} />
+                    </div>
+                ) : 
+                    <div className="ligne">
+                        <p>{dialogueAffichage[0].texte}</p>
+                        <img src={dialogueAffichage[0].sticker} alt={dialogueAffichage[0].sticker} style={{height: '70px', width: '100px'}} />
+                    </div>
+                }
             </div>
             <div className="boutonDialogue">
                 <button className='btnClasse' onClick={() => {handlePrevious()}}><span class="material-symbols-outlined">arrow_back</span></button>
@@ -131,14 +144,14 @@ const FenetreDialogue = ({ storePersonnage }) => {
                 {replique.map(({ phrase, id, type, consequence }) => (
                     !personnageStore.questionPose.includes(id) && (
                     <>
-                        {type != 'don' ? (
-                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(personnageStore.nom, id, type, consequence, dialogueAffichageSet, personnageStore);}}>
-                                {phrase}
-                            </button>
+                        {type != 'don' && type != 'recruter' ? (
+                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(personnageStore.nom, id, type, consequence, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh);}}>{phrase}</button>
                         ) : 
                             <>
                                 {affichageFenetreDon == 'false' ? (
+                                    <>
                                     <button className='btnClasse dialogueJoueur donner' key={id} onClick={() => {affichageFenetreDonSet('true')}}>{phrase}</button>
+                                    </>
                                 ) : 
                                     <button className='btnClasse dialogueJoueur donner' key={id} onClick={() => {affichageFenetreDonSet('false')}}>{phrase}</button>
                                 } 
@@ -147,6 +160,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
                     </>
                     )
                 ))}
+                <button className='btnClasse dialogueJoueur recruter' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'recruter', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh);}}>Je te veux dans mon équipe !</button>
             </div>
 
             {affichageFenetreDon == 'true' ? (

@@ -1,5 +1,5 @@
 
-export const verificationDialogue = (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh) => {
+export const verificationDialogue = (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='') => {
     
     let repliqueReturn = [];
 
@@ -63,8 +63,10 @@ export const verificationDialogue = (nom, id, type, consequence, dialogueAfficha
         repliqueReturn.push({texte: 'Ptdr t ki ?', sticker: 'https://image.noelshack.com/fichiers/2020/50/2/1607386908-enxt.png'});
     }
 
-    console.log(repliqueReturn);
+    if (contexte != 'stat') {
+        console.log(repliqueReturn);
 
-    dialogueAffichageSet(repliqueReturn);
+        dialogueAffichageSet(repliqueReturn);
+    }
 
 }

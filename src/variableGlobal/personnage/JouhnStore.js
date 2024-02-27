@@ -1,5 +1,6 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/jouhn_ingroum/normal.png';
+import tete from '../../asset/personnage/jouhn_ingroum/tete.png';
 
 import { pommeURL } from '../../graphisme/item/item';
 
@@ -13,13 +14,12 @@ const BenzemonstreStore = create((set) => ({
   zoneZ: 0,
   x: 500,
   y: 100,
-  etat: 'ennemi',
+  etat: 'PNJ',
   soumis: 'non',
   URL: 'https://cloud.onche.org/d682eecd-0f0e-42a8-86bc-5e2e2d5f4598!xMhG6dJaYD/128',
 
-  img: {
-    normal: normal,
-  },
+  imgNormal: normal,
+  imgTete: tete,
 
   // STAT
 

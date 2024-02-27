@@ -10,3 +10,15 @@
     cursor: pointer;
     border-radius: 1vh;
 }
+
+
+.fenetre2Classe {
+    position: absolute;
+    padding: 2vh;
+    word-wrap: break-word;
+    cursor: grab;
+    background: linear-gradient(60deg, rgb(160, 160, 198), rgb(121, 121, 161));
+    color: white;
+    border-radius: 1vh;
+    border: 5px solid rgb(182, 182, 217);
+}

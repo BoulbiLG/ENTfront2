@@ -17,10 +17,10 @@ const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => 
             }}
         >
             {etat === 'fixe' ? (
-                <img src={storePersonnage.img.normal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
+                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
             ) : null }
             {etat === 'dialogue' ? (
-                <img src={storePersonnage.img.normal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
+                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
             ) : null }
             {etat === 'dialogue' ? (
                 <>

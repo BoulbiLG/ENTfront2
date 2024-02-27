@@ -1,4 +1,5 @@
 import create from 'zustand';
+import tete from '../../asset/personnage/celestin/tete.png';
 
 const CelestinStore = create((set) => ({
 
@@ -40,7 +41,9 @@ const CelestinStore = create((set) => ({
   tristesse: 12,
   peur: 72,
 
-  img: 'https://risibank.fr/cache/medias/0/9/958/95803/full.png',
+  imgNormal: '',
+  imgTete: tete,
+
   comportement: '',
 
 

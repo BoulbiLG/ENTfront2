@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Conseil {
+    margin: 1vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

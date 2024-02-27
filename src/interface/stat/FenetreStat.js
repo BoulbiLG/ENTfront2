@@ -132,6 +132,13 @@ const FenetreStat = ({ indexFenetre }) => {
         storeJoueur.modifier('soumis', 'non');
         storeJoueur.modifier('confiance', 0);
         storeJoueur.modifier('empathie', 0);
+        storeJoueur.modifierIdParType('tete', '');
+        storeJoueur.modifierIdParType('buste', '');
+        storeJoueur.modifierIdParType('jambe', '');
+        storeJoueur.modifierIdParType('pied', '');
+        storeJoueur.modifierIdParType('mainG', '');
+        storeJoueur.modifierIdParType('mainD', '');
+        storeJoueur.modifierIdParType('bras', '');
     }
     
 
@@ -170,7 +177,7 @@ const FenetreStat = ({ indexFenetre }) => {
                 <div className="centre">
                     <div className="centreHaut">
                         <div className="image">
-                            <img src={statJoueur.img} alt="" />
+                            <img src={statJoueur.imgTete} alt={statJoueur.imgTete} />
                         </div>
                         <div className="inventaire">
                             <p>Inventaire de {statJoueur.nom} :</p>
@@ -186,29 +193,30 @@ const FenetreStat = ({ indexFenetre }) => {
                     <div className="centreBas">
                         <p>Que voulez vous dire à {storeEquipier.courant}</p>
                         <hr />
-                        <p>{dialogueAffichage}</p>
+                        <p>{dialogueAffichage.texte}</p>
+                        <p>{dialogueAffichage.sticker}</p>
                         {storeEquipier.courant !== 'Celestin' ? (
                             <>
                                 {replique.map(({ phrase, id, type, consequence }) => (
                                     !storeJoueur.questionPose.includes(id) && (
                                     <>
                                         {type != 'don' ? (
-                                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(storeJoueur.nom, id, type, consequence, dialogueAffichageSet, storeJoueur);}}>{phrase}</button>
+                                            <button className='btnClasse dialogueJoueur' key={id} onClick={() => {verificationDialogue(storeJoueur.nom, id, type, consequence, dialogueAffichageSet, storeJoueur, 'stat');}}>{phrase}</button>
                                         ) : null }
                                     </>
                                     )
                                 ))}
-                                <button className='btnClasse dialogueJoueur' onClick={() => {attendsMoiIci();}}>
+                                <button className='btnClasse dialogueJoueur consigne' onClick={() => {attendsMoiIci();}}>
                                     Attends moi ici
                                 </button>
-                                <button className='btnClasse dialogueJoueur' onClick={() => {rentreChezToi();}}>
+                                <button className='btnClasse dialogueJoueur consigne' onClick={() => {rentreChezToi();}}>
                                     Quitte mon équipe, rentre chez toi mais on reste ami
                                 </button>
-                                <button className='btnClasse dialogueJoueur' onClick={() => {plusAmi();}}>
+                                <button className='btnClasse dialogueJoueur consigne' onClick={() => {plusAmi();}}>
                                     T'es plus mon ami, dégage
                                 </button>
                             </>
-                        ) : null }
+                        ) : <><p>On ne peut pas se parler a soi même . . .</p><br /><br /><br /><br /><br /><p>. . . a moins d'être schizo ahi</p></> }
                     </div>
                 </div>
                 <div className="droite">

@@ -1,5 +1,6 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/chevalierMaudit/normal.png';
+import tete from '../../asset/personnage/chevalierMaudit/tete.png';
 
 import { pommeURL } from '../../graphisme/item/item';
 
@@ -15,11 +16,9 @@ const ChevalierMauditStore = create((set) => ({
   y: 100,
   etat: 'PNJ',
   soumis: 'non',
-  URL: 'https://cloud.onche.org/d682eecd-0f0e-42a8-86bc-5e2e2d5f4598!xMhG6dJaYD/128',
 
-  img: {
-    normal: normal,
-  },
+  imgNormal: normal,
+  imgTete: tete,
 
   // STAT
 

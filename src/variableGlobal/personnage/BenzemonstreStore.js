@@ -41,19 +41,44 @@ const BenzemonstreStore = create((set) => ({
 
   // DIALOGUE
   
-  dialogue1: 'Coucou sale fils de pute.',
-  dialogueDesir: "J'aime beaucoup les épée et les boucliers.",
-  desir: ['pomme', 'bouclier'],
-  questionPose: [],
-  replique: {
-      colere: {r1: 'Tu peux me laisser ?', r2: "T'as compris oh ?", r3: "OH sale pédé c'est quoi ton soucis ??", r4: "Va te faire niquer", r5: "Vazy tu l'auras voulu !!!"},
-      tristesse: "C'est pas gentil ! *snif snif...",
-      joie: "Ayaaaa énorme !",
-      peur: "Tu... tu en sûr ?",
-      confiance: {r1: "Arrête tu vas me faire rougir ahah.", r2: "Tu sais ? Je t'aime bien", r3: "Sache que tu es pour moi un ami !"},
-      empathie: "Oh ! C'est gentil.",
+  dialogue: {
+
+    dialogueNormal: {
+      r1: {
+        texte: "Je suis entrain d'écrire un nouvel article de la gazette onchoise",
+        sticker: 'https://image.noelshack.com/fichiers/2020/17/3/1587583571-torchon.png',
+        index: 1},
+      r2: {
+        texte: 'il ne tardera pas à sortir',
+        sticker: 'https://image.noelshack.com/fichiers/2020/37/2/1599581994-1599581859-d2f85d2f-8787-4ab7-80eb-f71e150a442e.jpeg',
+        index: 2},
+      r3: {
+        texte: `je pense appeler cet article "Sujet hebdomadaire pour stimuler l'activité".`,
+        sticker: 'https://image.noelshack.com/fichiers/2022/02/1/1641830215-chevalierpret.png',
+        index: 2},
+    },
+
+    dialogueDesir: "J'aime beaucoup les armures.",
+    desir: ['casque', 'epauliere', 'jambiere', 'plastron', 'nike'],
+    questionPose: [],
+
+    replique: {
+      colere: {texte: "OH sale pédé c'est quoi ton soucis ??", sticker: 'https://image.noelshack.com/fichiers/2017/05/1485991738-risitas3.png'},
+      tristesse: {texte: "C'est pas gentil ! *snif snif...", sticker: 'https://image.noelshack.com/fichiers/2017/15/1492145702-bloggif-58f055f33c5de.png'},
+      joie: {texte: "Ayaaaa énorme !", sticker: 'https://image.noelshack.com/fichiers/2016/26/1467335935-jesus1.png'},
+      peur: {texte: "Tu... tu en sûr ?", sticker: 'https://image.noelshack.com/fichiers/2021/10/2/1615328575-unitinu-1.png'},
+      confiance: {texte: "Arrête tu vas me faire rougir ahah.", sticker: 'https://image.noelshack.com/fichiers/2017/39/3/1506463228-risibg.png'},
+      empathie: {texte: "Oh ! C'est gentil.", sticker: 'https://image.noelshack.com/fichiers/2018/36/2/1536096048-i-know-that-feel-bro-owen-07.png'},
+      combat: {texte: "Tu l'auras voulu enculé !!!", sticker: 'https://image.noelshack.com/fichiers/2021/43/4/1635454847-elton-john-tison-golem.png'},
+    },
+
+    compteurReplique: 0,
+
+    etatDialogue: '',
+
   },
-  compteurReplique: 0,
+
+  questionPose: [],
 
   // EQUIPEMENT
 

@@ -5,8 +5,11 @@ import './deplacement.css';
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import colisionStore from '../../variableGlobal/global/colisionStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
+import miniMapStore from '../../variableGlobal/global/miniMap';
 
 import { verificationMusique } from './verificationMusique';
+
+import MiniMap from './MiniMap';
 
 const Deplacement = () => {
 
@@ -17,10 +20,12 @@ const Deplacement = () => {
     const storeDeplacement = deplacementStore();
     const storeColision = colisionStore();
     const storeCelestin = CelestinStore();
+    const storeMiniMap = miniMapStore();
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;
     
     const [mouvementChoix, setMouvementChoix] = useState([]);
+    const [refreshLocal, refreshLocalSet] = useState(0);
 
     useEffect(() => {
         const colision = storeColision.find((colision) => colision.position === position);
@@ -37,15 +42,18 @@ const Deplacement = () => {
     const marcher = async (direction) => {
         setMouvementChoix([]);
         storeCelestin.modifier('comportement', 'marcher');
+
+        const miniMapX = 16.5;
+        const miniMapY = 9.5;
       
         await new Promise((resolve) => {
           setTimeout(() => {
-            if (direction === 'monter') storeDeplacement.ajouter('zoneZ', 1);
-            if (direction === 'haut') storeDeplacement.ajouter('zoneY', 1);
-            if (direction === 'descendre') storeDeplacement.retirer('zoneZ', 1);
-            if (direction === 'gauche') storeDeplacement.retirer('zoneX', 1);
-            if (direction === 'bas') storeDeplacement.retirer('zoneY', 1);
-            if (direction === 'droite') storeDeplacement.ajouter('zoneX', 1);
+            if (direction === 'monter') {storeDeplacement.ajouter('zoneZ', 1); storeMiniMap.ajouter('z', 1); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'haut') {storeDeplacement.ajouter('zoneY', 1); storeMiniMap.ajouter('y', miniMapY); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'descendre') {storeDeplacement.retirer('zoneZ', 1); storeMiniMap.retirer('z', 1); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'gauche') {storeDeplacement.retirer('zoneX', 1); storeMiniMap.ajouter('x', miniMapX); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'bas') {storeDeplacement.retirer('zoneY', 1); storeMiniMap.retirer('y', miniMapY); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'droite') {storeDeplacement.ajouter('zoneX', 1); storeMiniMap.retirer('x', miniMapX); refreshLocalSet(prevValue => prevValue + 1);}
             resolve();
           }, 500);
         });
@@ -92,6 +100,9 @@ const Deplacement = () => {
                 <p>X : {storeDeplacement.zoneX}</p>
                 <p>Y : {storeDeplacement.zoneY}</p>
                 <p>Z : {storeDeplacement.zoneZ}</p>
+            </div>
+            <div className="mini-map">
+                <MiniMap refreshLocal={refreshLocal}/>
             </div>
         </div>
     )

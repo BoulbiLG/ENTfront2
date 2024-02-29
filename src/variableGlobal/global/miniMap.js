@@ -1,14 +1,10 @@
 import create from 'zustand';
 
-const deplacementStore = create((set) => ({
+const miniMapStore = create((set) => ({
 
-  zoneX: 0,
-  zoneY: 0,
-  zoneZ: 0,
-
-  lieux: 'onche',
-
-  fenetreOuverte: [],
+  x: -57.5,
+  y: -23.5,
+  z: 0,
 
   ajouter: (champ, valeur) => {
     set((state) => ({
@@ -28,4 +24,4 @@ const deplacementStore = create((set) => ({
 
 }));
 
-export default deplacementStore;
+export default miniMapStore;

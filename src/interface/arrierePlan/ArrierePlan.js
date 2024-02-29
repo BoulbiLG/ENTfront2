@@ -6,9 +6,12 @@ import { arrierePlanURL } from '../../graphisme/arrierePlan/URL';
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import refreshStore from '../../variableGlobal/global/refresh';
+
 import Personnage from '../../graphisme/personnage/Personnage';
+import Stockage from '../../graphisme/stockage/Stockage';
 
 import { analysePositionPNJ } from '../../fonction/analysePositionPNJ';
+import { analysePositionStockage } from '../../fonction/stockage/analysePositionStockage';
 
 const ArrierePlan = () => {
 
@@ -20,6 +23,7 @@ const ArrierePlan = () => {
 
     const [heroURL, heroURLSet] = useState('https://image.noelshack.com/fichiers/2024/08/5/1708722354-dos.png');
     const [analysePosition, analysePositionSet] = useState([]);
+    const [analysePositionStockageNet, analysePositionStockageNetSet] = useState([]);
     const storeDeplacement = deplacementStore();
     const storeCelestin = CelestinStore();
     const storeRefresh = refreshStore();
@@ -30,13 +34,15 @@ const ArrierePlan = () => {
     const [arrierePlan, arrierePlanSet] = useState('');
 
     const analysePositionBrut = analysePositionPNJ(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
-        
+    const analysePositionStockageBrut = analysePositionStockage(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement.lieux);
+
     useEffect(() => {
         const arrierePlanLigne = arrierePlanURL.find((colision) => colision.position === position);
         const arrierePlanBrut = arrierePlanLigne.url;
         
         arrierePlanSet(arrierePlanBrut);
         analysePositionSet(analysePositionBrut);
+        analysePositionStockageNetSet(analysePositionStockageBrut);
     }, [position]);
 
     useEffect(() => {
@@ -65,6 +71,22 @@ const ArrierePlan = () => {
             <div className="listePersonnage">
                 {analysePosition.map((element, index) => (
                     <Personnage key={index} x={element.x} y={element.y} storePersonnage={element.store}/>
+                ))}
+            </div>
+            <div className="listeStockage">
+                {analysePositionStockageNet.map((element, index) => (
+                    <Stockage 
+                        key={index} 
+                        height={element.height} 
+                        width={element.width} 
+                        img={element.img} 
+                        x={element.x} 
+                        y={element.y} 
+                        type={element.type} 
+                        id={element.id} 
+                        stockageStore={element.store}
+                        inventaireStockage={element.inventaire}
+                    />
                 ))}
             </div>
         </div>

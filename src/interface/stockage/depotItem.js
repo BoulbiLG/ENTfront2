@@ -34,7 +34,7 @@ export const depotItem = (idStockage, action, cible, important, id, nom, img, de
     if (ligneAajouter) {
         stockageStore.ajouterQuantiteItem(id, 'quantite', 1, idStockage);
     } else {
-        const ligne = { equipe: 0, action: action, cible: cible, important: important, id: id, nom: nom, quantite: 1, img: `${id}URL`, description: description, valeur: valeur, type: type, poid: poid};
+        const ligne = { equipe: 0, action: action, cible: cible, important: important, id: id, nom: nom, quantite: 1, img: img, description: description, valeur: valeur, type: type, poid: poid};
         stockageStore.ajouterLigneInventaire(ligne, idStockage);
     }
 

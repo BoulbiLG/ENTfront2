@@ -93,7 +93,7 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
                 {storeCoffreBrut.stockage.find(stock => stock.idStockage === idStockage)?.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type, poid }) => (
                     <CaseItem
                         key={id}
-                        img={id}
+                        img={img}
                         quantite={quantite}
                         onClick={() => {recuperationItem(
                             idStockage,
@@ -127,7 +127,7 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
                     {storeInventaire.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type, poid }) => (
                         <CaseItem
                             key={id}
-                            img={id}
+                            img={img}
                             quantite={quantite}
                             onClick={() => {depotItem(
                                 idStockage,

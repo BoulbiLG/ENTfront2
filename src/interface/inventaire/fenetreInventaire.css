@@ -73,6 +73,12 @@
     display: flex;
 }
 
+.FenetreInventaire .droite .info {
+    overflow-y: scroll;
+    max-height: 15vh;
+    padding-right: 1vh;
+}
+
 .FenetreInventaire .exGauche .listeProfil {
     flex: 3;
     box-sizing: border-box;

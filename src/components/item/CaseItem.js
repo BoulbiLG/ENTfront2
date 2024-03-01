@@ -2,19 +2,18 @@ import React from 'react';
 
 import './caseItem.css';
 
-import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
-
-const CaseItem = ({ img, onClick, x, y, quantite, equipe }) => {
-    
+const CaseItem = ({ img, id, onClick, x, y, quantite, equipe }) => {
     let style = {};
 
+    const height = '60px';
+    const width = '60px';
     if (x) {
         if (y) {
             if(quantite === equipe) {
                 style = {
                     cursor: 'pointer',
-                    width: '50px',
-                    height: '50px',
+                    width: width,
+                    height: height,
                     position: 'absolute',
                     border: '1px solid black',
                     filter: 'brightness(80%)',
@@ -24,8 +23,8 @@ const CaseItem = ({ img, onClick, x, y, quantite, equipe }) => {
             } else {
                 style = {
                     cursor: 'pointer',
-                    width: '50px',
-                    height: '50px',
+                    width: width,
+                    height: height,
                     position: 'absolute',
                     left: x,
                     top: y,
@@ -36,16 +35,16 @@ const CaseItem = ({ img, onClick, x, y, quantite, equipe }) => {
         if(quantite === equipe) {
             style = {
                 cursor: 'pointer',
-                width: '50px',
-                height: '50px',
+                width: width,
+                height: height,
                 border: '1px solid black',
                 filter: 'brightness(80%)',
             };
         } else {
             style = {
                 cursor: 'pointer',
-                width: '50px',
-                height: '50px',
+                width: width,
+                height: height,
             };
         }
     }
@@ -54,28 +53,15 @@ const CaseItem = ({ img, onClick, x, y, quantite, equipe }) => {
         margin: '1vh',
     }
 
-    let URL = '';
-
-    if (img === 'pomme') {URL = pommeURL}
-    if (img === 'epee') {URL = epeeURL}
-    if (img === 'bouclier') {URL = bouclierURL}
-    if (img === 'casque') {URL = casqueURL}
-    if (img === 'plastron') {URL = plastronURL}
-    if (img === 'jambiere') {URL = jambiereURL}
-    if (img === 'epauliere') {URL = epauliereURL}
-    if (img === 'nike') {URL = nikeURL}
-
     return (
         <>
         <div className='CaseItem' style={styleConteneur}>
-            { URL !== '' ? (
-            <div className="case" onClick={onClick} style={{
-                position: 'relative',
-            }}>
+            { img !== undefined ? (
+            <div className="case" onClick={onClick} style={style}>
 
                 {/* ========== INVENTAIRE ========== */}
 
-                    <img src={URL} alt={img} style={style} />
+                    <img src={img} alt={img} style={{height: '50px', width: 'auto'}} />
                     {quantite > 1 ? (
                         <div className="quantite" style={{
                             position: 'absolute',

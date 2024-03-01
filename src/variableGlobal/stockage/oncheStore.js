@@ -1,11 +1,17 @@
 import create from 'zustand';
 import coffre from '../../asset/stockage/coffre.png';
 import commode from '../../asset/stockage/commode.png';
+import coca from '../../asset/item/consomable/coca.png';
+import monster from '../../asset/item/consomable/monster.png';
 
-import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
+import { lexiqueConsomable } from '../item/lexiqueConsomable';
+
+import { epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
+
 
 const heightCoffre = 10;
 const widthCoffre = 10;
+console.log(lexiqueConsomable);
 
 const oncheStore = create((set) => ({
     stockage: [
@@ -16,7 +22,9 @@ const oncheStore = create((set) => ({
             img: coffre,
             height: heightCoffre, width: widthCoffre,
             inventaire: [
-                { equipe: 0, action: 5, important: 'non', id: 'pomme', nom: 'Pomme', quantite: 15, img: pommeURL, description: 'fdp.', valeur: 2, type: 'consomable', poid: 1},
+                { equipe: 0, action: lexiqueConsomable.pomme.action, important: lexiqueConsomable.pomme.important, id: lexiqueConsomable.pomme.id,
+                    nom: lexiqueConsomable.pomme.nom, quantite: 1, img: lexiqueConsomable.pomme.img, description: lexiqueConsomable.pomme.description, 
+                    valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
             ],
         },
         {
@@ -26,32 +34,28 @@ const oncheStore = create((set) => ({
             img: coffre,
             height: heightCoffre, width: widthCoffre,
             inventaire: [
-                { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 5, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
-                { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 5, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
+                { equipe: 0, action: lexiqueConsomable.bouteillepisse.action, important: lexiqueConsomable.bouteillepisse.important, id: lexiqueConsomable.bouteillepisse.id,
+                    nom: lexiqueConsomable.bouteillepisse.nom, quantite: 1, img: lexiqueConsomable.bouteillepisse.img, description: lexiqueConsomable.bouteillepisse.description, 
+                    valeur: lexiqueConsomable.bouteillepisse.valeur, type: lexiqueConsomable.bouteillepisse.type, poid: lexiqueConsomable.bouteillepisse.poid},
             ],
         },
-        {
+        {   
+            // maison cleamolette
+
             zoneX: 0, zoneY: -4, zoneZ: 999999,
             x: 1056, y: 250,
-            idStockage: '2', type: 'coffre',
+            idStockage: '3', type: 'coffre',
             img: coffre,
             height: heightCoffre, width: widthCoffre,
             inventaire: [
-                { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 5, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
-                { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 5, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
+                { equipe: 0, action: lexiqueConsomable.pomme.action, important: lexiqueConsomable.pomme.important, id: lexiqueConsomable.pomme.id,
+                nom: lexiqueConsomable.pomme.nom, quantite: 2, img: lexiqueConsomable.pomme.img, description: lexiqueConsomable.pomme.description, 
+                valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
+                { equipe: 0, action: lexiqueConsomable.coca.action, important: lexiqueConsomable.coca.important, id: lexiqueConsomable.coca.id,
+                nom: lexiqueConsomable.coca.nom, quantite: 1, img: lexiqueConsomable.coca.img, description: lexiqueConsomable.coca.description, 
+                valeur: lexiqueConsomable.coca.valeur, type: lexiqueConsomable.coca.type, poid: lexiqueConsomable.coca.poid},
             ],
-        },
-        {
-            zoneX: 0, zoneY: -4, zoneZ: 999999,
-            x: 1056, y: 250,
-            idStockage: '2', type: 'coffre',
-            img: coffre,
-            height: heightCoffre, width: widthCoffre,
-            inventaire: [
-                { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 5, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
-                { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 5, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
-            ],
-        },
+        }
     ],
 
     ajouter: (champ, valeur) => {

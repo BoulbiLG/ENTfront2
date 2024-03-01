@@ -1,0 +1,16 @@
+
+consomable :
+
+    coca : soigne le poison
+    86 : soigne la magie
+    bouteille de pisse : soigne tout
+    monster : soigne brulure
+    eau du gange : soigne la paralysie
+    sauce sonic : soigne le gel
+
+armure :
+
+    tete :
+
+        masque sanitaire: protege contre les problemes de status
+

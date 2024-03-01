@@ -191,8 +191,8 @@ const FenetreStat = ({ indexFenetre }) => {
                             <p>Inventaire de {statJoueur.nom} :</p>
                             <div className="centralisation2">
                                 <div className="liste">
-                                    {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ id, type }) => (
-                                        <Item key={id} img={id} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
+                                    {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ img, id, type }) => (
+                                        <Item key={id} img={img} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
                                     ))}
                                 </div>
                             </div>

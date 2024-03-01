@@ -143,7 +143,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
                 <div className="gauche">
                     {inventaire.map(({equipe, action, important, id, nom, quantite, img, description, valeur, type, cible}) => (
                         <div>
-                            <CaseItem  img={id} onClick={() => {itemCourantSet(id)}} quantite={quantite} equipe={equipe} />
+                            <CaseItem  img={img} onClick={() => {itemCourantSet(id)}} quantite={quantite} equipe={equipe} />
                         </div>
                     ))}
                 </div>

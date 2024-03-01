@@ -146,7 +146,7 @@ const Deplacement = () => {
                 <MiniMap refreshLocal={refreshLocal}/>
             </div>
             <div className="sectionLieux">
-            <Lieux lieux={lieux}/>
+                <Lieux lieux={lieux}/>
             </div>
         </div>
     )

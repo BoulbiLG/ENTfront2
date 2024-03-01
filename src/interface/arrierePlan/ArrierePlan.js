@@ -9,6 +9,7 @@ import refreshStore from '../../variableGlobal/global/refresh';
 
 import Personnage from '../../graphisme/personnage/Personnage';
 import Stockage from '../../graphisme/stockage/Stockage';
+import Aubergiste from '../../graphisme/personnage/aubergiste/Aubergiste';
 
 import { analysePositionPNJ } from '../../fonction/analysePositionPNJ';
 import { analysePositionStockage } from '../../fonction/stockage/analysePositionStockage';
@@ -62,8 +63,6 @@ const ArrierePlan = () => {
         animationMarcher();
     }, [comportement, heroURL]);
 
-    
-
     return (
         <div className='ArrierePlan'>
             <img className='arrierePlan' src={arrierePlan} alt={arrierePlan} />
@@ -89,6 +88,11 @@ const ArrierePlan = () => {
                     />
                 ))}
             </div>
+            {storeDeplacement.zoneX === 1 && storeDeplacement.zoneY === -3 && storeDeplacement.zoneZ === 999999 ? (
+                <div className="aubergiste">
+                    <Aubergiste />
+                </div>
+            ) : null }
         </div>
     )
 }

@@ -1,5 +1,6 @@
 
 import basique from '../../asset/plan/maison/basique.png';
+import auberge from '../../asset/plan/auberge/auberge.png';
 
 
 export const arrierePlanURL = [
@@ -33,5 +34,6 @@ export const arrierePlanURL = [
     {position: 'X-4Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980530-x-4y-4z0.jpg'},
 
     {position: 'X0Y-4Z999999', url: basique},
+    {position: 'X1Y-3Z999999', url: auberge},
     {position: 'XY-4Z0', url: ''},
 ]

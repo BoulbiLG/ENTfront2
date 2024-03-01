@@ -9,3 +9,8 @@ Ajouter un PNJ :
 
         - ajouter chemin
         - ajouter condition
+
+    - ./recuperationListeStore :
+
+        - ajouter chemin
+        - ajouter condition

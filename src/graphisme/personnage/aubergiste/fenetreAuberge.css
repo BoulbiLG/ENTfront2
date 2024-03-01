@@ -1,0 +1,151 @@
+
+.FenetreAuberge {
+    height: 70vh;
+    width: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreAuberge .ligne {
+    display: flex;
+    align-items: first baseline;
+}
+
+.FenetreAuberge .ligne img {
+    height: 70px;
+    width: 100px;
+    margin-left: 1vh;
+}
+
+.FenetreAuberge .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreAuberge hr {
+    margin: 1vh 0;
+}
+
+.FenetreAuberge .btnClasse {
+    width: 100%;
+    margin: 0.3vh 0;
+}
+
+.FenetreAuberge .boutonSection {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreAuberge .choix {
+    box-sizing: border-box;
+    padding: 1vh;
+    margin-top: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(78, 78, 109);
+    overflow-y: scroll;
+    height: 100%;
+    position: relative;
+}
+
+.FenetreAuberge .liste {
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreAuberge .carte {
+    width: 100%;
+    color: black;
+    padding: 1vh;
+    border-radius: 1vh;
+    margin: 0.3vh 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.FenetreAuberge .carte .haut {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreAuberge .carte:hover {
+    scale: 102%;
+    filter: brightness(125%);
+}
+
+.ricard {
+    background-color: rgb(125, 215, 113);
+}
+
+.pastis {
+    background-color: rgb(195, 215, 113);
+}
+
+.cidre {
+    background-color: rgb(215, 179, 113);
+}
+
+.rouge {
+    background-color: rgb(215, 135, 113);
+}
+
+.FenetreAuberge .tourne {
+    position: absolute;
+    left: 2%;
+    top: -2%;
+    height: 20vh;
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.FenetreAuberge .lignePrix {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreAuberge .tourne .boutonListe button {
+    background-color: rgb(126, 126, 192);
+}
+
+.FenetreAuberge .tourne .boutonListe {
+    margin-top: 2vh;
+}
+
+/* ========== JOUEUR ========= */
+
+.duo .joueur {
+    position: absolute;
+    left: 62vh;
+    width: 30vh;
+    height: 90vh;
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+
+.joueur hr {
+    margin: 1vh;
+}
+
+.joueur .carte {
+    box-sizing: border-box;
+    padding: 1vh;
+    background-color: rgb(78, 78, 109);
+    border-radius: 1vh;
+}
+
+.FenetreAuberge .dormir {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.FenetreAuberge .dormir button {
+    background-color: rgb(126, 126, 192);
+}

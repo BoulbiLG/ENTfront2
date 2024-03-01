@@ -1,8 +1,11 @@
 .Aubergiste {
     height: 50vh;
     width: 20vh;
-    background-color: aquamarine;
     position: absolute;
     top: 200px;
     left: 450px;
+}
+
+.Aubergiste img.perso {
+    cursor: pointer;
 }

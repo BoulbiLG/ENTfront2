@@ -32,7 +32,11 @@ const CelestinStore = create((set) => ({
   argent: 0,
   testo: 0,
   bodycount: 0,
+
   nom: 'Celestin',
+  status: 'normal',
+  classe: 'Invisible-man',
+  amoureuse: [],
 
   // HUMEUR
 
@@ -89,6 +93,14 @@ const CelestinStore = create((set) => ({
   ajouterElementTexte: (id) => {
     set((state) => ({
       questionPose: [...state.questionPose, id],
+    }));
+  },
+
+  // ajoute element tableau amoureuse
+
+  ajouterAmoureuse: (id) => {
+    set((state) => ({
+      amoureuse: [...state.amoureuse, id],
     }));
   },
 

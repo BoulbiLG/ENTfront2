@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Lieux {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30vh;
+    animation: rebondir 1s forwards;
+    text-align: center;
+}
+
+@keyframes rebondir {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }

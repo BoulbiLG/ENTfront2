@@ -1,4 +1,5 @@
 
+import basique from '../../asset/plan/maison/basique.png';
 
 
 export const arrierePlanURL = [
@@ -22,7 +23,7 @@ export const arrierePlanURL = [
     {position: 'X-2Y-3Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708867020-x-2y-3z0.png'},
     {position: 'X1Y-3Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708867075-x1y-3z0.jpg'},
     {position: 'X-1Y-3Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708867074-x-1y-3z0.jpg'},
-    {position: 'X0Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980244-x0y-4z0.jpg'},
+    {position: 'X0Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980244-x0y-4z0.jpg'},                // -4
     {position: 'X1Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980372-x1y-4z0.jpg'},
     {position: 'X-1Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980371-x-1y-4z0.png'},
     {position: 'X2Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708981393-x2y-4z0.png'},
@@ -30,5 +31,7 @@ export const arrierePlanURL = [
     {position: 'X-3Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980473-x-3y-4z0.jpg'},
     {position: 'X-4Y-3Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980473-x-4y-3z0.jpg'},
     {position: 'X-4Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980530-x-4y-4z0.jpg'},
+
+    {position: 'X0Y-4Z999999', url: basique},
     {position: 'XY-4Z0', url: ''},
 ]

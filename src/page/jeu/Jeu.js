@@ -12,10 +12,6 @@ const Jeu = () => {
 
   const storeRefresh = refreshStore();
 
-  console.log(storeRefresh);
-
-
-
   verificationMusique();
 
   return (

@@ -17,6 +17,7 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
     const storeDeplacement = deplacementStore();
 
     const [storeCoffre, storeCoffreSet] = useState([]);
+    const [avertissement, avertissementSet] = useState('');
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
@@ -24,7 +25,11 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
     
     const storeCoffreBrut = recupererStoreCoffreDynamique(storeDeplacement.lieux);
 
-    console.log(storeCoffreBrut);
+    useEffect(() => {
+        setTimeout(() => {
+            avertissementSet('');
+        }, 5000);
+    }, [avertissement]);
 
     useEffect(() => {
         const centerWindow = () => {
@@ -85,7 +90,7 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
             <div className="coffreSection">
                 <p> Contenu du {type}</p>
                 <div className='coffreSection2'>
-                {storeCoffreBrut.stockage.find(stock => stock.idStockage === idStockage)?.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type }) => (
+                {storeCoffreBrut.stockage.find(stock => stock.idStockage === idStockage)?.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type, poid }) => (
                     <CaseItem
                         key={id}
                         img={id}
@@ -104,6 +109,8 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
                             storeCoffreBrut,
                             inventaireStockage,
                             storeInventaire,
+                            poid,
+                            avertissementSet,
                         )}}
                     />
                 ))}
@@ -112,9 +119,12 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
             </div>
             <hr />
             <div className="inventaireSection">
-                <p>Votre inventaire</p>
+                <div className="info">
+                    <p>Votre inventaire</p>
+                    <p>Poid : {storeInventaire.poid} / {storeInventaire.poidMax}</p>
+                </div>
                 <div className='inventaireSection2'>
-                    {storeInventaire.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type }) => (
+                    {storeInventaire.inventaire.map(({ action, cible, important, id, nom, quantite, img, description, valeur, type, poid }) => (
                         <CaseItem
                             key={id}
                             img={id}
@@ -133,11 +143,13 @@ const FenetreCoffre = ({ type, idStockage, inventaireStockage, stockageStore }) 
                                 storeCoffreBrut,
                                 inventaireStockage,
                                 storeInventaire,
+                                poid,
                             )}}
                         />
                     ))}
                 </div>
             </div>
+            { avertissement !== '' ? ( <p className='avertissement'>{avertissement}</p>) : null }
         </div>
     )
 }

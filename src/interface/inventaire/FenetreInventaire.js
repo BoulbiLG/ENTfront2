@@ -37,8 +37,6 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
     const storeJoueur = recupererStoreDynamique(equipierCourant);
 
-    console.log('poid : ', poid);
-
     //const [avertissement, avertissementSet] = useState('Aucun avertissement.');
     
     
@@ -126,8 +124,11 @@ const FenetreInventaire = ({ indexFenetre }) => {
             }}
         >
             <div className="haut">
-                <p>Inventaire</p>
-                <p>Poid : {poid} / {poidMax}</p>
+                <div className="info">
+                    <p>Inventaire</p>
+                    <p>Poid : {poid} / {poidMax}</p>
+                    <p>Argent : {storeInventaire.argent}€</p>
+                </div>
                 <hr />
             </div>
             <div className="milieu">

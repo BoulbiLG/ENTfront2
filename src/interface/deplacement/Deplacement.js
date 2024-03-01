@@ -8,14 +8,18 @@ import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import miniMapStore from '../../variableGlobal/global/miniMap';
 
 import { verificationMusique } from './verificationMusique';
+import { verificationCase } from './verificationCase';
 
 import MiniMap from './MiniMap';
+import Lieux from './Lieux';
 
 const Deplacement = () => {
 
 
 
     // ==================== DECLARATION VARIABLE ==================== //
+
+
 
     const storeDeplacement = deplacementStore();
     const storeColision = colisionStore();
@@ -26,6 +30,7 @@ const Deplacement = () => {
     
     const [mouvementChoix, setMouvementChoix] = useState([]);
     const [refreshLocal, refreshLocalSet] = useState(0);
+    const [lieux, lieuxSet] = useState("Village d'Onche");
 
     useEffect(() => {
         const colision = storeColision.find((colision) => colision.position === position);
@@ -48,12 +53,48 @@ const Deplacement = () => {
       
         await new Promise((resolve) => {
           setTimeout(() => {
-            if (direction === 'monter') {storeDeplacement.ajouter('zoneZ', 1); storeMiniMap.ajouter('z', 1); refreshLocalSet(prevValue => prevValue + 1);}
-            if (direction === 'haut') {storeDeplacement.ajouter('zoneY', 1); storeMiniMap.ajouter('y', miniMapY); refreshLocalSet(prevValue => prevValue + 1);}
-            if (direction === 'descendre') {storeDeplacement.retirer('zoneZ', 1); storeMiniMap.retirer('z', 1); refreshLocalSet(prevValue => prevValue + 1);}
-            if (direction === 'gauche') {storeDeplacement.retirer('zoneX', 1); storeMiniMap.ajouter('x', miniMapX); refreshLocalSet(prevValue => prevValue + 1);}
-            if (direction === 'bas') {storeDeplacement.retirer('zoneY', 1); storeMiniMap.retirer('y', miniMapY); refreshLocalSet(prevValue => prevValue + 1);}
-            if (direction === 'droite') {storeDeplacement.ajouter('zoneX', 1); storeMiniMap.retirer('x', miniMapX); refreshLocalSet(prevValue => prevValue + 1);}
+            if (direction === 'monter') {
+                const autorisation = verificationCase('monter', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.ajouter('zoneZ', 1); 
+                    storeMiniMap.ajouter('z', 1); 
+                }
+            }
+            if (direction === 'haut') {
+                const autorisation = verificationCase('haut', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.ajouter('zoneY', 1); 
+                    storeMiniMap.ajouter('y', miniMapY);
+                }
+            }
+            if (direction === 'descendre') {
+                const autorisation = verificationCase('descendre', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.retirer('zoneZ', 1); 
+                    storeMiniMap.retirer('z', 1);
+                }
+            }
+            if (direction === 'gauche') {
+                const autorisation = verificationCase('gauche', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.retirer('zoneX', 1); 
+                    storeMiniMap.ajouter('x', miniMapX);
+                }
+            }
+            if (direction === 'bas') {
+                const autorisation = verificationCase('bas', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.retirer('zoneY', 1); 
+                    storeMiniMap.retirer('y', miniMapY);
+                }
+            }
+            if (direction === 'droite') {
+                const autorisation = verificationCase('droite', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                if (autorisation == true) {
+                    storeDeplacement.ajouter('zoneX', 1); 
+                    storeMiniMap.retirer('x', miniMapX);
+                }
+            }
             resolve();
           }, 500);
         });
@@ -103,6 +144,9 @@ const Deplacement = () => {
             </div>
             <div className="mini-map">
                 <MiniMap refreshLocal={refreshLocal}/>
+            </div>
+            <div className="sectionLieux">
+            <Lieux lieux={lieux}/>
             </div>
         </div>
     )

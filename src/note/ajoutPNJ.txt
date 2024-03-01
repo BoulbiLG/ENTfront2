@@ -1,6 +1,6 @@
 Ajouter un PNJ :
 
-    - ./FenetreInventaire :
+    - ./recuperationStoreDynamique :
     
         - ajouter le chemin d'importation manuel au début du fichier
         - ajouter vérification case au switch pour l'importation futur de son store

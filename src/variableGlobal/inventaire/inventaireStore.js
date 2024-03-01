@@ -14,8 +14,9 @@ const inventaireStore = create((set) => ({
     { equipe: 0, action: 5, cible: 'pied', important: 'non', id: 'nike', nom: 'Nike', quantite: 2, img: nikeURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 6},
   ],
 
-  poidMax: 500,
+  poidMax: 100,
   poid: 96,
+  argent: 10,
 
   ajouter: (champ, valeur) => {
     set((state) => ({

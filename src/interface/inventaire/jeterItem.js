@@ -26,11 +26,9 @@ export const jeterItem = (id, type, inventaireStore, joueurStore, poid) => {
         if (ligneASupprimer.important === 'non') {
             if (ligneASupprimer.quantite > 1) {
                 inventaireStore.retireQuantiteItem(id, 'quantite', 1);
-                inventaireStore.calculerPoid();
                 inventaireStore.retirer('poid', poid);
             } else {
                 inventaireStore.retirerLigneInventaire(id);
-                inventaireStore.calculerPoid();
                 inventaireStore.retirer('poid', poid);
             }
         } else {

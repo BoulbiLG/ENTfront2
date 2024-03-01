@@ -6,12 +6,6 @@ import './stockage.css';
 
 const Stockage = ({ height, width, img, type, x, y, id, inventaireStockage, stockageStore }) => {
     const [fenetreCoffre, fenetreCoffreSet] = useState('false');
-
-    console.log(height);
-    console.log(width);
-    console.log(x);
-    console.log(y);
-
     const style = {
         position: 'absolute',
         top: `${y}px`,

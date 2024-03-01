@@ -90,3 +90,8 @@
     background-color: rgb(100, 100, 155);
     border-radius: 1vh;
 }
+
+.FenetreInventaire .haut .info {
+    display: flex;
+    justify-content: space-between;
+}

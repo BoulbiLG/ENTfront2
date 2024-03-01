@@ -6,7 +6,15 @@ const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => 
     
     const [etat, etatSet] = useState('fixe');
 
-    const style = {cursor: 'pointer'}
+    let style;
+    if(storePersonnage.sexe == 'f') {
+        style = {
+            cursor: 'pointer',
+            scale: '120%',
+        };
+    } else {
+        style = {cursor: 'pointer'};
+    }
         
     return (
         <div className='personnageConteneur' 

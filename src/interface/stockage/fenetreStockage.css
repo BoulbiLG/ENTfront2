@@ -4,6 +4,7 @@
 }
 
 .FenetreStockage {
+    position: relative;
     width: 70vh;
     height: 70vh;
     border: 1px solid black;
@@ -38,4 +39,34 @@
 
 .FenetreStockage hr {
     margin: 2vh 0;
+}
+
+.FenetreStockage .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreStockage .avertissement {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: brown;
+    padding: 1vh;
+    margin: 1vh;
+    border-radius: 1vh;
+    animation: rebondir 1s forwards;
+    opacity: 100%;
+}
+
+@keyframes rebondir {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+      opacity: 100%;
+    }
 }

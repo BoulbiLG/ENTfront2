@@ -10,8 +10,6 @@ const MiniMap = ({ refreshLocal }) => {
     const [key, setKey] = useState(0);
 
     useEffect(() => {
-        console.log(storeMiniMap.z);
-
         if (storeMiniMap.z === 0) {
             imgSet(onche);
         } else if (storeMiniMap.z === 1) {

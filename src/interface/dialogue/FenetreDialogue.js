@@ -6,6 +6,7 @@ import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique'
 
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import refreshStore from '../../variableGlobal/global/refresh';
+import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 
 import FenetreDon from './FenetreDon';
 import Jauge from '../../components/jauge/Jauge';
@@ -28,6 +29,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
 
     const storeEquipe = equipeStore();
     const storeRefresh = refreshStore();
+    const storeCelestin = CelestinStore();
 
     //
 
@@ -161,6 +163,9 @@ const FenetreDialogue = ({ storePersonnage }) => {
                     )
                 ))}
                 <button className='btnClasse dialogueJoueur recruter' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'recruter', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh);}}>Je te veux dans mon équipe !</button>
+                {personnageStore.sexe === 'f' ? (
+                    <button className='btnClasse dialogueJoueur baiser' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'baiser', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Je veux te baiser {personnageStore.nom}, tu vas jouir :cash:</button>
+                ) : null }
             </div>
 
             {affichageFenetreDon == 'true' ? (

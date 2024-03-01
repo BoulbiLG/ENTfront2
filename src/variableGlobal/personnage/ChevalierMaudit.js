@@ -5,7 +5,6 @@ import tete from '../../asset/personnage/chevalierMaudit/tete.png';
 import { pommeURL } from '../../graphisme/item/item';
 
 const ChevalierMauditStore = create((set) => ({
-  nom: 'ChevalierMaudit',
   zoneXBase: -1,
   zoneYBase: -2,
   zoneZBase: 0,
@@ -14,8 +13,13 @@ const ChevalierMauditStore = create((set) => ({
   zoneZ: 0,
   x: 200,
   y: 100,
+  
+  nom: 'ChevalierMaudit',
   etat: 'PNJ',
   soumis: 'non',
+  status: 'normal',
+  classe: 'Journaliste',
+  sexe: 'h',
 
   imgNormal: normal,
   imgTete: tete,

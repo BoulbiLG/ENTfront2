@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-import './inventaire.css';
 import '../../css/classe/btn.css';
+import './inventaire.css';
 
 import FenetreInventaire from './FenetreInventaire';
 
@@ -41,13 +41,13 @@ const   Inventaire = () => {
 
 
             {affichageFenetre === 'false' ? (
-                <div className='affichageFenetre btnClasseDiv' onClick={() => {ouvrirInventaire()}} >
+                <div className='affichageFenetre btnClasseDiv' style={{width: '23vh',}} onClick={() => {ouvrirInventaire()}} >
                     <span class="material-symbols-outlined">work</span>
                     <p>Ouvir l'inventaire</p>
                 </div>
             ) :
                 <>
-                    <div className='affichageFenetre btnClasseDiv' onClick={() => {fermerInventaire()}} >
+                    <div className='affichageFenetre btnClasseDiv' style={{width: '23vh',}} onClick={() => {fermerInventaire()}} >
                         <span class="material-symbols-outlined">work</span>
                         <p>Fermer l'inventaire</p>
                     </div>

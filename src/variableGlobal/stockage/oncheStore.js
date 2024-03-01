@@ -1,5 +1,6 @@
 import create from 'zustand';
 import coffre from '../../asset/stockage/coffre.png';
+import commode from '../../asset/stockage/commode.png';
 
 import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
 
@@ -21,6 +22,28 @@ const oncheStore = create((set) => ({
         {
             zoneX: 0, zoneY: -1, zoneZ: 0,
             x: 700, y: 300,
+            idStockage: '2', type: 'coffre',
+            img: coffre,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 5, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
+                { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 5, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
+            ],
+        },
+        {
+            zoneX: 0, zoneY: -4, zoneZ: 999999,
+            x: 1056, y: 250,
+            idStockage: '2', type: 'coffre',
+            img: coffre,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 5, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
+                { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 5, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
+            ],
+        },
+        {
+            zoneX: 0, zoneY: -4, zoneZ: 999999,
+            x: 1056, y: 250,
             idStockage: '2', type: 'coffre',
             img: coffre,
             height: heightCoffre, width: widthCoffre,

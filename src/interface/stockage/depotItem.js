@@ -1,4 +1,4 @@
-export const depotItem = (idStockage, action, cible, important, id, nom, img, description, valeur, type, stockageStore, inventaireStockage, storeInventaire) => {
+export const depotItem = (idStockage, action, cible, important, id, nom, img, description, valeur, type, stockageStore, inventaireStockage, storeInventaire, poid) => {
 
     // suppression inventaire
 
@@ -8,8 +8,10 @@ export const depotItem = (idStockage, action, cible, important, id, nom, img, de
         if (ligneASupprimer.important === 'non') {
             if (ligneASupprimer.quantite > 1) {
                 storeInventaire.retireQuantiteItem(id, 'quantite', 1);
+                storeInventaire.retirer('poid', poid);
             } else {
                 storeInventaire.retirerLigneInventaire(id);
+                storeInventaire.retirer('poid', poid);
             }
         } else {
             return;
@@ -32,7 +34,7 @@ export const depotItem = (idStockage, action, cible, important, id, nom, img, de
     if (ligneAajouter) {
         stockageStore.ajouterQuantiteItem(id, 'quantite', 1, idStockage);
     } else {
-        const ligne = { equipe: 0, action: action, cible: cible, important: important, id: id, nom: nom, quantite: 1, img: `${id}URL`, description: description, valeur: valeur, type: type};
+        const ligne = { equipe: 0, action: action, cible: cible, important: important, id: id, nom: nom, quantite: 1, img: `${id}URL`, description: description, valeur: valeur, type: type, poid: poid};
         stockageStore.ajouterLigneInventaire(ligne, idStockage);
     }
 

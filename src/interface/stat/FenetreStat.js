@@ -163,6 +163,7 @@ const FenetreStat = ({ indexFenetre }) => {
             <div className="haut">
                 <div className="listeInfo">
                     <p>Nom : {statJoueur.nom}</p>
+                    <p>Classe : {statJoueur.classe}</p>
                     <p>Body count : {statJoueur.bodycount}</p>
                 </div>
             </div>
@@ -178,6 +179,13 @@ const FenetreStat = ({ indexFenetre }) => {
                     <div className="centreHaut">
                         <div className="image">
                             <img src={statJoueur.imgTete} alt={statJoueur.imgTete} />
+                            <div className="status">
+                                <p>Status : {statJoueur.status}</p>
+                            </div>
+                            <div className="niveau">
+                                <p>Niveau : </p>
+                                <p className='lvl'>{statJoueur.niveau}</p>
+                            </div>
                         </div>
                         <div className="inventaire">
                             <p>Inventaire de {statJoueur.nom} :</p>

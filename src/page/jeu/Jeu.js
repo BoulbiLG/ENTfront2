@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InterfaceTerminal from '../../interface/InterfaceTerminal';
+import Particule from '../../components/particule/Particule';
 
 import { verificationMusique } from '../../interface/deplacement/verificationMusique';
 

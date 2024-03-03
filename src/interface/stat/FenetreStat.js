@@ -9,6 +9,7 @@ import { verificationDialogue } from '../dialogue/verificationDialogue';
 
 import Jauge from '../../components/jauge/Jauge';
 import Item from '../../components/item/CaseItem';
+import CaseItem from '../../components/item/CaseItem';
 
 import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
@@ -36,6 +37,8 @@ const FenetreStat = ({ indexFenetre }) => {
     const storeDeplacement = deplacementStore();
     
     const storeJoueur = recupererStoreDynamique(storeEquipier.courant);
+
+    console.log(statJoueur.equipement);
 
     const [dialogueAffichage, dialogueAffichageSet] = useState('');
     
@@ -192,7 +195,9 @@ const FenetreStat = ({ indexFenetre }) => {
                             <div className="centralisation2">
                                 <div className="liste">
                                     {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ img, id, type }) => (
-                                        <Item key={id} img={img} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur)}} />
+                                        id !== '' ? (
+                                        <Item key={id} img={img} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur);}} />
+                                        ) : null
                                     ))}
                                 </div>
                             </div>

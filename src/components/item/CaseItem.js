@@ -56,7 +56,7 @@ const CaseItem = ({ img, id, onClick, x, y, quantite, equipe }) => {
     return (
         <>
         <div className='CaseItem' style={styleConteneur}>
-            { img !== undefined ? (
+            { img !== '' ? (
             <div className="case" onClick={onClick} style={style}>
 
                 {/* ========== INVENTAIRE ========== */}

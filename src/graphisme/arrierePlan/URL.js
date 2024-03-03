@@ -1,6 +1,7 @@
 
 import basique from '../../asset/plan/maison/basique.png';
 import auberge from '../../asset/plan/auberge/auberge.png';
+import lidl from '../../asset/plan/lidl/lidl.png';
 
 
 export const arrierePlanURL = [
@@ -35,5 +36,6 @@ export const arrierePlanURL = [
 
     {position: 'X0Y-4Z999999', url: basique},
     {position: 'X1Y-3Z999999', url: auberge},
+    {position: 'X2Y-3Z999999', url: lidl},
     {position: 'XY-4Z0', url: ''},
 ]

@@ -11,6 +11,10 @@
     cursor:grab;
 }
 
+.dialogueConteneur .dialogue {
+    position: absolute;
+}
+
 .dialogueConteneur .colonne {
     display: flex;
     flex-direction: column;
@@ -55,6 +59,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    z-index: -1;
 }
 
 .dialogueConteneur .choix p {

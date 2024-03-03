@@ -13,7 +13,7 @@ const colisionStore = create((set) => ([
   {position: 'X2Y-2Z0', mouvement: ['gauche', 'bas', 'droite']},
   {position: 'X3Y-2Z0', mouvement: ['gauche']},
   {position: 'X0Y-3Z0', mouvement: ['haut', 'gauche', 'droite']},                 // Y-3
-  {position: 'X-1Y-3Z0', mouvement: ['gauche', 'droite']},
+  {position: 'X-1Y-3Z0', mouvement: ['gauche', 'droite', 'haut']},
   {position: 'X-4Y-3Z0', mouvement: ['bas']},
   {position: 'X1Y-3Z0', mouvement: ['gauche', 'bas', 'droite', 'haut']},
   {position: 'X-2Y-3Z0', mouvement: ['haut', 'droite']},
@@ -31,6 +31,7 @@ const colisionStore = create((set) => ([
 
   {position: 'X0Y-4Z999999', mouvement: ['bas']},
   {position: 'X1Y-3Z999999', mouvement: ['bas']},
+  {position: 'X2Y-3Z999999', mouvement: ['bas']},
 ]));
 
 export default colisionStore;

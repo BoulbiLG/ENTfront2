@@ -4,6 +4,7 @@ import './fenetreInventaire.css';
 import '../../css/classe/fenetreDrag.css';
 
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import CaseItem from '../../components/item/CaseItem';
 import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 
@@ -27,6 +28,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
     const { inventaire } = inventaireStore();
     const storeInventaire = inventaireStore();
+    const storeCelestin = CelestinStore();
     const storeEquipier = equipeStore();
     const equipierCourant = storeEquipier.courant;
     const equipierNom = storeEquipier.nom;
@@ -45,8 +47,8 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
 
 
-    const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe, poid) => {
-         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur, poid)
+    const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe, poid, img) => {
+         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur, poid, img)
     }
 
 
@@ -127,7 +129,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
                 <div className="info">
                     <p>Inventaire</p>
                     <p>Poid : {poid} / {poidMax}</p>
-                    <p>Argent : {storeInventaire.argent}€</p>
+                    <p>Argent : {storeCelestin.argent}€</p>
                 </div>
                 <hr />
             </div>
@@ -167,7 +169,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
                                     <img src={img} alt={nom} style={{height: '20vh', width: '20vh',}} />
                                 </div>
                                 <br />
-                                <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe, poid)}}>Utiliser</button>
+                                <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe, poid, img)}}>Utiliser</button>
                                 <button className='btnClasse' onClick={() => {jeterItemEnvoie(id, type, cible, action, quantite, equipe, poid)}}>Jeter</button>
                                 <div className="action">
                                     <div className="avertissement"></div>

@@ -8,6 +8,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet)
         
         if (x == 2 && y == -4 && z == 0) {storeDeplacement.modifier('zoneX', 0); storeDeplacement.modifier('zoneZ', 999999); lieuxSet('Maison de CleaMolette'); autorisation = false} //  x: 0
         if (x == 1 && y == -3 && z == 0) {storeDeplacement.modifier('zoneX', 1); storeDeplacement.modifier('zoneZ', 999999); lieuxSet('Auberge'); autorisation = false} //  x: 1
+        if (x == -1 && y == -3 && z == 0) {storeDeplacement.modifier('zoneX', 2); storeDeplacement.modifier('zoneZ', 999999); lieuxSet('Lidl'); autorisation = false} //  x: 2
 
     } else if (direction == 'descendre') {
 
@@ -17,6 +18,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet)
 
         if (x == 0 && y == -4 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', 2); lieuxSet("Village d'Onche"); autorisation = false} // retour
         if (x == 1 && y == -3 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', 1); lieuxSet("Village d'Onche"); autorisation = false} // retour
+        if (x == 2 && y == -3 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -1); lieuxSet("Village d'Onche"); autorisation = false} // retour
     
     } else if (direction == 'droite') {
 

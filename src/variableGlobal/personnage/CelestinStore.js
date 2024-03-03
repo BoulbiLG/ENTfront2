@@ -6,14 +6,13 @@ const CelestinStore = create((set) => ({
   // EQUIPEMENT
 
   equipement: [
-    { id: '', type: 'tete', x: 674, y: 25, cible: 'tete'},
-    { id: '', type: 'buste', x: 50, y: 140, cible: 'buste' }, 
-    { id: '', type: 'bras', x: 674, y: 140, cible: 'bras' },
-    { id: '', type: 'jambe', x: 50, y: 357, cible: 'jambe' },
-    { id: '', type: 'mainG', x: 50, y: 250, cible: 'main' },
-    { id: '', type: 'mainD', x: 674, y: 255, cible: 'main' },
-    { id: '', type: 'pied', x: 50, y: 463, cible: 'pied' },
-    { nom: 'Benzemonstre' }
+    { id: '', type: 'tete', x: 674, y: 25, cible: 'tete', img: ''},
+    { id: '', type: 'buste', x: 50, y: 140, cible: 'buste', img: '' }, 
+    { id: '', type: 'bras', x: 674, y: 140, cible: 'bras', img: '' },
+    { id: '', type: 'jambe', x: 50, y: 357, cible: 'jambe', img: '' },
+    { id: '', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
+    { id: '', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
+    { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],
 
   // STAT
@@ -37,6 +36,8 @@ const CelestinStore = create((set) => ({
   status: 'normal',
   classe: 'Invisible-man',
   amoureuse: [],
+  codeReduction: 'utilisable',
+  kippaMillion: 'utilisable',
 
   // HUMEUR
 
@@ -84,6 +85,16 @@ const CelestinStore = create((set) => ({
     set((state) => ({
       equipement: state.equipement.map((equipementItem) =>
         equipementItem.type === type ? { ...equipementItem, id: valeur } : equipementItem
+      ),
+    }));
+  },
+
+  // modifie img de equipement
+
+  modifierImgParType: (type, valeur) => {
+    set((state) => ({
+      equipement: state.equipement.map((equipementItem) =>
+        equipementItem.type === type ? { ...equipementItem, img: valeur } : equipementItem
       ),
     }));
   },

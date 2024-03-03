@@ -10,6 +10,7 @@ import refreshStore from '../../variableGlobal/global/refresh';
 import Personnage from '../../graphisme/personnage/Personnage';
 import Stockage from '../../graphisme/stockage/Stockage';
 import Aubergiste from '../../graphisme/personnage/aubergiste/Aubergiste';
+import Marchand from '../../graphisme/personnage/marchand/Marchand';
 
 import { analysePositionPNJ } from '../../fonction/analysePositionPNJ';
 import { analysePositionStockage } from '../../fonction/stockage/analysePositionStockage';
@@ -91,6 +92,11 @@ const ArrierePlan = () => {
             {storeDeplacement.zoneX === 1 && storeDeplacement.zoneY === -3 && storeDeplacement.zoneZ === 999999 ? (
                 <div className="aubergiste">
                     <Aubergiste />
+                </div>
+            ) : null }
+            {storeDeplacement.zoneX === 2 && storeDeplacement.zoneY === -3 && storeDeplacement.zoneZ === 999999 ? (
+                <div className="lidl">
+                    <Marchand />
                 </div>
             ) : null }
         </div>

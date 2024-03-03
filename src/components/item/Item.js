@@ -3,8 +3,9 @@ import React from 'react';
 import './item.css';
 
 import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
+import kippa from '../../asset/item/armure/kippa.png';
 
-const Item = ({ img, onClick, x, y, quantite, equipe }) => {
+const Item = ({ img, onClick, x, y, quantite, equipe, id }) => {
     
     let style = {};
 
@@ -64,6 +65,7 @@ const Item = ({ img, onClick, x, y, quantite, equipe }) => {
     if (img === 'jambiere') {URL = jambiereURL}
     if (img === 'epauliere') {URL = epauliereURL}
     if (img === 'nike') {URL = nikeURL}
+    if (id === 'kippa') {URL = kippa}
 
     return (
         <div className='itemConteneur' style={styleConteneur}>

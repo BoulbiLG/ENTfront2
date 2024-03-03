@@ -10,6 +10,9 @@ export const lexiqueArme = {
         valeur: 50,
         action: 5,
         poid: 10,
+        important: 'non',
+        type: 'arme',
+        cible: 'main',
     }
     
 }

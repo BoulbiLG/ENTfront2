@@ -1,0 +1,141 @@
+
+.FenetreLidl {
+    height: 90vh;
+    width: 70vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreLidl .choix {
+    width: 100%;
+    display: flex;
+}
+
+.FenetreLidl .titre {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1vh 0;
+}
+
+.FenetreLidl .onglet {
+    flex: 1;
+    padding: 1vh;
+    background-color: rgb(126, 126, 192);
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.FenetreLidl .onglet:hover {
+    filter: brightness(125%);
+}
+
+.FenetreLidl .onglet:active {
+    filter: brightness(150%);
+}
+
+.FenetreLidl .sectionType {
+    display: flex;
+    justify-content: center;
+}
+
+.FenetreLidl .descriptionLidl {
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(78, 78, 109);
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.FenetreLidl .descriptionLidl hr {
+    margin-bottom: 2vh;
+}
+
+.FenetreLidl .sectionItem {
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FenetreLidl .hautLidl {
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreLidl .section1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.FenetreLidl .section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FenetreLidl .section2 img {
+    margin-right: 2vh;
+}
+
+.FenetreLidl .section2 p {
+    margin-left: 2vh;
+}
+
+.FenetreLidl .bas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FenetreLidl input {
+    padding: 1vh;
+    background-color: rgb(100, 100, 155);
+    border: 3px solid rgb(126, 126, 192);
+    outline: none;
+    color: white;
+    border-radius: 1vh;
+    margin-right: 1vh;
+}
+
+.FenetreLidl .input {
+    position: relative;
+}
+
+.FenetreLidl .code {
+    margin-right: 1vh;
+}
+
+.FenetreLidl .argent {
+    text-align: center;
+}
+
+.FenetreLidl input::placeholder {
+    color: rgb(216, 216, 216);
+}
+
+.FenetreLidl .quantiteInput {
+    position: absolute;
+    top: 10px;
+    right: 1vh;
+    margin-right: 1vh;
+}
+
+.FenetreLidl .sectionDialogue {
+    padding: 2vh;
+}
+
+
+.FenetreLidl .sectionDialogue .ligne {
+    display: flex;
+    align-items: first baseline;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.FenetreLidl .sectionDialogue .ligne img {
+    margin-left: 1vh;
+}

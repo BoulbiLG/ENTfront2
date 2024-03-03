@@ -1,8 +1,16 @@
 import { verificationTypeObjet } from "./verificationTypeObjet";
 
-export const utiliserItem = async (id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, joueurStore, poid) => {
+export const utiliserItem = async (id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, joueurStore, poid, img) => {
 
     const inventaire = storeInventaire.inventaire;
+
+    /*
+    console.log('id : ', id);
+    console.log('type : ', type);
+    console.log('cible : ', cible);
+    console.log('action : ', action);
+    console.log('quantite : ', quantite);
+    */
 
 
 
@@ -13,8 +21,6 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
     if (type === 'consomable') {
 
         const ligneASupprimer = inventaire.find((element) => element.id === id);
-
-        console.log(ligneASupprimer);
     
         if (ligneASupprimer) {
             if (ligneASupprimer.important === 'non') {
@@ -27,6 +33,7 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
                     storeInventaire.calculerPoid();
                     storeInventaire.retirer('poid', poid);
                 }
+                console.log('gfvdc');
                 verificationTypeObjet(id, type, action, inventaire, joueurStore);
             } else {
                 return;
@@ -57,7 +64,8 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
                 var indexMainG = joueurStore.equipement.findIndex(function(element) {return element.type === 'mainG';});
 
                 if (indexMainG !== -1) {
-                    joueurStore.modifierIdParType('mainG', id)
+                    joueurStore.modifierIdParType('mainG', id);
+                    joueurStore.modifierImgParType('mainG', img);
                     console.log("Le champ 'id' de 'mainG' a été modifié avec succès.");
                     verificationTypeObjet(id, type, action, inventaire, joueurStore);
                 }
@@ -80,7 +88,8 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
                         var indexMainD = joueurStore.equipement.findIndex(function(element) {return element.type === 'mainD';});
                     
                         if (indexMainD !== -1) {
-                            joueurStore.modifierIdParType('mainD', id)
+                            joueurStore.modifierIdParType('mainD', id);
+                            joueurStore.modifierImgParType('mainD', img);
                             console.log("Le champ 'id' de 'mainD' a été modifié avec succès.");
                             verificationTypeObjet(id, type, action, inventaire, joueurStore);
                         }
@@ -115,7 +124,8 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
                 var indexTete = joueurStore.equipement.findIndex(function(element) {return element.type === cible;});
             
                 if (indexTete !== -1) {
-                    joueurStore.modifierIdParType(cible, id)
+                    joueurStore.modifierIdParType(cible, id);
+                    joueurStore.modifierImgParType(cible, img);
                     console.log("Le champ 'id' de ", cible, " a été modifié avec succès.");
                     verificationTypeObjet(id, type, action, inventaire, joueurStore);
                 }

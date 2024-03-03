@@ -12,12 +12,12 @@ const Aubergiste = () => {
 
   return (
     <div className='Aubergiste'>
-        {affichageFenetre === 'false' ? (
-          <img className='perso' src={normal} alt="personnage" onClick={() => {affichageFenetreSet('true')}}/>
-        ) : null }
-        {affichageFenetre === 'true' ? (
-          <img className='perso' src={normal} alt="personnage" onClick={() => {affichageFenetreSet('false')}}/>
-        ) : null }
+      {affichageFenetre === 'false' ? (
+        <img className='perso' src={normal} alt="personnage" onClick={() => {affichageFenetreSet('true')}}/>
+      ) : null }
+      {affichageFenetre === 'true' ? (
+        <img className='perso' src={normal} alt="personnage" onClick={() => {affichageFenetreSet('false')}}/>
+      ) : null }
       <div className="fenetre">
         {affichageFenetre === 'true' ? (
           <FenetreAuberge />

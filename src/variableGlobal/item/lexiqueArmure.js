@@ -1,4 +1,5 @@
-import { jambiereURL, epauliereURL, nikeURL, plastronURL, casqueURL, bouclierURL } from "../../graphisme/item/item"
+import { jambiereURL, epauliereURL, nikeURL, plastronURL, casqueURL, bouclierURL } from "../../graphisme/item/item";
+import kippa from '../../asset/item/armure/kippa.png';
 
 export const lexiqueArmure = {
     
@@ -10,8 +11,10 @@ export const lexiqueArmure = {
         valeur: 5,
         action: 5,
         poid: 28,
+        important: 'non',
+        type: 'armure',
+        cible: 'buste',
     },
-
     bouclier: {
         id: 'bouclier',
         nom: 'bouclier',
@@ -20,8 +23,10 @@ export const lexiqueArmure = {
         valeur: 30,
         action: 5,
         poid: 17,
+        important: 'non',
+        type: 'armure',
+        cible: 'main',
     },
-    
     jambiere: {
         id: 'jambiere',
         nom: 'jambiere',
@@ -30,8 +35,10 @@ export const lexiqueArmure = {
         valeur: 30,
         action: 5,
         poid: 11,
+        important: 'non',
+        type: 'armure',
+        cible: 'jambe',
     },
-
     epauliere: {
         id: 'epauliere',
         nom: 'epauliere',
@@ -40,8 +47,10 @@ export const lexiqueArmure = {
         valeur: 30,
         action: 5,
         poid: 8,
+        important: 'non',
+        type: 'armure',
+        cible: 'epaule',
     },
-
     nike: {
         id: 'nike',
         nom: 'nike',
@@ -50,8 +59,10 @@ export const lexiqueArmure = {
         valeur: 30,
         action: 5,
         poid: 6,
+        important: 'non',
+        type: 'armure',
+        cible: 'pied',
     },
-
     casque: {
         id: 'casque',
         nom: 'casque',
@@ -60,5 +71,20 @@ export const lexiqueArmure = {
         valeur: 30,
         action: 5,
         poid: 13,
+        important: 'non',
+        type: 'armure',
+        cible: 'tete',
+    },
+    kippa: {
+        id: 'kippa',
+        nom: 'Kippa',
+        img: kippa,
+        description: "Une kippa qui favorise votre CHANCE, elle permet d'obtenir des réductions",
+        valeur: 563,
+        action: 1,
+        poid: 1,
+        important: 'non',
+        type: 'armure',
+        cible: 'tete',
     },
 }

@@ -111,6 +111,7 @@ const FenetreAuberge = () => {
         const reponse = nouvelleEffet();
         dialogueSet(reponse);
         stickersSet('https://image.noelshack.com/fichiers/2020/26/5/1593171755-ff99dd51-e2d6-4d9b-87dc-fb4d5f54d279.jpeg');
+        choixSet('');
     }
 
     const tourneeAlcoolEffetBrut = () => {

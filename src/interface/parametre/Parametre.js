@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import '../../css/classe/btn.css';
 import './parametre.css';
 
+import parametreStore from '../../variableGlobal/global/parametreStore';
+import ouvertureFenetre from '../../audio/audio/ouvertureFenetre.mp3';
+
 import FenetreParametre from './FenetreParametre';
 
 const Parametre = () => {
@@ -15,9 +18,13 @@ const Parametre = () => {
 
     const [affichageFenetre, affichageFenetreSet] = useState('false');
     const [indexFenetre, indexFenetreSet] = useState();
+    const storeParametre = parametreStore();
 
     const ouvrirInventaire = () => {
         affichageFenetreSet('true');
+        const audio = new Audio(ouvertureFenetre);
+        audio.volume = storeParametre.volumeBruitage / 100;
+        audio.play();
     }
 
     const fermerInventaire = () => {
@@ -49,6 +56,7 @@ const Parametre = () => {
                     <FenetreParametre indexFenetre={indexFenetre} />
                 </>
             }
+
 
         </div>
     )

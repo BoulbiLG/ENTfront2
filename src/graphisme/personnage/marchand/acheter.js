@@ -1,7 +1,8 @@
+import argent from '../../../audio/audio/argent.mp3';
 
 import { lexiqueArmure } from "../../../variableGlobal/item/lexiqueArmure";
 
-export const acheter = (prix, code, id, storeCelestin, storeInventaire, storeJoueurs, dialogueSet, stickerSet, itemCourant, quantite) => {
+export const acheter = (prix, code, id, storeCelestin, storeInventaire, storeJoueurs, dialogueSet, stickerSet, itemCourant, quantite, storeParametre) => {
 
     if (quantite != '6000000') {
         const poidTotal = storeInventaire.poid + (itemCourant.poid * quantite);
@@ -75,6 +76,11 @@ export const acheter = (prix, code, id, storeCelestin, storeInventaire, storeJou
                 if (code != 'test') {
                     if (storeCelestin.codeReduction != 'fini') {
                         storeCelestin.retirer('argent', parseInt(prixReel));
+
+                        const audio = new Audio(argent);
+                        audio.volume = storeParametre.volumeBruitage / 100;
+                        audio.play();
+
                         const ligneAajouter = storeInventaire.inventaire.find((element) => element.id === id);
                             
                         if (ligneAajouter) {
@@ -101,6 +107,11 @@ export const acheter = (prix, code, id, storeCelestin, storeInventaire, storeJou
                     }
                 } else {
                     storeCelestin.retirer('argent', parseInt(prixReel));
+
+                    const audio = new Audio(argent);
+                    audio.volume = storeParametre.volumeBruitage / 100;
+                    audio.play();
+
                     const ligneAajouter = storeInventaire.inventaire.find((element) => element.id === id);
                         
                     if (ligneAajouter) {

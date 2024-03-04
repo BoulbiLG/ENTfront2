@@ -1,8 +1,9 @@
 
+import argent from '../../../audio/audio/argent.mp3';
 import inventaireStore from "../../../variableGlobal/inventaire/inventaireStore";
 import { lexiqueArmure } from "../../../variableGlobal/item/lexiqueArmure";
 
-export const acheterMeuble = (prix, code, type, storeCelestin, storeInventaire, storeJoueurs, dialogueSet, stickerSet, itemCourant, quantite) => {
+export const acheterMeuble = (prix, code, type, storeCelestin, storeInventaire, storeJoueurs, dialogueSet, stickerSet, itemCourant, quantite, storeParametre) => {
     if (quantite != '6000000') {
         const poidTotal = storeInventaire.poidMeuble + (itemCourant.poid * quantite);
 
@@ -75,6 +76,11 @@ export const acheterMeuble = (prix, code, type, storeCelestin, storeInventaire, 
                 if (code != 'test') {
                     if (storeCelestin.codeReduction != 'fini') {
                         storeCelestin.retirer('argent', parseInt(prixReel));
+
+                        const audio = new Audio(argent);
+                        audio.volume = storeParametre.volumeBruitage / 100;
+                        audio.play();
+
                         const ligneAajouter = storeInventaire.meubles.find((element) => element.type === type);
                             
                         if (ligneAajouter) {
@@ -102,6 +108,11 @@ export const acheterMeuble = (prix, code, type, storeCelestin, storeInventaire, 
                     }
                 } else {
                     storeCelestin.retirer('argent', parseInt(prixReel));
+
+                    const audio = new Audio(argent);
+                    audio.volume = storeParametre.volumeBruitage / 100;
+                    audio.play();
+
                     const ligneAajouter = storeInventaire.meubles.find((element) => element.type === type);
                         
                     if (ligneAajouter) {

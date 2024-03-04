@@ -6,6 +6,9 @@ import '../../css/classe/btn.css';
 import FenetreStat from './FenetreStat';
 
 import fenetreStore from '../../variableGlobal/fenetre/fenetreStore';
+import parametreStore from '../../variableGlobal/global/parametreStore';
+
+import ouvertureFenetre from '../../audio/audio/ouvertureFenetre.mp3';
 
 const Stat = () => {
 
@@ -19,10 +22,15 @@ const Stat = () => {
     const storeFenetre = fenetreStore();
     const [indexFenetre, indexFenetreSet] = useState();
 
+    const storeParametre = parametreStore();
+
     const ouvrirFenetre = () => {
         const index = storeFenetre.modifierCourante('stat');
         indexFenetreSet(index);
         affichageFenetreSet('true');
+        const audio = new Audio(ouvertureFenetre);
+        audio.volume = storeParametre.volumeBruitage / 100;
+        audio.play();
     }
 
     const fermerFenetre = () => {

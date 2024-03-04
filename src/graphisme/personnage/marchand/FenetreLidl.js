@@ -7,6 +7,7 @@ import './fenetreLidl.css';
 import inventaireStore from '../../../variableGlobal/inventaire/inventaireStore';
 import CelestinStore from '../../../variableGlobal/personnage/CelestinStore';
 import refreshStore from '../../../variableGlobal/global/refresh';
+import parametreStore from '../../../variableGlobal/global/parametreStore';
 
 import { item } from './itemMarchand';
 import { meuble } from './itemMarchand';
@@ -45,6 +46,7 @@ const FenetreLidl = () => {
     const [itemCourant, itemCourantSet] = useState('');
 
     const storeInventaire = inventaireStore();
+    const storeParametre = parametreStore();
     const storeCelestin = CelestinStore();
 
     const raffraichir = () => {
@@ -268,14 +270,13 @@ const FenetreLidl = () => {
                             </div>
                             
                         </div>
-                        <p>{typeAchat}</p>
                         <div className="bas">
                             {choix === 'acheter' ? (
                                 <>
                                     {typeAchat !== 'meuble' ? (
-                                        <button className='acheter bouton btnClasse' onClick={() => {acheter(itemCourant.valeur + itemCourant.valeur * 20 / 100, codeReduction, itemCourant.id, storeCelestin, storeInventaire, recupererListeStoreBrut, dialogueSet, stickerSet, itemCourant, quantiteItem); raffraichir()}}>Acheter</button>
+                                        <button className='acheter bouton btnClasse' onClick={() => {acheter(itemCourant.valeur + itemCourant.valeur * 20 / 100, codeReduction, itemCourant.id, storeCelestin, storeInventaire, recupererListeStoreBrut, dialogueSet, stickerSet, itemCourant, quantiteItem, storeParametre); raffraichir()}}>Acheter</button>
                                     ) :
-                                        <button className='acheter bouton btnClasse' onClick={() => {acheterMeuble(itemCourant.valeur + itemCourant.valeur * 20 / 100, codeReduction, itemCourant.type, storeCelestin, storeInventaire, recupererListeStoreBrut, dialogueSet, stickerSet, itemCourant, quantiteItem); raffraichir()}}>Acheter</button>
+                                        <button className='acheter bouton btnClasse' onClick={() => {acheterMeuble(itemCourant.valeur + itemCourant.valeur * 20 / 100, codeReduction, itemCourant.type, storeCelestin, storeInventaire, recupererListeStoreBrut, dialogueSet, stickerSet, itemCourant, quantiteItem, storeParametre); raffraichir()}}>Acheter</button>
                                     }
                                     <div className="input">
                                         <input type="text" value={quantiteItem} onChange={(event) => {quantiteItemSet(event.target.value)}}/>
@@ -286,9 +287,9 @@ const FenetreLidl = () => {
                             ) :
                                 <>
                                     {typeVente !== 'meuble' ? (
-                                        <button className='vendre bouton btnClasse' onClick={() => {vendre(itemCourant.id, itemCourant.valeur / 2, itemCourant.quantite, storeCelestin, storeInventaire, recupererListeStoreBrut, itemCourant, quantiteItem, dialogueSet, stickerSet); raffraichir()}}>Vendre</button>
+                                        <button className='vendre bouton btnClasse' onClick={() => {vendre(itemCourant.id, itemCourant.valeur / 2, itemCourant.quantite, storeCelestin, storeInventaire, recupererListeStoreBrut, itemCourant, quantiteItem, dialogueSet, stickerSet, storeParametre); raffraichir()}}>Vendre</button>
                                     ) :
-                                        <button className='vendre bouton btnClasse' onClick={() => {vendreMeuble(itemCourant.type, itemCourant.valeur / 2, itemCourant.quantite, storeCelestin, storeInventaire, recupererListeStoreBrut, itemCourant, quantiteItem, dialogueSet, stickerSet); raffraichir()}}>Vendre</button>
+                                        <button className='vendre bouton btnClasse' onClick={() => {vendreMeuble(itemCourant.type, itemCourant.valeur / 2, itemCourant.quantite, storeCelestin, storeInventaire, recupererListeStoreBrut, itemCourant, quantiteItem, dialogueSet, stickerSet, storeParametre); raffraichir()}}>Vendre</button>
                                     }
                                     <div className="input">
                                         <input type="text" value={quantiteItem} onChange={(event) => {quantiteItemSet(event.target.value)}}/>

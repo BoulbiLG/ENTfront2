@@ -6,12 +6,14 @@ import normal from '../../../asset/personnage/juif/normal.png';
 
 import FenetreLidl from './FenetreLidl';
 
+import '../../../css/classe/clickable.css';
+
 const Marchand = () => {
 
     const [affichageFenetre, affichageFenetreSet] = useState('false');
 
     return (
-        <div className='Marchand'>
+        <div className='clickable Marchand'>
             {affichageFenetre === 'false' ? (
                 <img className='perso' src={normal} alt="personnage" onClick={() => {affichageFenetreSet('true')}}/>
             ) : null }

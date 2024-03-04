@@ -42,7 +42,7 @@
 }
 
 .FenetreInventaire .droite {
-    flex: 1;
+    flex: 1.5;
     margin-top: 1vh;
     padding: 2vh;
     box-sizing: border-box;

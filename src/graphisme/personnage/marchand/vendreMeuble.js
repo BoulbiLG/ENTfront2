@@ -1,7 +1,8 @@
 
+import argent from '../../../audio/audio/argent.mp3';
 import { lexiqueArmure } from "../../../variableGlobal/item/lexiqueArmure";
 
-export const vendreMeuble = (type, prix, quantiteItem, storeCelestin, storeInventaire, storeJoueurs, itemCourant, quantite, dialogueSet, stickerSet) => {
+export const vendreMeuble = (type, prix, quantiteItem, storeCelestin, storeInventaire, storeJoueurs, itemCourant, quantite, dialogueSet, stickerSet, storeParametre) => {
     
     if (quantite != '6000000') {
         if (itemCourant.important != 'oui') {
@@ -47,6 +48,11 @@ export const vendreMeuble = (type, prix, quantiteItem, storeCelestin, storeInven
 
             if (quantite <= quantiteItem) {
                 storeCelestin.ajouter('argent', parseInt(prixReel));
+
+                const audio = new Audio(argent);
+                audio.volume = storeParametre.volumeBruitage / 100;
+                audio.play();
+
                 const ligneAajouter = storeInventaire.meubles.find((element) => element.type === type);
                     
                 if (ligneAajouter.quantite > 1 * quantite) {

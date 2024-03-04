@@ -18,6 +18,11 @@ const FenetreParametre = () => {
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
     const storeParametre = parametreStore();
+
+    const [bruitageVolume, bruitageVolumeSet] = useState(storeParametre.volumeBruitage);
+    const [bruitage, bruitageSet] = useState(storeParametre.bruitage);
+    const [musique, musiqueSet] = useState(storeParametre.musique);
+    const [volumeMusique, volumeMusiqueSet] = useState(storeParametre.volumeMusique);
     
 
 
@@ -67,14 +72,19 @@ const FenetreParametre = () => {
         }
     };
     
-
+    const changerBruitage = () => {
+        if (bruitage === 'oui') {
+            storeParametre.modifier('bruitage', 'non');
+            bruitageSet('non');
+        } else {
+            storeParametre.modifier('bruitage', 'oui');
+            bruitageSet('oui');
+        }
+    }
 
     return (
         <div 
-            className='FenetreParametre fenetreDrag'
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
+            className='FenetreParametre'
             style={{
                 position: 'absolute',
                 left: `${position.x - 600}px`,
@@ -83,6 +93,34 @@ const FenetreParametre = () => {
                 height: '70vh',
             }}
         >
+            <div className="listeParametre">
+                <div className="bruitage parametre">
+                    <p>Bruitage</p>
+                    {/*
+                    <p>Volume : {bruitageVolume}</p>
+                    {bruitage === 'oui' ? (
+                        <input type="checkbox" defaultChecked onClick={() => {changerBruitage();}}/>
+                    ) : <input type="checkbox" onClick={() => {changerBruitage();}}/> }
+                    */}
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={bruitageVolume}
+                        onChange={(e) => {bruitageVolumeSet(e.target.value); storeParametre.modifier('volumeBruitage', e.target.value)}}
+                    />
+                </div>
+                <div className="bruitage parametre">
+                    <p>Musique</p>
+                    <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={volumeMusique}
+                        onChange={(e) => {volumeMusiqueSet(e.target.value); storeParametre.modifier('volumeMusique', e.target.value)}}
+                    />
+                </div>
+            </div>
         </div>
     )
 }

@@ -2,3 +2,23 @@
     margin: 0;
     padding: 0;
 }
+
+.Stockage {
+    transform: scale(1);
+    transition: all 0.2s;
+}
+
+.Stockage:hover > :not(.FenetreStockage) {
+    animation: scaleUp 0.2s forwards;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+    to {
+        transform: scale(1.05);
+        filter: brightness(150%);
+    }
+}

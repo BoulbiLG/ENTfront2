@@ -22,3 +22,11 @@
 .ArrierePlan .listePersonnage {
     z-index: -4;
 }
+
+.ArrierePlan .listeImage {
+    z-index: -3;
+}
+
+.ArrierePlan .listeMeuble {
+
+}

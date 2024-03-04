@@ -28,7 +28,7 @@ const CelestinStore = create((set) => ({
   courage: 5,
   magieMax: 100,
   magie: 100,
-  argent: 100,
+  argent: 1000000,
   testo: 0,
   bodycount: 0,
 

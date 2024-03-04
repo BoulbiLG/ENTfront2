@@ -139,3 +139,24 @@
 .FenetreLidl .sectionDialogue .ligne img {
     margin-left: 1vh;
 }
+
+.FenetreLidl {
+    animation: rebondir 0.2s forwards;
+}
+
+.FenetreLidl .information {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vh;
+}
+
+@keyframes rebondir {
+    0%, 100% {
+        opacity: 0%;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+}

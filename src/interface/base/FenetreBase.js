@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react';
 
-import './fenetreInventaire.css';
+import './fenetreBase.css';
 import '../../css/classe/fenetreDrag.css';
 
-import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
-import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import CaseItem from '../../components/item/CaseItem';
-import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 
-import { utiliserItem } from './utiliserItem';
-import { jeterItem } from './jeterItem';
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import baseStore from '../../variableGlobal/base/baseStore';
+import deplacementStore from '../../variableGlobal/global/deplacementStore';
+import refreshStore from '../../variableGlobal/global/refresh'
 
-import equipeStore from '../../variableGlobal/personnage/equipeStore';
-import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique';
+import { utiliserMeuble } from './utiliserMeuble';
+import { jeterMeuble } from './jeterMeuble';
+import { analysePositionBase } from '../../fonction/analysePositionBase';
 
-const FenetreInventaire = ({ indexFenetre }) => {
+const FenetreBase = () => {
 
 
 
@@ -26,39 +26,35 @@ const FenetreInventaire = ({ indexFenetre }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-    const { inventaire } = inventaireStore();
-    const storeInventaire = inventaireStore();
-    const storeCelestin = CelestinStore();
-    const storeEquipier = equipeStore();
-    const equipierCourant = storeEquipier.courant;
-    const equipierNom = storeEquipier.nom;
     const [itemCourant, itemCourantSet] = useState('');
+    const { setRefresh } = refreshStore();
+    const { refresh } = refreshStore();
 
-    const poid = storeInventaire.poid; 
-    const poidMax = storeInventaire.poidMax; 
-
-    const storeJoueur = recupererStoreDynamique(equipierCourant);
-
-    //const [avertissement, avertissementSet] = useState('Aucun avertissement.');
+    const storeInventaire = inventaireStore();
+    const storebase = baseStore();
+    const storeDeplacement = deplacementStore();
     
-    
+    const analyse = analysePositionBase(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
 
-    // ==================== FONCTION UTILISER ITEM ==================== //
+    var idBaseNet = 0;
 
-
-
-    const utiliserItemEnvoie = (id, type, cible, action, quantite, equipe, poid, img) => {
-         utiliserItem(id, type, cible, action, quantite, equipe, equipierCourant, storeInventaire, storeJoueur, poid, img)
+    if (analyse) {
+        idBaseNet = analyse.idBase;
     }
+    
+
+
+    // ==================== FONCTION ==================== //
 
 
 
-    // ==================== FONCTION JETER ITEM ==================== //
-
-
-
-    const jeterItemEnvoie = (id, type, cible, action, quantite, equipe, poid) => {
-        jeterItem(id, type, storeInventaire, storeJoueur, poid)
+    const utiliserMeubleBrut = (storeDeplacement, storeInventaire, storebase, type, nom, img, imgItem, description, valeur, poid, action, id, x, y, quantite, protection, piege, idBaseNet) => {
+        utiliserMeuble(storeDeplacement, storeInventaire, storebase, type, nom, img, imgItem, description, valeur, poid, action, id, x, y, quantite, protection, piege, idBaseNet);
+        if (refresh == false) {    
+            setRefresh(true);
+        } else {
+            setRefresh(false);
+        }
     }
 
 
@@ -113,7 +109,7 @@ const FenetreInventaire = ({ indexFenetre }) => {
 
     return (
         <div 
-            className='FenetreInventaire fenetreDrag'
+            className='FenetreBase fenetreDrag'
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
@@ -127,31 +123,21 @@ const FenetreInventaire = ({ indexFenetre }) => {
         >
             <div className="haut">
                 <div className="info">
-                    <p>Inventaire</p>
-                    <p>Poid des objets : {poid} / {poidMax}</p>
-                    <p>Argent : {storeCelestin.argent}€</p>
+                    <p>Vos meubles</p>
+                    <p>Poid des meubles : {storeInventaire.poidMeuble} / {storeInventaire.poidMeubleMax}</p>
                 </div>
                 <hr />
             </div>
             <div className="milieu">
-                <div className="exGauche">
-                    <div className="listeProfil">
-                        {equipierNom.map((nom) => (
-                            <ProfilEquipier nom={nom} courant={equipierCourant} />
-                        ))}
-                    </div>
-                </div>
-                <div className="ok">
                 <div className="gauche">
-                    {inventaire.map(({equipe, action, important, id, nom, quantite, img, description, valeur, type, cible}) => (
+                    {storeInventaire.meubles.map(({imgItem, id, quantite}) => (
                         <div>
-                            <CaseItem  img={img} onClick={() => {itemCourantSet(id)}} quantite={quantite} equipe={equipe} />
+                            <CaseItem  img={imgItem} onClick={() => {itemCourantSet(id)}} quantite={quantite} />
                         </div>
                     ))}
                 </div>
-                </div>
                 <div className="droite">
-                    {inventaire.map(({ id, nom, quantite, description, important, valeur, type, cible, action, equipe, img, poid }) => (
+                    {storeInventaire.meubles.map(({type, nom, img, imgItem, description, valeur, poid, action, id, x, y, quantite, protection, piege}) => (
                         id === itemCourant ? (
                             <div key={id} className="infosSection">
                                 <div className="info">
@@ -169,8 +155,8 @@ const FenetreInventaire = ({ indexFenetre }) => {
                                     <img src={img} alt={nom} style={{height: '20vh', width: '20vh',}} />
                                 </div>
                                 <br />
-                                <button className='btnClasse' onClick={() => {utiliserItemEnvoie(id, type, cible, action, quantite, equipe, poid, img)}}>Utiliser</button>
-                                <button className='btnClasse' onClick={() => {jeterItemEnvoie(id, type, cible, action, quantite, equipe, poid)}}>Jeter</button>
+                                <button className='btnClasse' onClick={() => {utiliserMeubleBrut(storeDeplacement, storeInventaire, storebase, type, nom, img, imgItem, description, valeur, poid, action, id, x, y, quantite, protection, piege, idBaseNet)}}>Utiliser</button>
+                                <button className='btnClasse' onClick={() => {jeterMeuble(storeDeplacement, storeInventaire, storebase, type, nom, img, imgItem, description, valeur, poid, action, id, x, y, quantite, protection, piege, idBaseNet)}}>Jeter</button>
                                 <div className="action">
                                     <div className="avertissement"></div>
                                 </div>
@@ -183,4 +169,4 @@ const FenetreInventaire = ({ indexFenetre }) => {
     )
 }
 
-export default FenetreInventaire
+export default FenetreBase

@@ -91,14 +91,16 @@
 }
 
 .FenetreAuberge .tourne {
-    position: absolute;
-    left: 2%;
-    top: -2%;
-    height: 20vh;
-    width: 50vh;
+    position: fixed;
+    z-index: 9;
+    left: 0%;
+    top: 50%;
+    height: 22vh;
+    width: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 5px solid rgb(255, 255, 255);
 }
 
 .FenetreAuberge .lignePrix {

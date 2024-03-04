@@ -9,6 +9,7 @@
     transition: all 0.1s;
     cursor: pointer;
     border-radius: 1vh;
+    animation: rebondir 0.2s forwards;
 }
 
 
@@ -21,4 +22,16 @@
     color: white;
     border-radius: 1vh;
     border: 5px solid rgb(182, 182, 217);
+    animation: rebondir 0.2s forwards;
+}
+
+@keyframes rebondir {
+    0%, 100% {
+        opacity: 0%;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
 }

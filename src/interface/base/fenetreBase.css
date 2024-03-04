@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.FenetreBase {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreBase hr {
+    margin-top: 1vh;
+}
+
+.FenetreBase .milieu {
+    display: flex;
+    height: 100%;
+}
+
+.FenetreBase .exGauche {
+    flex: 1;
+    padding: 2vh;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: rgb(78, 78, 109);
+    border-radius: 1vh;
+    margin-top: 1vh;
+    overflow-y: scroll;
+}
+
+.FenetreBase .ok {
+    flex: 3;
+}
+
+.FenetreBase .gauche {
+    margin-top: 1vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 3;
+    overflow-y: scroll;
+}
+
+.FenetreBase .droite {
+    flex: 1;
+    margin-top: 1vh;
+    padding: 2vh;
+    box-sizing: border-box;
+    background-color: rgb(78, 78, 109);
+    border-radius: 1vh;
+    height: 100%;
+}
+
+.FenetreBase .ligne {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreBase p.index {
+    margin-right: 0.5vh;
+    font-weight: 300;
+}
+
+.FenetreBase .droite img {
+    border-radius: 1vh;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.314);
+    display: block;
+}
+
+.FenetreBase .bas {
+    display: flex;
+}
+
+.FenetreBase .droite .info {
+    overflow-y: scroll;
+    max-height: 15vh;
+    padding-right: 1vh;
+}
+
+.FenetreBase .exGauche .listeProfil {
+    flex: 3;
+    box-sizing: border-box;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+    box-sizing: border-box;
+    margin-right: 1vh;
+}
+
+.FenetreBase .bas .avertissement {
+    flex: 1.5;
+    padding: 2vh;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: rgb(100, 100, 155);
+    border-radius: 1vh;
+}
+
+.FenetreBase .haut .info {
+    display: flex;
+    justify-content: space-between;
+}

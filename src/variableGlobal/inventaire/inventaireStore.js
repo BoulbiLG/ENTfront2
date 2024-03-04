@@ -1,9 +1,12 @@
 import create from 'zustand';
 
 import { lexiqueConsomable } from '../item/lexiqueConsomable';
+import { lexiqueMeuble } from '../item/lexiqueMeuble';
 import { lexiqueArmure } from '../item/lexiqueArmure';
 
 import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
+
+const yMeuble = 100;
 
 const inventaireStore = create((set) => ({
   inventaire: [
@@ -22,10 +25,49 @@ const inventaireStore = create((set) => ({
     */
   ],
 
-  meubles: [],
+  meubles: [
+    {
+      type: lexiqueMeuble.drapeau.type,
+      nom: lexiqueMeuble.drapeau.nom,
+      img: lexiqueMeuble.drapeau.img,
+      imgItem: lexiqueMeuble.drapeau.imgItem,
+      description: lexiqueMeuble.drapeau.description,
+      valeur: lexiqueMeuble.drapeau.valeur,
+      poid: lexiqueMeuble.drapeau.poid,
+      action: lexiqueMeuble.drapeau.action, 
+      id: 1,
+      x: 500,
+      y: yMeuble,
+      protection: lexiqueMeuble.drapeau.action,
+      piege: lexiqueMeuble.drapeau.action,
+      quantite: 5,
+    },
+    {
+      type: lexiqueMeuble.tente.type,
+      nom: lexiqueMeuble.tente.nom,
+      img: lexiqueMeuble.tente.img,
+      imgItem: lexiqueMeuble.tente.imgItem,
+      description: lexiqueMeuble.tente.description,
+      valeur: lexiqueMeuble.tente.valeur,
+      poid: lexiqueMeuble.tente.poid,
+      action: lexiqueMeuble.tente.action, 
+      id: 2,
+      x: 500,
+      y: yMeuble,
+      protection: lexiqueMeuble.tente.action,
+      piege: lexiqueMeuble.tente.action,
+      quantite: 5,
+    },
+  ],
 
   poidMax: 100,
   poid: 2,
+
+  idMeuble: 2,
+
+  poidMeubleMax: 100,
+  poidMeuble: lexiqueMeuble.drapeau.poid,
+
   argent: 10,
 
   ajouter: (champ, valeur) => {
@@ -82,6 +124,36 @@ const inventaireStore = create((set) => ({
         ...state,
       };
     });
+  },
+
+  // meuble
+
+  ajouterQuantiteMeuble: (type, champ, nombre) => {
+    set((state) => ({
+      meubles: state.meubles.map((item) =>
+        item.type === type ? { ...item, [champ]: item[champ] + nombre } : item
+      ),
+    }));
+  },
+
+  retirerQuantiteMeuble: (type, champ, nombre) => {
+    set((state) => ({
+      meubles: state.meubles.map((item) =>
+        item.type === type ? { ...item, [champ]: Math.max(item[champ] - nombre, 0) } : item
+      ),
+    }));
+  },
+
+  ajouterLigneMeuble: (nouvelItem) => {
+    set((state) => ({
+      meubles: [...state.meubles, nouvelItem],
+    }));
+  },
+
+  retirerLigneMeuble: (id) => {
+    set((state) => ({
+      meubles: state.meubles.filter((item) => item.type !== id),
+    }));
   },
 
 }));

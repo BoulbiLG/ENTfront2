@@ -17,7 +17,7 @@ const oncheStore = create((set) => ({
     stockage: [
         {
             zoneX: 0, zoneY: 0, zoneZ: 0,
-            x: 100, y: 300,
+            x: 100, y: 400,
             idStockage: '1', type: 'coffre',
             img: coffre,
             height: heightCoffre, width: widthCoffre,
@@ -29,7 +29,7 @@ const oncheStore = create((set) => ({
         },
         {
             zoneX: 0, zoneY: -1, zoneZ: 0,
-            x: 700, y: 300,
+            x: 700, y: 400,
             idStockage: '2', type: 'coffre',
             img: coffre,
             height: heightCoffre, width: widthCoffre,
@@ -43,7 +43,7 @@ const oncheStore = create((set) => ({
             // maison cleamolette
 
             zoneX: 0, zoneY: -4, zoneZ: 999999,
-            x: 1056, y: 250,
+            x: 1056, y: 400,
             idStockage: '3', type: 'coffre',
             img: coffre,
             height: heightCoffre, width: widthCoffre,

@@ -7,6 +7,26 @@
     z-index: -3;
 }
 
+.Meuble {
+    transform: scale(1);
+    transition: all 0.2s;
+}
+
+.Meuble:hover > :not(.fenetre) {
+    animation: scaleUp 0.2s forwards;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+    to {
+        transform: scale(1.05);
+        filter: brightness(150%);
+    }
+}
+
 .Meuble .listeBouton {
     position: absolute;
     top: 40%;

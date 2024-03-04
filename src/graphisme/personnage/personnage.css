@@ -1,21 +1,9 @@
-.Aubergiste {
-    height: 50vh;
-    width: 20vh;
-    position: absolute;
-    top: 200px;
-    left: 450px;
-}
-
-.Aubergiste img.perso {
-    cursor: pointer;
-}
-
-.Aubergiste {
+.Personnage {
     transform: scale(1);
     transition: all 0.2s;
 }
 
-.Aubergiste:hover > :not(.fenetre) {
+.Personnage:hover > :not(.dialogueConteneur) {
     animation: scaleUp 0.2s forwards;
 }
 

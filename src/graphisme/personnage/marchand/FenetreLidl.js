@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import '../../../css/classe/fenetre1.css';
+import '../../../css/classe/fenetreDrag.css';
 import '../../../css/classe/btn.css';
 import './fenetreLidl.css';
 
@@ -105,7 +106,7 @@ const FenetreLidl = () => {
     
     return (
         <div 
-            className='FenetreLidl fenetre2Classe'
+            className='FenetreLidl fenetreDrag fenetre2Classe'
             style={{
                 position: 'absolute',
                 left: `${position.x - 520}px`,

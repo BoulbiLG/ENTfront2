@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../../css/classe/btn.css';
 import '../../css/classe/fenetreDrag.css';
+import '../../css/classe/clickable.css'
 import './meuble.css';
 
 import baseStore from '../../variableGlobal/base/baseStore';
@@ -48,7 +49,7 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
 
         
     return (
-        <div className='Meuble' style={{top: `${y}px`, left: `${X}px`}}>
+        <div className='Meuble clickable' style={{top: `${y}px`, left: `${X}px`}}>
             <div className="image">
                 {choix === 'deplacer' ? (
                     <div className="deplacerChoix">

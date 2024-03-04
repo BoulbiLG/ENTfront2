@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import FenetreDialogue from '../../interface/dialogue/FenetreDialogue';
 
 import '../../css/classe/clickable.css';
+import './personnage.css';
 
 const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => {
     
@@ -19,7 +20,7 @@ const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => 
     }
         
     return (
-        <div className='personnageConteneur clickable' 
+        <div className='personnageConteneur Personnage clickable' 
             style={{
                 position: 'absolute',
                 top: y,

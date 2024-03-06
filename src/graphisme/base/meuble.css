@@ -1,7 +1,5 @@
 
 .Meuble {
-    height: 50vh;
-    width: 50vh;
     position: absolute;
     cursor: default;
     z-index: -3;
@@ -10,9 +8,10 @@
 .Meuble {
     transform: scale(1);
     transition: all 0.2s;
+    cursor: pointer;
 }
 
-.Meuble:hover > :not(.fenetre) {
+.Meuble:hover > :not(.fenetre):not(.fenetreBase):not(.deplacerChoix) {
     animation: scaleUp 0.2s forwards;
 }
 
@@ -65,6 +64,7 @@
 
 .Meuble .fenetreBase {
     position: fixed;
+    z-index: 9;
     top: 40%;
     left: 40%;
     width: 50vh;
@@ -114,4 +114,9 @@
 .Meuble .fenetreBase .bas button {
     margin-bottom: 0;
     margin-top: 5vh;
+}
+
+.Meuble .fermerUtiliser {
+    position: absolute;
+    top: 0%;
 }

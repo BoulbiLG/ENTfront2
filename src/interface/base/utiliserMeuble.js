@@ -9,6 +9,9 @@ export const utiliserMeuble = (storeDeplacement, storeInventaire, storeBase, typ
     const idBaseTotal = storeBase.idBase;
     const idMeubleTotal = storeBase.idBase;
 
+    console.log('piege : ', piege);
+
+    /*
     console.log('storeDeplacement : ', storeDeplacement);
     console.log('storeInventaire : ', storeInventaire);
     console.log('storeBase : ', storeBase);
@@ -21,12 +24,15 @@ export const utiliserMeuble = (storeDeplacement, storeInventaire, storeBase, typ
     console.log('id : ', id);
     console.log(' : ', );
     console.log(' : ', );
+    */
 
     const yMeuble = 100;
 
+    /*
     console.log(storeInventaire);
     console.log(storeBase);
     console.log('idBase : ', idBase);
+    */
 
     for (let i = 0; i < storeBase.base.length; i++) {
         const base = storeBase.base[i];

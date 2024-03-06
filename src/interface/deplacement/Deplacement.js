@@ -6,6 +6,8 @@ import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import colisionStore from '../../variableGlobal/global/colisionStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import miniMapStore from '../../variableGlobal/global/miniMap';
+import parametreStore from '../../variableGlobal/global/parametreStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 
 import { verificationMusique } from './verificationMusique';
 import { verificationCase } from './verificationCase';
@@ -25,6 +27,8 @@ const Deplacement = () => {
     const storeColision = colisionStore();
     const storeCelestin = CelestinStore();
     const storeMiniMap = miniMapStore();
+    const storeMusique = musiqueStore();
+    const { volumeMusique } = parametreStore();
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;
     
@@ -36,7 +40,7 @@ const Deplacement = () => {
         const colision = storeColision.find((colision) => colision.position === position);
         const nouveauxMouvements = colision ? colision.mouvement : [];
         setMouvementChoix(nouveauxMouvements);
-    }, [storeColision, position]);
+    }, [storeColision, position, volumeMusique]);
 
 
 
@@ -54,42 +58,42 @@ const Deplacement = () => {
         await new Promise((resolve) => {
           setTimeout(() => {
             if (direction === 'monter') {
-                const autorisation = verificationCase('monter', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('monter', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.ajouter('zoneZ', 1); 
                     storeMiniMap.ajouter('z', 1); 
                 }
             }
             if (direction === 'haut') {
-                const autorisation = verificationCase('haut', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('haut', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.ajouter('zoneY', 1); 
                     storeMiniMap.ajouter('y', miniMapY);
                 }
             }
             if (direction === 'descendre') {
-                const autorisation = verificationCase('descendre', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('descendre', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneZ', 1); 
                     storeMiniMap.retirer('z', 1);
                 }
             }
             if (direction === 'gauche') {
-                const autorisation = verificationCase('gauche', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('gauche', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneX', 1); 
                     storeMiniMap.ajouter('x', miniMapX);
                 }
             }
             if (direction === 'bas') {
-                const autorisation = verificationCase('bas', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('bas', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneY', 1); 
                     storeMiniMap.retirer('y', miniMapY);
                 }
             }
             if (direction === 'droite') {
-                const autorisation = verificationCase('droite', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet);
+                const autorisation = verificationCase('droite', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.ajouter('zoneX', 1); 
                     storeMiniMap.retirer('x', miniMapX);

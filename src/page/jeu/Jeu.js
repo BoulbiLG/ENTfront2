@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import InterfaceTerminal from '../../interface/InterfaceTerminal';
 import Particule from '../../components/particule/Particule';
+import parametreStore from '../../variableGlobal/global/parametreStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 
 import { verificationMusique } from '../../interface/deplacement/verificationMusique';
 
@@ -12,8 +14,15 @@ import './jeu.css';
 const Jeu = () => {
 
   const storeRefresh = refreshStore();
+  const storeMusique = musiqueStore();
+  const { courante } = musiqueStore();
+  const storeParemetre = parametreStore();
+  const { volumeMusique } = parametreStore();
 
-  verificationMusique();
+  useEffect(() => {
+    verificationMusique(storeMusique, storeParemetre);
+  }, [volumeMusique, courante])
+
 
   return (
     <div className='Jeu'>

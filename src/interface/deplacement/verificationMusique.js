@@ -1,16 +1,39 @@
-import musiqueStore from "../../variableGlobal/audio/musiqueStore";
+import test from '../../audio/musique/entrainant.mp3';
+import chepa from '../../audio/musique/chepa.wav';
 
-import test from '../../audio/musique/entrainant.mp3'
+const audioSources = {
+  onche: new Audio(test),
+  maisonClea: new Audio(chepa),
+};
 
-export const verificationMusique = () => {
-    const storeMusique = musiqueStore();
+let currentAudio = audioSources.onche;
 
-    if (storeMusique.courante === 'onche') {
-        const audio = new Audio(test);
+export const verificationMusique = (storeMusique, storeParemetre) => {
+    // ...
 
-        document.addEventListener('click', () => {
-            audio.loop = true;
-            audio.play();
-        }, { once: true });
+    if (storeParemetre.volumeMusique > 0) {
+
+        currentAudio.volume = storeParemetre.volumeMusique / 100;
+
+        if (storeMusique.lecture === 0) {
+
+            if (!currentAudio.paused) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // Changer la source audio en fonction de storeMusique.courante
+            currentAudio = audioSources[storeMusique.courante];
+            
+            currentAudio.loop = true;
+            currentAudio.play();
+            storeMusique.modifier('lecture', 1);
+
+        } 
+    } else if (storeParemetre.volumeMusique === 0) {
+        if (!currentAudio.paused) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
     }
 };

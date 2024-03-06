@@ -1,0 +1,10 @@
+.Dormir {
+    position: absolute;
+    background-color: rgb(78, 78, 109);
+    color: white;
+    padding: 2vh;
+    border-radius: 1vh;
+    height: 30vh;
+    top: -100%;
+    border: 5px solid rgb(96, 96, 133);
+}

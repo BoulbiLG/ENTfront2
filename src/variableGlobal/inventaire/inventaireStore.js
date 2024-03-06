@@ -39,7 +39,7 @@ const inventaireStore = create((set) => ({
       x: 500,
       y: yMeuble,
       protection: lexiqueMeuble.drapeau.action,
-      piege: lexiqueMeuble.drapeau.action,
+      piege: lexiqueMeuble.drapeau.piege,
       quantite: 5,
     },
     {
@@ -55,7 +55,7 @@ const inventaireStore = create((set) => ({
       x: 500,
       y: yMeuble,
       protection: lexiqueMeuble.tente.action,
-      piege: lexiqueMeuble.tente.action,
+      piege: lexiqueMeuble.tente.piege,
       quantite: 5,
     },
   ],

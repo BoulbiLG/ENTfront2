@@ -16,7 +16,7 @@ console.log(lexiqueConsomable);
 const oncheStore = create((set) => ({
     stockage: [
         {
-            zoneX: 0, zoneY: 0, zoneZ: 0,
+            zoneX: 2, zoneY: -2, zoneZ: 0,
             x: 100, y: 400,
             idStockage: '1', type: 'coffre',
             img: coffre,

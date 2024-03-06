@@ -38,6 +38,8 @@ const FenetreBase = () => {
 
     var idBaseNet = 0;
 
+    console.log(storeInventaire.meubles)
+
     if (analyse) {
         idBaseNet = analyse.idBase;
     }

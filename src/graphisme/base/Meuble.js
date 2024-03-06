@@ -7,20 +7,28 @@ import './meuble.css';
 
 import baseStore from '../../variableGlobal/base/baseStore';
 
+import Dormir from './Dormir';
+
 import { detruireBase } from './detruireBase';
 import { retirerMeuble } from './retirerMeuble';
 
 const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, idBase, nomBaseBrut, protection, piege }) => {
 
+
+
     const storeBase = baseStore();
     
     const [affichageFenetre, affichageFenetreSet] = useState('false');
     const [editionNom, editionNomSet] = useState('false');
+    const [fenetreUtiliser, fenetreUtiliserSet] = useState('false');
     const [nomBase, nomBaseSet] = useState(nomBaseBrut);
     const [choix, choixSet] = useState('');
     const [X, Xset] = useState(x);
 
+
+
     // ========== DEPLACEMENT ========== //
+
 
 
     useEffect(() => {
@@ -32,7 +40,7 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
         const handleKeyPress = (e) => {
             if (e.key === 'ArrowLeft') {
                 Xset(prevX => prevX - 5);
-                x = x - 5;      
+                x = x - 5;
             }
             else if (e.key === 'ArrowRight') {
                 Xset(prevX => prevX + 5);
@@ -47,9 +55,9 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
     }, [choix]);
 
 
-        
+  
     return (
-        <div className='Meuble clickable' style={{top: `${y}px`, left: `${X}px`}}>
+        <div className='Meuble' style={{bottom: `${y + 100}px`, left: `${X}px`}}>
             <div className="image">
                 {choix === 'deplacer' ? (
                     <div className="deplacerChoix">
@@ -67,7 +75,7 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
             <div className="fenetre">
                 {affichageFenetre === 'true' ? (
                     <>
-                        {choix === '' ? (
+                        {choix === '' && fenetreUtiliser === 'false' ? (
                             <>
                                 <div className="listeBouton">
                                     <button className='btnClasse'  onClick={() => {choixSet('deplacer'); affichageFenetreSet('false');}}>Déplacer</button>
@@ -80,7 +88,7 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
                                         <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); detruireBase(idBase, storeBase);}}>Détruire cette base</button>
                                     ) :
                                         <>
-                                            <button className='btnClasse' onClick={() => {affichageFenetreSet('false');}}>Utiliser</button>
+                                            <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); fenetreUtiliserSet('true')}}>Utiliser</button>
                                             <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); retirerMeuble(idBase, storeBase, id);}}>Détruire le meuble</button>
                                         </>
                                     }
@@ -127,6 +135,16 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
                             <button className='btnClasse'  onClick={() => {choixSet(''); affichageFenetreSet('false');}}>Fermer</button>
                         </div>
                     </div>
+                ) : null }
+                {fenetreUtiliser === 'true' ? (
+                    <>
+                        {type === 'tente' ? (
+                            <>
+                                <Dormir idBase={idBase} />
+                                <button className='btnClasse fermerUtiliser' onClick={() => {fenetreUtiliserSet('false');}}>Fermer</button>
+                            </>
+                        ) : null }
+                    </>
                 ) : null }
             </div>
         </div>

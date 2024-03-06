@@ -127,6 +127,8 @@ const FenetreDialogue = ({ storePersonnage }) => {
             </div>
         </div>
         <div className="choix">
+            <br />
+            <br />
             <div className="humeur">
                 <div className="colonne">
                     <div className="humeurColonne">
@@ -156,7 +158,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
                                     </>
                                 ) : 
                                     <button className='btnClasse dialogueJoueur donner' key={id} onClick={() => {affichageFenetreDonSet('false')}}>{phrase}</button>
-                                } 
+                                }
                             </>
                         }
                     </>
@@ -165,6 +167,9 @@ const FenetreDialogue = ({ storePersonnage }) => {
                 <button className='btnClasse dialogueJoueur recruter' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'recruter', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh);}}>Je te veux dans mon équipe !</button>
                 {personnageStore.sexe === 'f' ? (
                     <button className='btnClasse dialogueJoueur baiser' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'baiser', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Je veux te baiser {personnageStore.nom}, tu vas jouir :cash:</button>
+                ) : null }
+                {personnageStore.nom === 'Blondin' ? (
+                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Casse toi de mon chemin sale violeur de poule</button>
                 ) : null }
             </div>
 

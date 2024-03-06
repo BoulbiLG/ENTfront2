@@ -3,6 +3,7 @@ import BenzemonstreStore from '../variableGlobal/personnage/BenzemonstreStore';
 import JouhnStore from '../variableGlobal/personnage/JouhnStore';
 import ChevalierMauditStore from '../variableGlobal/personnage/ChevalierMaudit';
 import CleaMoletteStore from '../variableGlobal/personnage/CleaMoletteStore';
+import BlondinStore from '../variableGlobal/personnage/BlondinStore';
 
 export const recupererStoreDynamique = (equipierCourant) => {
 
@@ -11,6 +12,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
     const jouhnStore = JouhnStore();
     const chevalierMauditStore = ChevalierMauditStore();
     const cleaMoletteStore = CleaMoletteStore();
+    const blondin = BlondinStore();
 
     var storeJoueur;
 
@@ -20,6 +22,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
         case 'Jouhn_ingroum':storeJoueur = jouhnStore; break;
         case 'ChevalierMaudit':storeJoueur = chevalierMauditStore; break;
         case 'CleaMolette':storeJoueur = cleaMoletteStore; break;
+        case 'Blondin':storeJoueur = blondin; break;
         default: console.log('rien');
     }
 

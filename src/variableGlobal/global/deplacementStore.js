@@ -7,6 +7,7 @@ const deplacementStore = create((set) => ({
   zoneZ: 0,
 
   lieux: 'onche',
+  tutoVillage: 'non',
 
   fenetreOuverte: [],
 

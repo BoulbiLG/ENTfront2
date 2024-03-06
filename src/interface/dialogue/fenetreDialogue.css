@@ -46,6 +46,10 @@
 
 .dialogueConteneur .dialogue {
     word-wrap: break-word;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgb(160, 160, 198), rgb(121, 121, 161));
+    padding: 1vh;
+    width: 95%;
 }
 
 .dialogueConteneur .choix {

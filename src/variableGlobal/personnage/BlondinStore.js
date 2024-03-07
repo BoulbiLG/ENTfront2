@@ -11,7 +11,7 @@ const BlondinStore = create((set) => ({
   zoneX: 0,
   zoneY: 0,
   zoneZ: 0,
-  x: 1000,
+  x: 630,
   y: 100,
   
   nom: 'Blondin',

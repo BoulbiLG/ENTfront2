@@ -6,6 +6,7 @@ import Stat from './stat/Stat';
 import Deplacement from './deplacement/Deplacement';
 import Base from './base/Base';
 import Parametre from './parametre/Parametre';
+import FenetreCombat from './combat/FenetreCombat';
 
 import refreshStore from '../variableGlobal/global/refresh';
 
@@ -25,6 +26,7 @@ const InterfaceTerminal = () => {
         <Stat />
         <Parametre />
         <Deplacement />
+        <FenetreCombat />
     </div>
   )
 }

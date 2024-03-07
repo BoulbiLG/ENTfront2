@@ -1,5 +1,5 @@
 
-export const verificationDialogue = (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[]) => {
+export const verificationDialogue = async (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[], storeCombat=[], storeMusique=[]) => {
     
     let repliqueReturn = [];
 
@@ -82,6 +82,23 @@ export const verificationDialogue = (nom, id, type, consequence, dialogueAfficha
             console.log(contexte)
             repliqueReturn.push({texte: 'Mais ça va pas !', sticker: 'https://image.noelshack.com/fichiers/2017/34/4/1503596404-danykj.png'});
         }
+    }
+
+    if (type == 'blondin') {
+        const enculerPromise = new Promise((resolve) => {
+            repliqueReturn.push({texte: "J'vais t'enculer", sticker: 'https://image.noelshack.com/fichiers/2017/08/1488117914-clint.gif'});
+            storeMusique.modifier('courante', 'combatNormal');
+            storeMusique.modifier('lecture', 0);
+            storeMusique.modifier('type', 'normal');
+            dialogueAffichageSet(repliqueReturn);
+            setTimeout(() => {
+                storeCombat.modifier('combat', 'oui');
+                storeCombat.ajouterNom('Blondin');
+                resolve();
+            }, 2000);
+        });
+    
+        await enculerPromise;
     }
 
     if (contexte != 'stat') {

@@ -4,12 +4,12 @@ import chepa from '../../audio/musique/chepa.wav';
 const audioSources = {
   onche: new Audio(test),
   maisonClea: new Audio(chepa),
+  combatNormal: new Audio(chepa),
 };
 
 let currentAudio = audioSources.onche;
 
 export const verificationMusique = (storeMusique, storeParemetre) => {
-    // ...
 
     if (storeParemetre.volumeMusique > 0) {
 
@@ -22,7 +22,6 @@ export const verificationMusique = (storeMusique, storeParemetre) => {
                 currentAudio.currentTime = 0;
             }
 
-            // Changer la source audio en fonction de storeMusique.courante
             currentAudio = audioSources[storeMusique.courante];
             
             currentAudio.loop = true;

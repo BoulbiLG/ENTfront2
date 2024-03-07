@@ -10,7 +10,7 @@ const Particule = ({ vitesseMin, vitesseMax }) => {
     const particles = [];
 
     const createParticle = () => {
-      const angle = Math.random() * (Math.PI / 3) - Math.PI / 6; // Angle entre -30 et 30 degrés
+      const angle = Math.random() * (Math.PI / 3) - Math.PI / 6;
       const speed = Math.random() * (vitesseMax - vitesseMin) + vitesseMin;
 
       const particle = {

@@ -7,6 +7,8 @@ import { recupererStoreDynamique } from '../../fonction/recupererStoreDynamique'
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import refreshStore from '../../variableGlobal/global/refresh';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
+import combatStore from '../../variableGlobal/global/combatStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 
 import FenetreDon from './FenetreDon';
 import Jauge from '../../components/jauge/Jauge';
@@ -30,6 +32,8 @@ const FenetreDialogue = ({ storePersonnage }) => {
     const storeEquipe = equipeStore();
     const storeRefresh = refreshStore();
     const storeCelestin = CelestinStore();
+    const storeCombat = combatStore();
+    const storeMusique = musiqueStore();
 
     //
 
@@ -169,7 +173,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
                     <button className='btnClasse dialogueJoueur baiser' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'baiser', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Je veux te baiser {personnageStore.nom}, tu vas jouir :cash:</button>
                 ) : null }
                 {personnageStore.nom === 'Blondin' ? (
-                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Casse toi de mon chemin sale violeur de poule</button>
+                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique);}}>Casse toi de mon chemin sale violeur de poule</button>
                 ) : null }
             </div>
 

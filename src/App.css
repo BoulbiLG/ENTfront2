@@ -17,7 +17,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* couleur de fond de la barre de défilement */
+  background-color: transparent; /* couleur de fond de la barre de défilement */
 }
 
 /* Barre de défilement lorsqu'elle est en survol */
@@ -28,7 +28,7 @@ body {
 /* Barre de défilement principale */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
+  scrollbar-color: #ffffff transparent;
 }
 
 /* Barre de défilement lorsqu'elle est en survol */

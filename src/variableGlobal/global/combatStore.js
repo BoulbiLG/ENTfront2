@@ -1,12 +1,12 @@
 import create from 'zustand';
 
-const parametreStore = create((set) => ({
+const combatStore = create((set) => ({
 
-  bruitage: 'oui',
-  volumeBruitage: 0,
+  combat: 'non',
+  type: '',
+  tour: '',
 
-  musique: 'oui',
-  volumeMusique: 50,
+  nom: [],
 
   ajouter: (champ, valeur) => {
     set((state) => ({
@@ -24,6 +24,14 @@ const parametreStore = create((set) => ({
     set({ [champ]: nouvelleValeur });
   },
 
+  // ajoute element tableau
+
+  ajouterNom: (id) => {
+    set((state) => ({
+      nom: [...state.nom, id],
+    }));
+  },
+
 }));
 
-export default parametreStore;
+export default combatStore;

@@ -14,3 +14,8 @@ Ajouter un PNJ :
 
         - ajouter chemin
         - ajouter condition
+
+    - ./recuperationListeStoreCombat :
+
+        - ajouter chemin
+        - ajouter condition

@@ -9,7 +9,7 @@ import '../../css/classe/btn.css';
 
 const Dormir = ({ idBase }) => {
 
-    const [tempsDormir, tempsDormirSet] = useState(10);
+    const [tempsDormir, tempsDormirSet] = useState(1);
     const [risque, risqueSet] = useState(0);
     const [recuperationVie, recuperationVieSet] = useState(0);
 

@@ -1,8 +1,10 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/cleamolette/normal.png';
 import tete from '../../asset/personnage/cleamolette/tete.png';
+import icone from '../../asset/personnage/cleamolette/icone.png';
 
 import { pommeURL } from '../../graphisme/item/item';
+import { lexiqueMagie } from '../item/magie/lexiqueMagie';
 
 const CleaMoletteStore = create((set) => ({
   
@@ -24,6 +26,7 @@ const CleaMoletteStore = create((set) => ({
 
   imgNormal: normal,
   imgTete: tete,
+  imgIcone: icone,
 
   // STAT
 
@@ -36,8 +39,8 @@ const CleaMoletteStore = create((set) => ({
   defense: 8,
   vitesse: 10,
   courage: 3,             // augmente le taux de coup critique, min = 5
-  magieMax: 15,
-  magie: 15,
+  magieMax: 150,
+  magie: 150,
   testo: 0,
   bodycount: 0,
 
@@ -94,6 +97,23 @@ const CleaMoletteStore = create((set) => ({
     { id: '', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
     { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],
+
+  // MAGIE
+  
+  magieTout: {
+
+    lexique: [
+      {id: lexiqueMagie.pistoletPisse.id, nom: lexiqueMagie.pistoletPisse.nom, action: lexiqueMagie.pistoletPisse.action, 
+        type: lexiqueMagie.pistoletPisse.type, niveau: lexiqueMagie.pistoletPisse.niveau, cout: lexiqueMagie.pistoletPisse.cout},
+      {id: lexiqueMagie.nofap.id, nom: lexiqueMagie.nofap.nom, action: lexiqueMagie.nofap.action, type: lexiqueMagie.nofap.type,
+        niveau: lexiqueMagie.nofap.niveau, consequence: lexiqueMagie.nofap.consequence, cout: lexiqueMagie.nofap.cout},
+    ],
+
+  },
+
+  // BADGE
+
+  badge: [],
 
   itemDropable: [
     {

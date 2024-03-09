@@ -1,7 +1,5 @@
 export const calculVitesse = (storeEnnemis, storeJoueurs, tourSet) => {
 
-    console.log(storeEnnemis, storeJoueurs);
-
     let vitesseEnnemi = 0;
     let vitesseJoueur = 0;
 

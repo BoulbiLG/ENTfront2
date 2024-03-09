@@ -1,5 +1,7 @@
 import create from 'zustand';
 import tete from '../../asset/personnage/celestin/tete.png';
+import icone from '../../asset/personnage/celestin/icone.png';
+import { lexiqueMagie } from '../item/magie/lexiqueMagie';
 
 const CelestinStore = create((set) => ({
 
@@ -10,8 +12,8 @@ const CelestinStore = create((set) => ({
     { id: '', type: 'buste', x: 50, y: 140, cible: 'buste', img: '' }, 
     { id: '', type: 'bras', x: 674, y: 140, cible: 'bras', img: '' },
     { id: '', type: 'jambe', x: 50, y: 357, cible: 'jambe', img: '' },
-    { id: '', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
-    { id: '', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
+    { id: 'epee', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
+    { id: 'epee', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
     { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],
 
@@ -19,7 +21,7 @@ const CelestinStore = create((set) => ({
 
   vieMax: 100,
   vie: 50,
-  niveau: 1, 
+  niveau: 3, 
   expMax: 100,
   exp: 23,
   attaque: 10,
@@ -41,15 +43,33 @@ const CelestinStore = create((set) => ({
 
   // HUMEUR
 
-  joie: 10,
-  colere: 56,
-  tristesse: 12,
-  peur: 72,
+  joie: 50,
+  colere: 0,
+  tristesse: 0,
+  peur: 0,
 
   imgNormal: '',
   imgTete: tete,
+  imgIcone: icone,
 
   comportement: '',
+
+  // MAGIE
+  
+  magieTout: {
+
+    lexique: [
+      {id: lexiqueMagie.pistoletPisse.id, nom: lexiqueMagie.pistoletPisse.nom, action: lexiqueMagie.pistoletPisse.action, 
+        type: lexiqueMagie.pistoletPisse.type, niveau: lexiqueMagie.pistoletPisse.niveau, cout: lexiqueMagie.pistoletPisse.cout},
+      {id: lexiqueMagie.nofap.id, nom: lexiqueMagie.nofap.nom, action: lexiqueMagie.nofap.action, type: lexiqueMagie.nofap.type,
+        niveau: lexiqueMagie.nofap.niveau, consequence: lexiqueMagie.nofap.consequence, cout: lexiqueMagie.nofap.cout},
+    ],
+
+  },
+
+  // BADGE
+
+  badge: [],
 
 
 

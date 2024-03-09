@@ -126,6 +126,20 @@
     border-radius: 1vh;
     width: 50vh;
     margin: 0.2vh;
+    max-height: 14.5vh;
+    max-width: 49vh;
+}
+
+.FenetreCombat .listeJoueur .gauche, .FenetreCombat .listeJoueur .gauche {
+    display: flex;
+}
+
+.FenetreCombat .listeJoueur .droite {
+    display: flex;
+}
+
+.FenetreCombat .listeJoueur hr {
+    margin: 0 1vh;
 }
 
 .FenetreCombat .carteJoueur hr {
@@ -139,9 +153,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 130px;
+    width: 135px;
     height: 100px;
-    border-radius: 1vh;
 }
 
 .FenetreCombat .carteJoueur .info {

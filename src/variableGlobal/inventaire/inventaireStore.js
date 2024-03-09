@@ -14,7 +14,7 @@ const inventaireStore = create((set) => ({
       nom: lexiqueConsomable.pomme.nom, quantite: 2, img: lexiqueConsomable.pomme.img, description: lexiqueConsomable.pomme.description, 
       valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
    
-    /*
+    
     { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 999, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
     { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 1, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
     { equipe: 0, action: 5, cible: 'tete', important: 'non', id: 'casque', nom: 'Casque', quantite: 12, img: casqueURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 13},
@@ -22,7 +22,7 @@ const inventaireStore = create((set) => ({
     { equipe: 0, action: 5, cible: 'jambe', important: 'non', id: 'jambiere', nom: 'Jambière', quantite: 7, img: jambiereURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 11},
     { equipe: 0, action: 5, cible: 'bras', important: 'non', id: 'epauliere', nom: 'Epaulière', quantite: 53, img: epauliereURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 8},
     { equipe: 0, action: 5, cible: 'pied', important: 'non', id: 'nike', nom: 'Nike', quantite: 2, img: nikeURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 6},
-    */
+    
   ],
 
   meubles: [

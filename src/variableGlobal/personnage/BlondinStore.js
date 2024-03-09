@@ -1,6 +1,9 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/blondin/normal.png';
 import tete from '../../asset/personnage/blondin/tete.png';
+import icone from '../../asset/personnage/blondin/icone.png';
+
+import { lexiqueMagie } from '../item/magie/lexiqueMagie';
 
 import { pommeURL } from '../../graphisme/item/item';
 
@@ -23,11 +26,12 @@ const BlondinStore = create((set) => ({
 
   imgNormal: normal,
   imgTete: tete,
+  imgIcone: icone,
 
   // STAT
 
-  vieMax: 115,
-  vie: 115,
+  vieMax: 315,
+  vie: 315,
   niveau: 15, 
   expMax: 20,
   exp: 0,
@@ -35,8 +39,8 @@ const BlondinStore = create((set) => ({
   defense: 13,
   vitesse: 11,
   courage: 1,             // augmente le taux de coup critique, min = 5
-  magieMax: 10,
-  magie: 10,
+  magieMax: 100,
+  magie: 100,
   testo: 0,
   bodycount: 0,
 
@@ -97,10 +101,29 @@ const BlondinStore = create((set) => ({
     { id: '', type: 'buste', x: 50, y: 140, cible: 'buste', img: '' }, 
     { id: '', type: 'bras', x: 674, y: 140, cible: 'bras', img: '' },
     { id: '', type: 'jambe', x: 50, y: 357, cible: 'jambe', img: '' },
-    { id: '', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
+    { id: 'epee', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
     { id: '', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
     { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],
+
+  // MAGIE
+
+  magieTout: {
+
+    lexique: [
+      {id: lexiqueMagie.pistoletPisse.id, nom: lexiqueMagie.pistoletPisse.nom, action: lexiqueMagie.pistoletPisse.action, 
+        type: lexiqueMagie.pistoletPisse.type, niveau: lexiqueMagie.pistoletPisse.niveau, cout: lexiqueMagie.pistoletPisse.cout},
+      {id: lexiqueMagie.nofap.id, nom: lexiqueMagie.nofap.nom, action: lexiqueMagie.nofap.action, type: lexiqueMagie.nofap.type,
+        niveau: lexiqueMagie.nofap.niveau, consequence: lexiqueMagie.nofap.consequence, cout: lexiqueMagie.nofap.cout},
+      {id: lexiqueMagie.benedictionZoulman.id, nom: lexiqueMagie.benedictionZoulman.nom, action: lexiqueMagie.benedictionZoulman.action, 
+        type: lexiqueMagie.benedictionZoulman.type, niveau: lexiqueMagie.benedictionZoulman.niveau, cout: lexiqueMagie.benedictionZoulman.cout}, 
+    ],
+
+  },
+
+  // BADGE
+
+  badge: [],
 
   itemDropable: [
     {

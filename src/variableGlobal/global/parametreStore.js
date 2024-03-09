@@ -6,7 +6,7 @@ const parametreStore = create((set) => ({
   volumeBruitage: 0,
 
   musique: 'oui',
-  volumeMusique: 50,
+  volumeMusique: 0,
 
   ajouter: (champ, valeur) => {
     set((state) => ({

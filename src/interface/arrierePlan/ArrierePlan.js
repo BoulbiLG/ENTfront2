@@ -47,8 +47,6 @@ const ArrierePlan = () => {
     const idBase = analyseIdBase(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
     const analysePositionStockageBrut = analysePositionStockage(storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement.lieux);
 
-    console.log(analysePositionBaseBrut);
-
     useEffect(() => {
         const arrierePlanLigne = arrierePlanURL.find((colision) => colision.position === position);
         const arrierePlanBrut = arrierePlanLigne.url;
@@ -65,6 +63,9 @@ const ArrierePlan = () => {
                 setTimeout(() => {
                     heroURLSet('https://image.noelshack.com/fichiers/2024/08/7/1708870088-dos.gif');
                 }, 100);
+            }
+            if (comportement === 'attaque') {
+                    heroURLSet('https://thumbs.dreamstime.com/b/lettre-t-du-feu-ensemble-br%C3%BBlant-d-alphabet-193451252.jpg');
             }
             if (comportement === '') {
                 setTimeout(() => {

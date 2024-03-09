@@ -5,12 +5,19 @@ import hero from '../../asset/personnage/celestin/dos.png';
 
 import { recupererListeStoreCombat } from './recupererListeStoreCombat';
 import { recupererListeStore } from '../../fonction/recupererListeStore';
-import { calculVitesse } from './calculVitesse';
+import { calculVitesse } from './fonction/calculVitesse';
+import { attaquer } from './fonction/joueur/attaquer';
+import { attaquerEnnemi } from './fonction/ennemi/attaquerEnnemi';
+import { creationTabStratEnnemi } from './fonction/creationTabStratEnnemi';
 
-import './fenetreCombat.css';
 import '../../css/classe/btn.css';
+import './fenetreCombat.css';
+import './fenetreCombatAction.css';
 
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 import combatStore from '../../variableGlobal/global/combatStore';
+import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 
 import Particule from '../../components/particule/Particule';
 import Jauge from '../../components/jauge/Jauge';
@@ -21,32 +28,34 @@ const FenetreCombat = () => {
     const storeCombat = combatStore();
     const { combat } = combatStore();
     const { type } = combatStore();
+    const storeEquipe = equipeStore();
 
+    const [etape, etapeSet] = useState('qui');
     const [fenetreDetail, fenetreDetailSet] = useState('false');
     const [ongletDetail, ongletDetailSet] = useState('stat');
     const [tour, tourSet] = useState('');
     const [joueurCourant, joueurCourantSet] = useState([]);
+    const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe);
+    const [strategieEnnemi, strategieEnnemiSet] = useState([]);
 
-    let fond = normal;
+    let fond = normal; if (combatStore.type == 'normal') {fond = normal;}
 
-    if (combatStore.type == 'normal') {
-        fond = normal;
-    }
-
-    const storeEnnemis = recupererListeStoreCombat();
-    const storeJoueurs = recupererListeStore();
+    var storeEnnemis = recupererListeStoreCombat();
+    var storeInventaire = inventaireStore();
+    var storeJoueurs = recupererListeStore();
 
     console.log(storeEnnemis);
-    console.log(storeJoueurs);
-
+    
     useEffect(() => {
-
-        console.log('Refresh combat');
         if (storeCombat.combat == 'oui') {
-            console.log('Rvfde');
-            calculVitesse(storeEnnemis, storeJoueurs, tourSet);
-        }
 
+            // CALCUL VITESSE
+            calculVitesse(storeEnnemis, storeJoueurs, tourSet);
+
+            // CREATION TABLEAU STRAT ENNEMI
+            creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
+
+        }
     }, [combat, type]);
         
     return (
@@ -72,43 +81,110 @@ const FenetreCombat = () => {
                         <img src={hero} alt={hero} />
                     </div>
                     <div className="choix">
-                        <p>Qui dois agir ?</p>
-                        <br />
-                        {storeJoueurs.map(({nom}) => (
-                            <button className='nomJoueur'>{nom}</button>
-                        ))}
-                    </div>
-                    <div className="listeJoueur">
-                        {storeJoueurs.map((nom, index) => (
+                        {etape === 'qui' ? (
                             <>
-                                <div className="carteJoueur">
-                                    <div className="gauche" style={{backgroundColor: 'white', background: `url(${storeJoueurs[index].imgTete})`}}></div>
-                                    <hr />
-                                    <div className="info">
-                                        <div className="texte">
-                                            <p>{storeJoueurs[index].nom}</p>
-                                            <p>Lvl {storeJoueurs[index].niveau}</p>
-                                        </div>
-                                        <Jauge valeur={storeJoueurs[index].vie} max={storeJoueurs[index].vieMax} couleur='green' fond='grey' titre='PV' solo='non' dimension='non' style={{
-                                            margin: '0',
-                                        }} />
-                                        {fenetreDetail === 'false' ? (
-                                        <button onClick={() => {joueurCourantSet(storeJoueurs[index]); fenetreDetailSet('true');}} className='btnClasse' style={{
-                                            padding: '0.5vh',
-                                            width: '100%',
-                                            margin: '0',
-                                        }}>Détails</button>
-                                        ) :
-                                        <button onClick={() => {joueurCourantSet(storeJoueurs[index]); fenetreDetailSet('false');}} className='btnClasse' style={{
-                                            padding: '0.5vh',
-                                            width: '100%',
-                                            margin: '0',
-                                        }}>Détails</button>
-                                        }
-                                    </div>
-                                </div>
+                                <p>Qui dois agir ?</p>
+                                <br />
+                                {storeJoueurs.map((nom, index) => (
+                                    <button className='nomJoueur' onClick={() => {etapeSet('quoi'); joueurCourantSet(storeJoueurs[index]);}}>{storeJoueurs[index].nom}</button>
+                                ))}
                             </>
-                        ))}
+                        ) : null }
+                        {etape === 'quoi' ? (
+                            <div className='quoi'>
+                                <div className="main">
+                                    <button onClick={() => {etapeSet('mainG');}} className='btnClasse mainG'>Main Gauche</button>
+                                    <button onClick={() => {etapeSet('mainD');}} className='btnClasse mainD'>Main Droite</button>
+                                </div>
+                                <button onClick={() => {etapeSet('magie');}} className='btnClasse'>Magie</button>
+                                <button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>
+                                <button onClick={() => {etapeSet('rien');}} className='btnClasse'>Ne rien faire</button>
+                                <button onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
+                            </div>
+                        ) : null }
+                        {etape === 'mainG' || etape === 'mainD' ? (
+                            <div className='cible'>
+                                <p>Qui voulez vous visez ?</p>
+                                <br />
+                                {storeEnnemis.map((nom, index) => (
+                                    <>
+                                        <button className='cible' onClick={() => {
+                                            attaquer(etape, storeEnnemis[index], storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet);
+                                            attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet);
+                                            joueurCourantSet(storeEnnemis[index]);
+                                        }} >{storeEnnemis[index].nom}</button>
+                                    </>
+                                ))}
+                                <button className='cible retour' onClick={() => {etapeSet('quoi')}} >Retour</button>
+                            </div>
+                        ) : null }
+                    </div>
+                    <div className="listeJoueur" style={{display: 'flex'}}>
+                        <div className="gauche" style={{flex: '1', display: 'flex', flexWrap: 'wrap'}}>
+                            {storeJoueurs.map((nom, index) => (
+                                <>
+                                    <div className="carteJoueur">
+                                        <div className="gauche" style={{backgroundColor: 'white', background: `url(${storeJoueurs[index].imgIcone})`}}></div>
+                                        <hr />
+                                        <div className="info">
+                                            <div className="texte">
+                                                <p>{storeJoueurs[index].nom}</p>
+                                                <p>Lvl {storeJoueurs[index].niveau}</p>
+                                            </div>
+                                            <Jauge valeur={storeJoueurs[index].vie} max={storeJoueurs[index].vieMax} couleur='green' fond='grey' titre='PV' solo='non' dimension='non' style={{
+                                                margin: '0',
+                                            }} />
+                                            {fenetreDetail === 'false' ? (
+                                            <button onClick={() => {joueurCourantSet(storeJoueurs[index]); fenetreDetailSet('true');}} className='btnClasse' style={{
+                                                padding: '0.5vh',
+                                                width: '100%',
+                                                margin: '0',
+                                            }}>Détails</button>
+                                            ) :
+                                            <button onClick={() => {joueurCourantSet(storeJoueurs[index]); fenetreDetailSet('false');}} className='btnClasse' style={{
+                                                padding: '0.5vh',
+                                                width: '100%',
+                                                margin: '0',
+                                            }}>Détails</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </>
+                            ))}
+                        </div>
+                        <hr />
+                        <div className="droite" style={{flex: '1', display: 'flex', flexWrap: 'wrap'}}>
+                            {storeEnnemis.map((nom, index) => (
+                                <>
+                                    <div className="carteJoueur">
+                                        <div className="gauche" style={{backgroundColor: 'white', background: `url(${storeEnnemis[index].imgIcone})`}}></div>
+                                        <hr />
+                                        <div className="info">
+                                            <div className="texte">
+                                                <p>{storeEnnemis[index].nom}</p>
+                                                <p>Lvl {storeEnnemis[index].niveau}</p>
+                                            </div>
+                                            <Jauge valeur={storeEnnemis[index].vie} max={storeEnnemis[index].vieMax} couleur='green' fond='grey' titre='PV' solo='non' dimension='non' style={{
+                                                margin: '0',
+                                            }} />
+                                            {fenetreDetail === 'false' ? (
+                                            <button onClick={() => {joueurCourantSet(storeEnnemis[index]); fenetreDetailSet('true');}} className='btnClasse' style={{
+                                                padding: '0.5vh',
+                                                width: '100%',
+                                                margin: '0',
+                                            }}>Détails</button>
+                                            ) :
+                                            <button onClick={() => {joueurCourantSet(storeEnnemis[index]); fenetreDetailSet('false');}} className='btnClasse' style={{
+                                                padding: '0.5vh',
+                                                width: '100%',
+                                                margin: '0',
+                                            }}>Détails</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </>
+                            ))}
+                        </div>
                     </div>
 
                     {fenetreDetail === 'true' ? (

@@ -59,7 +59,6 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
                 repliqueReturn.push({texte: 'Ok ça marche !', sticker: 'https://image.noelshack.com/fichiers/2018/10/4/1520520305-pupute-cr7.png'});
             }
         } else {
-            console.log('ythgreftgrds');
             repliqueReturn.push({texte: 'Ptdr t ki ?', sticker: 'https://image.noelshack.com/fichiers/2020/50/2/1607386908-enxt.png'});
         }
     }
@@ -79,7 +78,6 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
                 repliqueReturn.push({texte: '. . .', sticker: 'https://image.noelshack.com/fichiers/2017/01/1483717744-dobrev.jpg'});
             }
         } else {
-            console.log(contexte)
             repliqueReturn.push({texte: 'Mais ça va pas !', sticker: 'https://image.noelshack.com/fichiers/2017/34/4/1503596404-danykj.png'});
         }
     }
@@ -89,11 +87,13 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
             repliqueReturn.push({texte: "J'vais t'enculer", sticker: 'https://image.noelshack.com/fichiers/2017/08/1488117914-clint.gif'});
             storeMusique.modifier('courante', 'combatNormal');
             storeMusique.modifier('lecture', 0);
+            storeMusique.ajouter('nombreEnnemi', 1);
             storeMusique.modifier('type', 'normal');
             dialogueAffichageSet(repliqueReturn);
             setTimeout(() => {
                 storeCombat.modifier('combat', 'oui');
                 storeCombat.ajouterNom('Blondin');
+                storeCombat.ajouterNom('CleaMolette');
                 resolve();
             }, 2000);
         });
@@ -102,8 +102,6 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
     }
 
     if (contexte != 'stat') {
-        console.log(repliqueReturn);
-
         dialogueAffichageSet(repliqueReturn);
     }
 

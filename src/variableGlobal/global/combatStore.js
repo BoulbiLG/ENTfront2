@@ -5,8 +5,22 @@ const combatStore = create((set) => ({
   combat: 'non',
   type: '',
   tour: '',
+  nombreEnnemi: 0,
 
   nom: [],
+
+  soinTour: [],
+
+
+
+
+
+
+
+
+
+
+
 
   ajouter: (champ, valeur) => {
     set((state) => ({
@@ -29,6 +43,19 @@ const combatStore = create((set) => ({
   ajouterNom: (id) => {
     set((state) => ({
       nom: [...state.nom, id],
+    }));
+  },
+
+  // ajoute element tableau
+
+  ajouterSoinTour: (ligne) => {
+    set((state) => ({
+      soinTour: [...state.soinTour, ligne],
+    }));
+  },
+  retirerSoinTour: (id) => {
+    set((state) => ({
+      soinTour: state.soinTour.filter((item) => item.id !== id),
     }));
   },
 

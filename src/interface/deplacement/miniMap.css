@@ -22,3 +22,9 @@
     top: 50%;
     left: 50%;
 }
+
+.MiniMap .case {
+    height: 20px;
+    width: 20px;
+    background-color: aqua;
+}

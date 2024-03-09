@@ -1,6 +1,7 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/chevalierMaudit/normal.png';
 import tete from '../../asset/personnage/chevalierMaudit/tete.png';
+import { lexiqueMagie } from '../item/magie/lexiqueMagie';
 
 import { pommeURL } from '../../graphisme/item/item';
 
@@ -120,6 +121,23 @@ const ChevalierMauditStore = create((set) => ({
   ],
 
   comportement: '',
+
+  // MAGIE
+  
+  magieTout: {
+
+    lexique: [
+      {id: lexiqueMagie.pistoletPisse.id, nom: lexiqueMagie.pistoletPisse.nom, action: lexiqueMagie.pistoletPisse.action, 
+        type: lexiqueMagie.pistoletPisse.type, niveau: lexiqueMagie.pistoletPisse.niveau, cout: lexiqueMagie.pistoletPisse.cout},
+      {id: lexiqueMagie.nofap.id, nom: lexiqueMagie.nofap.nom, action: lexiqueMagie.nofap.action, type: lexiqueMagie.nofap.type,
+        niveau: lexiqueMagie.nofap.niveau, consequence: lexiqueMagie.nofap.consequence, cout: lexiqueMagie.nofap.cout},
+    ],
+
+  },
+
+  // BADGE
+
+  badge: [],
 
 
 

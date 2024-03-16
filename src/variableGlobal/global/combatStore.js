@@ -11,6 +11,9 @@ const combatStore = create((set) => ({
 
   soinTour: [],
 
+  historique: [],
+  effetTemporaire: [],
+
 
 
 
@@ -56,6 +59,20 @@ const combatStore = create((set) => ({
   retirerSoinTour: (id) => {
     set((state) => ({
       soinTour: state.soinTour.filter((item) => item.id !== id),
+    }));
+  },
+
+  // tableau
+
+  ajouterTableau: (nomTableau, ligne) => {
+    set((state) => ({
+      [nomTableau]: [...state[nomTableau], ligne],
+    }));
+  },
+  
+  retirerTableau: (nomTableau, id) => {
+    set((state) => ({
+      [nomTableau]: state[nomTableau].filter((item) => item.id !== id),
     }));
   },
 

@@ -1,17 +1,21 @@
 
 import { lexiqueBadge } from "../../../../variableGlobal/item/badge/lexiqueBadge";
 
-export const calculAttaqueEnnemi = (storeEnnemis, action) => {
+export const calculAttaqueEnnemi = (storeEnnemis, action, actionArme) => {
 
-    const attaque = storeEnnemis[0].attaque;
-    const courage = storeEnnemis[0].courage;
-    const niveau = storeEnnemis[0].niveau;
-    const testo = storeEnnemis[0].testo;
+    let attaque = storeEnnemis.attaque;
+    if (action) {
+        attaque = storeEnnemis.attaque + action;
+    }
 
-    const joie = storeEnnemis[0].joie;
-    const tristesse = storeEnnemis[0].tristesse;
-    const peur = storeEnnemis[0].peur;
-    const colere = storeEnnemis[0].colere;
+    const courage = storeEnnemis.courage;
+    const niveau = storeEnnemis.niveau;
+    const testo = storeEnnemis.testo;
+
+    const joie = storeEnnemis.joie;
+    const tristesse = storeEnnemis.tristesse;
+    const peur = storeEnnemis.peur;
+    const colere = storeEnnemis.colere;
 
     //  CALCUL ATTAQUE STAT
     var tauxNiveau = niveau / 10 + 1;
@@ -23,13 +27,15 @@ export const calculAttaqueEnnemi = (storeEnnemis, action) => {
     //console.log('tauxNiveau : ', tauxNiveau);
     var attaqueStat = (attaque * tauxNiveau) * tauxTesto;
 
+    //console.log(storeEnnemis.nom, 'attaqueStat : ', attaqueStat);
+
     //console.log('Attaque stat : ', attaqueStat);
 
     // PROBABILITE COUP CRITIQUE
     const randomValue = Math.random();
     if (randomValue < 1 / courage) {
         attaqueStat = attaqueStat * 2;
-        //console.log('Attaque apres probabilité : ', attaqueStat);
+        //console.log(storeEnnemis.nom, 'Attaque apres probabilité : ', attaqueStat);
     }
 
     //CALCUL ATTAQUE NET
@@ -47,12 +53,12 @@ export const calculAttaqueEnnemi = (storeEnnemis, action) => {
     let attaqueTristesse = 0;
 
     if (tauxJoie > 0) {attaqueJoie = attaqueStat * tauxJoie;}
-    if (tauxTristesse > 0) {attaqueTristesse = attaqueStat * tauxTristesse;}
-    if (tauxPeur > 0) {attaquePeur = attaqueStat * tauxPeur;}
+    if (tauxTristesse > 0) {attaqueTristesse = attaqueStat / tauxTristesse;}
+    if (tauxPeur > 0) {attaquePeur = attaqueStat / tauxPeur;}
 
     attaqueHumeur = parseInt((attaqueJoie + attaqueTristesse + attaquePeur) / 3);
 
-    console.log('attaqueHumeur : ', attaqueHumeur);
+    //console.log(storeEnnemis.nom, 'attaqueHumeur : ', attaqueHumeur);
 
     // VERIFICATION BADGE
     for (let i = 0; i < storeEnnemis.badge; i++) {

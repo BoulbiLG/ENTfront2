@@ -3,7 +3,10 @@ import normal from '../../asset/personnage/blondin/normal.png';
 import tete from '../../asset/personnage/blondin/tete.png';
 import icone from '../../asset/personnage/blondin/icone.png';
 
-import { lexiqueMagie } from '../item/magie/lexiqueMagie';
+import { lexiqueOffensive } from '../../variableGlobal/item/magie/lexiqueOffensive';
+import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
+import { lexiqueStatAugmente } from '../../variableGlobal/item/magie/lexiqueStatAugmente';
+import { lexiqueStatBaisse } from '../../variableGlobal/item/magie/lexiqueStatBaisse';
 
 import { pommeURL } from '../../graphisme/item/item';
 
@@ -30,13 +33,13 @@ const BlondinStore = create((set) => ({
 
   // STAT
 
-  vieMax: 315,
-  vie: 315,
-  niveau: 15, 
+  vieMax: 115,
+  vie: 115,
+  niveau: 1, 
   expMax: 20,
   exp: 0,
-  attaque: 15,
-  defense: 13,
+  attaque: 10,
+  defense: 10,
   vitesse: 11,
   courage: 1,             // augmente le taux de coup critique, min = 5
   magieMax: 100,
@@ -110,13 +113,85 @@ const BlondinStore = create((set) => ({
 
   magieTout: {
 
+    proba1: {
+      min: 1,
+      max: 10,
+    },
+
     lexique: [
-      {id: lexiqueMagie.pistoletPisse.id, nom: lexiqueMagie.pistoletPisse.nom, action: lexiqueMagie.pistoletPisse.action, 
-        type: lexiqueMagie.pistoletPisse.type, niveau: lexiqueMagie.pistoletPisse.niveau, cout: lexiqueMagie.pistoletPisse.cout},
-      {id: lexiqueMagie.nofap.id, nom: lexiqueMagie.nofap.nom, action: lexiqueMagie.nofap.action, type: lexiqueMagie.nofap.type,
-        niveau: lexiqueMagie.nofap.niveau, consequence: lexiqueMagie.nofap.consequence, cout: lexiqueMagie.nofap.cout},
-      {id: lexiqueMagie.benedictionZoulman.id, nom: lexiqueMagie.benedictionZoulman.nom, action: lexiqueMagie.benedictionZoulman.action, 
-        type: lexiqueMagie.benedictionZoulman.type, niveau: lexiqueMagie.benedictionZoulman.niveau, cout: lexiqueMagie.benedictionZoulman.cout}, 
+
+      // pistolet a pisse
+      {
+        id: lexiqueOffensive.pistoletPisse.id, 
+        nom: lexiqueOffensive.pistoletPisse.nom, 
+        type: lexiqueOffensive.pistoletPisse.type,
+        imgIcone: lexiqueOffensive.pistoletPisse.imgIcone,
+        consequence: lexiqueOffensive.pistoletPisse.consequence,
+        status: lexiqueOffensive.pistoletPisse.status,
+        tour: lexiqueOffensive.pistoletPisse.tour,
+        action: lexiqueOffensive.pistoletPisse.action,
+        niveau: lexiqueOffensive.pistoletPisse.niveau, 
+        cout: lexiqueOffensive.pistoletPisse.cout,
+      },
+
+      // nofap
+      {
+        id: lexiqueStatAugmente.nofap.id, 
+        nom: lexiqueStatAugmente.nofap.nom, 
+        type: lexiqueStatAugmente.nofap.type,
+        imgIcone: lexiqueStatAugmente.nofap.imgIcone,
+        consequence: lexiqueStatAugmente.nofap.consequence,
+        status: lexiqueStatAugmente.nofap.status,
+        tour: lexiqueStatAugmente.nofap.tour,
+        action: lexiqueStatAugmente.nofap.action, 
+        niveau: lexiqueStatAugmente.nofap.niveau, 
+        consequence: lexiqueStatAugmente.nofap.consequence, 
+        cout: lexiqueStatAugmente.nofap.cout
+      },
+
+      // exibitionisme
+      {
+        id: lexiqueStatBaisse.exibitionisme.id, 
+        nom: lexiqueStatBaisse.exibitionisme.nom, 
+        action: lexiqueStatBaisse.exibitionisme.action, 
+        type: lexiqueStatBaisse.exibitionisme.type, 
+        niveau: lexiqueStatBaisse.exibitionisme.niveau, 
+        cout: lexiqueStatBaisse.exibitionisme.cout,
+        imgIcone: lexiqueStatBaisse.exibitionisme.imgIcone,
+        consequence: lexiqueStatBaisse.exibitionisme.consequence,
+        status: lexiqueStatBaisse.exibitionisme.status,
+        tour: lexiqueStatBaisse.exibitionisme.tour,
+      },
+
+      // benediction zoulman
+      {
+        id: lexiqueSoin.benedictionZoulman.id, 
+        nom: lexiqueSoin.benedictionZoulman.nom, 
+        action: lexiqueSoin.benedictionZoulman.action, 
+        type: lexiqueSoin.benedictionZoulman.type, 
+        niveau: lexiqueSoin.benedictionZoulman.niveau, 
+        cout: lexiqueSoin.benedictionZoulman.cout,
+        imgIcone: lexiqueSoin.benedictionZoulman.imgIcone,
+        consequence: lexiqueSoin.benedictionZoulman.consequence,
+        status: lexiqueSoin.benedictionZoulman.status,
+        tour: lexiqueSoin.benedictionZoulman.tour,
+        
+      },
+
+      // benediction zoulman
+      {
+        id: lexiqueSoin.heinekenSecours.id, 
+        nom: lexiqueSoin.heinekenSecours.nom, 
+        action: lexiqueSoin.heinekenSecours.action, 
+        type: lexiqueSoin.heinekenSecours.type, 
+        niveau: lexiqueSoin.heinekenSecours.niveau, 
+        cout: lexiqueSoin.heinekenSecours.cout,
+        imgIcone: lexiqueSoin.heinekenSecours.imgIcone,
+        consequence: lexiqueSoin.heinekenSecours.consequence,
+        status: lexiqueSoin.heinekenSecours.status,
+        tour: lexiqueSoin.heinekenSecours.tour,
+      },
+      
     ],
 
   },

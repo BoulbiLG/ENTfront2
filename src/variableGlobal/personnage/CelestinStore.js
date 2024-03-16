@@ -20,11 +20,11 @@ const CelestinStore = create((set) => ({
   // STAT
 
   vieMax: 100,
-  vie: 50,
-  niveau: 3, 
+  vie: 100,
+  niveau: 99, 
   expMax: 100,
   exp: 23,
-  attaque: 10,
+  attaque: 15,
   defense: 10,
   vitesse: 10,
   courage: 5,

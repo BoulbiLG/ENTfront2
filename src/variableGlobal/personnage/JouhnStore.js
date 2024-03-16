@@ -1,6 +1,7 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/jouhn_ingroum/normal.png';
 import tete from '../../asset/personnage/jouhn_ingroum/tete.png';
+import icone from '../../asset/personnage/jouhn_ingroum/icone.png';
 import { lexiqueMagie } from '../item/magie/lexiqueMagie';
 
 import { pommeURL } from '../../graphisme/item/item';
@@ -25,12 +26,13 @@ const BenzemonstreStore = create((set) => ({
 
   imgNormal: normal,
   imgTete: tete,
+  imgIcone: icone,
 
   // STAT
 
   vieMax: 100,
   vie: 100,
-  niveau: 1, 
+  niveau: 99, 
   expMax: 10,
   exp: 0,
   attaque: 10,

@@ -29,7 +29,7 @@ const Jauge = ({ valeur, max, couleur, fond, titre, solo, dimension }) => {
             {solo === 'non' ? (
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <p>{titre}</p>
-                    <p>{valeur} / {max}</p>
+                    <p>{valeur >= 0 ? valeur : 0} / {max}</p>
                 </div>
             ) : null }
                 <div>

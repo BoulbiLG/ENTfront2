@@ -7,6 +7,12 @@ export const verificationArme = (storeEnnemis) => {
     var mainG = 0;
     var mainD = 0;
 
+    const tableauArme = [{
+        mainG: '',
+        mainD: '',
+        mainDefinitive: '',
+    }]
+
     var item;
 
     for (let i = 0; i < storeEnnemis.equipement.length; i++) {
@@ -17,7 +23,7 @@ export const verificationArme = (storeEnnemis) => {
                 if (ligne.id == offensive) {
                     const tableau = lexiqueArme[offensive];
                     if (tableau.id === ligne.id) {
-
+                        tableauArme[0].mainG = tableau.action;
                         mainG = tableau.action;
                     }
                 }
@@ -27,7 +33,7 @@ export const verificationArme = (storeEnnemis) => {
                 if (ligne.id == offensive) {
                     const tableau = lexiqueArme[offensive];
                     if (tableau.id === ligne.id) {
-
+                        tableauArme[0].mainD = tableau.action;
                         mainD = tableau.action;
                     }
                 }
@@ -36,11 +42,11 @@ export const verificationArme = (storeEnnemis) => {
     }
 
     if (mainD > mainG) {
-        item = mainD;
+        tableauArme[0].mainDefinitive = mainD;
     } else {
-        item = mainG;
+        tableauArme[0].mainDefinitive = mainG;
     }
 
-    return item;
+    return tableauArme;
 
 }

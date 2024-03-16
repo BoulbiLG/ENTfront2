@@ -13,6 +13,7 @@ export const decisionStrat = (store, tableau) => {
 
             if (ennemi.strategie == '') {
                 let nombre = Math.floor(Math.random() * (3 - 1)) + 1;
+
                 if (nombre == 1) {
                     ennemi.strategie = 'faible' // Se focaliser sur le plus faible
                 }

@@ -26,6 +26,7 @@ import Item from '../../components/item/CaseItem';
 const FenetreCombat = () => {
 
     const storeCombat = combatStore();
+    const { nom } = combatStore();
     const { combat } = combatStore();
     const { type } = combatStore();
     const storeEquipe = equipeStore();
@@ -35,8 +36,14 @@ const FenetreCombat = () => {
     const [ongletDetail, ongletDetailSet] = useState('stat');
     const [tour, tourSet] = useState('');
     const [joueurCourant, joueurCourantSet] = useState([]);
-    const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe);
-    const [strategieEnnemi, strategieEnnemiSet] = useState([]);
+    const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe.nom);
+    const [joueurUtilisable2, joueurUtilisableSet2] = useState(nom);
+    const [ennemiEnVie, ennemiEnVieSet] = useState(nom);
+    const [strategieEnnemi, strategieEnnemiSet] = useState();
+
+    console.log('storeEquipe.nom : ', storeEquipe.nom);
+    console.log('storeCombat.nom : ', storeCombat.nom);
+    console.log('ennemiEnVie : ', ennemiEnVie);
 
     let fond = normal; if (combatStore.type == 'normal') {fond = normal;}
 
@@ -44,7 +51,20 @@ const FenetreCombat = () => {
     var storeInventaire = inventaireStore();
     var storeJoueurs = recupererListeStore();
 
-    console.log(storeEnnemis);
+    const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet) => {
+
+        console.log(joueurUtilisable.length);
+        console.log(joueurUtilisable);
+
+        // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
+        if (joueurUtilisable.length == 1) {
+            setTimeout(() => {
+                console.log('tour ennemi');
+                joueurUtilisableSet(storeEquipe.nom);
+                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie);
+            }, 1000);
+        }
+    }
     
     useEffect(() => {
         if (storeCombat.combat == 'oui') {
@@ -56,7 +76,7 @@ const FenetreCombat = () => {
             creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
 
         }
-    }, [combat, type]);
+    }, [combat, type, etape]);
         
     return (
         <div className='conteneurCombat'>
@@ -85,9 +105,24 @@ const FenetreCombat = () => {
                             <>
                                 <p>Qui dois agir ?</p>
                                 <br />
-                                {storeJoueurs.map((nom, index) => (
-                                    <button className='nomJoueur' onClick={() => {etapeSet('quoi'); joueurCourantSet(storeJoueurs[index]);}}>{storeJoueurs[index].nom}</button>
-                                ))}
+                                {storeJoueurs.map((joueur, index) => {
+                                    if (joueurUtilisable.includes(joueur.nom) && storeJoueurs[index].vie > 0) {
+                                        return (
+                                        <button
+                                            key={index}
+                                            className='nomJoueur'
+                                            onClick={() => {
+                                            etapeSet('quoi');
+                                            joueurCourantSet(joueur);
+                                            }}
+                                        >
+                                            {joueur.nom}
+                                        </button>
+                                        );
+                                    } else {
+                                        return null;
+                                    }
+                                    })}
                             </>
                         ) : null }
                         {etape === 'quoi' ? (
@@ -106,15 +141,26 @@ const FenetreCombat = () => {
                             <div className='cible'>
                                 <p>Qui voulez vous visez ?</p>
                                 <br />
-                                {storeEnnemis.map((nom, index) => (
+                                {storeEnnemis.map((nom, index) => {
+                                    if (storeEnnemis[index].vie > 0) {
+                                        return (
                                     <>
                                         <button className='cible' onClick={() => {
-                                            attaquer(etape, storeEnnemis[index], storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet);
-                                            attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet);
-                                            joueurCourantSet(storeEnnemis[index]);
+                                            console.log('tour joueur');
+                                            attaquer(etape, storeEnnemis[index], storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, nom);
+                                            joueurUtilisableSet((ancienJoueurUtilisable) => {
+                                                const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
+                                                return nouvelJoueurUtilisable;
+                                            });
+                                            etapeSet('qui');
+                                            lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet)
                                         }} >{storeEnnemis[index].nom}</button>
                                     </>
-                                ))}
+                                );
+                            } else {
+                                return null;
+                            }
+                            })}
                                 <button className='cible retour' onClick={() => {etapeSet('quoi')}} >Retour</button>
                             </div>
                         ) : null }

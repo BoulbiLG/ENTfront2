@@ -15,6 +15,7 @@ export const lexiqueMagie = {
         action: 0,
         niveau: 3,
         cout: 12,
+        status: 'non',
     },
 
 
@@ -30,6 +31,7 @@ export const lexiqueMagie = {
         action: 11,
         niveau: 10,
         cout: 37,
+        status: 'non',
     },
 
 
@@ -43,6 +45,7 @@ export const lexiqueMagie = {
         action: 50,
         niveau: 2,
         cout: 43,
+        status: 'non',
     },
 
 

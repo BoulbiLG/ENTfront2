@@ -1,11 +1,12 @@
 import test from '../../audio/musique/entrainant.mp3';
 import chepa from '../../audio/musique/chepa.wav';
 import widor from '../../audio/musique/widor.mp3';
+import wagner from '../../audio/musique/2wagner.mp3';
 
 const audioSources = {
   onche: new Audio(test),
   maisonClea: new Audio(chepa),
-  combatNormal: new Audio(widor),
+  combatNormal: new Audio(wagner),
 };
 
 let currentAudio = audioSources.onche;

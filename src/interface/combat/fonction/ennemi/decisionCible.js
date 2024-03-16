@@ -20,10 +20,12 @@ export const decisionCible = (store, tableau, storeJoueurs) => {
                 // CALCUL TAUX DE PROTECTION DE CHAQUE JOUEUR
                 for (let i = 0; i < storeJoueurs.length; i++) {
                     const cible = storeJoueurs[i];
-                    const defense = (cible.defense * (cible.niveau / 10 + 1));
-                    const vie = (cible.vie * (cible.niveau / 10 + 1));
-                    const protection = defense + vie;
-                    tableauFaible.push({nom: cible.nom, protection: parseInt(protection)});
+                    if (cible.vie > 0) {
+                        const defense = (cible.defense * (cible.niveau / 10 + 1));
+                        const vie = (cible.vie * (cible.niveau / 10 + 1));
+                        const protection = defense + vie;
+                        tableauFaible.push({nom: cible.nom, protection: parseInt(protection)});
+                    }
                 }
 
                 //console.log('tableauFaible : ', tableauFaible);

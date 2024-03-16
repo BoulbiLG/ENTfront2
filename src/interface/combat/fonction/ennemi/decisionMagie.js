@@ -6,12 +6,14 @@ export const decisionMagie = (storeEnnemis, storeCombat) => {
     const tableauSortOffensif = [];
     const tableauSortAugmenteStat = [];
     const tableauSortBaisseStat = [];
+    const tableauSortStatus = [];
     let decisionSort = '';
 
     const tableauDefinitif = [{
         sortStatAugmente: [],
         sortBaisseStat: [],
         sortStatOffensif: [],
+        sortStatus: [],
         action: '',
     }];
 
@@ -32,13 +34,15 @@ export const decisionMagie = (storeEnnemis, storeCombat) => {
         } else {
 
             // RECUPERE TOUS LES SORTS OFFENSIF
-            if (magie.type == 'offensive') {
-                decisionSort = 'offensive';
-                tableauSortOffensif.push(magie);
+            if (magie.type == 'offensive' && magie.cout <= storeEnnemis.magie) {
+                if (storeEnnemis.niveau >= magie.niveau) {
+                    decisionSort = 'offensive';
+                    tableauSortOffensif.push(magie);
+                }
             }
 
             // RECUPERE TOUS LES SORT AUGMENTE STAT
-            if (magie.type == 'augmenteStat') {
+            if (magie.type == 'augmenteStat' && magie.cout <= storeEnnemis.magie) {
                 if (storeEnnemis.niveau >= magie.niveau) {
                     decisionSort = 'augmenteStat';
                     tableauSortAugmenteStat.push(magie);
@@ -46,10 +50,18 @@ export const decisionMagie = (storeEnnemis, storeCombat) => {
             }
 
             // RECUPERE TOUS LES SORT BAISSE STAT
-            if (magie.type == 'baisseStat') {
+            if (magie.type == 'baisseStat' && magie.cout <= storeEnnemis.magie) {
                 if (storeEnnemis.niveau >= magie.niveau) {
                     decisionSort = 'baisseStat';
                     tableauSortBaisseStat.push(magie);
+                } 
+            }
+
+            // RECUPERE TOUS LES SORT STATUS
+            if (magie.type == 'status' && magie.cout <= storeEnnemis.magie) {
+                if (storeEnnemis.niveau >= magie.niveau) {
+                    decisionSort = 'status';
+                    tableauSortStatus.push(magie);
                 } 
             }
         }
@@ -75,34 +87,33 @@ export const decisionMagie = (storeEnnemis, storeCombat) => {
             tableauDefinitif[0].action = 'passer';
         }
 
-        console.log('Le sort choisi est', sort.nom);
+        //console.log('Le sort choisi est', sort.nom);
     }
-
-
 
     // OFFENSIF
-    if (decisionSort == 'offensive') {
         let nombre = Math.floor(Math.random() * (tableauSortOffensif.length - 0)) + 0;
-        const sort = tableauSortOffensif[nombre];
+        let sort = tableauSortOffensif[nombre];
 
         tableauDefinitif[0].sortStatOffensif.push(sort);
-    }
 
     // STAT AUMENTE
-    if (decisionSort == 'augmenteStat') {
-        let nombre = Math.floor(Math.random() * (tableauSortOffensif.length - 0)) + 0;
-        const sort = tableauSortAugmenteStat[nombre];
+        nombre = Math.floor(Math.random() * (tableauSortOffensif.length - 0)) + 0;
+        sort = tableauSortAugmenteStat[nombre];
 
         tableauDefinitif[0].sortStatAugmente.push(sort);
-    }
 
     // STAT BAISSE
-    if (decisionSort == 'augmenteStat') {
-        let nombre = Math.floor(Math.random() * (tableauSortOffensif.length - 0)) + 0;
-        const sort = tableauSortBaisseStat[nombre];
+        nombre = Math.floor(Math.random() * (tableauSortOffensif.length - 0)) + 0;
+        sort = tableauSortBaisseStat[nombre];
 
         tableauDefinitif[0].sortBaisseStat.push(sort);
-    }
+
+    // STATUS
+
+        nombre = Math.floor(Math.random() * (tableauSortStatus.length - 0)) + 0;
+        sort = tableauSortStatus[nombre];
+
+        tableauDefinitif[0].sortStatus.push(sort);
 
     return tableauDefinitif;
 }

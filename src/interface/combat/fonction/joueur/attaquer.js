@@ -6,10 +6,9 @@ import { calculAttaqueJoueur } from "./calculAttaqueJoueur";
 import { calculDefenseEnnemi } from "./calculDefenseEnnemi";
 import { animation } from "./animation";
 
-export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet) => {
+export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, nom) => {
 
-
-
+        ennemiEnVieSet(nom);
         // RECUPERATION ACTION & ID ARME
         const action = recupActionArme(storeJoueurs, storeInventaire, choix);
         const id = recupIdArme(storeJoueurs, storeInventaire, choix);
@@ -23,14 +22,24 @@ export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeIn
 
                 // CALCUL DEFENSE ENNEMI BRUT
                 const defenseEnnemi = calculDefenseEnnemi(storeEnnemis);
-                console.log('attaqueBrut ', attaqueBrut, ' - defenseEnnemi ', defenseEnnemi, ' = ', attaqueBrut - defenseEnnemi);
+                //console.log('attaqueBrut ', attaqueBrut, ' - defenseEnnemi ', defenseEnnemi, ' = ', attaqueBrut - defenseEnnemi);
         
                 let attaqueNet = parseInt(attaqueBrut - defenseEnnemi);
                 if (attaqueNet <= 0) {attaqueNet = 1;}
 
-                console.log('attaque Net : ', attaqueNet);
+                //console.log('attaque Net : ', attaqueNet);
+
+                const vie = storeEnnemis.vie;
+
+                console.log('vie : ', vie, ' , ', vie - attaqueNet);
 
                 storeEnnemis.retirer('vie', attaqueNet);
+
+                if (vie - attaqueNet <= 0) {
+                    const nouveauTableau = nom.filter(item => item !== storeEnnemis.nom);
+                    ennemiEnVieSet(nouveauTableau);
+                    console.log('nouveauTableau : ', nouveauTableau);
+                }
 
                 // ANIMATION
                 animation(storeJoueurs);
@@ -82,8 +91,4 @@ export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeIn
                 }
             }
         });
-/*
-        storeCombat.nombreEquipe--;
-        storeCombat.nomEquipe = storeCombat.nomEquipe.filter((element) => element !== nom);
-        console.log('storeCombat.nomEquipe : ', storeCombat.nomEquipe);*/
 }

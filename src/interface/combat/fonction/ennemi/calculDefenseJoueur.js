@@ -2,7 +2,7 @@
 import { lexiqueConsomable } from '../../../../variableGlobal/item/lexiqueConsomable';
 import { lexiqueArmure } from '../../../../variableGlobal/item/lexiqueArmure';
 
-export const calculDefenseEnnemi = (storeJoueurs) => {
+export const calculDefenseJoueur = (storeJoueurs) => {
 
     var defenseEnnemi = storeJoueurs.defense;
     

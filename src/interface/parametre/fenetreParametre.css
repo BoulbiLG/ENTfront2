@@ -1,10 +1,20 @@
 
+.ombre {
+    background-color: rgba(0, 0, 0, 0.516);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
 .FenetreParametre {
     background-color: rgb(41, 41, 75);
     color: white;
     border-radius: 1vh;
     padding: 2vh;
     animation: rebondir 0.2s forwards;
+    overflow-y: scroll;
 }
 
 .FenetreParametre .parametre {
@@ -12,6 +22,76 @@
     align-items: center;
     width: 25vh;
     justify-content: space-between;
+}
+
+.FenetreParametre .range {
+    background-color: rgb(100, 100, 155);
+    color: white;
+    box-shadow: 3px 3px 0px black;
+    padding: 1vh;
+    border-radius: 1vh;
+    margin-bottom: 0.5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.FenetreParametre input {
+    width: 50vh;
+}
+
+.FenetreParametre .reinitialiser {
+    background-color: rgb(29, 144, 206);
+    color: white;
+    transition: all 0.2s;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    width: 50%;
+}
+
+.FenetreParametre .fermer {
+    position: absolute;
+    top: 0;
+    border-radius: 30% 0 50% 0;
+    outline: none;
+    border: none;
+    width: 3vh;
+    left: 0;
+    background-color: rgb(225, 61, 61);
+    color: white;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.FenetreParametre .fermer:hover {
+    filter: brightness(125%);
+}
+
+.FenetreParametre .fermer:active {
+    filter: brightness(150%);
+}
+
+.FenetreParametre .range .bouton button {
+    border: 1px solid white;
+    background-color: transparent;
+    outline: none;
+    padding: 0.5vh;
+    color: white;
+    border-radius: 1vh;
+    width: 10vh;
+    margin-left: 0.5vh;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.FenetreParametre .range .bouton button:hover {
+    background-color: white;
+    color: black;
+}
+
+.FenetreParametre .range .bouton button:hover:active {
+    scale: 105%;
 }
 
 @keyframes rebondir {

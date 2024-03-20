@@ -1,5 +1,5 @@
 
-export const decisionMagie = (storeEnnemis, storeCombat) => {
+export const decisionMagie = (storeEnnemis, storeCombat, historique, historiqueSet) => {
 
     const lexique = storeEnnemis.magieTout.lexique;
     const tableauSortSoin = [];
@@ -86,6 +86,14 @@ export const decisionMagie = (storeEnnemis, storeCombat) => {
             storeEnnemis.ajouter('vie', tauxVie);
             tableauDefinitif[0].action = 'passer';
         }
+
+        historiqueSet([...historique, {
+            icone: storeEnnemis.imgIcone,
+            couleurFond: 'rgb(225, 107, 107)',
+            couleurPolice: 'white',
+            texte: `${storeEnnemis.nom} utilise le sort ${sort.nom}.`,
+            resume: `${storeEnnemis.nom} => ${sort.nom}.`,
+        }]);
 
         //console.log('Le sort choisi est', sort.nom);
     }

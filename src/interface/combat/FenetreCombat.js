@@ -17,11 +17,14 @@ import './fenetreCombatAction.css';
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 import combatStore from '../../variableGlobal/global/combatStore';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import parametreStore from '../../variableGlobal/global/parametreStore';
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 
 import Particule from '../../components/particule/Particule';
 import Jauge from '../../components/jauge/Jauge';
 import Item from '../../components/item/CaseItem';
+import Historique from './Historique';
+import Parametre from '../parametre/Parametre';
 
 const FenetreCombat = () => {
 
@@ -30,6 +33,9 @@ const FenetreCombat = () => {
     const { combat } = combatStore();
     const { type } = combatStore();
     const storeEquipe = equipeStore();
+    const storeParametre = parametreStore();
+    const { FenetreHistoriqueCombatApparition } = parametreStore();
+    const { FenetreHistoriqueCombatType } = parametreStore();
 
     const [etape, etapeSet] = useState('qui');
     const [fenetreDetail, fenetreDetailSet] = useState('false');
@@ -38,12 +44,19 @@ const FenetreCombat = () => {
     const [joueurCourant, joueurCourantSet] = useState([]);
     const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe.nom);
     const [joueurUtilisable2, joueurUtilisableSet2] = useState(nom);
+    
+    const [historique, historiqueSet] = useState([]);
+    const [historiqueAffichage, historiqueAffichageSet] = useState(FenetreHistoriqueCombatApparition);
+    const [historiqueType, historiqueTypeSet] = useState(FenetreHistoriqueCombatType);
+    
     const [ennemiEnVie, ennemiEnVieSet] = useState(nom);
     const [strategieEnnemi, strategieEnnemiSet] = useState();
 
-    console.log('storeEquipe.nom : ', storeEquipe.nom);
-    console.log('storeCombat.nom : ', storeCombat.nom);
-    console.log('ennemiEnVie : ', ennemiEnVie);
+    //console.log('store nom : ', nom);
+    //console.log('storeEquipe.nom : ', storeEquipe.nom);
+    //console.log('storeCombat.nom : ', storeCombat.nom);
+    //console.log('nom : ', nom);
+    //console.log('ennemiEnVie : ', ennemiEnVie);
 
     let fond = normal; if (combatStore.type == 'normal') {fond = normal;}
 
@@ -53,15 +66,15 @@ const FenetreCombat = () => {
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet) => {
 
-        console.log(joueurUtilisable.length);
-        console.log(joueurUtilisable);
+        //console.log(joueurUtilisable.length);
+        //console.log(joueurUtilisable);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         if (joueurUtilisable.length == 1) {
             setTimeout(() => {
-                console.log('tour ennemi');
+                //console.log('tour ennemi');
                 joueurUtilisableSet(storeEquipe.nom);
-                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie);
+                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
             }, 1000);
         }
     }
@@ -75,15 +88,24 @@ const FenetreCombat = () => {
             // CREATION TABLEAU STRAT ENNEMI
             creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
 
+            ennemiEnVieSet(nom);
+
         }
     }, [combat, type, etape]);
         
     return (
         <div className='conteneurCombat'>
+
             {storeCombat.combat === 'oui' ? (
                 <div className='FenetreCombat' style={{background: `url(${fond})`}}>
+    
 
-                    <p className='tour'>Tour : {tour}</p>
+                    <div className="parametreFenetre">
+                        <Parametre />
+                    </div>
+
+                    {/* ========== LISTE ENNEMI ========== */}
+
 
                     <div className="listeEnnemi">
                         {storeCombat.nom.map((nom, index) => (
@@ -97,9 +119,14 @@ const FenetreCombat = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="hero">
-                        <img src={hero} alt={hero} />
-                    </div>
+
+
+                    <div className="hero"><img src={hero} alt={hero} /></div>
+
+
+                    {/* ========== FENETRE CHOIX ========== */}
+
+
                     <div className="choix">
                         {etape === 'qui' ? (
                             <>
@@ -122,7 +149,7 @@ const FenetreCombat = () => {
                                     } else {
                                         return null;
                                     }
-                                    })}
+                                })}
                             </>
                         ) : null }
                         {etape === 'quoi' ? (
@@ -146,8 +173,7 @@ const FenetreCombat = () => {
                                         return (
                                     <>
                                         <button className='cible' onClick={() => {
-                                            console.log('tour joueur');
-                                            attaquer(etape, storeEnnemis[index], storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, nom);
+                                            attaquer(etape, storeEnnemis[index], joueurCourant, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, storeCombat.nom, historique, historiqueSet);
                                             joueurUtilisableSet((ancienJoueurUtilisable) => {
                                                 const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
                                                 return nouvelJoueurUtilisable;
@@ -165,6 +191,11 @@ const FenetreCombat = () => {
                             </div>
                         ) : null }
                     </div>
+
+
+                    {/* ========== FENETRE DETAIL ========== */}
+
+
                     <div className="listeJoueur" style={{display: 'flex'}}>
                         <div className="gauche" style={{flex: '1', display: 'flex', flexWrap: 'wrap'}}>
                             {storeJoueurs.map((nom, index) => (
@@ -287,6 +318,22 @@ const FenetreCombat = () => {
                                 }
                             </div>
                         </>
+                    ) : null }
+
+
+                    {/* ========== FENETRE HISTORIQUE ========== */}
+
+
+                    {historiqueAffichage === 'true' ? (
+                        <Historique 
+                            historique={historique}
+                            historiqueType={historiqueType}
+                            historiqueTypeSet={historiqueTypeSet}
+                            historiqueAffichageSet={historiqueAffichageSet}
+                        />
+                    ) : null }
+                    {historiqueAffichage === 'false' ? (
+                        <button className='btnClasse ouvrirHistorique' onClick={() => {historiqueAffichageSet('true');}}>Ouvrir l'historique</button>
                     ) : null }
                 </div>
             ) : null }

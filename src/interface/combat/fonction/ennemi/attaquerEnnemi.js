@@ -9,7 +9,7 @@ import { calculDefenseJoueur } from "./calculDefenseJoueur";
 import { typeArme } from "../../typeArme";
 import { lexiqueConsomable } from '../../../../variableGlobal/item/lexiqueConsomable';
 
-export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, setJoueurUtilisable, joueurUtilisable, storeEquipe, ennemiEnVie) => {
+export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, setJoueurUtilisable, joueurUtilisable, storeEquipe, ennemiEnVie, historique, historiqueSet) => {
 
     console.log('');
     console.log('=======================');
@@ -19,7 +19,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
     for (let i = 0; i < storeEnnemis.length; i++) {
 
-        const calculAttaqueNet = () => {
+        const calculAttaqueNet = (store) => {
             for (const joueur of storeJoueurs) {
                 if (joueur.nom == tableau[0].cible) {
                     const defense = calculDefenseJoueur(joueur);
@@ -28,6 +28,14 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                     if (attaque <= 0) {attaque = 1}
 
                     const vie = joueur.vie;
+
+                    historiqueSet([...historique, {
+                        icone: store.imgIcone,
+                        couleurFond: 'rgb(225, 107, 107)',
+                        couleurPolice: 'white',
+                        texte: `${store.nom} inflige ${attaque} de dégat à ${joueur.nom}.`,
+                        resume: `${store.nom} => ${joueur.nom} - ${attaque}.`,
+                    }]);
 
                     //console.log('attaqueNet : ', parseInt(attaque), ' pour : ', tableau[0].cible, ' de la part de : ', store.nom);
                     joueur.retirer('vie', parseInt(attaque));
@@ -40,6 +48,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         const nouveauTableau = storeEquipe.filter(item => item !== joueur.nom);
                         setJoueurUtilisable(nouveauTableau);
 
+                        console.log('tableau : ', tableau);
                         // REINITIALISER CIBLE
                         for (let i = 0; i < tableau.length; i++) {
                             const ennemi = tableau[i];
@@ -72,7 +81,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             var tableauArme = verificationArme(store);
 
             // DECISION MAGIE
-            var tableauMagie = decisionMagie(store, storeCombat);
+            var tableauMagie = decisionMagie(store, storeCombat, historique, historiqueSet);
             
             var attaque;
             var tourTermine = '';
@@ -101,13 +110,20 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         if (tableauMagie[0].sortStatOffensif[0]) {
                             //console.log(store.nom, ' : 10 - 1 nbr = ', nombre, ' => Magie offensive');
                             attaque = calculAttaqueEnnemi(store, tableauMagie[0].sortStatOffensif[0].action);
-                            calculAttaqueNet();
+                            historiqueSet([...historique, {
+                                icone: store.imgIcone,
+                                couleurFond: 'rgb(225, 107, 107)',
+                                couleurPolice: 'white',
+                                texte: `${store.nom} utilise le sort ${tableauMagie[0].sortStatOffensif[0].nom}.`,
+                                resume: `${store.nom} => ${tableauMagie[0].sortStatOffensif[0].nom}.`,
+                            }]);
+                            calculAttaqueNet(store);
                         } else {
                             //console.log(store.nom, ' : 10 - 1 nbr = ', nombre, ' => Magie offensive mais aucun sort disponible => Arme');
 
                             // MAIN
                             attaque = calculAttaqueEnnemi(store, tableauArme[0].mainDefinitive);
-                            calculAttaqueNet();
+                            calculAttaqueNet(store);
                         }
 
 
@@ -125,8 +141,8 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             // AUGMENTE STAT
                             if (tableauMagie[0].sortStatAugmente[0]) {
                                 //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie augmente stat');
-                                tourTermine = utiliserSortStat(storeCombat, store, storeJoueurs, tableauMagie[0].sortStatAugmente[0], 'augmente');
-                                calculAttaqueNet();
+                                tourTermine = utiliserSortStat(storeCombat, store, storeJoueurs, tableauMagie[0].sortStatAugmente[0], 'augmente', historique, historiqueSet);
+                                //calculAttaqueNet();
                             } else {
                                 //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie augmente stat mais aucun sort disponible');
                             }
@@ -171,7 +187,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         if (tourTermine == '') {
                             //console.log(store.nom, "Aucun sort n'a été utilisé => Arme");
                             attaque = calculAttaqueEnnemi(store, tableauArme[0].mainDefinitive);
-                            calculAttaqueNet();
+                            calculAttaqueNet(store);
                         }
                     }
                 } else {
@@ -181,7 +197,14 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
                         // MAIN
                         attaque = calculAttaqueEnnemi(store, tableauArme[0].mainDefinitive);
-                        calculAttaqueNet();
+                        historiqueSet([...historique, {
+                            icone: store.imgIcone,
+                            couleurFond: 'rgb(225, 107, 107)',
+                            couleurPolice: 'white',
+                            texte: `${store.nom} n'utilise pas de magie.`,
+                            resume: `${store.nom} => pas de magie.`,
+                        }]);
+                        calculAttaqueNet(store);
                     }
                 }
             }

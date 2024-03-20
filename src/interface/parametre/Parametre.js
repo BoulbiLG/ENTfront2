@@ -53,7 +53,7 @@ const Parametre = () => {
                         <span class="material-symbols-outlined">settings</span>
                         <p>Fermer paramètres</p>
                     </div>
-                    <FenetreParametre indexFenetre={indexFenetre} />
+                    <FenetreParametre indexFenetre={indexFenetre} affichageFenetreSet={affichageFenetreSet} />
                 </>
             }
 

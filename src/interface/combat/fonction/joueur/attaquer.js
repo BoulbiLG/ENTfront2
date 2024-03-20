@@ -6,16 +6,17 @@ import { calculAttaqueJoueur } from "./calculAttaqueJoueur";
 import { calculDefenseEnnemi } from "./calculDefenseEnnemi";
 import { animation } from "./animation";
 
-export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, nom) => {
+export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, nom, historique, historiqueSet) => {
+
+        //console.log('storeJoueurs : ', storeJoueurs);
 
         ennemiEnVieSet(nom);
         // RECUPERATION ACTION & ID ARME
-        const action = recupActionArme(storeJoueurs, storeInventaire, choix);
         const id = recupIdArme(storeJoueurs, storeInventaire, choix);
 
         // VERIFICATION TYPE ARME
         typeArme[0].offensive.forEach((offensive) => {
-            if (offensive == id) {
+            if (offensive == id || id == 'main') {
 
                 // CALCUL ATTAQUE JOUEUR BRUT
                 const attaqueBrut = calculAttaqueJoueur(storeJoueurs);
@@ -31,9 +32,17 @@ export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeIn
 
                 const vie = storeEnnemis.vie;
 
-                console.log('vie : ', vie, ' , ', vie - attaqueNet);
+                //console.log('vie : ', vie, ' , ', vie - attaqueNet);
 
                 storeEnnemis.retirer('vie', attaqueNet);
+
+                historiqueSet([...historique, {
+                    icone: storeJoueurs.imgIcone,
+                    couleurFond: 'rgb(109, 255, 109)',
+                    couleurPolice: 'black',
+                    texte: `${storeJoueurs.nom} a attaqué ${storeEnnemis.nom} avec l'item ${id} pour des dégat de ${attaqueNet}PV. La vie initiale de ${storeEnnemis.vie}PV baisse à ${storeEnnemis.vie - attaqueNet}PV.`,
+                    resume: `${storeJoueurs.nom} => ${storeEnnemis.nom} | vie: ${storeEnnemis.vie} - attaque: ${attaqueNet} = ${storeEnnemis.vie - attaqueNet}PV.`,
+                }]);
 
                 if (vie - attaqueNet <= 0) {
                     const nouveauTableau = nom.filter(item => item !== storeEnnemis.nom);

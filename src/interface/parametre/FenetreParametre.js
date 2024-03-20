@@ -5,7 +5,9 @@ import '../../css/classe/fenetreDrag.css';
 
 import parametreStore from '../../variableGlobal/global/parametreStore';
 
-const FenetreParametre = () => {
+import FenetreHistorique from './FenetreHistorique';
+
+const FenetreParametre = ({affichageFenetreSet}) => {
 
 
 
@@ -83,43 +85,55 @@ const FenetreParametre = () => {
     }
 
     return (
-        <div 
-            className='FenetreParametre'
-            style={{
-                position: 'absolute',
-                left: `${position.x - 600}px`,
-                top: `${position.y - 330}px`,
-                width: '130vh',
-                height: '70vh',
-            }}
-        >
-            <div className="listeParametre">
-                <div className="bruitage parametre">
-                    <p>Bruitage</p>
-                    {/*
-                    <p>Volume : {bruitageVolume}</p>
-                    {bruitage === 'oui' ? (
-                        <input type="checkbox" defaultChecked onClick={() => {changerBruitage();}}/>
-                    ) : <input type="checkbox" onClick={() => {changerBruitage();}}/> }
-                    */}
-                    <input
-                        type="range"
-                        min={0}
-                        max={100}
-                        value={bruitageVolume}
-                        onChange={(e) => {bruitageVolumeSet(e.target.value); storeParametre.modifier('volumeBruitage', e.target.value)}}
-                    />
+        <div className="ombre">
+            <div 
+                className='FenetreParametre'
+                style={{
+                    position: 'absolute',
+                    left: `${position.x - 600}px`,
+                    top: `${position.y - 330}px`,
+                    width: '130vh',
+                    height: '70vh',
+                }}
+            >
+                <button className='fermer' onClick={() => {affichageFenetreSet('false');}}><span class="material-symbols-outlined">close</span></button>
+                <br />
+                <h1 style={{
+                    textAlign: 'center',
+                }}>Paramètres</h1>
+                <br />
+                <p>Audio</p>
+                <hr />
+                <br />
+                <div className="listeParametre">
+                    <div className="bruitage parametre range">
+                        <p>Bruitage</p>
+                        {/*
+                        <p>Volume : {bruitageVolume}</p>
+                        {bruitage === 'oui' ? (
+                            <input type="checkbox" defaultChecked onClick={() => {changerBruitage();}}/>
+                        ) : <input type="checkbox" onClick={() => {changerBruitage();}}/> }
+                        */}
+                        <input
+                            type="range"
+                            min={0}
+                            max={100}
+                            value={bruitageVolume}
+                            onChange={(e) => {bruitageVolumeSet(e.target.value); storeParametre.modifier('volumeBruitage', e.target.value)}}
+                        />
+                    </div>
+                    <div className="bruitage parametre range">
+                        <p>Musique</p>
+                        <input
+                            type="range"
+                            min={0}
+                            max={100}
+                            value={volumeMusique}
+                            onChange={(e) => {volumeMusiqueSet(e.target.value); storeParametre.modifier('volumeMusique', e.target.value)}}
+                        />
+                    </div>
                 </div>
-                <div className="bruitage parametre">
-                    <p>Musique</p>
-                    <input
-                        type="range"
-                        min={0}
-                        max={100}
-                        value={volumeMusique}
-                        onChange={(e) => {volumeMusiqueSet(e.target.value); storeParametre.modifier('volumeMusique', e.target.value)}}
-                    />
-                </div>
+                <FenetreHistorique />
             </div>
         </div>
     )

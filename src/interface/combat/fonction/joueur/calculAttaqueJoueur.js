@@ -3,15 +3,15 @@ import { lexiqueBadge } from "../../../../variableGlobal/item/badge/lexiqueBadge
 
 export const calculAttaqueJoueur = (storeJoueurs) => {
 
-    const attaque = storeJoueurs[0].attaque;
-    const courage = storeJoueurs[0].courage;
-    const niveau = storeJoueurs[0].niveau;
-    const testo = storeJoueurs[0].testo;
+    const attaque = storeJoueurs.attaque;
+    const courage = storeJoueurs.courage;
+    const niveau = storeJoueurs.niveau;
+    const testo = storeJoueurs.testo;
 
-    const joie = storeJoueurs[0].joie;
-    const tristesse = storeJoueurs[0].tristesse;
-    const peur = storeJoueurs[0].peur;
-    const colere = storeJoueurs[0].colere;
+    const joie = storeJoueurs.joie;
+    const tristesse = storeJoueurs.tristesse;
+    const peur = storeJoueurs.peur;
+    const colere = storeJoueurs.colere;
 
     //  CALCUL ATTAQUE STAT
     var tauxNiveau = niveau / 10 + 1;

@@ -14,7 +14,7 @@
     border-radius: 1vh;
     padding: 2vh;
     animation: rebondir 0.2s forwards;
-    overflow-y: scroll;
+    box-sizing: border-box;
 }
 
 .FenetreParametre .parametre {
@@ -92,6 +92,11 @@
 
 .FenetreParametre .range .bouton button:hover:active {
     scale: 105%;
+}
+
+.active {
+    background-color: white;
+    color: black;
 }
 
 @keyframes rebondir {

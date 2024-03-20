@@ -25,32 +25,41 @@ import Jauge from '../../components/jauge/Jauge';
 import Item from '../../components/item/CaseItem';
 import Historique from './Historique';
 import Parametre from '../parametre/Parametre';
+import Magie from './Magie';
 
 const FenetreCombat = () => {
 
     const storeCombat = combatStore();
-    const { nom } = combatStore();
     const { combat } = combatStore();
     const { type } = combatStore();
     const storeEquipe = equipeStore();
-    const storeParametre = parametreStore();
+
+    console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
+    let ennemiEnVie;
+
+    //const storeParametre = parametreStore();
     const { FenetreHistoriqueCombatApparition } = parametreStore();
     const { FenetreHistoriqueCombatType } = parametreStore();
 
     const [etape, etapeSet] = useState('qui');
     const [fenetreDetail, fenetreDetailSet] = useState('false');
     const [ongletDetail, ongletDetailSet] = useState('stat');
-    const [tour, tourSet] = useState('');
+    const [tour, tourSet] = useState('joueur');
     const [joueurCourant, joueurCourantSet] = useState([]);
     const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe.nom);
-    const [joueurUtilisable2, joueurUtilisableSet2] = useState(nom);
     
     const [historique, historiqueSet] = useState([]);
     const [historiqueAffichage, historiqueAffichageSet] = useState(FenetreHistoriqueCombatApparition);
     const [historiqueType, historiqueTypeSet] = useState(FenetreHistoriqueCombatType);
-    
-    const [ennemiEnVie, ennemiEnVieSet] = useState(nom);
-    const [strategieEnnemi, strategieEnnemiSet] = useState();
+    /*
+    const [ennemiEnVie, ennemiEnVieSet] = useState([]);
+
+    useEffect(() => {
+    const tableauEnnemis = storeCombat.nom.map(nom => nom);
+    ennemiEnVieSet(tableauEnnemis);
+    }, [storeCombat.nom]);
+    */
+    const [strategieEnnemi, strategieEnnemiSet] = useState([]);
 
     //console.log('store nom : ', nom);
     //console.log('storeEquipe.nom : ', storeEquipe.nom);
@@ -58,7 +67,7 @@ const FenetreCombat = () => {
     //console.log('nom : ', nom);
     //console.log('ennemiEnVie : ', ennemiEnVie);
 
-    let fond = normal; if (combatStore.type == 'normal') {fond = normal;}
+    let fond = normal; if (combatStore.type === 'normal') {fond = normal;}
 
     var storeEnnemis = recupererListeStoreCombat();
     var storeInventaire = inventaireStore();
@@ -70,7 +79,8 @@ const FenetreCombat = () => {
         //console.log(joueurUtilisable);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
-        if (joueurUtilisable.length == 1) {
+        if (joueurUtilisable.length === 1) {
+            tourSet('joueur');
             setTimeout(() => {
                 //console.log('tour ennemi');
                 joueurUtilisableSet(storeEquipe.nom);
@@ -80,7 +90,7 @@ const FenetreCombat = () => {
     }
     
     useEffect(() => {
-        if (storeCombat.combat == 'oui') {
+        if (storeCombat.combat === 'oui') {
 
             // CALCUL VITESSE
             calculVitesse(storeEnnemis, storeJoueurs, tourSet);
@@ -88,10 +98,8 @@ const FenetreCombat = () => {
             // CREATION TABLEAU STRAT ENNEMI
             creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
 
-            ennemiEnVieSet(nom);
-
         }
-    }, [combat, type, etape]);
+    }, [combat, type, etape, storeCombat.ennemiEnVie]);
         
     return (
         <div className='conteneurCombat'>
@@ -100,9 +108,7 @@ const FenetreCombat = () => {
                 <div className='FenetreCombat' style={{background: `url(${fond})`}}>
     
 
-                    <div className="parametreFenetre">
-                        <Parametre />
-                    </div>
+                    <div className="parametreFenetre"><Parametre /></div>
 
                     {/* ========== LISTE ENNEMI ========== */}
 
@@ -161,7 +167,7 @@ const FenetreCombat = () => {
                                 <button onClick={() => {etapeSet('magie');}} className='btnClasse'>Magie</button>
                                 <button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>
                                 <button onClick={() => {etapeSet('rien');}} className='btnClasse'>Ne rien faire</button>
-                                <button onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
+                                <button style={{width: '100%', margin: 0, backgroundColor: 'black', color: 'white', padding: '0.6vh'}} onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
                             </div>
                         ) : null }
                         {etape === 'mainG' || etape === 'mainD' ? (
@@ -173,12 +179,13 @@ const FenetreCombat = () => {
                                         return (
                                     <>
                                         <button className='cible' onClick={() => {
-                                            attaquer(etape, storeEnnemis[index], joueurCourant, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, ennemiEnVieSet, ennemiEnVie, storeCombat.nom, historique, historiqueSet);
+                                            ennemiEnVie = attaquer(etape, storeEnnemis[index], joueurCourant, lexiqueArme, storeInventaire, storeCombat, joueurUtilisableSet, tourSet, storeCombat.ennemiEnVie, storeCombat.nom, historique, historiqueSet);
                                             joueurUtilisableSet((ancienJoueurUtilisable) => {
                                                 const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
                                                 return nouvelJoueurUtilisable;
                                             });
                                             etapeSet('qui');
+                                            tourSet('ennemi');
                                             lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet)
                                         }} >{storeEnnemis[index].nom}</button>
                                     </>
@@ -189,6 +196,9 @@ const FenetreCombat = () => {
                             })}
                                 <button className='cible retour' onClick={() => {etapeSet('quoi')}} >Retour</button>
                             </div>
+                        ) : null }
+                        {etape === 'magie' ? (
+                            <Magie etapeSet={etapeSet} joueurCourant={joueurCourant} storeEnnemis={storeEnnemis} storeCombat={storeCombat} historique={historique} historiqueSet={historiqueSet} />
                         ) : null }
                     </div>
 

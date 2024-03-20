@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import '../../css/classe/btn.css';
 import './fenetreCombat.css';
@@ -8,7 +8,7 @@ import parametreStore from '../../variableGlobal/global/parametreStore';
 
 const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAffichageSet}) => {
 
-    const storeParametre = parametreStore();
+    //console.log('historique : ', historique);
 
     const { FenetreHistoriqueCombatWidth } = parametreStore();
     const { FenetreHistoriqueCombatHeight } = parametreStore();
@@ -17,17 +17,7 @@ const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAf
     const { FenetreHistoriqueCombatOpacite } = parametreStore();
     const { FenetreHistoriqueCombatTaille } = parametreStore();
 
-    const [isResizing, setIsResizing] = useState(false);
-
     // ==================== MODIFIER AFFICHAGE FENETRE HISTORIQUE ==================== //
-
-    const [opacite, opaciteSet] = useState(storeParametre.FenetreHistoriqueCombatOpacite);
-    const [height, heightSet] = useState(storeParametre.FenetreHistoriqueCombatHeight);
-    const [width, widthSet] = useState(storeParametre.FenetreHistoriqueCombatWidth);
-    const [x, xSet] = useState(storeParametre.FenetreHistoriqueCombatX);
-    const [y, ySet] = useState(storeParametre.FenetreHistoriqueCombatY);
-    const [taille, tailleSet] = useState(storeParametre.FenetreHistoriqueCombatTaille);
-
 
     
     return (
@@ -35,7 +25,7 @@ const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAf
             width: `${FenetreHistoriqueCombatWidth}vh`,
             height: `${FenetreHistoriqueCombatHeight}vh`,
             maxHeight: `${FenetreHistoriqueCombatHeight}vh`,
-            filter: `brightness(${FenetreHistoriqueCombatOpacite}%)`,
+            opacity: `${FenetreHistoriqueCombatOpacite}%`,
             boxShadow: `3px 3px 0px rgba(0, 0, 0, ${FenetreHistoriqueCombatOpacite / 100})`,
             left: `${FenetreHistoriqueCombatX}vh`,
             bottom: `${FenetreHistoriqueCombatY}vh`,

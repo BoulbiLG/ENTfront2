@@ -12,7 +12,7 @@ export const calculVitesse = (storeEnnemis, storeJoueurs, tourSet) => {
     }
 
     if (vitesseEnnemi > vitesseJoueur) {
-        tourSet('ennemi(s)');
+        tourSet('ennemi');
     } else if (vitesseEnnemi < vitesseJoueur) {
         tourSet('joueur');
     } else if (vitesseEnnemi == vitesseJoueur) {

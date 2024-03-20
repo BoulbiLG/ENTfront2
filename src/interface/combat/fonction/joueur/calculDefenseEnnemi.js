@@ -52,7 +52,7 @@ export const calculDefenseEnnemi = (storeJoueurs) => {
 
     if (compteur > 0) {defenseHumeur = parseInt(defenseHumeur / compteur);} else {defenseHumeur = defenseEnnemi}
 
-    defenseEnnemi = (defenseHumeur * tauxNiveauEnnemi) * tauxTestoEnnemi;
+    defenseEnnemi = parseInt((defenseHumeur * tauxNiveauEnnemi) * tauxTestoEnnemi);
 
     return defenseEnnemi;
 

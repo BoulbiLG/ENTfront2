@@ -6,8 +6,6 @@ import { decisionMagie } from "./decisionMagie";
 import { calculAttaqueEnnemi } from "./calculAttaqueEnnemi";
 import { utiliserSortStat } from "./utiliserSortStat";
 import { calculDefenseJoueur } from "./calculDefenseJoueur";
-import { typeArme } from "../../typeArme";
-import { lexiqueConsomable } from '../../../../variableGlobal/item/lexiqueConsomable';
 
 export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, setJoueurUtilisable, joueurUtilisable, storeEquipe, ennemiEnVie, historique, historiqueSet) => {
 
@@ -15,13 +13,16 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
     console.log('=======================');
     console.log('');
 
+    //console.log('historique 3 : ', historique);
+
     let tableau = strategieEnnemi;
 
     for (let i = 0; i < storeEnnemis.length; i++) {
 
+        // CALCUL ATTAQUE
         const calculAttaqueNet = (store) => {
             for (const joueur of storeJoueurs) {
-                if (joueur.nom == tableau[0].cible) {
+                if (joueur.nom === tableau[0].cible) {
                     const defense = calculDefenseJoueur(joueur);
                     attaque = attaque - defense;
 
@@ -48,11 +49,11 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         const nouveauTableau = storeEquipe.filter(item => item !== joueur.nom);
                         setJoueurUtilisable(nouveauTableau);
 
-                        console.log('tableau : ', tableau);
+                        //console.log('tableau : ', tableau);
                         // REINITIALISER CIBLE
                         for (let i = 0; i < tableau.length; i++) {
                             const ennemi = tableau[i];
-                            if (store.nom == ennemi.nom) {ennemi.cible = ''}
+                            if (store.nom === ennemi.nom) {ennemi.cible = ''}
                             strategieEnnemiSet(tableau);
                         }
                     }
@@ -63,11 +64,15 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
         const store = storeEnnemis[i];
 
         console.log('ennemiEnVie : ', ennemiEnVie);
+        //console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
+        
         const estPresent = ennemiEnVie.includes(store.nom);
 
-        console.log(store.nom, ' estPresent : ', estPresent);
+        //console.log(store.nom, ' estPresent : ', estPresent);
 
         if (estPresent) {
+
+            console.log(store.nom, ' est en vie');
 
             // DECISION STRATEGIE
             tableau = decisionStrat(store, tableau);
@@ -86,7 +91,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             var attaque;
             var tourTermine = '';
 
-            if (tableauMagie[0].action == 'passer') {
+            if (tableauMagie[0].action === 'passer') {
                 //console.log('Tour de ', store.nom, ' terminé !');
                 return
             } else {
@@ -136,7 +141,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
                         //console.log('<---> ', nombre, ' <--->');
 
-                        if (nombre == 1) {
+                        if (nombre === 1) {
 
                             // AUGMENTE STAT
                             if (tableauMagie[0].sortStatAugmente[0]) {
@@ -148,7 +153,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             }
 
 
-                        } else if (nombre == 2) {
+                        } else if (nombre === 2) {
 
 
                             // BAISSE STAT
@@ -157,7 +162,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                                 //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie baisse stat');
 
                                 storeJoueurs.forEach((joueur) => {
-                                    if (joueur.nom == tableau[0].cible) {
+                                    if (joueur.nom === tableau[0].cible) {
                                         tourTermine = utiliserSortStat(storeCombat, store, joueur, tableauMagie[0].sortBaisseStat[0], 'baisse');
                                     }
                                 });
@@ -166,7 +171,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             }
 
 
-                        }  else if (nombre == 3) {
+                        }  else if (nombre === 3) {
 
 
                             // STATUS
@@ -175,7 +180,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                                 //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie status');
 
                                 storeJoueurs.forEach((joueur) => {
-                                    if (joueur.nom == tableau[0].cible) {
+                                    if (joueur.nom === tableau[0].cible) {
                                         tourTermine = utiliserSortStat(storeCombat, store, joueur, tableauMagie[0].sortStatus[0], 'status');
                                     }
                                 });
@@ -184,7 +189,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             }
                         }
 
-                        if (tourTermine == '') {
+                        if (tourTermine === '') {
                             //console.log(store.nom, "Aucun sort n'a été utilisé => Arme");
                             attaque = calculAttaqueEnnemi(store, tableauArme[0].mainDefinitive);
                             calculAttaqueNet(store);
@@ -192,7 +197,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                     }
                 } else {
 
-                    if (tourTermine == '') {
+                    if (tourTermine === '') {
                         //console.log(store.nom, ' : 20 - 1 nbr = ', nombre, ' => Arme');
 
                         // MAIN

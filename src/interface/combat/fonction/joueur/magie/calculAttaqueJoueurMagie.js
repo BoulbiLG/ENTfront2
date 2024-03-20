@@ -1,9 +1,9 @@
 
-import { lexiqueBadge } from "../../../../variableGlobal/item/badge/lexiqueBadge";
+import { lexiqueBadge } from "../../../../../variableGlobal/item/badge/lexiqueBadge";
 
-export const calculAttaqueJoueur = (storeJoueurs) => {
+export const calculAttaqueJoueurMagie = (storeJoueurs, sort) => {
 
-    const attaque = storeJoueurs.attaque;
+    const attaque = storeJoueurs.attaque + sort.action;
     const courage = storeJoueurs.courage;
     const niveau = storeJoueurs.niveau;
     const testo = storeJoueurs.testo;

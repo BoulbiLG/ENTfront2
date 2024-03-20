@@ -1,0 +1,60 @@
+
+.Magie .sort {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: aqua;
+    margin-bottom: 0.5vh;
+    border-radius: 1vh;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.Magie .sort:hover {
+    scale: 103%;
+    filter: brightness(150%);
+}
+
+.Magie .sort:active {
+    scale: 105%;
+    filter: brightness(200%);
+}
+
+.Magie .offensive {
+    background: linear-gradient(180deg, rgb(216, 120, 41), rgb(216, 44, 41), rgb(255, 0, 0));
+    color: white;
+}
+
+.Magie .soin {
+    background: linear-gradient(180deg, rgb(236, 177, 252), rgb(255, 53, 255), rgb(131, 12, 186));
+    color: white;
+}
+
+.Magie .augmenteStat {
+    /*background: linear-gradient(180deg, rgb(217, 252, 177), rgb(120, 255, 53), rgb(13, 171, 42));*/
+    background: linear-gradient(180deg, rgb(249, 252, 177), rgb(242, 255, 53), rgb(171, 155, 13));
+    color: black;
+}
+
+.Magie .baisseStat {
+    background: linear-gradient(180deg, rgb(73, 191, 220), rgb(32, 37, 186), rgb(13, 2, 112));
+    color: white;
+}
+
+.Magie .gauche {
+    padding: 1vh;
+    flex: 3;
+}
+
+.Magie .centre {
+    padding: 1vh;
+    flex: 1;
+}
+
+.Magie .droite {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+}

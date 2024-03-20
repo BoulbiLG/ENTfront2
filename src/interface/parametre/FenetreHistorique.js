@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import parametreStore from '../../variableGlobal/global/parametreStore';
 
@@ -8,13 +8,6 @@ import '../../css/classe/btn.css';
 const FenetreHistorique = () => {
 
     const storeParametre = parametreStore();
-
-    const [opacite, opaciteSet] = useState(storeParametre.FenetreHistoriqueCombatOpacite);
-    const [height, heightSet] = useState(storeParametre.FenetreHistoriqueCombatHeight);
-    const [width, widthSet] = useState(storeParametre.FenetreHistoriqueCombatWidth);
-    const [x, xSet] = useState(storeParametre.FenetreHistoriqueCombatX);
-    const [y, ySet] = useState(storeParametre.FenetreHistoriqueCombatY);
-    const [taille, tailleSet] = useState(storeParametre.FenetreHistoriqueCombatTaille);
 
     return (
         <div className='FenetreHistorique'>
@@ -35,7 +28,7 @@ const FenetreHistorique = () => {
                         min={40}
                         max={140}
                         value={storeParametre.FenetreHistoriqueCombatWidth}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatWidth', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatWidth', e.target.value)}}
                     />
                 </div>
                 <div className="range">
@@ -45,7 +38,7 @@ const FenetreHistorique = () => {
                         min={20}
                         max={70}
                         value={storeParametre.FenetreHistoriqueCombatHeight}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatHeight', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatHeight', e.target.value)}}
                     />
                 </div>
                 <div className="range">
@@ -55,7 +48,7 @@ const FenetreHistorique = () => {
                         min={0}
                         max={165}
                         value={storeParametre.FenetreHistoriqueCombatX}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatX', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatX', e.target.value)}}
                     />
                 </div>
                 <div className="range">
@@ -63,23 +56,23 @@ const FenetreHistorique = () => {
                     <input
                         type="range"
                         min={0}
-                        max={59}
+                        max={40}
                         value={storeParametre.FenetreHistoriqueCombatY}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatY', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatY', e.target.value)}}
                     />
                 </div>
-                {/*
+                {
                 <div className="range">
-                    <p>Opacité</p>
+                    <p>Opacité de la fenetre</p>
                     <input
                         type="range"
                         min={0}
                         max={100}
                         value={storeParametre.FenetreHistoriqueCombatOpacite}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatOpacite', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatOpacite', e.target.value)}}
                     />
                 </div>
-                */}
+                }
                 <div className="range">
                     <p>Taille de la fenetre</p>
                     <input
@@ -87,23 +80,37 @@ const FenetreHistorique = () => {
                         min={10}
                         max={200}
                         value={storeParametre.FenetreHistoriqueCombatTaille}
-                        onChange={(e) => {widthSet(e.target.value); storeParametre.modifier('FenetreHistoriqueCombatTaille', e.target.value)}}
+                        onChange={(e) => {storeParametre.modifier('FenetreHistoriqueCombatTaille', e.target.value)}}
                     />
                 </div>
-                <div className="range">
+                <div className="range" >
                     <p>Apparition au début du combat</p>
-                    <p>{storeParametre.FenetreHistoriqueCombatApparition}</p>
                     <div className="bouton">
-                        <button onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'true');}}>Oui</button>
-                        <button onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'false');}}>Non</button>
+                        {storeParametre.FenetreHistoriqueCombatApparition === 'true' ? (
+                            <button style={{backgroundColor: 'white', color: 'black'}} onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'true');}}>Oui</button>
+                        ) :
+                            <button className='' onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'true');}}>Oui</button>
+                        }
+                        {storeParametre.FenetreHistoriqueCombatApparition === 'false' ? (
+                            <button style={{backgroundColor: 'white', color: 'black'}} onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'false');}}>Non</button>
+                        ) :
+                            <button className='' onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatApparition', 'false');}}>Non</button>
+                        }
                     </div>
                 </div>
                 <div className="range">
                     <p>Type d'écriture</p>
-                    <p>{storeParametre.FenetreHistoriqueCombatType}</p>
                     <div className="bouton">
-                        <button onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'propre');}}>Propre</button>
-                        <button onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'resume');}}>Résumé</button>
+                    {storeParametre.FenetreHistoriqueCombatType === 'propre' ? (
+                            <button style={{backgroundColor: 'white', color: 'black'}} onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'propre');}}>Propre</button>
+                        ) :
+                            <button className='' onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'propre');}}>Propre</button>
+                        }
+                        {storeParametre.FenetreHistoriqueCombatType === 'resume' ? (
+                            <button style={{backgroundColor: 'white', color: 'black'}} onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'resume');}}>Résumé</button>
+                        ) :
+                            <button className='' onClick={() => {storeParametre.modifier('FenetreHistoriqueCombatType', 'resume');}}>Résumé</button>
+                        }
                     </div>
                 </div>
                 <button className='btnClasse reinitialiser' onClick={() => {
@@ -116,6 +123,7 @@ const FenetreHistorique = () => {
                     storeParametre.modifier('FenetreHistoriqueCombatApparition', 'true');
                     storeParametre.modifier('FenetreHistoriqueCombatType', 'propre');
                 }}>Réinitialiser</button>
+                <br />
             </div>
         </div>
     )

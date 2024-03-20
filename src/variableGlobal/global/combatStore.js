@@ -8,7 +8,7 @@ const combatStore = create((set) => ({
   nombreEnnemi: 0,
 
   nom: [],
-
+  ennemiEnVie: [],
   soinTour: [],
 
   historique: [],
@@ -75,6 +75,28 @@ const combatStore = create((set) => ({
       [nomTableau]: state[nomTableau].filter((item) => item.id !== id),
     }));
   },
+
+  modifierTableau: (nomTableau, nouvelleValeur) => {
+    set({ [nomTableau]: nouvelleValeur });
+  },
+
+  // combat ennemiEnVie
+
+  retirerEnnemiEnVie: (id) => {
+    set((state) => ({
+      ennemiEnVie: state.ennemiEnVie.filter((item) => item.id !== id),
+    }));
+  },
+
+  retirerElement: (tableau, element) => {
+    console.log('element : ', element);
+    console.log('tableau : ', tableau);
+    set((state) => ({
+      [tableau]: state[tableau].filter(item => item !== element)
+    }));
+  }
+  
+  
 
 }));
 

@@ -14,6 +14,8 @@ const combatStore = create((set) => ({
   historique: [],
   effetTemporaire: [],
 
+  historiqueAction: [],
+
 
 
 

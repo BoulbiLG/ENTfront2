@@ -5,6 +5,7 @@ import './fenetreCombat.css';
 import './fenetreCombatAction.css';
 
 import parametreStore from '../../variableGlobal/global/parametreStore';
+import combatStore from '../../variableGlobal/global/combatStore';
 
 const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAffichageSet}) => {
 
@@ -16,6 +17,11 @@ const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAf
     const { FenetreHistoriqueCombatY } = parametreStore();
     const { FenetreHistoriqueCombatOpacite } = parametreStore();
     const { FenetreHistoriqueCombatTaille } = parametreStore();
+
+    const storeCombat = combatStore();
+    const { historiqueAction } = combatStore();
+
+    //console.log('storeCombat.historiqueAction : ', storeCombat.historiqueAction);
 
     // ==================== MODIFIER AFFICHAGE FENETRE HISTORIQUE ==================== //
 
@@ -40,7 +46,7 @@ const Historique = ({historique, historiqueType, historiqueTypeSet, historiqueAf
             </div>
             <br />
             <div className="listeLigne">
-                {historique.length > 0 && historique.map((element, index) => (
+                {historiqueAction.length > 0 && historiqueAction.map((element, index) => (
                     <div className='ligne' key={index} style={{backgroundColor: `${element.couleurFond}`}}>
                         <img style={{
                             height: '30px',

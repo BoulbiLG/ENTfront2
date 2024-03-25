@@ -26,6 +26,7 @@ import Item from '../../components/item/CaseItem';
 import Historique from './Historique';
 import Parametre from '../parametre/Parametre';
 import Magie from './Magie';
+import Objet from './Objet';
 
 const FenetreCombat = () => {
 
@@ -34,7 +35,7 @@ const FenetreCombat = () => {
     const { type } = combatStore();
     const storeEquipe = equipeStore();
 
-    console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
+    //console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
     let ennemiEnVie;
 
     //const storeParametre = parametreStore();
@@ -73,22 +74,48 @@ const FenetreCombat = () => {
     var storeInventaire = inventaireStore();
     var storeJoueurs = recupererListeStore();
 
+    let joueurRestant;
+
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet) => {
 
         //console.log(joueurUtilisable.length);
-        //console.log(joueurUtilisable);
+        console.log(joueurUtilisable);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
+        
         if (joueurUtilisable.length === 1) {
             tourSet('joueur');
             setTimeout(() => {
                 //console.log('tour ennemi');
-                joueurUtilisableSet(storeEquipe.nom);
-                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+                joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+                
+                let tableauJoueurUtilisable = [];
+                console.log('joueurRestant : ', joueurRestant);
+                /*
+                console.log('**************************');
+                for (let i = 0; i < storeJoueurs.length; i++) {
+                    const store = storeJoueurs[i];
+                    console.log('store : ', store.vie)
+                    if (store.vie > 0) {
+                        tableauJoueurUtilisable.push(store.nom);
+                    } 
+                }
+                */
+                joueurUtilisableSet(joueurRestant);
+                
             }, 1000);
         }
     }
     
+    useEffect(() => {
+        if (storeCombat.combat === 'oui') {
+
+            console.log('administration de store combat nom');
+            joueurUtilisableSet(storeCombat.nom);
+
+        }
+    }, [storeEquipe.nom]);
+
     useEffect(() => {
         if (storeCombat.combat === 'oui') {
 
@@ -108,9 +135,13 @@ const FenetreCombat = () => {
                 <div className='FenetreCombat' style={{background: `url(${fond})`}}>
     
 
+
                     <div className="parametreFenetre"><Parametre /></div>
 
+
+
                     {/* ========== LISTE ENNEMI ========== */}
+
 
 
                     <div className="listeEnnemi">
@@ -127,10 +158,13 @@ const FenetreCombat = () => {
                     </div>
 
 
+
                     <div className="hero"><img src={hero} alt={hero} /></div>
 
 
+
                     {/* ========== FENETRE CHOIX ========== */}
+
 
 
                     <div className="choix">
@@ -166,7 +200,16 @@ const FenetreCombat = () => {
                                 </div>
                                 <button onClick={() => {etapeSet('magie');}} className='btnClasse'>Magie</button>
                                 <button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>
-                                <button onClick={() => {etapeSet('rien');}} className='btnClasse'>Ne rien faire</button>
+                                <button onClick={() => {
+                                    joueurUtilisableSet((ancienJoueurUtilisable) => {
+                                        const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
+                                        return nouvelJoueurUtilisable;
+                                    });
+                                    ennemiEnVie = storeCombat.ennemiEnVie;
+                                    etapeSet('qui');
+                                    tourSet('ennemi');
+                                    lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet)
+                                }} className='btnClasse'>Ne rien faire</button>
                                 <button style={{width: '100%', margin: 0, backgroundColor: 'black', color: 'white', padding: '0.6vh'}} onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
                             </div>
                         ) : null }
@@ -198,7 +241,36 @@ const FenetreCombat = () => {
                             </div>
                         ) : null }
                         {etape === 'magie' ? (
-                            <Magie etapeSet={etapeSet} joueurCourant={joueurCourant} storeEnnemis={storeEnnemis} storeCombat={storeCombat} historique={historique} historiqueSet={historiqueSet} />
+                            <Magie 
+                                etapeSet={etapeSet} 
+                                joueurCourant={joueurCourant} 
+                                storeEnnemis={storeEnnemis} 
+                                storeCombat={storeCombat} 
+                                historique={historique} 
+                                historiqueSet={historiqueSet} 
+                                ennemiEnVie={ennemiEnVie}
+                                joueurUtilisableSet={joueurUtilisableSet}
+                                joueurUtilisable={joueurUtilisable}
+                                storeJoueurs={storeJoueurs}
+                                strategieEnnemi={strategieEnnemi}
+                                strategieEnnemiSet={strategieEnnemiSet}
+                            />
+                        ) : null }
+                        {etape === 'objet' ? (
+                            <Objet 
+                                etapeSet={etapeSet} 
+                                joueurCourant={joueurCourant} 
+                                storeEnnemis={storeEnnemis} 
+                                storeCombat={storeCombat} 
+                                historique={historique} 
+                                historiqueSet={historiqueSet} 
+                                ennemiEnVie={ennemiEnVie}
+                                joueurUtilisableSet={joueurUtilisableSet}
+                                joueurUtilisable={joueurUtilisable}
+                                storeJoueurs={joueurCourant}
+                                strategieEnnemi={strategieEnnemi}
+                                strategieEnnemiSet={strategieEnnemiSet}
+                            />
                         ) : null }
                     </div>
 

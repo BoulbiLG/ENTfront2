@@ -75,15 +75,15 @@ export const decisionMagie = (storeEnnemis, storeCombat, historique, historiqueS
         // RETIRER MAGIE
         storeEnnemis.retirer('magie', sort.cout);
         var tauxVie = parseInt(sort.action * storeEnnemis.vieMax / 100);
-        if (tauxVie + storeEnnemis.vie >= storeEnnemis.vieMax) {tauxVie = storeEnnemis.vieMax;}        
+        if (tauxVie + storeEnnemis.vie >= storeEnnemis.vieMax) {tauxVie = storeEnnemis.vieMax;} else {tauxVie = tauxVie + storeEnnemis.vie}
         if (sort.type == 'soinTour') {
             const ligne = {id: sort.id, nom: storeEnnemis.nom, tour: sort.tour};
             storeCombat.ajouterSoinTour(ligne);
-            storeEnnemis.ajouter('vie', tauxVie);
+            storeEnnemis.modifier('vie', tauxVie);
             tableauDefinitif[0].action = 'passer';
             
         } else if (sort.type == 'soin') {
-            storeEnnemis.ajouter('vie', tauxVie);
+            storeEnnemis.modifier('vie', tauxVie);
             tableauDefinitif[0].action = 'passer';
         }
 

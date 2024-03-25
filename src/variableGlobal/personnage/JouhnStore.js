@@ -36,14 +36,15 @@ const BenzemonstreStore = create((set) => ({
 
   vieMax: 100,
   vie: 100,
-  niveau: 99, 
+  niveau: 3, 
   expMax: 10,
   exp: 0,
   attaque: 10,
   defense: 10,
   vitesse: 10,
   courage: 5,             // augmente le taux de coup critique, min = 5
-  magie: 10,
+  magie: 100,
+  magieMax: 100,
   testo: 0,
   bodycount: 0,
 

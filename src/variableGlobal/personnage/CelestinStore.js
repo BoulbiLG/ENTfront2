@@ -25,7 +25,7 @@ const CelestinStore = create((set) => ({
 
   vieMax: 100,
   vie: 100,
-  niveau: 99, 
+  niveau: 3, 
   expMax: 100,
   exp: 23,
   attaque: 15,

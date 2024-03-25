@@ -4,13 +4,14 @@ export const utiliserItem = async (id, type, cible, action, quantite, equipe, eq
 
     const inventaire = storeInventaire.inventaire;
 
-    /*
+    
     console.log('id : ', id);
     console.log('type : ', type);
     console.log('cible : ', cible);
     console.log('action : ', action);
     console.log('quantite : ', quantite);
-    */
+    console.log('joueurStore : ', joueurStore);
+    
 
 
 

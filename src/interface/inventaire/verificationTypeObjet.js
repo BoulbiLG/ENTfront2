@@ -4,8 +4,16 @@ export const verificationTypeObjet = (id, type, action, inventaire, joueurStore)
     console.log('type : ', type);
     console.log('action : ', action);
 
+    const ajouterVie = (valeur) => {
+        if ((joueurStore.vie + valeur) > joueurStore.vieMax) {
+            joueurStore.vie = joueurStore.modifier('vie', joueurStore.vieMax);
+        } else {
+            joueurStore.vie = joueurStore.ajouter('vie', action);
+        }
+    }
+
     if (type === 'consomable') {
-        if (id === 'pomme') { joueurStore.vie = joueurStore.ajouter('vie', action); if (joueurStore.vie > 100) {joueurStore.vie = joueurStore.modifier('vie', joueurStore.vieMax)}}
+        if (id === 'pomme') { ajouterVie(action);}
     }
 
     if (type === 'arme') {

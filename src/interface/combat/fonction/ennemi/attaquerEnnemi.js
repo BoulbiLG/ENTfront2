@@ -13,7 +13,9 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
     console.log('=======================');
     console.log('');
 
-    //console.log('historique 3 : ', historique);
+    let joueurRestant = storeEquipe;
+
+    let ligne;
 
     let tableau = strategieEnnemi;
 
@@ -24,12 +26,13 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             for (const joueur of storeJoueurs) {
                 if (joueur.nom === tableau[0].cible) {
                     const defense = calculDefenseJoueur(joueur);
-                    attaque = attaque - defense;
+                    attaque = parseInt(attaque - defense);
 
                     if (attaque <= 0) {attaque = 1}
 
                     const vie = joueur.vie;
 
+                    /*
                     historiqueSet([...historique, {
                         icone: store.imgIcone,
                         couleurFond: 'rgb(225, 107, 107)',
@@ -37,19 +40,29 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         texte: `${store.nom} inflige ${attaque} de dégat à ${joueur.nom}.`,
                         resume: `${store.nom} => ${joueur.nom} - ${attaque}.`,
                     }]);
+                    */
+                    console.log(store.nom, ' entrée attaque calcul');
+
+                    ligne = {
+                        icone: store.imgIcone,
+                        couleurFond: 'rgb(225, 107, 107)',
+                        couleurPolice: 'white',
+                        texte: `${store.nom} inflige ${attaque} de dégat à ${joueur.nom}.`,
+                        resume: `${store.nom} => ${joueur.nom} - ${attaque}.`,
+                    }
+
+                    storeCombat.ajouterTableau('historiqueAction', ligne);
 
                     //console.log('attaqueNet : ', parseInt(attaque), ' pour : ', tableau[0].cible, ' de la part de : ', store.nom);
                     joueur.retirer('vie', parseInt(attaque));
 
-                    //console.log(joueur.nom, ' : ', vie - attaque);
                     if (vie - attaque <= 0) {
 
-                        //console.log('supprimer : ', joueur.nom);
+                        joueurRestant = joueurRestant.filter(item => item !== joueur.nom);
             
                         const nouveauTableau = storeEquipe.filter(item => item !== joueur.nom);
                         setJoueurUtilisable(nouveauTableau);
 
-                        //console.log('tableau : ', tableau);
                         // REINITIALISER CIBLE
                         for (let i = 0; i < tableau.length; i++) {
                             const ennemi = tableau[i];
@@ -62,17 +75,22 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
         }
 
         const store = storeEnnemis[i];
-
-        console.log('ennemiEnVie : ', ennemiEnVie);
-        //console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
         
         const estPresent = ennemiEnVie.includes(store.nom);
 
-        //console.log(store.nom, ' estPresent : ', estPresent);
+        ligne = {
+            icone: storeEnnemis.imgIcone,
+            couleurFond: 'rgb(225, 107, 107)',
+            couleurPolice: 'white',
+            texte: `${store.nom}, ${estPresent}`,
+            resume: `${store.nom} est vivant`,
+        }
+
+        storeCombat.ajouterTableau('historiqueAction', ligne);
 
         if (estPresent) {
 
-            console.log(store.nom, ' est en vie');
+            console.log(store.nom, ' present')
 
             // DECISION STRATEGIE
             tableau = decisionStrat(store, tableau);
@@ -91,10 +109,25 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             var attaque;
             var tourTermine = '';
 
+            console.log(store.nom, ' etape calcul basique passé');
+
             if (tableauMagie[0].action === 'passer') {
-                //console.log('Tour de ', store.nom, ' terminé !');
+                ligne = {
+                    icone: storeEnnemis.imgIcone,
+                    couleurFond: 'rgb(225, 107, 107)',
+                    couleurPolice: 'white',
+                    texte: `${store.nom} passer`,
+                    resume: `${store.nom} passer`,
+                }
+    
+                storeCombat.ajouterTableau('historiqueAction', ligne);
+
+                console.log(store.nom, ' magie soin passé');
+
                 return
             } else {
+
+                console.log(store.nom, ' etape proba go');
 
                 let nombre = Math.floor(Math.random() * (20 - 1)) + 1;
 
@@ -113,8 +146,11 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
 
                         if (tableauMagie[0].sortStatOffensif[0]) {
-                            //console.log(store.nom, ' : 10 - 1 nbr = ', nombre, ' => Magie offensive');
+
+                            console.log(store.nom, ' : 10 - 1 nbr = ', nombre, ' => Magie offensive');
                             attaque = calculAttaqueEnnemi(store, tableauMagie[0].sortStatOffensif[0].action);
+
+                            /*
                             historiqueSet([...historique, {
                                 icone: store.imgIcone,
                                 couleurFond: 'rgb(225, 107, 107)',
@@ -122,6 +158,18 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                                 texte: `${store.nom} utilise le sort ${tableauMagie[0].sortStatOffensif[0].nom}.`,
                                 resume: `${store.nom} => ${tableauMagie[0].sortStatOffensif[0].nom}.`,
                             }]);
+                            */
+
+                            ligne = {
+                                icone: store.imgIcone,
+                                couleurFond: 'rgb(225, 107, 107)',
+                                couleurPolice: 'white',
+                                texte: `${store.nom} utilise le sort ${tableauMagie[0].sortStatOffensif[0].nom}.`,
+                                resume: `${store.nom} => ${tableauMagie[0].sortStatOffensif[0].nom}.`,
+                            }
+        
+                            storeCombat.ajouterTableau('historiqueAction', ligne);
+
                             calculAttaqueNet(store);
                         } else {
                             //console.log(store.nom, ' : 10 - 1 nbr = ', nombre, ' => Magie offensive mais aucun sort disponible => Arme');
@@ -145,7 +193,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
                             // AUGMENTE STAT
                             if (tableauMagie[0].sortStatAugmente[0]) {
-                                //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie augmente stat');
+                                console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie augmente stat');
                                 tourTermine = utiliserSortStat(storeCombat, store, storeJoueurs, tableauMagie[0].sortStatAugmente[0], 'augmente', historique, historiqueSet);
                                 //calculAttaqueNet();
                             } else {
@@ -159,7 +207,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             // BAISSE STAT
                             if (tableauMagie[0].sortBaisseStat[0]) {
 
-                                //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie baisse stat');
+                                console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie baisse stat');
 
                                 storeJoueurs.forEach((joueur) => {
                                     if (joueur.nom === tableau[0].cible) {
@@ -177,7 +225,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                             // STATUS
                             if (tableauMagie[0].sortStatus[0]) {
 
-                                //console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie status');
+                                console.log(store.nom, ' : 3 - 1 nbr = ', nombre, ' => Magie status');
 
                                 storeJoueurs.forEach((joueur) => {
                                     if (joueur.nom === tableau[0].cible) {
@@ -198,7 +246,7 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                 } else {
 
                     if (tourTermine === '') {
-                        //console.log(store.nom, ' : 20 - 1 nbr = ', nombre, ' => Arme');
+                        console.log(store.nom, ' : 20 - 1 nbr = ', nombre, ' => Arme');
 
                         // MAIN
                         attaque = calculAttaqueEnnemi(store, tableauArme[0].mainDefinitive);
@@ -217,6 +265,20 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             console.log(store.nom, ' est mort, il ne peut pas attaquer');
         }
     }
+
+    for (const joueur of storeJoueurs) {
+        for (const nom of joueurRestant) {
+            if (joueur.nom === nom) {
+                //console.log(joueur.nom , ' = ', nom, ', vie : ', joueur.vie);
+                if (joueur.vie < 0) {
+                    joueurRestant = joueurRestant.filter(item => item !== joueur.nom);
+                    //console.log(joueur.nom, ' a une vie < a 0, il est retiré du tableau', joueurRestant);
+                }
+            }
+        }
+    }
+
+    return joueurRestant;
 }
 
 

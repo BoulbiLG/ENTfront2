@@ -20,18 +20,21 @@ export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeIn
 
             // CALCUL DEFENSE ENNEMI BRUT
             const defenseEnnemi = calculDefenseEnnemi(storeEnnemis);
-            //console.log('attaqueBrut ', attaqueBrut, ' - defenseEnnemi ', defenseEnnemi, ' = ', attaqueBrut - defenseEnnemi);
     
             let attaqueNet = parseInt(attaqueBrut - defenseEnnemi);
             if (attaqueNet <= 0) {attaqueNet = 1;}
 
-            //console.log('attaque Net : ', attaqueNet);
-
             const vie = storeEnnemis.vie;
 
-            //console.log('vie : ', vie, ' , ', vie - attaqueNet);
-
             storeEnnemis.retirer('vie', attaqueNet);
+
+            let ligne = {
+                icone: storeJoueurs.imgIcone,
+                couleurFond: 'rgb(109, 255, 109)',
+                couleurPolice: 'black',
+                texte: `${storeJoueurs.nom} a attaqué ${storeEnnemis.nom} avec l'item ${id} pour des dégat de ${attaqueNet}PV. La vie initiale de ${storeEnnemis.vie}PV baisse à ${storeEnnemis.vie - attaqueNet}PV.`,
+                resume: `${storeJoueurs.nom} => ${storeEnnemis.nom} | vie: ${storeEnnemis.vie} - attaque: ${attaqueNet} = ${storeEnnemis.vie - attaqueNet}PV.`,
+            }
 
             historiqueSet([...historique, {
                 icone: storeJoueurs.imgIcone,
@@ -41,20 +44,23 @@ export const attaquer = (choix, storeEnnemis, storeJoueurs, lexiqueArme, storeIn
                 resume: `${storeJoueurs.nom} => ${storeEnnemis.nom} | vie: ${storeEnnemis.vie} - attaque: ${attaqueNet} = ${storeEnnemis.vie - attaqueNet}PV.`,
             }]);
 
-            //console.log('historique 2 : ', historique);
-
-            //console.log('storeEnnemis.nom : ', storeEnnemis.nom);
-            //console.log('storeCombat : ', storeCombat);
+            storeCombat.ajouterTableau('historiqueAction', ligne);
 
             if (vie - attaqueNet <= 0) {
         
                 const nouveauTableau = storeCombat.ennemiEnVie.filter(element => element !== storeEnnemis.nom);
                 ennemiEnVie = nouveauTableau;
-                //console.log('nouveauTableau : ', nouveauTableau);
                 storeCombat.modifierTableau('ennemiEnVie', nouveauTableau);
-                //storeCombat.retirerEnnemiEnVie(storeEnnemis.nom);
-                //const ennemiAEnlever = storeEnnemis.nom;
-                //storeCombat.retirerElement('ennemiEnVie', ennemiAEnlever);
+
+                const ligne = {
+                    icone: storeJoueurs.imgIcone,
+                    couleurFond: 'black',
+                    couleurPolice: 'white',
+                    texte: `${storeJoueurs.nom} a tué ${storeEnnemis.nom}.`,
+                    resume: `${storeJoueurs.nom} a tué ${storeEnnemis.nom}.`,
+                }
+
+                storeCombat.ajouterTableau('historiqueAction', ligne);
 
                 historiqueSet([...historique, {
                     icone: storeJoueurs.imgIcone,

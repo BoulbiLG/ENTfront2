@@ -3,12 +3,14 @@ import chepa from '../../audio/musique/chepa.wav';
 import widor from '../../audio/musique/widor.mp3';
 import wagner from '../../audio/musique/2wagner.mp3';
 import auberge from '../../audio/musique/auberge.mp3';
+import lidl from '../../audio/musique/lidl.mp3';
 
 const audioSources = {
   onche: new Audio(test),
   maisonClea: new Audio(chepa),
   combatNormal: new Audio(wagner),
   auberge: new Audio(auberge),
+  lidl: new Audio(lidl),
 };
 
 let currentAudio = audioSources.onche;

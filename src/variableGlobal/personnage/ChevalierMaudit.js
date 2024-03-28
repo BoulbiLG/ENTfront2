@@ -1,6 +1,7 @@
 import create from 'zustand';
 import normal from '../../asset/personnage/chevalierMaudit/normal.png';
 import tete from '../../asset/personnage/chevalierMaudit/tete.png';
+import icone from '../../asset/personnage/chevalierMaudit/icone.png';
 
 import { lexiqueOffensive } from '../../variableGlobal/item/magie/lexiqueOffensive';
 import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
@@ -28,6 +29,7 @@ const ChevalierMauditStore = create((set) => ({
 
   imgNormal: normal,
   imgTete: tete,
+  imgIcone: icone,
 
   // STAT
 
@@ -36,12 +38,12 @@ const ChevalierMauditStore = create((set) => ({
   niveau: 2, 
   expMax: 20,
   exp: 0,
-  attaque: 7,
+  attaque: 10,
   defense: 12,
   vitesse: 6,
   courage: 4,             // augmente le taux de coup critique, min = 5
-  magieMax: 10,
-  magie: 10,
+  magieMax: 100,
+  magie: 100,
   testo: 0,
   bodycount: 0,
 

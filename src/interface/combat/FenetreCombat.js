@@ -9,6 +9,7 @@ import { calculVitesse } from './fonction/calculVitesse';
 import { attaquer } from './fonction/joueur/attaquer';
 import { attaquerEnnemi } from './fonction/ennemi/attaquerEnnemi';
 import { creationTabStratEnnemi } from './fonction/creationTabStratEnnemi';
+import { verificationMortJoueur } from './fonction/verificationMortJoueur';
 
 import '../../css/classe/btn.css';
 import './fenetreCombat.css';
@@ -35,10 +36,8 @@ const FenetreCombat = () => {
     const { type } = combatStore();
     const storeEquipe = equipeStore();
 
-    //console.log('storeCombat.ennemiEnVie : ', storeCombat.ennemiEnVie);
     let ennemiEnVie;
 
-    //const storeParametre = parametreStore();
     const { FenetreHistoriqueCombatApparition } = parametreStore();
     const { FenetreHistoriqueCombatType } = parametreStore();
 
@@ -52,21 +51,8 @@ const FenetreCombat = () => {
     const [historique, historiqueSet] = useState([]);
     const [historiqueAffichage, historiqueAffichageSet] = useState(FenetreHistoriqueCombatApparition);
     const [historiqueType, historiqueTypeSet] = useState(FenetreHistoriqueCombatType);
-    /*
-    const [ennemiEnVie, ennemiEnVieSet] = useState([]);
 
-    useEffect(() => {
-    const tableauEnnemis = storeCombat.nom.map(nom => nom);
-    ennemiEnVieSet(tableauEnnemis);
-    }, [storeCombat.nom]);
-    */
     const [strategieEnnemi, strategieEnnemiSet] = useState([]);
-
-    //console.log('store nom : ', nom);
-    //console.log('storeEquipe.nom : ', storeEquipe.nom);
-    //console.log('storeCombat.nom : ', storeCombat.nom);
-    //console.log('nom : ', nom);
-    //console.log('ennemiEnVie : ', ennemiEnVie);
 
     let fond = normal; if (combatStore.type === 'normal') {fond = normal;}
 
@@ -76,7 +62,7 @@ const FenetreCombat = () => {
 
     let joueurRestant;
 
-    const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet) => {
+    const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
         //console.log(joueurUtilisable.length);
         console.log(joueurUtilisable);
@@ -86,21 +72,10 @@ const FenetreCombat = () => {
         if (joueurUtilisable.length === 1) {
             tourSet('joueur');
             setTimeout(() => {
-                //console.log('tour ennemi');
+                
                 joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
                 
-                let tableauJoueurUtilisable = [];
-                console.log('joueurRestant : ', joueurRestant);
-                /*
-                console.log('**************************');
-                for (let i = 0; i < storeJoueurs.length; i++) {
-                    const store = storeJoueurs[i];
-                    console.log('store : ', store.vie)
-                    if (store.vie > 0) {
-                        tableauJoueurUtilisable.push(store.nom);
-                    } 
-                }
-                */
+                //console.log('joueurRestant : ', joueurRestant);
                 joueurUtilisableSet(joueurRestant);
                 
             }, 1000);
@@ -126,8 +101,10 @@ const FenetreCombat = () => {
             creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
 
         }
-    }, [combat, type, etape, storeCombat.ennemiEnVie]);
-        
+    }, [storeCombat.combat, combat, type, etape, storeCombat.ennemiEnVie]);
+
+    verificationMortJoueur(storeJoueurs);
+    
     return (
         <div className='conteneurCombat'>
 
@@ -135,13 +112,10 @@ const FenetreCombat = () => {
                 <div className='FenetreCombat' style={{background: `url(${fond})`}}>
     
 
-
                     <div className="parametreFenetre"><Parametre /></div>
 
 
-
                     {/* ========== LISTE ENNEMI ========== */}
-
 
 
                     <div className="listeEnnemi">
@@ -158,13 +132,10 @@ const FenetreCombat = () => {
                     </div>
 
 
-
                     <div className="hero"><img src={hero} alt={hero} /></div>
 
 
-
                     {/* ========== FENETRE CHOIX ========== */}
-
 
 
                     <div className="choix">
@@ -208,7 +179,15 @@ const FenetreCombat = () => {
                                     ennemiEnVie = storeCombat.ennemiEnVie;
                                     etapeSet('qui');
                                     tourSet('ennemi');
-                                    lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet)
+                                    const ligne = {
+                                        icone: joueurCourant.imgIcone,
+                                        couleurFond: 'rgb(109, 255, 109)',
+                                        couleurPolice: 'black',
+                                        texte: `${joueurCourant.nom} ne fait rien`,
+                                        resume: `${joueurCourant.nom} x`,
+                                    }
+                                    storeCombat.ajouterTableau('historiqueAction', ligne);
+                                    lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet)
                                 }} className='btnClasse'>Ne rien faire</button>
                                 <button style={{width: '100%', margin: 0, backgroundColor: 'black', color: 'white', padding: '0.6vh'}} onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
                             </div>
@@ -229,7 +208,7 @@ const FenetreCombat = () => {
                                             });
                                             etapeSet('qui');
                                             tourSet('ennemi');
-                                            lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet)
+                                            lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet)
                                         }} >{storeEnnemis[index].nom}</button>
                                     </>
                                 );
@@ -352,7 +331,9 @@ const FenetreCombat = () => {
                                 <div className="onglet">
                                     <button onClick={() => {ongletDetailSet('stat');}}>Statistiques</button>
                                     <hr />
-                                    <button onClick={() => {ongletDetailSet('objet');}}>Inventaire</button>
+                                    <button onClick={() => {ongletDetailSet('humeur');}}>Humeur</button>
+                                    <hr />
+                                    <button onClick={() => {ongletDetailSet('equipement');}}>Equipement</button>
                                 </div>
 
                                 <br />
@@ -369,12 +350,11 @@ const FenetreCombat = () => {
                                             }} />
                                             <Jauge valeur={joueurCourant.exp} max={joueurCourant.expMax} couleur='blue' fond='grey' titre='Exp' solo='non' dimension='non'/>
                                             <Jauge valeur={joueurCourant.magie} max={joueurCourant.magieMax} couleur='blue' fond='grey' titre='Magie' solo='non' dimension='non'/>
-                                            <div className="humeur">
-                                                <Jauge valeur={joueurCourant.joie} max={100} couleur='yellow' fond='grey' titre='Joie' solo='non' dimension='non'/>
-                                                <Jauge valeur={joueurCourant.tristesse} max={100} couleur='violet' fond='grey' titre='Tristesse' solo='non' dimension='non'/>
-                                                <Jauge valeur={joueurCourant.peur} max={100} couleur='black' fond='grey' titre='Peur' solo='non' dimension='non'/>
-                                                <Jauge valeur={joueurCourant.colere} max={100} couleur='red' fond='grey' titre='Colère' solo='non' dimension='non'/>
-                                            </div>  
+                                            <p>Attaque : {joueurCourant.attaque}</p>
+                                            <p>Défense : {joueurCourant.defense}</p>
+                                            <p>Vitesse : {joueurCourant.vitesse}</p>
+                                            <p>Testostérone : {joueurCourant.testo}</p>
+                                            <p>Courage : {joueurCourant.courage}</p>
                                         </div>
                                         <div className="bas">
                                             <button className='btnClasse' onClick={() => {fenetreDetailSet('false')}} style={{
@@ -383,21 +363,46 @@ const FenetreCombat = () => {
                                             }}>Fermer les détails</button>
                                         </div>
                                     </>
-                                ) :
-                                <div className="listeObjet">
-                                    <div className="haut">
-                                        {joueurCourant.equipement.map(({ img, id }) => (
-                                            <Item key={id} img={img} onClick={() => {}} />
-                                        ))}
-                                    </div>
-                                    <div className="bas">
-                                        <button className='btnClasse' onClick={() => {fenetreDetailSet('false')}} style={{
-                                            width: '100%',
-                                            margin: '0'
-                                        }}>Fermer les détails</button>
-                                    </div>
-                                </div>
-                                }
+                                ) : null }
+                                {ongletDetail === 'equipement' ? (
+                                    <>
+                                        <div className="haut">
+                                            <div className="equipement">
+                                                {joueurCourant.equipement && joueurCourant.equipement.length > 0 && joueurCourant.equipement.map((element, index) => (
+                                                    element.id !== '' ? (
+                                                        <Item key={element.id} img={element.img} id={element.id} />
+                                                    ) : null
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="bas">
+                                            <button className='btnClasse' onClick={() => {fenetreDetailSet('false')}} style={{
+                                                width: '100%',
+                                                margin: '0'
+                                            }}>Fermer les détails</button>
+                                        </div>
+                                    </>
+                                ) : null }
+                                {ongletDetail === 'humeur' ? (
+                                    <>
+                                        <div className="haut">
+                                            <div className="equipement">
+                                                <div className="humeur">
+                                                    <Jauge valeur={joueurCourant.joie} max={100} couleur='yellow' fond='grey' titre='Joie' solo='non' dimension='non'/>
+                                                    <Jauge valeur={joueurCourant.tristesse} max={100} couleur='violet' fond='grey' titre='Tristesse' solo='non' dimension='non'/>
+                                                    <Jauge valeur={joueurCourant.peur} max={100} couleur='black' fond='grey' titre='Peur' solo='non' dimension='non'/>
+                                                    <Jauge valeur={joueurCourant.colere} max={100} couleur='red' fond='grey' titre='Colère' solo='non' dimension='non'/>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        <div className="bas">
+                                            <button className='btnClasse' onClick={() => {fenetreDetailSet('false')}} style={{
+                                                width: '100%',
+                                                margin: '0'
+                                            }}>Fermer les détails</button>
+                                        </div>
+                                    </>
+                                ) : null }
                             </div>
                         </>
                     ) : null }

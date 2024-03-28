@@ -20,6 +20,7 @@ export const decisionCible = (store, tableau, storeJoueurs) => {
                 // CALCUL TAUX DE PROTECTION DE CHAQUE JOUEUR
                 for (let i = 0; i < storeJoueurs.length; i++) {
                     const cible = storeJoueurs[i];
+                    //console.log('cible : ', cible);
                     if (cible.vie > 0) {
                         const defense = (cible.defense * (cible.niveau / 10 + 1));
                         const vie = (cible.vie * (cible.niveau / 10 + 1));
@@ -57,6 +58,8 @@ export const decisionCible = (store, tableau, storeJoueurs) => {
                 if (ennemi.strategie == 'hasard') {cibleDefinitive = cibleAleatoire;}
 
                 ennemi.cible = cibleDefinitive.nom;
+
+                //console.log('tableau : ', tableau);
 
                 return tableau;
 

@@ -2,6 +2,11 @@ import React from 'react';
 
 import './item.css';
 
+import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
+import { lexiqueArmure } from '../../variableGlobal/item/lexiqueArmure';
+import { lexiqueBadge } from '../../variableGlobal/item/badge/lexiqueBadge';
+import { lexiqueConsomable } from '../../variableGlobal/item/lexiqueConsomable';
+
 import { pommeURL, epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
 import kippa from '../../asset/item/armure/kippa.png';
 
@@ -49,6 +54,20 @@ const Item = ({ img, onClick, x, y, quantite, equipe, id }) => {
                 height: '50px',
             };
         }
+    }
+
+    let tableauItem = []
+
+    console.log('img : ', img);
+
+    if (!img) {
+        console.log('issou deja');
+        tableauItem.push(lexiqueArme);
+        tableauItem.push(lexiqueArmure);
+        tableauItem.push(lexiqueBadge);
+        tableauItem.push(lexiqueConsomable);
+
+        console.log('tableauItem : ', tableauItem);
     }
 
     const styleConteneur = {

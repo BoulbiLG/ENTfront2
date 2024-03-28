@@ -26,5 +26,7 @@
 .MiniMap .case {
     height: 20px;
     width: 20px;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 5px;
 }

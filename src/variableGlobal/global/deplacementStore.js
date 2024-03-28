@@ -1,5 +1,7 @@
 import create from 'zustand';
 
+const px = 20;
+
 const deplacementStore = create((set) => ({
 
   zoneX: 0,
@@ -10,6 +12,9 @@ const deplacementStore = create((set) => ({
   tutoVillage: 'non',
 
   fenetreOuverte: [],
+
+  miniMapX: px,
+  miniMapY: px,
 
   ajouter: (champ, valeur) => {
     set((state) => ({

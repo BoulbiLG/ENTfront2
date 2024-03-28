@@ -60,6 +60,7 @@ const Deplacement = () => {
 
         const miniMapX = 16.5;
         const miniMapY = 9.5;
+        const miniMapPx = 20;
       
         await new Promise((resolve) => {
           setTimeout(() => {
@@ -74,7 +75,8 @@ const Deplacement = () => {
                 const autorisation = verificationCase('haut', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.ajouter('zoneY', 1); 
-                    storeMiniMap.ajouter('y', miniMapY);
+                    //storeMiniMap.ajouter('y', miniMapY);
+                    storeDeplacement.retirer('miniMapY', miniMapPx);
                 }
             }
             if (direction === 'descendre') {
@@ -88,21 +90,24 @@ const Deplacement = () => {
                 const autorisation = verificationCase('gauche', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneX', 1); 
-                    storeMiniMap.ajouter('x', miniMapX);
+                    //storeMiniMap.ajouter('x', miniMapX);
+                    storeDeplacement.ajouter('miniMapX', miniMapPx);
                 }
             }
             if (direction === 'bas') {
                 const autorisation = verificationCase('bas', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneY', 1); 
-                    storeMiniMap.retirer('y', miniMapY);
+                    //storeMiniMap.retirer('y', miniMapY);
+                    storeDeplacement.ajouter('miniMapY', miniMapPx);
                 }
             }
             if (direction === 'droite') {
                 const autorisation = verificationCase('droite', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
                 if (autorisation == true) {
                     storeDeplacement.ajouter('zoneX', 1); 
-                    storeMiniMap.retirer('x', miniMapX);
+                    //storeMiniMap.retirer('x', miniMapX);
+                    storeDeplacement.retirer('miniMapX', miniMapPx);
                 }
             }
             resolve();
@@ -151,6 +156,8 @@ const Deplacement = () => {
                 <p>X : {storeDeplacement.zoneX}</p>
                 <p>Y : {storeDeplacement.zoneY}</p>
                 <p>Z : {storeDeplacement.zoneZ}</p>
+                <p>miniMapX : {storeDeplacement.miniMapX}</p>
+                <p>miniMapY : {storeDeplacement.miniMapY}</p>
             </div>
             <div className="mini-map">
                 <MiniMap refreshLocal={refreshLocal}/>

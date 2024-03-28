@@ -10,15 +10,20 @@ import { miniMapDonnee } from './miniMapDonne';
 const MiniMap = ({ refreshLocal }) => {
 
     const { lieux } = deplacementStore();
+    const { miniMapX } = deplacementStore();
+    const { miniMapY } = deplacementStore();
+    const storeDeplacement = deplacementStore();
 
     const storeMiniMap = miniMapStore();
     const [img, imgSet] = useState(onche);
     const [key, setKey] = useState(0);
     const [miniMapCourante, miniMapCouranteSet] = useState(miniMapDonnee[0].onche);
+    const miniMapInverse = [...miniMapCourante].reverse();
+
 
     useEffect(() => {
         miniMapCouranteSet(miniMapDonnee[0].onche)
-    }, [lieux]);
+    }, [lieux, miniMapX, miniMapY]);
 
     useEffect(() => {
         if (storeMiniMap.z === 0) {
@@ -28,6 +33,8 @@ const MiniMap = ({ refreshLocal }) => {
             setKey((prevKey) => prevKey + 1);
         }
     }, [storeMiniMap.z, refreshLocal]);
+
+    const ancrage = -70;
 
     return (
         <div key={key} className="MiniMap fenetre1Classe" style={{ overflow: 'hidden' }}>
@@ -44,16 +51,29 @@ const MiniMap = ({ refreshLocal }) => {
             */}
 
             <div className="caseListe">
-                {miniMapCourante.map(({x, y}) => (
-                    <div className="case" style={{
-                        position: 'absolute',
-                        top: `${y * 50}px`,
-                        left: `${x * 50}px`,
-                    }}></div>
+            {miniMapInverse.map(({x, y}) => (
+                    <>
+                        {x === storeDeplacement.zoneX && y === storeDeplacement.zoneY ? (
+                            <div className="case" style={{
+                                position: 'absolute',
+                                backgroundColor: 'red',
+                                top: `${-((y * 20) + miniMapY) - ancrage}px`,
+                                left: `${((x * 20) + miniMapX) - ancrage}px`,
+                            }}>
+                            </div>
+                        ) :
+                            <div className="case" style={{
+                                position: 'absolute',
+                                top: `${-((y * 20) + miniMapY) - ancrage}px`,
+                                left: `${((x * 20) + miniMapX) - ancrage}px`,
+                            }}>
+                            </div>
+                        }
+                    </>
                 ))}
             </div>
 
-            <div className="joueur"></div>
+            {/*<div className="joueur"></div>*/}
         </div>
     );
 };

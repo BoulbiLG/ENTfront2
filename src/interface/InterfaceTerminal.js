@@ -9,14 +9,17 @@ import Parametre from './parametre/Parametre';
 import FenetreCombat from './combat/FenetreCombat';
 
 import refreshStore from '../variableGlobal/global/refresh';
+import combatStore from '../variableGlobal/global/combatStore';
 
 const InterfaceTerminal = () => {
+
+  const storeCombat = combatStore();
 
   const { refresh } = refreshStore();
 
   useEffect(() => {
     console.log('rafraichissement')
-  }, [refresh]);
+  }, [refresh, storeCombat.combat]);
 
   return (
     <div className='InterfaceTerminale' >

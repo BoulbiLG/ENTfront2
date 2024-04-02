@@ -36,7 +36,7 @@ const ChevalierMauditStore = create((set) => ({
   vieMax: 115,
   vie: 115,
   niveau: 2, 
-  expMax: 20,
+  expMax: 100,
   exp: 0,
   attaque: 10,
   defense: 12,

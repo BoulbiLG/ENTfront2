@@ -5,6 +5,8 @@ import icone from '../../asset/personnage/cleamolette/icone.png';
 
 import { pommeURL } from '../../graphisme/item/item';
 
+import { lexiqueConsomable } from '../item/lexiqueConsomable';
+
 import { lexiqueOffensive } from '../../variableGlobal/item/magie/lexiqueOffensive';
 import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
 import { lexiqueStatAugmente } from '../../variableGlobal/item/magie/lexiqueStatAugmente';
@@ -37,7 +39,7 @@ const CleaMoletteStore = create((set) => ({
   vieMax: 80,
   vie: 80,
   niveau: 1, 
-  expMax: 10,
+  expMax: 100,
   exp: 0,
   attaque: 6,
   defense: 8,
@@ -194,18 +196,21 @@ const CleaMoletteStore = create((set) => ({
 
   itemDropable: [
     {
-      id: 'pomme',
-      img: pommeURL,
+      tauxApparition: 80,
+      id: lexiqueConsomable.pomme.id,
+      img: lexiqueConsomable.pomme.img,
       quantite: {
         min: 1,
         max: 5,
       },
-      action: 5,
-      important: 'non',
-      nom: 'Pomme',
-      description: 'fdp.',
-      valeur: 2,
-      type: 'consomable',
+      action: lexiqueConsomable.pomme.action,
+      important: lexiqueConsomable.pomme.important,
+      nom: lexiqueConsomable.pomme.nom,
+      description: lexiqueConsomable.pomme.description,
+      valeur: lexiqueConsomable.pomme.valeur,
+      type: lexiqueConsomable.pomme.type,
+      poid: lexiqueConsomable.pomme.poid,
+      cible: lexiqueConsomable.pomme.cible,
     }
   ],
 

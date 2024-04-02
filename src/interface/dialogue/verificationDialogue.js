@@ -1,5 +1,5 @@
 
-export const verificationDialogue = async (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[], storeCombat=[], storeMusique=[]) => {
+export const verificationDialogue = async (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[], storeCombat=[], storeMusique=[], etatSet) => {
     
     let repliqueReturn = [];
 
@@ -92,10 +92,14 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
             dialogueAffichageSet(repliqueReturn);
             setTimeout(() => {
                 storeCombat.modifier('combat', 'oui');
+                storeCombat.modifier('lieuPrecedent', 'onche');
                 storeCombat.ajouterNom('Blondin');
-                storeCombat.ajouterNom('CleaMolette');
-                storeCombat.ajouterNom('ChevalierMaudit');
-                storeCombat.modifierTableau('ennemiEnVie', ['Blondin', 'CleaMolette', 'ChevalierMaudit']);
+                //storeCombat.ajouterNom('CleaMolette');
+                //storeCombat.ajouterNom('ChevalierMaudit');
+                //storeCombat.modifierTableau('ennemiEnVie', ['Blondin', 'CleaMolette', 'ChevalierMaudit']);
+                //storeCombat.modifierTableau('ennemiEnVie', ['CleaMolette']);
+                storeCombat.modifierTableau('ennemiEnVie', ['Blondin']);
+                etatSet('fixe');
                 resolve();
             }, 2000);
         });

@@ -9,7 +9,11 @@ import { calculDefenseJoueur } from "./calculDefenseJoueur";
 
 export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, setJoueurUtilisable, joueurUtilisable, storeEquipe, ennemiEnVie, historique, historiqueSet) => {
 
-    let joueurRestant = storeEquipe;
+    let joueurRestant = [{
+        joueurRestant: storeEquipe,
+        joueur: storeEquipe,
+        ennemi: storeCombat.nom,
+    }];
 
     let ligne;
 
@@ -27,8 +31,10 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
     for (const joueur of storeJoueurs) {
         for (const nom of joueurRestant) {
             if (joueur.nom === nom) {
-                if (joueur.vie < 0) {
-                    joueurRestant = joueurRestant.filter(item => item !== joueur.nom);
+                if (joueur.vie < 1) {
+                    console.log(joueur.nom, ', vie : ', joueur.vie);
+                    joueurRestant[0].joueurRestant = joueurRestant[0].joueurRestant.filter(item => item !== joueur.nom);
+                    joueurRestant[0].joueur = joueurRestant[0].joueur.filter(item2 => item2 !== joueur.nom);
                 }
             }
         }
@@ -57,8 +63,6 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
                         }
                     }
 
-                    console.log('attaqueTotal 2 : ', attaqueTotal, ', attaqueCible : ', attaqueCible);
-
                     if (attaque <= 0) {attaque = 1}
 
                     const vie = joueur.vie;
@@ -77,11 +81,13 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
 
                     //console.log('attaqueNet : ', parseInt(attaque), ' pour : ', tableau[0].cible, ' de la part de : ', store.nom);
                     joueur.retirer('vie', parseInt(attaque));
-                    console.log(vie - attaqueCible.attaque, ', ', joueur.nom);
+                    //console.log(vie - attaqueCible.attaque, ', ', joueur.nom);
                     if (vie - attaqueCible.attaque < 1) {
 
-                        joueurRestant = joueurRestant.filter(item => item !== joueur.nom);
-                        console.log(joueurRestant, ', ', vie - attaque, ', ', joueur.nom);
+                        joueurRestant[0].joueurRestant = joueurRestant[0].joueurRestant.filter(item => item !== joueur.nom);
+                        joueurRestant[0].joueur = joueurRestant[0].joueur.filter(item2 => item2 !== joueur.nom);
+
+                        //console.log(joueurRestant, ', ', vie - attaque, ', ', joueur.nom);
             
                         const nouveauTableau = storeEquipe.filter(item => item !== joueur.nom);
                         setJoueurUtilisable(nouveauTableau);
@@ -270,6 +276,14 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             }
         } else {
             //console.log(store.nom, ' est mort, il ne peut pas attaquer');
+        }
+    }
+
+    for (const joueur of storeJoueurs) {
+        if (joueur.vie < 1) {
+            console.log(joueur.nom, ', vie : ', joueur.vie);
+            joueurRestant[0].joueurRestant = joueurRestant[0].joueurRestant.filter(item => item !== joueur.nom);
+            joueurRestant[0].joueur = joueurRestant[0].joueur.filter(item2 => item2 !== joueur.nom);
         }
     }
 

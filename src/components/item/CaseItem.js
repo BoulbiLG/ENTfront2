@@ -57,30 +57,30 @@ const CaseItem = ({ img, id, onClick, x, y, quantite, equipe }) => {
     let tableauItem = []
 
     if (!img) {
-        console.log('issou deja');
+        //console.log('issou deja');
         tableauItem.push(lexiqueArme);
         tableauItem.push(lexiqueArmure);
         tableauItem.push(lexiqueBadge);
         tableauItem.push(lexiqueConsomable);
 
-        console.log('tableauItem : ', tableauItem);
+        //console.log('tableauItem : ', tableauItem);
 
         for (let i = 0; i < tableauItem.length; i++) {
             const element = tableauItem[i];
             for (const key in element) {
                 if (Object.hasOwnProperty.call(element, key)) {
                     const objet = element[key];
-                    console.log('id : ', id, ' = object.id : ', objet.id);
+                    //console.log('id : ', id, ' = object.id : ', objet.id);
                     if (objet.id === id) {
                         img = objet.img;
-                        console.log('objet.img : ', objet.img);
+                        //console.log('objet.img : ', objet.img);
                     }
                 }
             }
         }
     }
 
-    console.log('img : ', img);
+    //console.log('img : ', img);
 
     const styleConteneur = {
         margin: '1vh',

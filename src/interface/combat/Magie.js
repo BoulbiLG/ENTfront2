@@ -15,7 +15,7 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
     const dimension = 60;
 
     ennemiEnVie = storeCombat.ennemiEnVie;
-    console.log('ennemiEnVie magie : ', ennemiEnVie);
+    //console.log('ennemiEnVie magie : ', ennemiEnVie);
 
     const storeEquipe = equipeStore();
 

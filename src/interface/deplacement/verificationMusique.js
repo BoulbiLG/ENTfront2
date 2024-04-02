@@ -4,6 +4,7 @@ import widor from '../../audio/musique/widor.mp3';
 import wagner from '../../audio/musique/2wagner.mp3';
 import auberge from '../../audio/musique/auberge.mp3';
 import lidl from '../../audio/musique/lidl.mp3';
+import espoir from '../../audio/musique/espoir.mp3';
 
 const audioSources = {
   onche: new Audio(test),
@@ -11,6 +12,7 @@ const audioSources = {
   combatNormal: new Audio(wagner),
   auberge: new Audio(auberge),
   lidl: new Audio(lidl),
+  victoireNormal: new Audio(espoir),
 };
 
 let currentAudio = audioSources.onche;

@@ -17,7 +17,7 @@ import '../../css/classe/fenetreDrag.css'
 import '../../css/classe/btn.css';
 import './fenetreDialogue.css';
 
-const FenetreDialogue = ({ storePersonnage }) => {
+const FenetreDialogue = ({ storePersonnage, etatSet }) => {
 
     const [dialogueAffichage, dialogueAffichageSet] = useState(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -173,7 +173,7 @@ const FenetreDialogue = ({ storePersonnage }) => {
                     <button className='btnClasse dialogueJoueur baiser' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'baiser', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Je veux te baiser {personnageStore.nom}, tu vas jouir :cash:</button>
                 ) : null }
                 {personnageStore.nom === 'Blondin' ? (
-                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique);}}>Casse toi de mon chemin sale violeur de poule</button>
+                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique, etatSet);}}>Casse toi de mon chemin sale violeur de poule</button>
                 ) : null }
             </div>
 

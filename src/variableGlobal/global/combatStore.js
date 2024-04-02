@@ -5,6 +5,8 @@ const combatStore = create((set) => ({
   combat: 'non',
   type: '',
   tour: '',
+  etat: '',
+  lieuPrecedent: '',
   nombreEnnemi: 0,
 
   nom: [],

@@ -76,13 +76,6 @@ export const utiliserSortStat = (storeCombat, storeEnnemis, storeJoueurs=[], sor
                     storeEnnemis.retirer('magie', sort.cout);
                     //console.log(stat, ' / par ', joueur.action, ' = ', parseInt(stat / joueur.action));
                     //console.log(storeJoueurs.nom, ' voit sa ', [joueur.stat], ' initiale de : ', stat,  ' reduite a ', parseInt(stat / joueur.action));
-                    historiqueSet([...historique, {
-                        icone: storeEnnemis.imgIcone,
-                        couleurFond: 'rgb(225, 107, 107)',
-                        couleurPolice: 'white',
-                        texte: `${storeEnnemis.nom} utilise le sort ${sort.nom}. ${storeJoueurs.nom} voit sa ${[joueur.stat]}: ${stat} réduite à ${parseInt(stat / joueur.action)}`,
-                        resume: `${storeEnnemis.nom} + ${sort.nom} => ${storeJoueurs.nom} ${[joueur.stat]}: ${stat} >> ${parseInt(stat / joueur.action)}`,
-                    }]);
 
                     const ligne2 = {
                         icone: storeEnnemis.imgIcone,

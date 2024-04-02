@@ -7,6 +7,7 @@ import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import refreshStore from '../../variableGlobal/global/refresh';
 import baseStore from '../../variableGlobal/base/baseStore';
+import combatStore from '../../variableGlobal/global/combatStore';
 
 import Personnage from '../../graphisme/personnage/Personnage';
 import Stockage from '../../graphisme/stockage/Stockage';
@@ -34,6 +35,7 @@ const ArrierePlan = () => {
     const storeCelestin = CelestinStore();
 
     const { refresh } = refreshStore();
+    const storeCombat = combatStore();
 
     const storeBase = baseStore();
     const comportement = storeCelestin.comportement;
@@ -56,6 +58,10 @@ const ArrierePlan = () => {
         analysePositionStockageNetSet(analysePositionStockageBrut);
         analysePositionBaseNetSet(analysePositionBaseBrut);
     }, [position, refresh]);
+
+    useEffect(() => {
+        console.log('rafraichissement')
+    }, [refresh, storeCombat.combat]);
 
     useEffect(() => {
         const animationMarcher = () => {

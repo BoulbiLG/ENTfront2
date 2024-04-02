@@ -27,15 +27,19 @@ const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => 
                 left: x
             }}
         >
-            {etat === 'fixe' ? (
-                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
-            ) : null }
-            {etat === 'dialogue' ? (
-                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
-            ) : null }
-            {etat === 'dialogue' ? (
+            {storePersonnage.vie > 0 ? (
                 <>
-                    <FenetreDialogue storePersonnage={storePersonnage}/>
+                    {etat === 'fixe' ? (
+                        <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
+                    ) : null }
+                    {etat === 'dialogue' ? (
+                        <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
+                    ) : null }
+                    {etat === 'dialogue' ? (
+                        <>
+                            <FenetreDialogue storePersonnage={storePersonnage} etatSet={etatSet}/>
+                        </>
+                    ) : null }
                 </>
             ) : null }
         </div>

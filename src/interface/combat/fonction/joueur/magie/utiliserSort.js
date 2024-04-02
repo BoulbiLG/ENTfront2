@@ -98,7 +98,7 @@ export const utiliserSort = (storeJoueurs, storeCombat, storeEnnemis, sort, hist
                 type: 'augmenteStat',
                 id: sort.id, 
                 consequence: sort.consequence, 
-                cible: storeEnnemis.nom,
+                cible: storeJoueurs.nom,
                 imgIcone: sort.imgIcone,
                 tour: sort.tour,
             };
@@ -135,7 +135,7 @@ export const utiliserSort = (storeJoueurs, storeCombat, storeEnnemis, sort, hist
             const ligne = {
                 type: 'baisseStat',
                 id: sort.id, 
-                cible: storeJoueurs.nom,
+                cible: storeEnnemis.nom,
                 consequence: sort.consequence,
                 lanceur: storeEnnemis.nom,
                 imgIcone: sort.imgIcone,

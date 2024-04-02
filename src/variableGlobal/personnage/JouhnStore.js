@@ -37,7 +37,7 @@ const BenzemonstreStore = create((set) => ({
   vieMax: 100,
   vie: 100,
   niveau: 2, 
-  expMax: 10,
+  expMax: 100,
   exp: 0,
   attaque: 10,
   defense: 10,

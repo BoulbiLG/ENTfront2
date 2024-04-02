@@ -9,7 +9,7 @@ import { calculVitesse } from './fonction/calculVitesse';
 import { attaquer } from './fonction/joueur/attaquer';
 import { attaquerEnnemi } from './fonction/ennemi/attaquerEnnemi';
 import { creationTabStratEnnemi } from './fonction/creationTabStratEnnemi';
-import { verificationMortJoueur } from './fonction/verificationMortJoueur';
+import { verificationMort } from './fonction/verificationMort';
 
 import '../../css/classe/btn.css';
 import './fenetreCombat.css';
@@ -17,6 +17,7 @@ import './fenetreCombatAction.css';
 
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 import combatStore from '../../variableGlobal/global/combatStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
@@ -28,10 +29,12 @@ import Historique from './Historique';
 import Parametre from '../parametre/Parametre';
 import Magie from './Magie';
 import Objet from './Objet';
+import GainItem from './GainItem';
 
 const FenetreCombat = () => {
 
     const storeCombat = combatStore();
+    const storeMusique = musiqueStore();
     const { combat } = combatStore();
     const { type } = combatStore();
     const storeEquipe = equipeStore();
@@ -47,6 +50,7 @@ const FenetreCombat = () => {
     const [tour, tourSet] = useState('joueur');
     const [joueurCourant, joueurCourantSet] = useState([]);
     const [joueurUtilisable, joueurUtilisableSet] = useState(storeEquipe.nom);
+    const [affichageGainItem, affichageGainItemSet] = useState('false');
     
     const [historique, historiqueSet] = useState([]);
     const [historiqueAffichage, historiqueAffichageSet] = useState(FenetreHistoriqueCombatApparition);
@@ -64,8 +68,7 @@ const FenetreCombat = () => {
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
-        //console.log(joueurUtilisable.length);
-        console.log(joueurUtilisable);
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         
@@ -75,8 +78,8 @@ const FenetreCombat = () => {
                 
                 joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
                 
-                //console.log('joueurRestant : ', joueurRestant);
-                joueurUtilisableSet(joueurRestant);
+                joueurUtilisableSet(joueurRestant[0].joueurRestant);
+                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique);
                 
             }, 1000);
         }
@@ -100,10 +103,17 @@ const FenetreCombat = () => {
             // CREATION TABLEAU STRAT ENNEMI
             creationTabStratEnnemi(storeEnnemis, strategieEnnemiSet);
 
-        }
-    }, [storeCombat.combat, combat, type, etape, storeCombat.ennemiEnVie]);
+            // VERIFICATION MORT
 
-    verificationMortJoueur(storeJoueurs);
+        }
+        
+        if (storeCombat.etat === 'gainItem') {
+            affichageGainItemSet('true');
+            console.log('affichageGainItemSet a true');
+        } else {
+            affichageGainItemSet('false');
+        }
+    }, [storeCombat.combat, combat, type, etape, storeCombat.ennemiEnVie, storeCombat.etat]);
     
     return (
         <div className='conteneurCombat'>
@@ -421,6 +431,20 @@ const FenetreCombat = () => {
                     ) : null }
                     {historiqueAffichage === 'false' ? (
                         <button className='btnClasse ouvrirHistorique' onClick={() => {historiqueAffichageSet('true');}}>Ouvrir l'historique</button>
+                    ) : null }
+
+
+                     {/* ========== FENETRE GAIN ITEM ========== */}
+
+
+                    {affichageGainItem === 'true' ? (
+                        <GainItem 
+                            affichageGainItemSet={affichageGainItemSet} 
+                            storeCombat={storeCombat} 
+                            storeEnnemis={storeEnnemis} 
+                            storeJoueurs={storeJoueurs} 
+                            storeInventaire={storeInventaire}
+                        />
                     ) : null }
                 </div>
             ) : null }

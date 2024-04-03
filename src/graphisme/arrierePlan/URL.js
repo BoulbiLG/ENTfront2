@@ -33,6 +33,16 @@ export const arrierePlanURL = [
     {position: 'X-3Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980473-x-3y-4z0.jpg'},
     {position: 'X-4Y-3Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980473-x-4y-3z0.jpg'},
     {position: 'X-4Y-4Z0', url: 'https://image.noelshack.com/fichiers/2024/09/1/1708980530-x-4y-4z0.jpg'},
+    {position: 'X-2Y-5Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712172892-goulag11.png'},             // -5
+    {position: 'X-1Y-5Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712173407-x-1y-5z0.png'},             
+    {position: 'X2Y-5Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712172892-arbrefranck1.jpg'},             
+    {position: 'X1Y-5Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712174123-x1y-5z0.jpg'},             
+    {position: 'X0Y-5Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712174123-x-1y-5z0.png'},
+
+    {position: 'X0Y-6Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712175072-x3y-6z0.jpg'},               // -6  
+    {position: 'X1Y-6Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712175199-x2y-6z0.jpg'},
+    {position: 'X2Y-6Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712175199-x2y-6z0.jpg'},
+    {position: 'X3Y-6Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712175072-x3y-6z0.jpg'},
 
     {position: 'X0Y-4Z999999', url: basique},
     {position: 'X1Y-3Z999999', url: auberge},

@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import FenetreDialogue from '../../interface/dialogue/FenetreDialogue';
+
+import combatStore from '../../variableGlobal/global/combatStore';
 
 import '../../css/classe/clickable.css';
 import './personnage.css';
 
 const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => {
+
+    const storeCombat = combatStore();
     
     const [etat, etatSet] = useState('fixe');
 

@@ -36,6 +36,7 @@ const ArrierePlan = () => {
 
     const { refresh } = refreshStore();
     const storeCombat = combatStore();
+    const { combat } = combatStore();
 
     const storeBase = baseStore();
     const comportement = storeCelestin.comportement;
@@ -61,7 +62,7 @@ const ArrierePlan = () => {
 
     useEffect(() => {
         console.log('rafraichissement')
-    }, [refresh, storeCombat.combat]);
+    }, [refresh, storeCombat.combat, combat]);
 
     useEffect(() => {
         const animationMarcher = () => {

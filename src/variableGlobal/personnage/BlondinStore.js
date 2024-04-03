@@ -8,6 +8,8 @@ import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
 import { lexiqueStatAugmente } from '../../variableGlobal/item/magie/lexiqueStatAugmente';
 import { lexiqueStatBaisse } from '../../variableGlobal/item/magie/lexiqueStatBaisse';
 
+import { lexiqueConsomable } from '../item/lexiqueConsomable';
+
 import { pommeURL } from '../../graphisme/item/item';
 
 const BlondinStore = create((set) => ({
@@ -35,7 +37,7 @@ const BlondinStore = create((set) => ({
 
   vieMax: 115,
   vie: 115,
-  niveau: 1, 
+  niveau: 99, 
   expMax: 100,
   exp: 0,
   attaque: 10,
@@ -202,18 +204,21 @@ const BlondinStore = create((set) => ({
 
   itemDropable: [
     {
-      id: 'pomme',
-      img: pommeURL,
+      tauxApparition: 80,
+      id: lexiqueConsomable.pomme.id,
+      img: lexiqueConsomable.pomme.img,
       quantite: {
         min: 1,
         max: 5,
       },
-      action: 5,
-      important: 'non',
-      nom: 'Pomme',
-      description: 'fdp.',
-      valeur: 2,
-      type: 'consomable',
+      action: lexiqueConsomable.pomme.action,
+      important: lexiqueConsomable.pomme.important,
+      nom: lexiqueConsomable.pomme.nom,
+      description: lexiqueConsomable.pomme.description,
+      valeur: lexiqueConsomable.pomme.valeur,
+      type: lexiqueConsomable.pomme.type,
+      poid: lexiqueConsomable.pomme.poid,
+      cible: lexiqueConsomable.pomme.cible,
     }
   ],
 

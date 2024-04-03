@@ -1,5 +1,5 @@
 
-export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique) => {
+export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement) => {
 
     //console.log('verification mort', joueurRestant, ', length : ', joueurRestant.joueur.length);
     console.log('verification mort ennemi', ennemiEnVie, ', length : ', ennemiEnVie.length);
@@ -11,7 +11,7 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
 
 
             // VALIDER MORT JOUEUR
-    /*
+    
             const ligne = {
                 icone: 'https://jvflux.fr/images/4/45/avatar_chocorat_IA.jpg',
                 couleurFond: 'white',
@@ -21,7 +21,7 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
             }
         
             storeCombat.ajouterTableau('historiqueAction', ligne);
-    */
+    
             console.log(storeCombat.effetTemporaire);
             for (let i = 0; i < storeCombat.effetTemporaire.length; i++) {
                 const effet = storeCombat.effetTemporaire[i];
@@ -48,32 +48,40 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                 }
             }
 
-
-            storeMusique.modifier('courante', 'mort');
+            storeMusique.modifier('courante', storeCombat.lieuPrecedent);
             storeMusique.modifier('lecture', 0);
-            storeCombat.modifier('etat', 'mort')
-        }
 
-        
-        /*
-        const enculerPromise = new Promise((resolve) => {
-            setTimeout(() => {
-                storeCombat.modifier('combat', 'non');
-                storeCombat.modifier('type', '');
-                storeCombat.modifier('tour', '');
-                storeCombat.modifier('nombreEnnemi', 0);
-                storeCombat.modifier('nom', []);
-                storeCombat.modifier('ennemiEnVie', []);
-                storeCombat.modifier('soinTour', []);
-                storeCombat.modifier('historique', []);
-                storeCombat.modifier('effetTemporaire', []);
-                storeCombat.modifier('historiqueAction', []);
-                resolve();
-            }, 2000);
-        });
-        
-        await enculerPromise;
-        */
+            const enculerPromise = new Promise((resolve) => {
+                setTimeout(() => {
+                    storeCombat.modifier('combat', 'non');
+                    storeCombat.modifier('type', '');
+                    storeCombat.modifier('tour', '');
+                    storeCombat.modifier('nombreEnnemi', 0);
+                    storeCombat.modifier('nom', []);
+                    storeCombat.modifier('ennemiEnVie', []);
+                    storeCombat.modifier('soinTour', []);
+                    storeCombat.modifier('historique', []);
+                    storeCombat.modifier('effetTemporaire', []);
+                    storeCombat.modifier('historiqueAction', []);
+                    resolve();
+                }, 5000);
+            });
+            
+            await enculerPromise;
+
+            for (let i = 0; i < storeJoueurs.length; i++) {
+                const store = storeJoueurs[i];
+
+                if (store.nom === 'Celestin') {
+                    if (store.goulagBlondin === '') {
+                        store.modifier('goulagBlondin', 'fini');
+                        storeDeplacement.modifier('zoneX', 0);
+                        storeDeplacement.modifier('zoneY', 0);
+                        storeDeplacement.modifier('zoneZ', 666);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -109,7 +117,7 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
         console.log('Tous les ennemis sont morts');
         storeMusique.modifier('courante', 'victoireNormal');
         storeMusique.modifier('lecture', 0);
-        storeCombat.modifier('etat', 'gainItem')
+        storeCombat.modifier('etat', 'gainItem');
     }
 
 }

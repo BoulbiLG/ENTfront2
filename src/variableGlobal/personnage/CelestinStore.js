@@ -44,6 +44,8 @@ const CelestinStore = create((set) => ({
   amoureuse: [],
   codeReduction: 'utilisable',
   kippaMillion: 'utilisable',
+  goulagBlondin: '',
+  attaquerBlondin: '',
 
   // HUMEUR
 

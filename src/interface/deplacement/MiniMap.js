@@ -53,7 +53,7 @@ const MiniMap = ({ refreshLocal }) => {
             <div className="caseListe">
             {miniMapInverse.map(({x, y, z}) => (
                     <>
-                        {x === storeDeplacement.zoneX && y === storeDeplacement.zoneY && z === storeDeplacement.zoneZ ? (
+                        {x === storeDeplacement.zoneX && y === storeDeplacement.zoneY ? (
                             <div className="case" style={{
                                 position: 'absolute',
                                 backgroundColor: 'red',

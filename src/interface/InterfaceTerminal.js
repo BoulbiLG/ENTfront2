@@ -16,10 +16,11 @@ const InterfaceTerminal = () => {
   const storeCombat = combatStore();
 
   const { refresh } = refreshStore();
+  const { combat } = combatStore();
 
   useEffect(() => {
     console.log('rafraichissement')
-  }, [refresh, storeCombat.combat]);
+  }, [refresh, storeCombat.combat, combat]);
 
   return (
     <div className='InterfaceTerminale' >

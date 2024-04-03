@@ -16,6 +16,7 @@ import './fenetreCombat.css';
 import './fenetreCombatAction.css';
 
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import combatStore from '../../variableGlobal/global/combatStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
@@ -35,6 +36,7 @@ const FenetreCombat = () => {
 
     const storeCombat = combatStore();
     const storeMusique = musiqueStore();
+    const storeDeplacement = deplacementStore();
     const { combat } = combatStore();
     const { type } = combatStore();
     const storeEquipe = equipeStore();
@@ -68,7 +70,7 @@ const FenetreCombat = () => {
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
-        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique);
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         
@@ -79,7 +81,7 @@ const FenetreCombat = () => {
                 joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
                 
                 joueurUtilisableSet(joueurRestant[0].joueurRestant);
-                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique);
+                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement);
                 
             }, 1000);
         }

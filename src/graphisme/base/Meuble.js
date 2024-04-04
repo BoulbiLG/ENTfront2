@@ -85,7 +85,11 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
                                         </>
                                     ) : null }
                                     {type === 'drapeau' ? (
-                                        <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); detruireBase(idBase, storeBase);}}>Détruire cette base</button>
+                                        <>
+                                            {idBase !== 1 ? (
+                                                <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); detruireBase(idBase, storeBase);}}>Détruire cette base</button>
+                                            ) : null }
+                                        </>
                                     ) :
                                         <>
                                             <button className='btnClasse' onClick={() => {affichageFenetreSet('false'); fenetreUtiliserSet('true')}}>Utiliser</button>

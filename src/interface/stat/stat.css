@@ -41,7 +41,7 @@
 .FenetreStat .milieu .centre .image img {
     height: auto;
     border-radius: 1vh;
-    border: 5px dotted rgb(2, 2, 2);
+    /*border: 5px dotted rgb(2, 2, 2);*/
     background-color: aliceblue;
 }
 

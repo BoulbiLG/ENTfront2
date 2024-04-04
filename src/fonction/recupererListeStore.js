@@ -4,6 +4,7 @@ import BenzemonstreStore from '../variableGlobal/personnage/JouhnStore';
 import ChevalierMauditStore from '../variableGlobal/personnage/ChevalierMaudit';
 import CleaMoletteStore from '../variableGlobal/personnage/CleaMoletteStore';
 import BlondinStore from '../variableGlobal/personnage/BlondinStore';
+import SneakyStore from '../variableGlobal/personnage/SneakyStore';
 
 import equipeStore from '../variableGlobal/personnage/equipeStore';
 
@@ -14,6 +15,7 @@ export const recupererListeStore = () => {
     const chevalier = ChevalierMauditStore();
     const cleamolette = CleaMoletteStore();
     const blondin = BlondinStore();
+    const sneaky = SneakyStore();
 
     const storeEquipe = equipeStore();
 
@@ -26,6 +28,7 @@ export const recupererListeStore = () => {
         if (store === 'ChevalierMaudit') {listeStore.push(chevalier);}
         if (store === 'CleaMolette') {listeStore.push(cleamolette);}
         if (store === 'Blondin') {listeStore.push(blondin);}
+        if (sneaky === 'Sneaky') {listeStore.push(sneaky);}
     }
 
     return listeStore;

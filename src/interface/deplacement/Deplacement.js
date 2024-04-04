@@ -156,8 +156,6 @@ const Deplacement = () => {
                 <p>X : {storeDeplacement.zoneX}</p>
                 <p>Y : {storeDeplacement.zoneY}</p>
                 <p>Z : {storeDeplacement.zoneZ}</p>
-                <p>miniMapX : {storeDeplacement.miniMapX}</p>
-                <p>miniMapY : {storeDeplacement.miniMapY}</p>
             </div>
             <div className="mini-map">
                 <MiniMap refreshLocal={refreshLocal}/>

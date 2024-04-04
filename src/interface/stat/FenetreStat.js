@@ -181,7 +181,9 @@ const FenetreStat = ({ indexFenetre }) => {
                 <div className="centre">
                     <div className="centreHaut">
                         <div className="image">
-                            <img src={statJoueur.imgTete} alt={statJoueur.imgTete} />
+                            <img src={statJoueur.imgTete} alt={statJoueur.imgTete} style={{
+                                maxHeight: '30vh'
+                            }}/>
                             <div className="status">
                                 <p>Status : {statJoueur.status}</p>
                             </div>

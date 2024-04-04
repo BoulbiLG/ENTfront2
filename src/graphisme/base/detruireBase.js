@@ -1,6 +1,8 @@
 
 export const detruireBase = (idBase, storeBase) => {
 
-    storeBase.supprimerBase(idBase);
+    if (idBase !== 1) {
+        storeBase.supprimerBase(idBase);
+    }
 
 }

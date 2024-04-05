@@ -1,49 +1,48 @@
 import create from 'zustand';
-import normal from '../../asset/personnage/chevalierMaudit/normal.png';
-import tete from '../../asset/personnage/chevalierMaudit/tete.png';
-import icone from '../../asset/personnage/chevalierMaudit/icone.png';
+import normal from '../../asset/personnage/volutes/normal.png';
+import icone from '../../asset/personnage/volutes/icone.png';
 
-import { lexiqueOffensive } from '../../variableGlobal/item/magie/lexiqueOffensive';
-import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
-import { lexiqueStatAugmente } from '../../variableGlobal/item/magie/lexiqueStatAugmente';
-import { lexiqueStatBaisse } from '../../variableGlobal/item/magie/lexiqueStatBaisse';
+import { lexiqueOffensive } from '../item/magie/lexiqueOffensive';
+import { lexiqueSoin } from '../item/magie/lexiqueSoin';
+import { lexiqueStatAugmente } from '../item/magie/lexiqueStatAugmente';
+import { lexiqueStatBaisse } from '../item/magie/lexiqueStatBaisse';
 
-import { pommeURL } from '../../graphisme/item/item';
+import { lexiqueConsomable } from '../item/lexiqueConsomable';
 
-const ChevalierMauditStore = create((set) => ({
-  zoneXBase: 6,
+const ZosteraeStore = create((set) => ({
+  zoneXBase: 4,
   zoneYBase: -6,
   zoneZBase: 999999,
-  zoneX: 6,
+  zoneX: 4,
   zoneY: -6,
   zoneZ: 999999,
-  x: 200,
+  x: 500,
   y: 200,
   
-  nom: 'ChevalierMaudit',
+  nom: 'Zosterae',
   etat: 'PNJ',
   soumis: 'non',
   status: 'normal',
-  classe: 'Journaliste',
+  classe: "Modo / Ecrivain approuvé par Thais d'Escufion",
   sexe: 'h',
 
   imgNormal: normal,
-  imgTete: tete,
+  imgTete: icone,
   imgIcone: icone,
 
   // STAT
 
-  vieMax: 115,
-  vie: 115,
-  niveau: 2, 
-  expMax: 100,
+  vieMax: 105,
+  vie: 105,
+  niveau: 3, 
+  expMax: 160,
   exp: 0,
-  attaque: 10,
-  defense: 12,
+  attaque: 6,
+  defense: 5,
   vitesse: 6,
-  courage: 4,             // augmente le taux de coup critique, min = 5
-  magieMax: 100,
-  magie: 100,
+  courage: 5,             // augmente le taux de coup critique, min = 5
+  magieMax: 70,
+  magie: 70,
   testo: 0,
   bodycount: 0,
 
@@ -62,21 +61,17 @@ const ChevalierMauditStore = create((set) => ({
 
     dialogueNormal: {
       r1: {
-        texte: "Je suis entrain d'écrire un nouvel article de la gazette onchoise",
-        sticker: 'https://image.noelshack.com/fichiers/2020/17/3/1587583571-torchon.png',
+        texte: "Mon livre a été un best Seller.",
+        sticker: 'https://image.noelshack.com/fichiers/2020/07/2/1581412327-une-societe-c-est-comme-une-montgolfiere.png',
         index: 1},
       r2: {
-        texte: 'il ne tardera pas à sortir',
-        sticker: 'https://image.noelshack.com/fichiers/2020/37/2/1599581994-1599581859-d2f85d2f-8787-4ab7-80eb-f71e150a442e.jpeg',
-        index: 2},
-      r3: {
-        texte: `je pense appeler cet article "Sujet hebdomadaire pour stimuler l'activité".`,
-        sticker: 'https://image.noelshack.com/fichiers/2022/02/1/1641830215-chevalierpret.png',
+        texte: "Ma renomé est désormais inébranlable.",
+        sticker: 'https://image.noelshack.com/fichiers/2017/22/1496580718-jesusperplexechauve.png',
         index: 2},
     },
 
-    dialogueDesir: "J'aime beaucoup les armures.",
-    desir: ['casque', 'epauliere', 'jambiere', 'plastron', 'nike'],
+    dialogueDesir: "J'aime beaucoup les.",
+    desir: ['caca'],
     questionPose: [],
 
     replique: {
@@ -145,6 +140,7 @@ const ChevalierMauditStore = create((set) => ({
         tour: lexiqueStatAugmente.nofap.tour,
         action: lexiqueStatAugmente.nofap.action, 
         niveau: lexiqueStatAugmente.nofap.niveau, 
+        consequence: lexiqueStatAugmente.nofap.consequence, 
         cout: lexiqueStatAugmente.nofap.cout
       },
 
@@ -195,28 +191,31 @@ const ChevalierMauditStore = create((set) => ({
 
   },
 
+  // BADGE
+
+  badge: [],
+
   itemDropable: [
     {
-      id: 'pomme',
-      img: pommeURL,
+      tauxApparition: 80,
+      id: lexiqueConsomable.pomme.id,
+      img: lexiqueConsomable.pomme.img,
       quantite: {
         min: 1,
         max: 5,
       },
-      action: 5,
-      important: 'non',
-      nom: 'Pomme',
-      description: 'fdp.',
-      valeur: 2,
-      type: 'consomable',
+      action: lexiqueConsomable.pomme.action,
+      important: lexiqueConsomable.pomme.important,
+      nom: lexiqueConsomable.pomme.nom,
+      description: lexiqueConsomable.pomme.description,
+      valeur: lexiqueConsomable.pomme.valeur,
+      type: lexiqueConsomable.pomme.type,
+      poid: lexiqueConsomable.pomme.poid,
+      cible: lexiqueConsomable.pomme.cible,
     }
   ],
 
   comportement: '',
-
-  // BADGE
-
-  badge: [],
 
 
 
@@ -281,4 +280,4 @@ const ChevalierMauditStore = create((set) => ({
   },
 }));
 
-export default ChevalierMauditStore;
+export default ZosteraeStore;

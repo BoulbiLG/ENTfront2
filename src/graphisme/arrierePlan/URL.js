@@ -18,8 +18,8 @@ export const arrierePlanURL = [
     {position: 'X0Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708723205-x0y-1z0.jpg'},
     {position: 'X-1Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708861649-x-1y-1z0.jpg'},
     {position: 'X1Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708861649-x1y-1z0.jpg'},
-    {position: 'X0Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864553-x0y-2z0.jpg'},
-    {position: 'X1Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864624-x1y-2z0.png'},
+    {position: 'X0Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864553-x0y-2z0.jpg'},        // -2
+    {position: 'X1Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/14/5/1712326553-x1y-2z0.png'},
     {position: 'X-1Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864625-x-1y-2z0.jpg'},
     {position: 'X2Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864626-x2y-2z0.png'},
     {position: 'X-2Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864624-x-2y-2z0.jpg'},
@@ -54,6 +54,7 @@ export const arrierePlanURL = [
     {position: 'X3Y-5Z999999', url: basique},
     {position: 'X4Y-6Z999999', url: basique},
     {position: 'X5Y-6Z999999', url: basique},
+    {position: 'X9Y-2Z999999', url: basique},
     {position: 'X1Y-3Z999999', url: auberge},
     {position: 'X8Y-3Z999999', url: auberge2},
     {position: 'X6Y-6Z999999', url: gazette},

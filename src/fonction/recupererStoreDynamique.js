@@ -8,6 +8,7 @@ import SneakyStore from '../variableGlobal/personnage/SneakyStore';
 import FranckDuboscStore from '../variableGlobal/personnage/FranckDuboscStore';
 import LeobenStore from '../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../variableGlobal/personnage/VolutesStore';
+import ZosteraeStore from '../variableGlobal/personnage/ZosteraeStore';
 
 export const recupererStoreDynamique = (equipierCourant) => {
 
@@ -21,6 +22,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
     const franck = FranckDuboscStore();
     const leoben = LeobenStore();
     const volutes = VolutesStore();
+    const zosterae = ZosteraeStore();
 
     var storeJoueur;
 
@@ -35,6 +37,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
         case 'FranckDubosc':storeJoueur = franck; break;
         case 'Leoben':storeJoueur = leoben; break;
         case 'Volutes':storeJoueur = volutes; break;
+        case 'Zosterae':storeJoueur = zosterae; break;
         default: console.log('rien');
     }
 

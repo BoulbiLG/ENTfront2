@@ -8,6 +8,7 @@ import SneakyStore from '../../variableGlobal/personnage/SneakyStore';
 import FranckDuboscStore from '../../variableGlobal/personnage/FranckDuboscStore';
 import LeobenStore from '../../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../../variableGlobal/personnage/VolutesStore';
+import ZosteraeStore from '../../variableGlobal/personnage/ZosteraeStore';
 
 import combatStore from '../../variableGlobal/global/combatStore';
 
@@ -22,6 +23,7 @@ export const recupererListeStoreCombat = () => {
     const franck = FranckDuboscStore();
     const leoben = LeobenStore();
     const volutes = VolutesStore();
+    const zosterae = ZosteraeStore();
 
     const storeCombat = combatStore();
 
@@ -38,6 +40,7 @@ export const recupererListeStoreCombat = () => {
         if (store === 'FranckDubosc') {listeStore.push(franck);}
         if (store === 'Leoben') {listeStore.push(leoben);}
         if (store === 'Volutes') {listeStore.push(volutes);}
+        if (store === 'Zosterae') {listeStore.push(zosterae);}
     }
 
     return listeStore;

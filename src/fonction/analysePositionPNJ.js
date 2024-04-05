@@ -4,6 +4,9 @@ import ChevalierMauditStore from "../variableGlobal/personnage/ChevalierMaudit";
 import CleaMoletteStore from "../variableGlobal/personnage/CleaMoletteStore";
 import BlondinStore from "../variableGlobal/personnage/BlondinStore";
 import SneakyStore from "../variableGlobal/personnage/SneakyStore";
+import FranckDuboscStore from "../variableGlobal/personnage/FranckDuboscStore";
+import LeobenStore from "../variableGlobal/personnage/LeobenStore";
+import VolutesStore from "../variableGlobal/personnage/VolutesStore";
 
 export const analysePositionPNJ = (x, y, z) => {
 
@@ -13,6 +16,9 @@ export const analysePositionPNJ = (x, y, z) => {
     const Clea = CleaMoletteStore();
     const blondin = BlondinStore();
     const sneaky = SneakyStore();
+    const franck = FranckDuboscStore();
+    const leoben = LeobenStore();
+    const volutes = VolutesStore();
 
     const listePNJ = [];
 
@@ -22,6 +28,9 @@ export const analysePositionPNJ = (x, y, z) => {
     if (x === Clea.zoneX && y === Clea.zoneY && z === Clea.zoneZ){listePNJ.push({x: Clea.x, y: Clea.y, store: Clea});}
     if (x === blondin.zoneX && y === blondin.zoneY && z === blondin.zoneZ){listePNJ.push({x: blondin.x, y: blondin.y, store: blondin});}
     if (x === sneaky.zoneX && y === sneaky.zoneY && z === sneaky.zoneZ){listePNJ.push({x: sneaky.x, y: sneaky.y, store: sneaky});}
+    if (x === franck.zoneX && y === franck.zoneY && z === franck.zoneZ){listePNJ.push({x: franck.x, y: franck.y, store: franck});}
+    if (x === leoben.zoneX && y === leoben.zoneY && z === leoben.zoneZ){listePNJ.push({x: leoben.x, y: leoben.y, store: leoben});}
+    if (x === volutes.zoneX && y === volutes.zoneY && z === volutes.zoneZ){listePNJ.push({x: volutes.x, y: volutes.y, store: volutes});}
 
     return listePNJ;
 

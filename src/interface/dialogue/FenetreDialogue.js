@@ -110,7 +110,12 @@ const FenetreDialogue = ({ storePersonnage, etatSet }) => {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         >
-        <p>{storePersonnage.nom} :</p>
+        <div className="ligneInfo" style={{
+            display: 'flex', justifyContent: 'space-between',
+        }}>
+            <p>{storePersonnage.nom}</p>
+            <p>{storePersonnage.classe}</p>
+        </div>
         <div className="dialogue">
             <div className="texte">
                 {dialogueAffichage === null ? (

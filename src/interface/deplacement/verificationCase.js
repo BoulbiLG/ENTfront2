@@ -25,6 +25,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
         if (x == 1 && y == -6 && z == 0) {storeDeplacement.modifier('zoneX', 6); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Gazette d'Onche"); autorisation = false;} //  x: 6
         if (x == -4 && y == -3 && z == 0) {storeDeplacement.modifier('zoneX', 7); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Mairie d'Onche"); autorisation = false;} //  x: 7
         if (x == 1 && y == -2 && z == 0) {storeDeplacement.modifier('zoneX', 9); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Maison de Celestin"); autorisation = false;} //  x: 9
+        if (x == -2 && y == -4 && z == 0) {storeDeplacement.modifier('zoneX', 10); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Maison de Blondin le garde"); autorisation = false;} //  x: 10
         
         // z 666
 
@@ -50,6 +51,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
         if (x == 6 && y == -6 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', 1); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour gazette
         if (x == 7 && y == -3 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -4); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour mairie
         if (x == 9 && y == -2 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', 1); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour celestin
+        if (x == 10 && y == -4 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -2); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour blondin
         
         // z 666
 

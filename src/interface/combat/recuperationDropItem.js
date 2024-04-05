@@ -1,19 +1,20 @@
 
 
-export const recuperationDropItem = (action, 
-cible, 
-important, 
-id, 
-nom,
-img, 
-description, 
-valeur, 
-type,
-storeInventaire,
-poid,
-listeItem,
-avertissementSet,
-listeItemNetSet,
+export const recuperationDropItem = (
+    action, 
+    cible, 
+    important, 
+    id, 
+    nom,
+    img,
+    description, 
+    valeur, 
+    type,
+    storeInventaire,
+    poid,
+    listeItem,
+    avertissementSet=[],
+    listeItemNetSet=[],
 ) => {
 
     // suppression coffre

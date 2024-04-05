@@ -1,5 +1,8 @@
 
-export const verificationDialogue = async (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[], storeCombat=[], storeMusique=[], etatSet) => {
+import { lexiqueArme } from "../../variableGlobal/item/lexiqueArme";
+import { recuperationDropItem } from "../combat/recuperationDropItem";
+
+export const verificationDialogue = async (nom, id, type, consequence, dialogueAffichageSet, storePersonnage, equipeStore, storeRefresh, contexte='', storeCelestin=[], storeCombat=[], storeMusique=[], etatSet, storeInventaire=[]) => {
     
     let repliqueReturn = [];
 
@@ -106,6 +109,50 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
     
         await enculerPromise;
     }
+
+
+    // pied biche
+
+
+    if (type === 'piedBiche') {
+        if (storePersonnage.confiance >= -20) {
+
+            if (storeCelestin.piedBiche == 'utilisable') {
+                storeCelestin.modifier('piedBiche', 'fini');
+                
+                // ajout inventaire
+                const ligneAajouter = storeInventaire.inventaire.find((element) => element.id === lexiqueArme.piedBiche.id);
+                
+                if (ligneAajouter) {
+                    storeInventaire.ajouterQuantiteItem(lexiqueArme.piedBiche.id, 'quantite', 1);
+                    storeInventaire.ajouter('poid', lexiqueArme.piedBiche.poid);
+                } else {
+                    const ligne = { 
+                        equipe: 0, 
+                        action: lexiqueArme.piedBiche.action, 
+                        cible: lexiqueArme.piedBiche.cible, 
+                        important: lexiqueArme.piedBiche.important, 
+                        id: lexiqueArme.piedBiche.id, 
+                        nom: lexiqueArme.piedBiche.nom, 
+                        quantite: 1, 
+                        img: lexiqueArme.piedBiche.img, 
+                        description: lexiqueArme.piedBiche.description, 
+                        valeur: lexiqueArme.piedBiche.valeur, 
+                        type: lexiqueArme.piedBiche.type, 
+                        poid: lexiqueArme.piedBiche.poid
+                    };
+                    storeInventaire.ajouterLigneInventaire(ligne);
+                    storeInventaire.ajouter('poid', lexiqueArme.piedBiche.poid);
+                }
+                repliqueReturn.push({texte: 'Ok tiens un pied de biche', sticker: 'https://image.noelshack.com/fichiers/2017/16/1492469299-ok.png'});
+            } else {
+                repliqueReturn.push({texte: 'Tu en as déjà eu un, faut pas tirer sur la corde hein...', sticker: 'https://image.noelshack.com/fichiers/2016/30/1469541952-risitas182.png'});
+            }
+        } else {
+            repliqueReturn.push({texte: "Non j'ai pas assez confiance en toi", sticker: 'https://image.noelshack.com/fichiers/2016/52/1482789608-risitas-blase-perplexe-main.png'});
+        }
+    }
+
 
     if (contexte !== 'stat') {
         dialogueAffichageSet(repliqueReturn);

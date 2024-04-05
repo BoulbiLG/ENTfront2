@@ -9,6 +9,7 @@ import refreshStore from '../../variableGlobal/global/refresh';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import combatStore from '../../variableGlobal/global/combatStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 
 import FenetreDon from './FenetreDon';
 import Jauge from '../../components/jauge/Jauge';
@@ -34,6 +35,7 @@ const FenetreDialogue = ({ storePersonnage, etatSet }) => {
     const storeCelestin = CelestinStore();
     const storeCombat = combatStore();
     const storeMusique = musiqueStore();
+    const storeInventaire = inventaireStore();
 
     //
 
@@ -177,9 +179,8 @@ const FenetreDialogue = ({ storePersonnage, etatSet }) => {
                 {personnageStore.sexe === 'f' ? (
                     <button className='btnClasse dialogueJoueur baiser' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'baiser', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin);}}>Je veux te baiser {personnageStore.nom}, tu vas jouir :cash:</button>
                 ) : null }
-                {personnageStore.nom === 'Blondin' ? (
-                    <button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique, etatSet);}}>Casse toi de mon chemin sale violeur de poule</button>
-                ) : null }
+                {personnageStore.nom === 'Blondin' ? (<button className='btnClasse dialogueJoueur blondin' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'blondin', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique, etatSet);}}>Casse toi de mon chemin sale violeur de poule</button>) : null }
+                {personnageStore.nom === 'Leoben' ? (<button className='btnClasse dialogueJoueur piedBiche' onClick={() => {verificationDialogue(personnageStore.nom, 99999, 'piedBiche', {}, dialogueAffichageSet, personnageStore, storeEquipe, storeRefresh, '', storeCelestin, storeCombat, storeMusique, etatSet, storeInventaire);}}>Je peux avoir un pied de biche ?</button>) : null }
             </div>
 
             {affichageFenetreDon == 'true' ? (

@@ -7,6 +7,7 @@ import arbreFranck2 from '../../asset/plan/onche/arbreFranck2.png';
 import gazette from '../../asset/plan/onche/gazette.png';
 import mairie from '../../asset/plan/onche/mairie.png';
 import auberge2 from '../../asset/plan/onche/auberge2.png';
+import toilette from '../../asset/plan/onche/toilette.png';
 
 export const arrierePlanURL = [
 
@@ -15,7 +16,8 @@ export const arrierePlanURL = [
     {position: 'X0Y0Z1', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708721917-entree.jpg'},
 
     {position: 'X0Y0Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708721917-entree.jpg'},
-    {position: 'X0Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708723205-x0y-1z0.jpg'},
+    {position: 'X0Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708723205-x0y-1z0.jpg'},            // -1
+    {position: 'X1Y-1Z-1', url: 'https://image.noelshack.com/fichiers/2024/14/6/1712414923-x1y-1z-1.png'},
     {position: 'X-1Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708861649-x-1y-1z0.jpg'},
     {position: 'X1Y-1Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708861649-x1y-1z0.jpg'},
     {position: 'X0Y-2Z0', url: 'https://image.noelshack.com/fichiers/2024/08/7/1708864553-x0y-2z0.jpg'},        // -2
@@ -56,6 +58,7 @@ export const arrierePlanURL = [
     {position: 'X5Y-6Z999999', url: basique},
     {position: 'X9Y-2Z999999', url: basique},
     {position: 'X10Y-4Z999999', url: basique},
+    {position: 'X11Y-1Z999999', url: toilette},
     {position: 'X1Y-3Z999999', url: auberge},
     {position: 'X8Y-3Z999999', url: auberge2},
     {position: 'X6Y-6Z999999', url: gazette},

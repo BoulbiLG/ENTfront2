@@ -184,7 +184,7 @@ const FenetreDialogue = ({ storePersonnage, etatSet }) => {
             </div>
 
             {affichageFenetreDon == 'true' ? (
-                <FenetreDon personnageStore={personnageStore} />
+                <FenetreDon personnageStore={personnageStore} dialogueAffichageSet={dialogueAffichageSet} />
             ) : null }
             {affichageFenetreDon == 'true' ? (
                 <>

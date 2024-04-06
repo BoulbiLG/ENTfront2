@@ -1,6 +1,23 @@
-export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet, storeMusique) => {
+
+import { lexiqueArme } from "../../variableGlobal/item/lexiqueArme";
+
+export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet, storeMusique, piedBiche, storeInventaire) => {
 
     let autorisation = true;
+
+    if (piedBiche === 'oui') {
+        const ligneASupprimer = storeInventaire.inventaire.find((element) => element.id === 'piedBiche');
+      
+        if (ligneASupprimer) {
+            if (ligneASupprimer.quantite > 1) {
+                storeInventaire.retireQuantiteItem('piedBiche', 'quantite', 1);
+                storeInventaire.retirer('poid', lexiqueArme.piedBiche.poid);
+            } else {
+                storeInventaire.retirerLigneInventaire('piedBiche');
+                storeInventaire.retirer('poid', lexiqueArme.piedBiche.poid);
+            }
+        }
+    }
 
     const mettreMusique = (nom) => {
         storeMusique.modifier('courante', nom);
@@ -26,6 +43,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
         if (x == -4 && y == -3 && z == 0) {storeDeplacement.modifier('zoneX', 7); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Mairie d'Onche"); autorisation = false;} //  x: 7
         if (x == 1 && y == -2 && z == 0) {storeDeplacement.modifier('zoneX', 9); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Maison de Celestin"); autorisation = false;} //  x: 9
         if (x == -2 && y == -4 && z == 0) {storeDeplacement.modifier('zoneX', 10); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Maison de Blondin le garde"); autorisation = false;} //  x: 10
+        if (x == -1 && y == -1 && z == 0) {storeDeplacement.modifier('zoneX', 11); storeDeplacement.modifier('zoneZ', 999999); lieuxSet("Toilette publique / Antre de PuerAnus"); autorisation = false;} //  x: 11
         
         // z 666
 
@@ -52,6 +70,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
         if (x == 7 && y == -3 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -4); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour mairie
         if (x == 9 && y == -2 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', 1); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour celestin
         if (x == 10 && y == -4 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -2); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour blondin
+        if (x == 11 && y == -1 && z == 999999) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -1); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour chiotte
         
         // z 666
 

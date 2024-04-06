@@ -77,9 +77,13 @@ const FranckDuboscStore = create((set) => ({
         sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png',
         index: 4},
       r5: {
-        texte: `A coté, la décadence des soirées techno du samedi soir c'est gentil..`,
+        texte: `A coté, la décadence des soirées techno du samedi soir c'est gentil...`,
         sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png',
         index: 5},
+      r6: {
+        texte: `Ah, et sinon si tu as des bon caca a me donner n'hésite pas !`,
+        sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png',
+        index: 6},
     },
 
     dialogueDesir: "J'aime beaucoup les caca bien chaud.",

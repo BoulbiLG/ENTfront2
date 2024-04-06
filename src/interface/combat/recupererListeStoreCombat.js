@@ -9,6 +9,7 @@ import FranckDuboscStore from '../../variableGlobal/personnage/FranckDuboscStore
 import LeobenStore from '../../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../../variableGlobal/personnage/VolutesStore';
 import ZosteraeStore from '../../variableGlobal/personnage/ZosteraeStore';
+import MothStore from '../../variableGlobal/personnage/MothStore';
 
 import combatStore from '../../variableGlobal/global/combatStore';
 
@@ -24,6 +25,7 @@ export const recupererListeStoreCombat = () => {
     const leoben = LeobenStore();
     const volutes = VolutesStore();
     const zosterae = ZosteraeStore();
+    const moth = MothStore();
 
     const storeCombat = combatStore();
 
@@ -41,6 +43,7 @@ export const recupererListeStoreCombat = () => {
         if (store === 'Leoben') {listeStore.push(leoben);}
         if (store === 'Volutes') {listeStore.push(volutes);}
         if (store === 'Zosterae') {listeStore.push(zosterae);}
+        if (store === 'Moth') {listeStore.push(moth);}
     }
 
     return listeStore;

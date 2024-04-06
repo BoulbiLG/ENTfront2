@@ -9,6 +9,7 @@ import FranckDuboscStore from '../variableGlobal/personnage/FranckDuboscStore';
 import LeobenStore from '../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../variableGlobal/personnage/VolutesStore';
 import ZosteraeStore from '../variableGlobal/personnage/ZosteraeStore';
+import MothStore from '../variableGlobal/personnage/MothStore';
 
 export const recupererStoreDynamique = (equipierCourant) => {
 
@@ -23,6 +24,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
     const leoben = LeobenStore();
     const volutes = VolutesStore();
     const zosterae = ZosteraeStore();
+    const moth = MothStore();
 
     var storeJoueur;
 
@@ -38,6 +40,7 @@ export const recupererStoreDynamique = (equipierCourant) => {
         case 'Leoben':storeJoueur = leoben; break;
         case 'Volutes':storeJoueur = volutes; break;
         case 'Zosterae':storeJoueur = zosterae; break;
+        case 'Moth':storeJoueur = moth; break;
         default: console.log('rien');
     }
 

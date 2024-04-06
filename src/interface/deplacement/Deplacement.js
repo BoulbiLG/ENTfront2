@@ -8,9 +8,11 @@ import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import miniMapStore from '../../variableGlobal/global/miniMap';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 
 import { verificationMusique } from './verificationMusique';
 import { verificationCase } from './verificationCase';
+import { verificationPiedBiche } from './verificationPiedBiche';
 
 import MiniMap from './MiniMap';
 import Lieux from './Lieux';
@@ -28,7 +30,10 @@ const Deplacement = () => {
     const storeCelestin = CelestinStore();
     const storeMiniMap = miniMapStore();
     const storeMusique = musiqueStore();
+    const storeInventaire = inventaireStore();
     const { volumeMusique } = parametreStore();
+
+    const conclusion = verificationPiedBiche(storeInventaire, storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;
     
@@ -54,7 +59,7 @@ const Deplacement = () => {
 
 
 
-    const marcher = async (direction) => {
+    const marcher = async (direction, conclusion={}) => {
         setMouvementChoix([]);
         storeCelestin.modifier('comportement', 'marcher');
 
@@ -80,7 +85,7 @@ const Deplacement = () => {
                 }
             }
             if (direction === 'descendre') {
-                const autorisation = verificationCase('descendre', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique);
+                const autorisation = verificationCase('descendre', storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeDeplacement, lieuxSet, storeMusique, conclusion.piedBiche, storeInventaire);
                 if (autorisation == true) {
                     storeDeplacement.retirer('zoneZ', 1); 
                     storeMiniMap.retirer('z', 1);
@@ -132,9 +137,15 @@ const Deplacement = () => {
                         <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
                     ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
 
-                    {mouvementChoix.includes('descendre') ? (
-                        <button className='activer' onClick={() => {marcher('descendre')}}>Descendre</button>
-                    ) : (<button className='desactiver'>Descendre</button>)}
+                    {conclusion.egout === 'oui' && conclusion.piedBiche === 'oui' ? (
+                        <button className='activer' onClick={() => {marcher('descendre', conclusion)}}>Descendre</button>
+                    ) :
+                        <>
+                            {mouvementChoix.includes('descendre') ? (
+                                <button className='activer' onClick={() => {marcher('descendre')}}>Descendre</button>
+                            ) : (<button className='desactiver'>Descendre</button>)}
+                        </>
+                    }
 
                 </div>
                 <div className="bas">

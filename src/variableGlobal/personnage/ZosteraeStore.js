@@ -1,6 +1,6 @@
 import create from 'zustand';
-import normal from '../../asset/personnage/volutes/normal.png';
-import icone from '../../asset/personnage/volutes/icone.png';
+import normal from '../../asset/personnage/zosterae/normal.png';
+import icone from '../../asset/personnage/zosterae/icone.png';
 
 import { lexiqueOffensive } from '../item/magie/lexiqueOffensive';
 import { lexiqueSoin } from '../item/magie/lexiqueSoin';
@@ -10,13 +10,13 @@ import { lexiqueStatBaisse } from '../item/magie/lexiqueStatBaisse';
 import { lexiqueConsomable } from '../item/lexiqueConsomable';
 
 const ZosteraeStore = create((set) => ({
-  zoneXBase: 4,
-  zoneYBase: -6,
-  zoneZBase: 999999,
-  zoneX: 4,
-  zoneY: -6,
-  zoneZ: 999999,
-  x: 500,
+  zoneXBase: 0,
+  zoneYBase: -5,
+  zoneZBase: 666,
+  zoneX: 0,
+  zoneY: -5,
+  zoneZ: 666,
+  x: 450,
   y: 200,
   
   nom: 'Zosterae',
@@ -68,6 +68,18 @@ const ZosteraeStore = create((set) => ({
         texte: "Ma renomé est désormais inébranlable.",
         sticker: 'https://image.noelshack.com/fichiers/2017/22/1496580718-jesusperplexechauve.png',
         index: 2},
+      r3: {
+        texte: "Cela dit, malgré ça, c'est moi qui me tape le sale boulot à garder le goulag...",
+        sticker: 'https://image.noelshack.com/fichiers/2022/37/1/1663014384-ahi-pince-mais.png',
+        index: 3},
+      r4: {
+        texte: "J'en peux plus des zinzin qu'on m'envoie...",
+        sticker: 'https://image.noelshack.com/fichiers/2022/44/7/1667758883-1667690924-picsart-22-11-05-23-39-53-198.png',
+        index: 4},
+      r5: {
+        texte: "aled",
+        sticker: 'https://image.noelshack.com/fichiers/2021/45/3/1636571353-wallaybillaye.jpg',
+        index: 5},
     },
 
     dialogueDesir: "J'aime beaucoup les.",

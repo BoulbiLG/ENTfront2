@@ -8,6 +8,7 @@ import FranckDuboscStore from "../variableGlobal/personnage/FranckDuboscStore";
 import LeobenStore from "../variableGlobal/personnage/LeobenStore";
 import VolutesStore from "../variableGlobal/personnage/VolutesStore";
 import ZosteraeStore from "../variableGlobal/personnage/ZosteraeStore";
+import MothStore from "../variableGlobal/personnage/MothStore";
 
 export const analysePositionPNJ = (x, y, z) => {
 
@@ -21,6 +22,7 @@ export const analysePositionPNJ = (x, y, z) => {
     const leoben = LeobenStore();
     const volutes = VolutesStore();
     const zosterae = ZosteraeStore();
+    const moth = MothStore();
 
     const listePNJ = [];
 
@@ -34,6 +36,7 @@ export const analysePositionPNJ = (x, y, z) => {
     if (x === leoben.zoneX && y === leoben.zoneY && z === leoben.zoneZ){listePNJ.push({x: leoben.x, y: leoben.y, store: leoben});}
     if (x === volutes.zoneX && y === volutes.zoneY && z === volutes.zoneZ){listePNJ.push({x: volutes.x, y: volutes.y, store: volutes});}
     if (x === zosterae.zoneX && y === zosterae.zoneY && z === zosterae.zoneZ){listePNJ.push({x: zosterae.x, y: zosterae.y, store: zosterae});}
+    if (x === moth.zoneX && y === moth.zoneY && z === moth.zoneZ){listePNJ.push({x: moth.x, y: moth.y, store: moth});}
 
     return listePNJ;
 

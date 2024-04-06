@@ -1,5 +1,6 @@
 import create from 'zustand';
 import coffre from '../../asset/stockage/coffre.png';
+import poubelle from '../../asset/stockage/poubelle.png';
 import commode from '../../asset/stockage/commode.png';
 import coca from '../../asset/item/consomable/coca.png';
 import monster from '../../asset/item/consomable/monster.png';
@@ -55,7 +56,21 @@ const oncheStore = create((set) => ({
                 nom: lexiqueConsomable.coca.nom, quantite: 1, img: lexiqueConsomable.coca.img, description: lexiqueConsomable.coca.description, 
                 valeur: lexiqueConsomable.coca.valeur, type: lexiqueConsomable.coca.type, poid: lexiqueConsomable.coca.poid},
             ],
-        }
+        },
+        {   
+            // toilette
+
+            zoneX: 11, zoneY: -1, zoneZ: 999999,
+            x: 1056, y: 300,
+            idStockage: '4', type: 'poubelle',
+            img: poubelle,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                { equipe: 0, action: lexiqueConsomable.caca.action, important: lexiqueConsomable.caca.important, id: lexiqueConsomable.caca.id,
+                nom: lexiqueConsomable.caca.nom, quantite: 5, img: lexiqueConsomable.caca.img, description: lexiqueConsomable.caca.description, 
+                valeur: lexiqueConsomable.caca.valeur, type: lexiqueConsomable.caca.type, poid: lexiqueConsomable.caca.poid},
+            ],
+        },
     ],
 
     ajouter: (champ, valeur) => {

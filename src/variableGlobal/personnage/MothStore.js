@@ -1,13 +1,92 @@
 import create from 'zustand';
-import tete from '../../asset/personnage/celestin/tete.png';
-import icone from '../../asset/personnage/celestin/icone.png';
+import normal from '../../asset/personnage/moth/normal.png';
+import icone from '../../asset/personnage/moth/icone.png';
 
-import { lexiqueOffensive } from '../../variableGlobal/item/magie/lexiqueOffensive';
-import { lexiqueSoin } from '../../variableGlobal/item/magie/lexiqueSoin';
-import { lexiqueStatAugmente } from '../../variableGlobal/item/magie/lexiqueStatAugmente';
-import { lexiqueStatBaisse } from '../../variableGlobal/item/magie/lexiqueStatBaisse';
+import { lexiqueOffensive } from '../item/magie/lexiqueOffensive';
+import { lexiqueSoin } from '../item/magie/lexiqueSoin';
+import { lexiqueStatAugmente } from '../item/magie/lexiqueStatAugmente';
+import { lexiqueStatBaisse } from '../item/magie/lexiqueStatBaisse';
 
-const CelestinStore = create((set) => ({
+import { lexiqueConsomable } from '../item/lexiqueConsomable';
+
+const MothStore = create((set) => ({
+  zoneXBase: 1,
+  zoneYBase: -1,
+  zoneZBase: -1,
+  zoneX: 1,
+  zoneY: -1,
+  zoneZ: -1,
+  x: 200,
+  y: 400,
+  
+  nom: 'Moth',
+  etat: 'PNJ',
+  soumis: 'non',
+  status: 'normal',
+  classe: "Persécuté par les modo / Fils spirituel d'Hergé",
+  sexe: 'h',
+
+  imgNormal: normal,
+  imgTete: icone,
+  imgIcone: icone,
+
+  // STAT
+
+  vieMax: 103,
+  vie: 103,
+  niveau: 1, 
+  expMax: 100,
+  exp: 0,
+  attaque: 10,
+  defense: 7,
+  vitesse: 10,
+  courage: 5,             // augmente le taux de coup critique, min = 5
+  magieMax: 100,
+  magie: 100,
+  testo: 0,
+  bodycount: 0,
+
+  // HUMEUR
+
+  joie: 50,
+  colere: 0,
+  tristesse: 0,
+  confiance: 0,
+  peur: 0,
+  empathie: 0,
+
+  // DIALOGUE
+  
+  dialogue: {
+
+    dialogueNormal: {
+      r1: {
+        texte: "Je vis ici, reclus de la société...",
+        sticker: 'https://image.noelshack.com/fichiers/2020/02/1/1578342741-alkpillon2nuit.png',
+        index: 1},
+    },
+
+    dialogueDesir: "J'aime beaucoup les cordons bleus au poulet.",
+    desir: ['casque', 'epauliere', 'jambiere', 'plastron', 'nike'],
+    questionPose: [],
+
+    replique: {
+      colere: {texte: "OH sale pédé c'est quoi ton soucis ??", sticker: 'https://image.noelshack.com/fichiers/2017/05/1485991738-risitas3.png'},
+      tristesse: {texte: "C'est pas gentil ! *snif snif...", sticker: 'https://image.noelshack.com/fichiers/2017/15/1492145702-bloggif-58f055f33c5de.png'},
+      joie: {texte: "Ayaaaa énorme !", sticker: 'https://image.noelshack.com/fichiers/2016/26/1467335935-jesus1.png'},
+      peur: {texte: "Tu... tu en sûr ?", sticker: 'https://image.noelshack.com/fichiers/2021/10/2/1615328575-unitinu-1.png'},
+      confiance: {texte: "Arrête tu vas me faire rougir ahah.", sticker: 'https://image.noelshack.com/fichiers/2017/39/3/1506463228-risibg.png'},
+      empathie: {texte: "Oh ! C'est gentil.", sticker: 'https://image.noelshack.com/fichiers/2018/36/2/1536096048-i-know-that-feel-bro-owen-07.png'},
+      combat: {texte: "Tu l'auras voulu enculé !!!", sticker: 'https://image.noelshack.com/fichiers/2021/43/4/1635454847-elton-john-tison-golem.png'},
+    },
+
+    compteurReplique: 0,
+
+    etatDialogue: '',
+
+  },
+
+  questionPose: [],
 
   // EQUIPEMENT
 
@@ -21,47 +100,6 @@ const CelestinStore = create((set) => ({
     { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],
 
-  // STAT
-
-  vieMax: 100,
-  vie: 100,
-  niveau: 3, 
-  expMax: 100,
-  exp: 0,
-  attaque: 10,
-  defense: 10,
-  vitesse: 10,
-  courage: 5,
-  magieMax: 100,
-  magie: 100,
-  argent: 1000000,
-  testo: 0,
-  bodycount: 0,
-
-  nom: 'Celestin',
-  status: 'normal',
-  classe: 'Invisible-man',
-  amoureuse: [],
-  codeReduction: 'utilisable',
-  kippaMillion: 'utilisable',
-  piedBiche: 'utilisable',
-  franckCaca: 'utilisable',
-  goulagBlondin: '',
-  attaquerBlondin: '',
-
-  // HUMEUR
-
-  joie: 50,
-  colere: 0,
-  tristesse: 0,
-  peur: 0,
-
-  imgNormal: '',
-  imgTete: icone,
-  imgIcone: icone,
-
-  comportement: '',
-  
   // MAGIE
 
   magieTout: {
@@ -93,6 +131,7 @@ const CelestinStore = create((set) => ({
         nom: lexiqueStatAugmente.nofap.nom, 
         type: lexiqueStatAugmente.nofap.type,
         imgIcone: lexiqueStatAugmente.nofap.imgIcone,
+        consequence: lexiqueStatAugmente.nofap.consequence,
         status: lexiqueStatAugmente.nofap.status,
         tour: lexiqueStatAugmente.nofap.tour,
         action: lexiqueStatAugmente.nofap.action, 
@@ -152,6 +191,28 @@ const CelestinStore = create((set) => ({
 
   badge: [],
 
+  itemDropable: [
+    {
+      tauxApparition: 80,
+      id: lexiqueConsomable.pomme.id,
+      img: lexiqueConsomable.pomme.img,
+      quantite: {
+        min: 1,
+        max: 5,
+      },
+      action: lexiqueConsomable.pomme.action,
+      important: lexiqueConsomable.pomme.important,
+      nom: lexiqueConsomable.pomme.nom,
+      description: lexiqueConsomable.pomme.description,
+      valeur: lexiqueConsomable.pomme.valeur,
+      type: lexiqueConsomable.pomme.type,
+      poid: lexiqueConsomable.pomme.poid,
+      cible: lexiqueConsomable.pomme.cible,
+    }
+  ],
+
+  comportement: '',
+
 
 
   // ================== METHODE ================== //
@@ -202,25 +263,17 @@ const CelestinStore = create((set) => ({
 
   // ajoute element tableau questionPose
 
-  ajouterElementTexte: (id) => {
+  ajouterQuestion: (id) => {
     set((state) => ({
       questionPose: [...state.questionPose, id],
     }));
   },
 
-  // ajoute element tableau amoureuse
-
-  ajouterAmoureuse: (id) => {
-    set((state) => ({
-      amoureuse: [...state.amoureuse, id],
-    }));
-  },
-
   // vide tableau questionPose
   
-  viderQuestionPose: () => {
+  viderQuestion: () => {
     set({ questionPose: [] });
   },
 }));
 
-export default CelestinStore;
+export default MothStore;

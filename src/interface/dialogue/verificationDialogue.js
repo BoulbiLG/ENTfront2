@@ -149,7 +149,7 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
                 repliqueReturn.push({texte: 'Tu en as déjà eu un, faut pas tirer sur la corde hein...', sticker: 'https://image.noelshack.com/fichiers/2016/30/1469541952-risitas182.png'});
             }
         } else {
-            repliqueReturn.push({texte: "Non j'ai pas assez confiance en toi", sticker: 'https://image.noelshack.com/fichiers/2016/52/1482789608-risitas-blase-perplexe-main.png'});
+            repliqueReturn.push({texte: "Non j'ai pas assez confiance en toi, tu pourrais blesser quelqu'un", sticker: 'https://image.noelshack.com/fichiers/2016/52/1482789608-risitas-blase-perplexe-main.png'});
         }
     }
 

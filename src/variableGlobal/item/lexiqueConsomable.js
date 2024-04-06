@@ -6,9 +6,22 @@ import pisse from '../../asset/item/consomable/pisse.png';
 import monster from '../../asset/item/consomable/monster.png';
 import eauGange from '../../asset/item/consomable/gange.png';
 import sauceSonic from '../../asset/item/consomable/sonic.png';
+import caca from '../../asset/item/consomable/caca.png';
 
 export const lexiqueConsomable = {
     
+    caca: {
+        id: 'caca',
+        nom: 'Caca fumant',
+        img: caca,
+        description: 'Une merde jaune fumante peu nutritive. Seul les pûrs tradis respectant les traditions conciliaires peuvent produire de telle création.',
+        action: 1,
+        valeur: 1,
+        poid: 1,
+        important: 'non',
+        type: 'consomable',
+        cible: '',
+    },
     pomme: {
         id: 'pomme',
         nom: 'Pomme',

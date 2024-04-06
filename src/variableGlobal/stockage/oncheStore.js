@@ -6,6 +6,7 @@ import coca from '../../asset/item/consomable/coca.png';
 import monster from '../../asset/item/consomable/monster.png';
 
 import { lexiqueConsomable } from '../item/lexiqueConsomable';
+import { lexiqueDivers } from '../item/lexiqueDivers';
 
 import { epeeURL, bouclierURL, casqueURL, plastronURL, jambiereURL, epauliereURL, nikeURL } from '../../graphisme/item/item';
 
@@ -69,6 +70,20 @@ const oncheStore = create((set) => ({
                 { equipe: 0, action: lexiqueConsomable.caca.action, important: lexiqueConsomable.caca.important, id: lexiqueConsomable.caca.id,
                 nom: lexiqueConsomable.caca.nom, quantite: 5, img: lexiqueConsomable.caca.img, description: lexiqueConsomable.caca.description, 
                 valeur: lexiqueConsomable.caca.valeur, type: lexiqueConsomable.caca.type, poid: lexiqueConsomable.caca.poid},
+            ],
+        },
+        {   
+            // maison blondin
+
+            zoneX: 10, zoneY: -4, zoneZ: 999999,
+            x: 156, y: 400,
+            idStockage: '5', type: 'coffre',
+            img: coffre,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                { equipe: 0, action: lexiqueDivers.bite.action, important: lexiqueDivers.bite.important, id: lexiqueDivers.bite.id,
+                nom: lexiqueDivers.bite.nom, quantite: 1, img: lexiqueDivers.bite.img, description: lexiqueDivers.bite.description, 
+                valeur: lexiqueDivers.bite.valeur, type: lexiqueDivers.bite.type, poid: lexiqueDivers.bite.poid},
             ],
         },
     ],

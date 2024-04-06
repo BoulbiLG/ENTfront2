@@ -11,7 +11,9 @@ import CaseItem from '../../components/item/CaseItem';
 
 import { lexiqueDivers } from '../../variableGlobal/item/lexiqueDivers';
 
-const FenetreDon = ({ personnageStore, dialogueAffichageSet }) => {
+const FenetreDon = ({ personnageStore, dialogueAffichageSet, affichageFenetreDonSet }) => {
+
+    let repliqueReturn = [];
 
     const storeInventaire = inventaireStore();
     const storeCelestin = CelestinStore();
@@ -55,10 +57,11 @@ const FenetreDon = ({ personnageStore, dialogueAffichageSet }) => {
                         storeInventaire.ajouter('poid', lexiqueDivers.playstation.poid);
                     }
 
-                    dialogueAffichageSet({texte: 'Tu es bien gentil toi, tiens, rend cette play à leoben, je lui avais volé. ', sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png'})
+                    repliqueReturn.push({texte: 'Tu es bien gentil toi, tiens, rend cette play à leoben, je lui avais volé. ', sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png'})
+                    console.log(repliqueReturn);
+                    dialogueAffichageSet(repliqueReturn);
+                    affichageFenetreDonSet('false');
                 }
-            } else {
-
             }
         }
         

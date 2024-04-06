@@ -67,7 +67,7 @@ const LeobenStore = create((set) => ({
     },
 
     dialogueDesir: "J'aime beaucoup les cordons bleus au poulet.",
-    desir: ['casque', 'epauliere', 'jambiere', 'plastron', 'nike'],
+    desir: ['playstation'],
     questionPose: [],
 
     replique: {

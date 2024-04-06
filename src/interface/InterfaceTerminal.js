@@ -7,6 +7,7 @@ import Deplacement from './deplacement/Deplacement';
 import Base from './base/Base';
 import Parametre from './parametre/Parametre';
 import FenetreCombat from './combat/FenetreCombat';
+import Sauvegarde from './sauvegarde/Sauvegarde';
 
 import refreshStore from '../variableGlobal/global/refresh';
 import combatStore from '../variableGlobal/global/combatStore';
@@ -29,6 +30,7 @@ const InterfaceTerminal = () => {
         <Base />
         <Stat />
         <Parametre />
+        <Sauvegarde />
         <Deplacement />
         <FenetreCombat />
     </div>

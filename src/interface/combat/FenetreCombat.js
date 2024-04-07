@@ -22,6 +22,7 @@ import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import cinematiqueStore from '../../variableGlobal/global/cinematiqueStore';
+import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 
 import Particule from '../../components/particule/Particule';
@@ -37,6 +38,7 @@ const FenetreCombat = () => {
 
     const storeCombat = combatStore();
     const storeMusique = musiqueStore();
+    const storeCelestin = CelestinStore();
     const storeDeplacement = deplacementStore();
     const { combat } = combatStore();
     const { type } = combatStore();
@@ -72,7 +74,7 @@ const FenetreCombat = () => {
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
-        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique);
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         
@@ -83,7 +85,7 @@ const FenetreCombat = () => {
                 joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
                 
                 joueurUtilisableSet(joueurRestant[0].joueurRestant);
-                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique);
+                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
                 
             }, 1000);
         }

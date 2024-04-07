@@ -46,6 +46,7 @@ const CelestinStore = create((set) => ({
 
   information: {
     tutoVillage: 'non',
+    premierCombat: 'non',
   },
 
   kippaMillion: 'utilisable',
@@ -162,6 +163,13 @@ const CelestinStore = create((set) => ({
   // ================== METHODE ================== //
 
 
+
+  modifierInformation: (champs, valeur) => set((state) => ({
+    information: {
+      ...state.information,
+      [champs]: valeur,
+    },
+  })),
 
   // ajoute valeur
 

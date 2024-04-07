@@ -86,6 +86,32 @@ const oncheStore = create((set) => ({
                 valeur: lexiqueDivers.bite.valeur, type: lexiqueDivers.bite.type, poid: lexiqueDivers.bite.poid},
             ],
         },
+        {   
+            // maison celestin
+
+            zoneX: 9, zoneY: -2, zoneZ: 999999,
+            x: 0, y: 380,
+            idStockage: '6', type: 'coffre',
+            img: coffre,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                { equipe: 0, action: lexiqueConsomable.pomme.action, important: lexiqueConsomable.pomme.important, id: lexiqueConsomable.pomme.id,
+                    nom: lexiqueConsomable.pomme.nom, quantite: 2, img: lexiqueConsomable.pomme.img, description: lexiqueConsomable.pomme.description, 
+                    valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
+            ],
+        },
+        {   
+            // maison celestin 2
+
+            zoneX: 9, zoneY: -2, zoneZ: 999999,
+            x: 1200, y: 400,
+            idStockage: '7', type: 'coffre',
+            img: coffre,
+            height: heightCoffre, width: widthCoffre,
+            inventaire: [
+                
+            ],
+        },
     ],
 
     ajouter: (champ, valeur) => {

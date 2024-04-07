@@ -1,5 +1,5 @@
 
-export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique) => {
+export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin) => {
 
     //console.log('verification mort', joueurRestant, ', length : ', joueurRestant.joueur.length);
     console.log('verification mort ennemi', ennemiEnVie, ', length : ', ennemiEnVie.length);
@@ -78,6 +78,7 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                         storeDeplacement.modifier('zoneX', 0);
                         storeDeplacement.modifier('zoneY', 0);
                         storeDeplacement.modifier('zoneZ', 666);
+                        storeCelestin.modifierInformation('premierCombat', 'oui');
                         const enculerPromise = new Promise((resolve) => {
                             setTimeout(() => {
                                 storeCinematique.modifier('cinematique', 'oui');

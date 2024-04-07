@@ -2,7 +2,7 @@
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 import { positionEgout } from '../../variableGlobal/global/positionEgout';
 
-export const verificationPiedBiche = (storeInventaire, x, y, z) => {
+export const verificationPiedBiche = (storeInventaire, x, y, z, storeCelestin) => {
 
     let verificationEgout = 'non';
 
@@ -17,8 +17,18 @@ export const verificationPiedBiche = (storeInventaire, x, y, z) => {
 
         if (x === position.x && y === position.y && z === position.z) {
 
-            verificationEgout = 'oui';
-            conclusion.egout = 'oui';
+            if (position.x === 1 && position.y === -1 && position.z === 0) {
+                if (storeCelestin.information.premierCombat === 'non') {
+                    verificationEgout = 'oui';
+                    conclusion.egout = 'non';
+                } else if (storeCelestin.information.premierCombat === 'oui') {
+                    verificationEgout = 'oui';
+                    conclusion.egout = 'oui';
+                }
+            } else {
+                verificationEgout = 'oui';
+                conclusion.egout = 'oui';
+            }
 
         }
 

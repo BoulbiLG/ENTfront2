@@ -34,7 +34,7 @@ const Deplacement = () => {
     const storeInventaire = inventaireStore();
     const { volumeMusique } = parametreStore();
 
-    const conclusion = verificationPiedBiche(storeInventaire, storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ);
+    const conclusion = verificationPiedBiche(storeInventaire, storeDeplacement.zoneX, storeDeplacement.zoneY, storeDeplacement.zoneZ, storeCelestin);
 
     const position = `X${storeDeplacement.zoneX}Y${storeDeplacement.zoneY}Z${storeDeplacement.zoneZ}`;
     

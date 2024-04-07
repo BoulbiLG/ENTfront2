@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './creerCompte.css';
+
 const CreerCompte = () => {
         
     return (

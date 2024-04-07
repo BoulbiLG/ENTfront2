@@ -1,0 +1,35 @@
+
+.Cinematique {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Cinematique button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2vh;
+    padding: 1vh;
+    border-radius: 1vh;
+    outline: none;
+    border: none;
+    background-color: black;
+    color: white;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.Cinematique button:hover {
+    scale: 105%;
+}
+
+.Cinematique button:active {
+    scale: 110%;
+}

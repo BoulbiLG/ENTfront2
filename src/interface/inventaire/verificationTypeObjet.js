@@ -18,6 +18,7 @@ export const verificationTypeObjet = (id, type, action, inventaire, joueurStore)
 
     if (type === 'arme') {
         if (id === 'epee') { joueurStore.attaque = joueurStore.ajouter('attaque', action);}
+        if (id === 'piedBiche') { joueurStore.attaque = joueurStore.ajouter('attaque', action);}
         if (id === 'bouclier') { joueurStore.defense = joueurStore.ajouter('defense', action);}
     }
 

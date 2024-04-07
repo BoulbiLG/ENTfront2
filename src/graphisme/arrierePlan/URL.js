@@ -8,6 +8,7 @@ import gazette from '../../asset/plan/onche/gazette.png';
 import mairie from '../../asset/plan/onche/mairie.png';
 import auberge2 from '../../asset/plan/onche/auberge2.png';
 import toilette from '../../asset/plan/onche/toilette.png';
+import cellule from '../../asset/plan/onche/cellule.png';
 
 export const arrierePlanURL = [
 
@@ -65,7 +66,7 @@ export const arrierePlanURL = [
     {position: 'X2Y-3Z999999', url: lidl},
     {position: 'X7Y-3Z999999', url: mairie},
     {position: 'XY-4Z0', url: ''},
-    {position: 'X0Y0Z666', url: goulag2},
+    {position: 'X0Y0Z666', url: cellule},
     {position: 'X0Y-5Z666', url: goulag2},
     {position: 'X2Y-5Z1', url: arbreFranck2},
 ]

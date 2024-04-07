@@ -2,3 +2,73 @@
     margin: 0;
     padding: 0;
 }
+
+.Home {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(50deg, rgb(173, 30, 30), rgb(88, 51, 157));
+}
+
+
+
+/* ========== TITRE ========== */
+
+
+
+.Home .centralisationTitre {
+    display: flex;
+    justify-content: center;
+}
+
+.Home .titre {
+    padding-top: 30vh;
+    color: white;
+    text-align: center;
+}
+
+.Home .titre h1 {
+    font-size: 5rem;
+}
+
+.Home .titre p {
+    font-size: 1.5rem;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+
+
+/* ========== JOUER ========== */
+
+
+
+.Home .centralisationJouer {
+    display: flex;
+    justify-content: center;
+}
+
+.Home .jouer {
+    padding-top: 15vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.Home .jouer a {
+    text-align: center;
+    color: white;
+    background-color: rgb(105, 103, 179);
+    padding: 1vh 10vh;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1vh;
+}
+
+.Home .jouer a:hover {
+    filter: brightness(125%);
+}
+
+.Home .jouer a:active {
+    filter: brightness(150%);
+}

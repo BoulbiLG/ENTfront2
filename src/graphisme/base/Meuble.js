@@ -17,11 +17,19 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
 
 
     const storeBase = baseStore();
+
+    let nomBaseDynamique;
+
+    for (let i = 0; i < storeBase.base.length; i++) {
+        if (storeBase.base[i].idBase === idBase) {
+            nomBaseDynamique = storeBase.base[i].nom; 
+        }
+    }
     
     const [affichageFenetre, affichageFenetreSet] = useState('false');
     const [editionNom, editionNomSet] = useState('false');
     const [fenetreUtiliser, fenetreUtiliserSet] = useState('false');
-    const [nomBase, nomBaseSet] = useState(nomBaseBrut);
+    const [nomBase, nomBaseSet] = useState('');
     const [choix, choixSet] = useState('');
     const [X, Xset] = useState(x);
 
@@ -113,7 +121,7 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
                                         <div className='nomLigne' style={{display: 'flex', justifyContent: 'space-between'}}>
                                             <p style={{fontWeight: '300'}}>Nom de la base : </p>
                                             <div style={{display: 'flex'}}>
-                                                <p style={{fontWeight: '600', marginRight: '1vh'}}>{nomBase}</p>
+                                                <p style={{fontWeight: '600', marginRight: '1vh'}}>{nomBaseDynamique}</p>
                                                 <button className=''  onClick={() => {editionNomSet('true');}}><span class="material-symbols-outlined">edit</span></button>
                                             </div>
                                         </div>
@@ -130,7 +138,11 @@ const Meuble = ({ id, type, nom, img, description, valeur, poid, action, x, y, i
                                     <div className='editionNom'>
                                         <input type="text" value={nomBase} onChange={(event) => {nomBaseSet(event.target.value);}} />
                                         <button className='' onClick={() => {editionNomSet('false');}}><span class="material-symbols-outlined">close</span></button>
-                                        <button className='' onClick={() => {editionNomSet('false'); storeBase.modifierChampsBase(idBase, 'nom', nomBase)}}><span class="material-symbols-outlined">done</span></button>
+                                        <button className='' onClick={() => {
+                                            editionNomSet('false'); 
+                                            storeBase.modifierChampsBase(idBase, 'nom', nomBase);
+                                            nomBaseSet('');
+                                        }}><span class="material-symbols-outlined">done</span></button>
                                     </div>
                                 }
                             </div>

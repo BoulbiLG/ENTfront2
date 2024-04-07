@@ -8,16 +8,20 @@ import Base from './base/Base';
 import Parametre from './parametre/Parametre';
 import FenetreCombat from './combat/FenetreCombat';
 import Sauvegarde from './sauvegarde/Sauvegarde';
+import Cinematique from './cinematique/Cinematique';
 
 import refreshStore from '../variableGlobal/global/refresh';
 import combatStore from '../variableGlobal/global/combatStore';
+import cinematiqueStore from '../variableGlobal/global/cinematiqueStore';
 
 const InterfaceTerminal = () => {
 
   const storeCombat = combatStore();
+  const storeCinematique = cinematiqueStore();
 
   const { refresh } = refreshStore();
   const { combat } = combatStore();
+  const { cinematique } = cinematiqueStore();
 
   useEffect(() => {
     console.log('rafraichissement')
@@ -33,6 +37,7 @@ const InterfaceTerminal = () => {
         <Sauvegarde />
         <Deplacement />
         <FenetreCombat />
+        <Cinematique />
     </div>
   )
 }

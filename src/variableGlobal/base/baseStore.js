@@ -83,6 +83,7 @@ const baseStore = create((set) => ({
   },
 
   modifierChampsBase: (idBase, champs, valeur) => {
+    console.log(idBase, champs, valeur);
     set((state) => ({
       base: state.base.map((baseElement) =>
         baseElement.idBase === idBase

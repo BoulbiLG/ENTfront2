@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './connexion.css';
+
 const Connexion = () => {
 
     const [pseudo, pseudoSet] = useState('');
@@ -24,9 +26,12 @@ const Connexion = () => {
 
     return (
         <div className='Connexion'>
+          <div className="formulaire">
+            <h3>Connexion</h3>
             <input type="text" placeholder='Votre pseudo' value={pseudo} onChange={(event) => {pseudoSet(event.target.value)}} />
             <input type="text" placeholder='Votre mot de passe' value={mdp} onChange={(event) => {mdpSet(event.target.value)}} />
             <button onClick={() => {seConnecter(pseudo, mdp)}}>Se connecter</button>
+          </div>
         </div>
     )
 }

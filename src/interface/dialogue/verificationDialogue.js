@@ -125,7 +125,7 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
 
 
     if (type === 'piedBiche') {
-        if (storePersonnage.confiance >= -20) {
+        if (storePersonnage.confiance >= 20) {
 
             if (storeCelestin.piedBiche == 'utilisable') {
                 storeCelestin.modifier('piedBiche', 'fini');

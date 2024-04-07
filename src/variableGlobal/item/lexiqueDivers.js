@@ -19,7 +19,7 @@ export const lexiqueDivers = {
         id: 'bite',
         nom: 'Agrandisseur de pénis',
         img: bite,
-        description: "Pénis sur artificiel de couleur noire. Un objet permettant d'augmenter la taille de son pénis.",
+        description: "Pénis artificiel de couleur noire. Un objet permettant d'augmenter la taille de son pénis.",
         valeur: 6,
         action: 1,
         poid: 2,

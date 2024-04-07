@@ -1,5 +1,8 @@
 import create from 'zustand';
 
+import piedBiche from '../../asset/item/arme/piedBiche.png';
+import caca from '../../asset/item/consomable/caca.png';
+
 import { lexiqueConsomable } from '../item/lexiqueConsomable';
 import { lexiqueMeuble } from '../item/lexiqueMeuble';
 import { lexiqueArmure } from '../item/lexiqueArmure';
@@ -15,8 +18,8 @@ const inventaireStore = create((set) => ({
       valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
    
     
-    { equipe: 0, action: 5, important: 'non', id: 'piedBiche', nom: 'Pied de biche', quantite: 999, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
-    { equipe: 0, action: 5, important: 'non', id: 'caca', nom: 'Pied de biche', quantite: 999, img: epeeURL, description: 'fdp.', valeur: 1, type: 'arme', poid: 10},
+    { equipe: 0, action: 5, important: 'non', id: 'piedBiche', nom: 'Pied de biche', quantite: 10, img: piedBiche, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
+    { equipe: 0, action: 5, important: 'non', id: 'caca', nom: 'Pied de biche', quantite: 999, img: caca, description: 'fdp.', valeur: 1, type: 'arme', poid: 10},
     { equipe: 0, action: 5, important: 'non', id: 'epee', nom: 'Epée', quantite: 999, img: epeeURL, description: 'fdp.', valeur: 50, type: 'arme', poid: 10},
     { equipe: 0, action: 5, important: 'non', id: 'bouclier', nom: 'Bouclier', quantite: 1, img: bouclierURL, description: 'fdp.', valeur: 30, type: 'arme', poid: 17},
     { equipe: 0, action: 5, cible: 'tete', important: 'non', id: 'casque', nom: 'Casque', quantite: 12, img: casqueURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 13},

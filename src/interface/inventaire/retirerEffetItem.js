@@ -4,6 +4,7 @@ export const retirerObjetEffet = (id, type, action, inventaireStore, joueurStore
 
     if (type === 'arme') {
         if (id === 'epee') { joueurStore.attaque = joueurStore.retirer('attaque', action); inventaireStore.retireQuantiteItem(ligneItem.id, 'equipe', 1);}
+        if (id === 'piedBiche') { joueurStore.attaque = joueurStore.retirer('attaque', action); inventaireStore.retireQuantiteItem(ligneItem.id, 'equipe', 1);}
         if (id === 'bouclier') { joueurStore.defense = joueurStore.retirer('defense', action); inventaireStore.retireQuantiteItem(ligneItem.id,'equipe', 1);}
     }
 

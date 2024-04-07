@@ -203,7 +203,7 @@ const FenetreStat = ({ indexFenetre }) => {
                                 <div className="liste">
                                     {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ img, id, type }) => (
                                         id !== '' ? (
-                                        <Item key={id} img={img} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur);}} />
+                                            <CaseItem  img={img} onClick={() => {retirerEquipement(id, type, storeInventaire, statJoueur);}} />
                                         ) : null
                                     ))}
                                 </div>

@@ -11,7 +11,7 @@ const CreerCompte = () => {
                 <Link to="/connexion">Se connecter</Link>
             </div>
             <div className="inscription">
-                <Link to="/inscriptio">S'inscrire</Link>
+                <Link to="/inscription">S'inscrire</Link>
             </div>
         </div>
     )

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import FenetreDialogue from '../../interface/dialogue/FenetreDialogue';
 
 import combatStore from '../../variableGlobal/global/combatStore';
+import equipeStore from '../../variableGlobal/personnage/equipeStore';
+import refreshStore from '../../variableGlobal/global/refresh';
 
 import '../../css/classe/clickable.css';
 import './personnage.css';
@@ -10,6 +12,29 @@ import './personnage.css';
 const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => {
 
     const storeCombat = combatStore();
+    const storeEquipe = equipeStore();
+    const storeRefresh = refreshStore();
+    const { refresh } = refreshStore();
+
+    let presentEquipe = 'non';
+
+    useEffect(() => {
+        for (let i = 0; i < storeEquipe.length; i++) {
+            const nom = storeEquipe[i];
+    
+            if (storePersonnage.nom === nom) {
+                presentEquipe = 'oui';
+            }
+        }
+    }, [refresh]);
+
+    for (let i = 0; i < storeEquipe.length; i++) {
+        const nom = storeEquipe[i];
+
+        if (storePersonnage.nom === nom) {
+            presentEquipe = 'oui';
+        }
+    }
     
     const [etat, etatSet] = useState('fixe');
 
@@ -30,18 +55,22 @@ const Personnage = ({ x, y, storePersonnage, parlerAutorisation = 'false' }) => 
                 top: y,
                 left: x
             }}
-        >
-            {storePersonnage.vie > 0 ? (
+        >   
+            {presentEquipe === 'non' ? (
                 <>
-                    {etat === 'fixe' ? (
-                        <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
-                    ) : null }
-                    {etat === 'dialogue' ? (
-                        <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
-                    ) : null }
-                    {etat === 'dialogue' ? (
+                    {storePersonnage.vie > 0 ? (
                         <>
-                            <FenetreDialogue storePersonnage={storePersonnage} etatSet={etatSet}/>
+                            {etat === 'fixe' ? (
+                                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('dialogue')}}/>
+                            ) : null }
+                            {etat === 'dialogue' ? (
+                                <img src={storePersonnage.imgNormal} alt="personnage" style={style} onClick={() => {etatSet('fixe')}}/>
+                            ) : null }
+                            {etat === 'dialogue' ? (
+                                <>
+                                    <FenetreDialogue storePersonnage={storePersonnage} etatSet={etatSet}/>
+                                </>
+                            ) : null }
                         </>
                     ) : null }
                 </>

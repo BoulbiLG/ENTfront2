@@ -52,14 +52,24 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
             if (storePersonnage.nom === 'Souritima') {
 
             } else {
-                storePersonnage.modifier('zoneZ', 99999999999);
-                storePersonnage.modifier('soumis', 'oui');
-                storePersonnage.modifier('etat', 'equipier');
+                
+                const enculerPromise = new Promise((resolve) => {
+                    storePersonnage.modifier('zoneZ', 99999999999);
+                    storePersonnage.modifier('soumis', 'oui');
+                    storePersonnage.modifier('etat', 'equipier');
 
-                equipeStore.ajouterNom(storePersonnage.nom);
-                storeRefresh.ajouter('refresh', 1);
+                    equipeStore.ajouterNom(storePersonnage.nom);
 
-                repliqueReturn.push({texte: 'Ok ça marche !', sticker: 'https://image.noelshack.com/fichiers/2018/10/4/1520520305-pupute-cr7.png'});
+                    repliqueReturn.push({texte: 'Ok ça marche !', sticker: 'https://image.noelshack.com/fichiers/2018/10/4/1520520305-pupute-cr7.png'});
+            
+                    dialogueAffichageSet(repliqueReturn);
+                    setTimeout(() => {
+                        storeRefresh.ajouter('refresh', 1);
+                        resolve();
+                    }, 1000);
+                });
+            
+                await enculerPromise;
             }
         } else {
             repliqueReturn.push({texte: 'Ptdr t ki ?', sticker: 'https://image.noelshack.com/fichiers/2020/50/2/1607386908-enxt.png'});

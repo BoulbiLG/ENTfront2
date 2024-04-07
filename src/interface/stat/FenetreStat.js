@@ -15,6 +15,7 @@ import ProfilEquipier from '../profilEquipier/ProfilEquipier';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
 import deplacementStore from '../../variableGlobal/global/deplacementStore'
+import refreshStore from '../../variableGlobal/global/refresh';
 
 import { replique } from '../dialogue/repliqueJoueur';
 
@@ -35,6 +36,7 @@ const FenetreStat = ({ indexFenetre }) => {
     const storeEquipier = equipeStore();
     const storeInventaire = inventaireStore();
     const storeDeplacement = deplacementStore();
+    const storeRefresh = refreshStore();
     
     const storeJoueur = recupererStoreDynamique(storeEquipier.courant);
 
@@ -115,6 +117,7 @@ const FenetreStat = ({ indexFenetre }) => {
         storeJoueur.modifier('zoneZ', storeDeplacement.zoneZ);
 
         storeEquipier.retirerNom(storeJoueur.nom);
+        storeRefresh.ajouter('refresh', 1);
     }
 
     const rentreChezToi = () => {
@@ -123,6 +126,7 @@ const FenetreStat = ({ indexFenetre }) => {
         storeJoueur.modifier('zoneZ', storeJoueur.zoneZBase);
 
         storeEquipier.retirerNom(storeJoueur.nom);
+        storeRefresh.ajouter('refresh', 1);
     }
 
     const plusAmi = () => {
@@ -142,6 +146,7 @@ const FenetreStat = ({ indexFenetre }) => {
         storeJoueur.modifierIdParType('mainG', '');
         storeJoueur.modifierIdParType('mainD', '');
         storeJoueur.modifierIdParType('bras', '');
+        storeRefresh.ajouter('refresh', 1);
     }
     
 

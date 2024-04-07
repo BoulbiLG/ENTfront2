@@ -13,6 +13,7 @@ const yMeuble = 100;
 
 const inventaireStore = create((set) => ({
   inventaire: [
+    /*
     { equipe: 0, action: lexiqueConsomable.pomme.action, important: lexiqueConsomable.pomme.important, id: lexiqueConsomable.pomme.id,
       nom: lexiqueConsomable.pomme.nom, quantite: 2, img: lexiqueConsomable.pomme.img, description: lexiqueConsomable.pomme.description, 
       valeur: lexiqueConsomable.pomme.valeur, type: lexiqueConsomable.pomme.type, poid: lexiqueConsomable.pomme.poid},
@@ -27,10 +28,10 @@ const inventaireStore = create((set) => ({
     { equipe: 0, action: 5, cible: 'jambe', important: 'non', id: 'jambiere', nom: 'Jambière', quantite: 7, img: jambiereURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 11},
     { equipe: 0, action: 5, cible: 'bras', important: 'non', id: 'epauliere', nom: 'Epaulière', quantite: 53, img: epauliereURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 8},
     { equipe: 0, action: 5, cible: 'pied', important: 'non', id: 'nike', nom: 'Nike', quantite: 2, img: nikeURL, description: 'fdp.', valeur: 30, type: 'armure', poid: 6},
-    
+    */
   ],
 
-  meubles: [
+  meubles: [/*
     {
       type: lexiqueMeuble.drapeau.type,
       nom: lexiqueMeuble.drapeau.nom,
@@ -62,11 +63,11 @@ const inventaireStore = create((set) => ({
       protection: lexiqueMeuble.tente.action,
       piege: lexiqueMeuble.tente.piege,
       quantite: 5,
-    },
+    },*/
   ],
 
   poidMax: 100,
-  poid: 2,
+  poid: 0,
 
   idMeuble: 2,
 

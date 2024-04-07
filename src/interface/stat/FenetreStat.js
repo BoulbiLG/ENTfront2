@@ -118,6 +118,7 @@ const FenetreStat = ({ indexFenetre }) => {
 
         storeEquipier.retirerNom(storeJoueur.nom);
         storeRefresh.ajouter('refresh', 1);
+        storeEquipier.modifierCourant('Celestin');
     }
 
     const rentreChezToi = () => {
@@ -127,6 +128,7 @@ const FenetreStat = ({ indexFenetre }) => {
 
         storeEquipier.retirerNom(storeJoueur.nom);
         storeRefresh.ajouter('refresh', 1);
+        storeEquipier.modifierCourant('Celestin');
     }
 
     const plusAmi = () => {
@@ -147,6 +149,7 @@ const FenetreStat = ({ indexFenetre }) => {
         storeJoueur.modifierIdParType('mainD', '');
         storeJoueur.modifierIdParType('bras', '');
         storeRefresh.ajouter('refresh', 1);
+        storeEquipier.modifierCourant('Celestin');
     }
     
 
@@ -198,7 +201,7 @@ const FenetreStat = ({ indexFenetre }) => {
                             </div>
                         </div>
                         <div className="inventaire">
-                            <p>Inventaire de {statJoueur.nom} :</p>
+                            <p>Inventaire de {statJoueur.nom}</p>
                             <div className="centralisation2">
                                 <div className="liste">
                                     {statJoueur.equipement && statJoueur.equipement.length > 0 && statJoueur.equipement.map(({ img, id, type }) => (
@@ -213,6 +216,7 @@ const FenetreStat = ({ indexFenetre }) => {
                     <div className="centreBas">
                         <p>Que voulez vous dire à {storeEquipier.courant}</p>
                         <hr />
+                        <br />
                         <p>{dialogueAffichage.texte}</p>
                         <p>{dialogueAffichage.sticker}</p>
                         {storeEquipier.courant !== 'Celestin' ? (

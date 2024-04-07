@@ -4,13 +4,14 @@ export const analysePositionStockage = (x, y, z, lieux) => {
 
     const storeOnche = oncheStore();
 
-
     const listeStockage = [];
-
     if (lieux == 'onche') {
         for (let i = 0; i < storeOnche.stockage.length; i++) {
             const coffre = storeOnche.stockage[i];
-            if (coffre.zoneX == x && coffre.zoneY == y && coffre.zoneZ == z) {listeStockage.push({x: coffre.x, y: coffre.y, id: coffre.idStockage,type: coffre.type,img: coffre.img,inventaire: coffre.inventaire,store: coffre,});}
+            //console.log('zoneX === ', x, ', zoneY :=== ', y, ', zoneZ === ', z);
+            if (coffre.zoneX == x && coffre.zoneY == y && coffre.zoneZ == z) {
+                listeStockage.push({x: coffre.x, y: coffre.y, id: coffre.idStockage,type: coffre.type,img: coffre.img,inventaire: coffre.inventaire,store: coffre,});
+            }
         }
     
     }

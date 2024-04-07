@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './deplacement.css';
 
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
-import colisionStore from '../../variableGlobal/global/colisionStore';
+import colisionStore from '../../variableGlobal/global/colision/onche';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import miniMapStore from '../../variableGlobal/global/miniMap';
 import parametreStore from '../../variableGlobal/global/parametreStore';
@@ -13,6 +13,7 @@ import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
 import { verificationMusique } from './verificationMusique';
 import { verificationCase } from './verificationCase';
 import { verificationPiedBiche } from './verificationPiedBiche';
+import { verificationColision } from './verificationColision';
 
 import MiniMap from './MiniMap';
 import Lieux from './Lieux';
@@ -39,9 +40,19 @@ const Deplacement = () => {
     
     const [mouvementChoix, setMouvementChoix] = useState([]);
     const [refreshLocal, refreshLocalSet] = useState(0);
-    const [lieux, lieuxSet] = useState("Village d'Onche");
+    const [lieux, lieuxSet] = useState("Maison de Celestin");
 
+    
     useEffect(() => {
+        const colision = storeColision.tutoVillageOui.find((colision) => colision.position === position);
+        const nouveauxMouvements = colision ? colision.mouvement : [];
+        setMouvementChoix(nouveauxMouvements);
+
+        const nouvelleColision = verificationColision(lieux, storeCelestin, nouveauxMouvements, storeDeplacement);
+
+        setMouvementChoix(nouvelleColision);
+
+        /*
         if (storeDeplacement.tutoVillage == 'non') {
             const colision = storeColision.tutoVillageNon.find((colision) => colision.position === position);
             const nouveauxMouvements = colision ? colision.mouvement : [];
@@ -51,8 +62,9 @@ const Deplacement = () => {
             const nouveauxMouvements = colision ? colision.mouvement : [];
             setMouvementChoix(nouveauxMouvements);
         }
+        */
     }, [storeColision, position, volumeMusique]);
-
+    
 
 
     // ==================== DECLARATION VARIABLE ==================== //
@@ -132,11 +144,21 @@ const Deplacement = () => {
                     {mouvementChoix.includes('monter') ? (
                         <button className='activer' onClick={() => {marcher('monter')}}>Monter</button>
                     ) : (<button className='desactiver'>Monter</button>)}
-
                     {mouvementChoix.includes('haut') ? (
-                        <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
-                    ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
+                                <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
+                            ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
 
+{/*
+                    {storeCelestin.information.tuto === 'oui' && storeDeplacement.zoneX === 0 && storeDeplacement.zoneY === 0 && storeDeplacement.zoneZ === 0 ? (
+                        <>
+                            {mouvementChoix.includes('haut') ? (
+                                <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
+                            ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
+                        </>
+                    ) :
+                        <button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>
+                    }
+                */}
                     {conclusion.egout === 'oui' && conclusion.piedBiche === 'oui' ? (
                         <button className='activer' onClick={() => {marcher('descendre', conclusion)}}>Descendre</button>
                     ) :

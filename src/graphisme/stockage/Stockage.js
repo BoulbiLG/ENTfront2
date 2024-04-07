@@ -9,6 +9,7 @@ import ouvertureFenetre from '../../audio/audio/ouvertureFenetre.mp3';
 import './stockage.css';
 
 const Stockage = ({ height, width, img, type, x, y, id, inventaireStockage, stockageStore }) => {
+
     const [fenetreCoffre, fenetreCoffreSet] = useState('false');
     const style = {
         position: 'absolute',

@@ -43,6 +43,11 @@ const CelestinStore = create((set) => ({
   classe: 'Invisible-man',
   amoureuse: [],
   codeReduction: 'utilisable',
+
+  information: {
+    tutoVillage: 'non',
+  },
+
   kippaMillion: 'utilisable',
   piedBiche: 'utilisable',
   franckCaca: 'utilisable',

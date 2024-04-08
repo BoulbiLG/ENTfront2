@@ -8,15 +8,30 @@ import { attaquerEnnemi } from './fonction/ennemi/attaquerEnnemi';
 
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
-import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import { verificationMort } from './fonction/verificationMort';
 
-const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique, historiqueSet, ennemiEnVie, joueurUtilisableSet, joueurUtilisable, storeJoueurs, strategieEnnemi, strategieEnnemiSet }) => {
+import deplacementStore from '../../variableGlobal/global/deplacementStore';
+import combatStore from '../../variableGlobal/global/combatStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
+import parametreStore from '../../variableGlobal/global/parametreStore';
+import cinematiqueStore from '../../variableGlobal/global/cinematiqueStore';
+import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
+
+const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique, historiqueSet, ennemiEnVie, joueurUtilisableSet, joueurUtilisable, storeJoueurs, strategieEnnemi, strategieEnnemiSet, joueurRestant }) => {
 
     const dimension = 60;
 
     ennemiEnVie = storeCombat.ennemiEnVie;
     //console.log('ennemiEnVie magie : ', ennemiEnVie);
 
+    const storeMusique = musiqueStore();
+    const storeCelestin = CelestinStore();
+    const storeDeplacement = deplacementStore();
+    const storeInventaire = inventaireStore();
+    const { combat } = combatStore();
+    const { type } = combatStore();
+    const storeCinematique = cinematiqueStore();
     const storeEquipe = equipeStore();
 
     const [avertissement, avertissementSet] = useState('');
@@ -47,8 +62,12 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
             const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
             return nouvelJoueurUtilisable;
         });
+        console.log(joueurRestant);
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
 
-        lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, '', strategieEnnemi, strategieEnnemiSet)
+        lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, '', strategieEnnemi, strategieEnnemiSet);
+
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
     }
 
 

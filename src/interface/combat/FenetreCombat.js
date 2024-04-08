@@ -74,6 +74,7 @@ const FenetreCombat = () => {
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
+        console.log('ahi')
         verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
@@ -186,7 +187,7 @@ const FenetreCombat = () => {
                                     <button onClick={() => {etapeSet('mainD');}} className='btnClasse mainD'>Main Droite</button>
                                 </div>
                                 <button onClick={() => {etapeSet('magie');}} className='btnClasse'>Magie</button>
-                                <button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>
+                                {/*<button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>*/}
                                 <button onClick={() => {
                                     joueurUtilisableSet((ancienJoueurUtilisable) => {
                                         const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
@@ -249,6 +250,7 @@ const FenetreCombat = () => {
                                 storeJoueurs={storeJoueurs}
                                 strategieEnnemi={strategieEnnemi}
                                 strategieEnnemiSet={strategieEnnemiSet}
+                                joueurRestant={joueurRestant}
                             />
                         ) : null }
                         {etape === 'objet' ? (

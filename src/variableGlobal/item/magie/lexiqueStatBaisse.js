@@ -15,7 +15,7 @@ export const lexiqueStatBaisse = {
         status: [],
 
         action: 0,
-        niveau: 3,
+        niveau: 8,
         cout: 9,
         tour: 0,
     },

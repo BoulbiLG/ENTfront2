@@ -18,7 +18,7 @@ export const lexiqueSoin = {
         status: [],
 
         action: 50,
-        niveau: 1,
+        niveau: 19,
         cout: 28,
         tour: 0,
     },

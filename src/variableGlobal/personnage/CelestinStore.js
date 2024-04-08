@@ -51,7 +51,7 @@ const CelestinStore = create((set) => ({
   },
 
   kippaMillion: 'utilisable',
-  piedBiche: 'fini',
+  piedBiche: 'utilisable',
   franckCaca: 'utilisable',
   goulagBlondin: '',
   attaquerBlondin: '',

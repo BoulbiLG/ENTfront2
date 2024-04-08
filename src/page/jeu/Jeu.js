@@ -21,7 +21,7 @@ const Jeu = () => {
 
   useEffect(() => {
     verificationMusique(storeMusique, storeParemetre);
-  }, [volumeMusique, courante])
+  }, [volumeMusique, courante, storeMusique.courante]);
 
 
   return (

@@ -5,10 +5,15 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: aliceblue;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.Cinematique iframe {
+    border: 3px solid white;
+    border-radius: 1vh;
 }
 
 .Cinematique button {
@@ -20,8 +25,8 @@
     border-radius: 1vh;
     outline: none;
     border: none;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     transition: all 0.2s;
     cursor: pointer;
 }

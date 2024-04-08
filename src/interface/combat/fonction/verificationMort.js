@@ -48,7 +48,6 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                 }
             }
 
-            storeMusique.modifier('courante', storeCombat.lieuPrecedent);
             storeMusique.modifier('lecture', 0);
 
             const enculerPromise = new Promise((resolve) => {
@@ -64,7 +63,7 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                     storeCombat.modifier('effetTemporaire', []);
                     storeCombat.modifier('historiqueAction', []);
                     resolve();
-                }, 5000);
+                }, 2000);
             });
             
             await enculerPromise;
@@ -78,17 +77,20 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                         storeDeplacement.modifier('zoneX', 0);
                         storeDeplacement.modifier('zoneY', 0);
                         storeDeplacement.modifier('zoneZ', 666);
+                        storeMusique.modifier('courante', 'goulag');
                         storeCelestin.modifierInformation('premierCombat', 'oui');
                         const enculerPromise = new Promise((resolve) => {
                             setTimeout(() => {
                                 storeCinematique.modifier('cinematique', 'oui');
-                                storeCinematique.modifier('courante', '');
+                                storeCinematique.modifier('courant', 'goulag');
                                 resolve();
-                            }, 5000);
+                            }, 7000);
                         });
                         
                         await enculerPromise;
                     }
+                } else {
+                    storeMusique.modifier('courante', storeCombat.lieuPrecedent);
                 }
             }
         }

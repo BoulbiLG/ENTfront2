@@ -42,7 +42,6 @@ const Deplacement = () => {
     const [refreshLocal, refreshLocalSet] = useState(0);
     const [lieux, lieuxSet] = useState("Maison de Celestin");
 
-    
     useEffect(() => {
         const colision = storeColision.tutoVillageOui.find((colision) => colision.position === position);
         const nouveauxMouvements = colision ? colision.mouvement : [];

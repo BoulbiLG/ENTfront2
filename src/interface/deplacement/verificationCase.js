@@ -27,6 +27,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
     if (direction == 'monter') {
 
         if (x == 2 && y == -5 && z == 0) {storeDeplacement.modifier('zoneZ', 1); lieuxSet('Cabane de FranckDubosc'); autorisation = false; mettreMusique('franck');} //  franck
+        if (x == -4 && y == -1 && z == -1) {storeDeplacement.modifier('lieux', 'prairie'); lieuxSet('Prairie');} //  entreer foret
 
     } else if (direction == 'haut') {
 
@@ -55,6 +56,8 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
 
     } else if (direction == 'gauche') {
 
+        if (x == 1 && y == -1 && z == -1) {storeDeplacement.modifier('zoneX', -4); storeDeplacement.ajouter('miniMapX', 100); autorisation = false;} //  x: -4
+
     } else if (direction == 'bas') {
 
         // z 999999
@@ -77,6 +80,8 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
         if (x == 0 && y == -5 && z == 666) {storeDeplacement.modifier('zoneZ', 0); storeDeplacement.modifier('zoneX', -2); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour goulag
     
     } else if (direction == 'droite') {
+
+        if (x == -4 && y == -1 && z == -1) {storeDeplacement.modifier('zoneX', 1); storeDeplacement.retirer('miniMapX', 100); autorisation = false;} //  x: -1
 
     }
 

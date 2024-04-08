@@ -77,14 +77,15 @@ export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, 
                         storeDeplacement.modifier('zoneX', 0);
                         storeDeplacement.modifier('zoneY', 0);
                         storeDeplacement.modifier('zoneZ', 666);
-                        storeMusique.modifier('courante', 'goulag');
+                        storeMusique.modifier('courante', 'onche');
                         storeCelestin.modifierInformation('premierCombat', 'oui');
+                        storeCelestin.modifier('vie', 100);
                         const enculerPromise = new Promise((resolve) => {
                             setTimeout(() => {
                                 storeCinematique.modifier('cinematique', 'oui');
                                 storeCinematique.modifier('courant', 'goulag');
                                 resolve();
-                            }, 7000);
+                            }, 5000);
                         });
                         
                         await enculerPromise;

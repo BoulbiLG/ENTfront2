@@ -1,11 +1,13 @@
 
+import nofap from '../../../asset/magie/icone/nofap.png';
+
 export const lexiqueStatAugmente = {
 
     nofap: {
         id: 'nofap',
         nom: 'No fap',
         type: 'augmenteStat',
-        imgIcone: '',
+        imgIcone: nofap,
         
         consequence: [
             {stat: 'attaque', action: 1.5, tour: 0},

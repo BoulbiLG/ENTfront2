@@ -22,7 +22,7 @@ export const utiliserSortStat = (storeCombat, storeEnnemis, storeJoueurs=[], sor
                 // APPLIQUE EFFET
                 sort.consequence.forEach((joueur) => {
                     const stat = storeEnnemis[joueur.stat];
-                    storeEnnemis.modifier(joueur.stat, stat * joueur.action);
+                    storeEnnemis.modifier(joueur.stat, parseInt(stat * joueur.action));
                     storeEnnemis.retirer('magie', sort.cout);
                     //console.log(stat, ' * par ', joueur.action, ' = ', parseInt(stat * joueur.action));
                     //console.log(storeEnnemis.nom, ' voit sa ', [joueur.stat], ' initiale de : ', stat, ' augmenté a ', parseInt(stat * joueur.action));
@@ -72,7 +72,7 @@ export const utiliserSortStat = (storeCombat, storeEnnemis, storeJoueurs=[], sor
                 // APPLIQUE EFFET
                 sort.consequence.forEach((joueur) => {
                     const stat = storeJoueurs[joueur.stat];
-                    storeJoueurs.modifier(joueur.stat, stat / joueur.action);
+                    storeJoueurs.modifier(joueur.stat, parseInt(stat / joueur.action));
                     storeEnnemis.retirer('magie', sort.cout);
                     //console.log(stat, ' / par ', joueur.action, ' = ', parseInt(stat / joueur.action));
                     //console.log(storeJoueurs.nom, ' voit sa ', [joueur.stat], ' initiale de : ', stat,  ' reduite a ', parseInt(stat / joueur.action));

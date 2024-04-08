@@ -22,7 +22,7 @@ const Home = () => {
 
       <div className="centralisationTitre">
         <div className="titre">
-          <h1>RisiChiasse</h1>
+          <h1>Risiworld</h1>
           <p>Le monde des ENTs</p>
         </div>
       </div>

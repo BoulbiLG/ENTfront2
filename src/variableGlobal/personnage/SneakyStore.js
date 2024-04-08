@@ -61,17 +61,9 @@ const SneakyStore = create((set) => ({
 
     dialogueNormal: {
       r1: {
-        texte: "Tu passeras pas le mioche ...",
-        sticker: 'https://image.noelshack.com/fichiers/2018/34/5/1535122003-clint-eastwood-doute.png',
-        index: 1},
-      r2: {
-        texte: '... tu tiendras pas 2 minutes dehors',
-        sticker: 'https://image.noelshack.com/fichiers/2018/01/4/1515034623-clintzoom.png',
-        index: 2},
-      r3: {
-        texte: `sauf si tu me suce`,
-        sticker: 'https://image.noelshack.com/fichiers/2018/34/5/1535122132-clint-eastwood-sourire-2.png',
-        index: 2},
+        texte: "Rendez nous le retou !",
+        sticker: 'https://image.noelshack.com/fichiers/2023/12/4/1679587039-gif-230323-165710.gifg',
+        index: 1}
     },
 
     dialogueDesir: "J'aime beaucoup les cordons bleus au poulet.",

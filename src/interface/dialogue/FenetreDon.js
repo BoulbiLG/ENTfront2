@@ -57,7 +57,7 @@ const FenetreDon = ({ personnageStore, dialogueAffichageSet, affichageFenetreDon
                         storeInventaire.ajouter('poid', lexiqueDivers.playstation.poid);
                     }
 
-                    repliqueReturn.push({texte: 'Tu es bien gentil toi, tiens, rend cette play à leoben, je lui avais volé. ', sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png'})
+                    repliqueReturn.push({texte: 'Tu es bien gentil toi, tiens, rend cette play à Leoben, je lui avais volé. ', sticker: 'https://image.noelshack.com/fichiers/2023/05/7/1675552945-chat.png'})
                     console.log(repliqueReturn);
                     dialogueAffichageSet(repliqueReturn);
                     affichageFenetreDonSet('false');

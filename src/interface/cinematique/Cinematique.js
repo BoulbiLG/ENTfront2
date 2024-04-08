@@ -3,6 +3,7 @@ import './cinematique.css';
 import cinematiqueStore from '../../variableGlobal/global/cinematiqueStore';
 import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
+import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 
@@ -10,6 +11,7 @@ const Cinematique = () => {
     const [cinematiqueCourante, setCinematiqueCourante] = useState('');
 
     const storeCelestin = CelestinStore();
+    const storeEquipe = equipeStore();
     const storeCinematique = cinematiqueStore();
     const storeMusique = musiqueStore();
     const storeDeplacement = deplacementStore();
@@ -26,13 +28,11 @@ const Cinematique = () => {
 
         if (storeCinematique.courant === 'intro') {
             setCinematiqueCourante('lz2omsaPcp8');
-            storeMusique.modifier('courante', '');
             storeParametre.modifier('volumeMusique', 1);
         }
         console.log(storeCinematique.courant)
         if (storeCinematique.courant === 'goulag') {
             setCinematiqueCourante('gCVbLYlpDXk');
-            storeMusique.modifier('courante', '');
             storeParametre.modifier('volumeMusique', 1);
         }
 
@@ -55,6 +55,7 @@ const Cinematique = () => {
             storeDeplacement.modifier('zoneZ', 0);
             storeDeplacement.ajouter('miniMapX', 40);
             storeDeplacement.ajouter('miniMapY', 100);
+            storeEquipe.ajouterNom('Jouhn_ingroum');
             storeMusique.modifier('courante', 'onche');
             storeParametre.modifier('volumeMusique', 100);
         }

@@ -54,7 +54,7 @@ const BenzemonstreStore = create((set) => ({
   colere: 0,
   tristesse: 0,
   confiance: 0,
-  peur: 0,
+  peur: 25,
   empathie: 0,
 
   // DIALOGUE

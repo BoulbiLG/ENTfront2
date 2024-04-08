@@ -37,7 +37,7 @@ const BlondinStore = create((set) => ({
 
   vieMax: 115,
   vie: 115,
-  niveau: 99, 
+  niveau: 15, 
   expMax: 100,
   exp: 0,
   attaque: 10,
@@ -72,7 +72,7 @@ const BlondinStore = create((set) => ({
         sticker: 'https://image.noelshack.com/fichiers/2018/01/4/1515034623-clintzoom.png',
         index: 2},
       r3: {
-        texte: `sauf si tu me suce`,
+        texte: `sauf si tu me suces`,
         sticker: 'https://image.noelshack.com/fichiers/2018/34/5/1535122132-clint-eastwood-sourire-2.png',
         index: 2},
     },
@@ -106,7 +106,7 @@ const BlondinStore = create((set) => ({
     { id: '', type: 'buste', x: 50, y: 140, cible: 'buste', img: '' }, 
     { id: '', type: 'bras', x: 674, y: 140, cible: 'bras', img: '' },
     { id: '', type: 'jambe', x: 50, y: 357, cible: 'jambe', img: '' },
-    { id: 'epee', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
+    { id: '', type: 'mainG', x: 50, y: 250, cible: 'main', img: '' },
     { id: '', type: 'mainD', x: 674, y: 255, cible: 'main', img: '' },
     { id: '', type: 'pied', x: 50, y: 463, cible: 'pied', img: '' },
   ],

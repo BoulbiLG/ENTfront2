@@ -20,7 +20,7 @@ const CleaMoletteStore = create((set) => ({
   zoneX: 0,
   zoneY: -4,
   zoneZ: 999999,
-  x: 230,
+  x: 700,
   y: 200,
   
   nom: 'CleaMolette',

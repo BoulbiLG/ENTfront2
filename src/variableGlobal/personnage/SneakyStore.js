@@ -62,7 +62,7 @@ const SneakyStore = create((set) => ({
     dialogueNormal: {
       r1: {
         texte: "Rendez nous le retou !",
-        sticker: 'https://image.noelshack.com/fichiers/2023/12/4/1679587039-gif-230323-165710.gifg',
+        sticker: 'https://image.noelshack.com/fichiers/2019/38/5/1568978354-pascal-megaphone.png',
         index: 1}
     },
 

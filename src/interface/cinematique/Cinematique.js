@@ -53,6 +53,8 @@ const Cinematique = () => {
             storeDeplacement.modifier('zoneX', -2);
             storeDeplacement.modifier('zoneY', -5);
             storeDeplacement.modifier('zoneZ', 0);
+            storeDeplacement.ajouter('miniMapX', 40);
+            storeDeplacement.ajouter('miniMapY', 100);
             storeMusique.modifier('courante', 'onche');
             storeParametre.modifier('volumeMusique', 100);
         }

@@ -9,7 +9,7 @@ const BenzemonstreStore = create((set) => ({
   zoneZ: 0,
   x: 0,
   y: 0,
-  etat: 'ennemi',
+  etat: 'PNJ',
   soumis: 'non',
   URL: 'https://cloud.onche.org/d682eecd-0f0e-42a8-86bc-5e2e2d5f4598!xMhG6dJaYD/128',
   img: 'https://risibank.fr/cache/medias/0/22/2242/224230/full.png',

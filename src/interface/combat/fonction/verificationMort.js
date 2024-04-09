@@ -1,6 +1,7 @@
 
 export const verificationMort = async (storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant, ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin) => {
 
+    console.log(storeJoueurs)
     //console.log('verification mort', joueurRestant, ', length : ', joueurRestant.joueur.length);
     //console.log('verification mort ennemi', ennemiEnVie, ', length : ', ennemiEnVie.length);
     //console.log('verification mort joueurRestant', joueurRestant, ', length : ', joueurRestant.length);

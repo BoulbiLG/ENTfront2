@@ -6,6 +6,7 @@ import deplacementStore from '../../variableGlobal/global/deplacementStore';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
+import BenzemonstreStore from '../../variableGlobal/personnage/JouhnStore'
 
 const Cinematique = () => {
     const [cinematiqueCourante, setCinematiqueCourante] = useState('');
@@ -16,6 +17,7 @@ const Cinematique = () => {
     const storeMusique = musiqueStore();
     const storeDeplacement = deplacementStore();
     const storeParametre = parametreStore();
+    const storeJouhn = BenzemonstreStore();
     const { cinematique } = cinematiqueStore();
 
     useEffect(() => {
@@ -56,6 +58,8 @@ const Cinematique = () => {
             storeDeplacement.ajouter('miniMapX', 40);
             storeDeplacement.ajouter('miniMapY', 100);
             storeEquipe.ajouterNom('Jouhn_ingroum');
+            storeJouhn.modifier('soumis', 'oui');
+            storeJouhn.modifier('etat', 'equipier');
             storeMusique.modifier('courante', 'onche');
             storeParametre.modifier('volumeMusique', 100);
         }

@@ -22,16 +22,19 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
 
     const dimension = 60;
 
+    console.log(joueurRestant);
+    console.log(storeJoueurs)
+
     ennemiEnVie = storeCombat.ennemiEnVie;
     //console.log('ennemiEnVie magie : ', ennemiEnVie);
 
     const storeMusique = musiqueStore();
     const storeCelestin = CelestinStore();
     const storeDeplacement = deplacementStore();
+    const storeCinematique = cinematiqueStore();
     const storeInventaire = inventaireStore();
     const { combat } = combatStore();
     const { type } = combatStore();
-    const storeCinematique = cinematiqueStore();
     const storeEquipe = equipeStore();
 
     const [avertissement, avertissementSet] = useState('');
@@ -41,11 +44,11 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
 
 
     // UTILISER UN SORT
-    const utiliserSortBrut = (joueurCourant, storeCombat, storeEnnemis, sortCourant,historique, historiqueSet, avertissementSet, ennemi, ennemiEnVie, type) => {
+    const utiliserSortBrut = (joueurCourant, storeCombat, storeEnnemis, sortCourant, historique, historiqueSet, avertissementSet, ennemi, ennemiEnVie, storeJoueurs) => {
 
         if (ennemi === undefined) {ennemi = ''}
 
-        utiliserSort(
+        ennemiEnVie = utiliserSort(
             joueurCourant,
             storeCombat, 
             storeEnnemis, 
@@ -55,6 +58,7 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
             avertissementSet,
             ennemi,
             ennemiEnVie,
+            storeJoueurs,
         );
         etapeSet('qui');
 
@@ -63,11 +67,9 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
             return nouvelJoueurUtilisable;
         });
         console.log(joueurRestant);
-        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
 
         lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, '', strategieEnnemi, strategieEnnemiSet);
 
-        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
     }
 
 
@@ -77,13 +79,17 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
 
         //console.log(joueurUtilisable.length);
         //console.log(joueurUtilisable);
+        verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         if (joueurUtilisable.length === 1) {
             setTimeout(() => {
                 //console.log('tour ennemi');
                 joueurUtilisableSet(storeEquipe.nom);
-                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+                joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+            
+                verificationMort(storeJoueurs, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
+            
             }, 1000);
         }
     }
@@ -137,7 +143,8 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
                                                 avertissementSet,
                                                 '',
                                                 ennemiEnVie,
-                                            )
+                                                storeJoueurs,
+                                            );
                                         }}
                                         >
                                             <div className="gauche"><p>{element.nom}</p></div>
@@ -180,6 +187,7 @@ const Magie = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
                                         avertissementSet,
                                         ennemi,
                                         ennemiEnVie,
+                                        storeJoueurs,
                                     );
                                 }}
                                 >

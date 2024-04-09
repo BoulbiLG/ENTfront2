@@ -2,10 +2,29 @@
 import { calculDefenseEnnemi } from "../calculDefenseEnnemi";
 import { calculAttaqueJoueurMagie } from "./calculAttaqueJoueurMagie";
 
-export const utiliserSort = (storeJoueurs, storeCombat, storeEnnemis, sort, historique, historiqueSet, avertissementSet, cible='', ennemiEnVie) => {
+export const utiliserSort = (storeJoueurs, storeCombat, storeEnnemis, sort, historique, historiqueSet, avertissementSet, cible='', ennemiEnVie, storeJoueursTotal) => {
 
     let store;
+/*
+    let joueurRestant = [{
+        joueurRestant: storeEquipe,
+        joueur: storeEquipe,
+        ennemi: storeCombat.nom,
+    }];
 
+    // verifier joueur restant
+    for (const joueur of storeJoueursTotal) {
+        for (const nom of joueurRestant) {
+            if (joueur.nom === nom) {
+                if (joueur.vie < 1) {
+                    console.log(joueur.nom, ', vie : ', joueur.vie);
+                    joueurRestant[0].joueurRestant = joueurRestant[0].joueurRestant.filter(item => item !== joueur.nom);
+                    joueurRestant[0].joueur = joueurRestant[0].joueur.filter(item2 => item2 !== joueur.nom);
+                }
+            }
+        }
+    }
+*/
     if (cible !== '' ) {
         for (let i = 0; i < storeEnnemis.length; i++) {
             const storeBrut = storeEnnemis[i];

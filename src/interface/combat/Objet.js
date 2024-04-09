@@ -9,11 +9,18 @@ import { utiliserItem } from '../inventaire/utiliserItem';
 
 import { lexiqueArme } from '../../variableGlobal/item/lexiqueArme';
 import equipeStore from '../../variableGlobal/personnage/equipeStore';
-import inventaireStore from '../../variableGlobal/inventaire/inventaireStore'
+import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import deplacementStore from '../../variableGlobal/global/deplacementStore';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore';
+import parametreStore from '../../variableGlobal/global/parametreStore';
+import cinematiqueStore from '../../variableGlobal/global/cinematiqueStore';
+import CelestinStore from '../../variableGlobal/personnage/CelestinStore';
+
+import { verificationMort } from './fonction/verificationMort';
 
 import CaseItem from '../../components/item/CaseItem';
 
-const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique, historiqueSet, ennemiEnVie, joueurUtilisableSet, joueurUtilisable, storeJoueurs, strategieEnnemi, strategieEnnemiSet }) => {
+const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique, historiqueSet, ennemiEnVie, joueurUtilisableSet, joueurUtilisable, storeJoueurs, strategieEnnemi, strategieEnnemiSet, joueurRestant, storeJoueursTotal }) => {
 
     const dimension = 60;
 
@@ -21,6 +28,10 @@ const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
     
     const storeEquipe = equipeStore();
     const storeInventaire = inventaireStore();
+    const storeCelestin = CelestinStore();
+    const storeDeplacement = deplacementStore();
+    const storeCinematique = cinematiqueStore();
+    const storeMusique = musiqueStore();
     
     const [avertissement, avertissementSet] = useState('');
     const [cible, cibleSet] = useState('false');
@@ -29,7 +40,9 @@ const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
     console.log(storeInventaire.inventaire);
 
     // UTILISER UN SORT
-    const utiliserSortBrut = (joueurCourant, storeCombat, storeEnnemis, historique, historiqueSet, avertissementSet, ennemiEnVie, action, id, img, type, cible, poid) => {
+    const utiliserSortBrut = (joueurCourant, storeCombat, storeEnnemis, historique, historiqueSet, avertissementSet, ennemiEnVie, action, id, img, type, cible, poid, storeJoueurs) => {
+
+        console.log(storeJoueurs)
 
         utiliserItem(id, type, cible, action, '', '', '', storeInventaire, storeJoueurs, poid, img)
         etapeSet('qui');
@@ -54,15 +67,18 @@ const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
 
     // VERIFIER TOUR ENNEMI
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet) => {
-
-        
+        console.log(storeJoueursTotal);
+        verificationMort(storeJoueursTotal, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);        
 
         // VERIFIE SI LES ENNEMI PEUVENT ATTAQUER
         if (joueurUtilisable.length === 1) {
             setTimeout(() => {
                 //console.log('tour ennemi');
                 joueurUtilisableSet(storeEquipe.nom);
-                attaquerEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+                joueurRestant = attaquerEnnemi(storeEnnemis, storeJoueursTotal, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, joueurUtilisableSet, joueurUtilisable, storeEquipe.nom, ennemiEnVie, historique, historiqueSet);
+            
+                verificationMort(storeJoueursTotal, storeEnnemis, storeCombat, storeEquipe, storeInventaire, joueurRestant[0], ennemiEnVie, storeMusique, storeDeplacement, storeCinematique, storeCelestin);
+
             }, 1000);
         }
     }
@@ -84,7 +100,8 @@ const Objet = ({ etapeSet, joueurCourant, storeEnnemis, storeCombat, historique,
                                             historiqueSet, 
                                             avertissementSet,
                                             ennemiEnVie,
-                                            action, id, img, type, cible, poid
+                                            action, id, img, type, cible, poid,
+                                            storeJoueurs,
                                         );
                                     }} quantite={quantite} equipe={equipe} />
                                 ) : null}

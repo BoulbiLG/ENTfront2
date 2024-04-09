@@ -70,7 +70,7 @@ const FenetreCombat = () => {
     var storeInventaire = inventaireStore();
     var storeJoueurs = recupererListeStore();
 
-    let joueurRestant;
+    let joueurRestant = [];
 
     const lancerTourEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet) => {
 
@@ -188,7 +188,7 @@ const FenetreCombat = () => {
                                 </div>
                                 <button onClick={() => {etapeSet('magie');}} className='btnClasse'>Magie</button>
                                 {/*<button onClick={() => {etapeSet('objet');}} className='btnClasse'>Utiliser un Objet</button>*/}
-                                <button onClick={() => {
+                                {/*<button onClick={() => {
                                     joueurUtilisableSet((ancienJoueurUtilisable) => {
                                         const nouvelJoueurUtilisable = ancienJoueurUtilisable.filter(joueur => joueur !== joueurCourant.nom);
                                         return nouvelJoueurUtilisable;
@@ -205,7 +205,7 @@ const FenetreCombat = () => {
                                     }
                                     storeCombat.ajouterTableau('historiqueAction', ligne);
                                     lancerTourEnnemi(storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemiSet)
-                                }} className='btnClasse'>Ne rien faire</button>
+                                }} className='btnClasse'>Ne rien faire</button>*/}
                                 <button style={{width: '100%', margin: 0, backgroundColor: 'black', color: 'white', padding: '0.6vh'}} onClick={() => {etapeSet('qui');}} className='btnClasse'>Retour</button>
                             </div>
                         ) : null }
@@ -267,6 +267,8 @@ const FenetreCombat = () => {
                                 storeJoueurs={joueurCourant}
                                 strategieEnnemi={strategieEnnemi}
                                 strategieEnnemiSet={strategieEnnemiSet}
+                                joueurRestant={joueurRestant}
+                                storeJoueursTotal={storeJoueurs}
                             />
                         ) : null }
                     </div>

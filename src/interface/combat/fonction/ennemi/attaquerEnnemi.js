@@ -9,6 +9,7 @@ import { calculDefenseJoueur } from "./calculDefenseJoueur";
 
 export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCombat, tourSet, strategieEnnemi, strategieEnnemiSet, setJoueurUtilisable, joueurUtilisable, storeEquipe, ennemiEnVie, historique, historiqueSet) => {
 
+    console.log(storeJoueurs)
     let joueurRestant = [{
         joueurRestant: storeEquipe,
         joueur: storeEquipe,
@@ -286,6 +287,8 @@ export const attaquerEnnemi = (storeEnnemis, storeJoueurs, lexiqueArme, storeCom
             joueurRestant[0].joueur = joueurRestant[0].joueur.filter(item2 => item2 !== joueur.nom);
         }
     }
+
+    console.log(joueurRestant);
 
     ligne = {
         icone: 'https://jvflux.fr/images/4/45/avatar_chocorat_IA.jpg',

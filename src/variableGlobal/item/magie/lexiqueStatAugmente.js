@@ -15,7 +15,7 @@ export const lexiqueStatAugmente = {
         status: [],
 
         action: 0,
-        niveau: 4,
+        niveau: 3,
         cout: 12,
         tour: 0,
     },

@@ -6,7 +6,7 @@ const parametreStore = create((set) => ({
   volumeBruitage: 0,
 
   musique: 'oui',
-  volumeMusique: 100,
+  volumeMusique: 0,
 
   FenetreHistoriqueCombatHeight: 30,
   FenetreHistoriqueCombatWidth: 60,

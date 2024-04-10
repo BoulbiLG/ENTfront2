@@ -22,7 +22,7 @@ const MiniMap = ({ refreshLocal }) => {
 
 
     useEffect(() => {
-        miniMapCouranteSet(miniMapDonnee[0].onche)
+        miniMapCouranteSet(miniMapDonnee[0].onche);
     }, [lieux, miniMapX, miniMapY]);
 
     useEffect(() => {

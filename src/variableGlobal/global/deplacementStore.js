@@ -4,9 +4,9 @@ const px = 20;
 
 const deplacementStore = create((set) => ({
 
-  zoneX: 9,
-  zoneY: -2,
-  zoneZ: 999999,
+  zoneX: -4,
+  zoneY: -1,
+  zoneZ: -1,
 
   lieux: 'onche',
   tutoVillage: 'non',

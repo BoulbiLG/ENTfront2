@@ -10,7 +10,40 @@ import auberge2 from '../../asset/plan/onche/auberge2.png';
 import toilette from '../../asset/plan/onche/toilette.png';
 import cellule from '../../asset/plan/onche/cellule.png';
 
+// foret
+
 export const arrierePlanURL = [
+
+    // foret
+
+    {position: 'X8Y1Z0', url: 'https://i.goopics.net/b7shne.png'},
+    {position: 'X7Y1Z0', url: 'https://i.goopics.net/1bjc2v.png'},
+    {position: 'X6Y1Z0', url: 'https://i.goopics.net/o7vy18.png'},
+    {position: 'X5Y1Z0', url: 'https://i.goopics.net/nnf8j4.png'},
+    {position: 'X4Y1Z0', url: 'https://i.goopics.net/20du51.png'},
+    {position: 'X3Y1Z0', url: 'https://i.goopics.net/gxb70w.png'},
+    {position: 'X2Y1Z0', url: 'https://i.goopics.net/2cd31i.png'},
+    {position: 'X1Y1Z0', url: 'https://i.goopics.net/qed6rj.png'},
+    {position: 'X0Y1Z0', url: 'https://i.goopics.net/thau8o.png'},
+    {position: 'X-1Y1Z0', url: 'https://i.goopics.net/je77oi.png'},
+    {position: 'X-2Y1Z0', url: 'https://i.goopics.net/u6pw89.png'},
+    {position: 'X-3Y1Z0', url: 'https://i.goopics.net/977rsv.png'},
+    {position: 'X-18Y1Z0', url: 'https://i.goopics.net/t491r3.png'},
+    {position: 'X-17Y1Z0', url: 'https://i.goopics.net/g4rgws.png'},
+    {position: 'X-16Y1Z0', url: 'https://i.goopics.net/wft8e8.png'},
+    {position: 'X-15Y1Z0', url: 'https://i.goopics.net/9bas6g.png'},
+    {position: 'X-14Y1Z0', url: 'https://i.goopics.net/74sde3.png'},
+    {position: 'X-13Y1Z0', url: 'https://i.goopics.net/nsoeck.png'},
+    {position: 'X-12Y1Z0', url: 'https://i.goopics.net/aenj9p.png'},
+    {position: 'X-11Y1Z0', url: 'https://i.goopics.net/8cdzc9.png'},
+    {position: 'X-10Y1Z0', url: 'https://i.goopics.net/tp6pcw.png'},
+    {position: 'X-9Y1Z0', url: 'https://i.goopics.net/g9e6l7.png'},
+    {position: 'X-8Y1Z0', url: 'https://i.goopics.net/9qnnr6.png'},
+    {position: 'X-7Y1Z0', url: 'https://i.goopics.net/miqbjj.png'},
+    {position: 'X-6Y1Z0', url: 'https://i.goopics.net/iu9xkf.png'},
+    {position: 'X-5Y1Z0', url: 'https://i.goopics.net/m3lncf.png'},
+    {position: 'X-4Y1Z0', url: 'https://i.goopics.net/u6pw89.png'},
+    {position: 'X-4Y0Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708721917-entree.jpg'},
 
     // onche
     

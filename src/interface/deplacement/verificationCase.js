@@ -27,7 +27,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
     if (direction == 'monter') {
 
         if (x == 2 && y == -5 && z == 0) {storeDeplacement.modifier('zoneZ', 1); lieuxSet('Cabane de FranckDubosc'); autorisation = false; mettreMusique('franck');} //  franck
-        if (x == -4 && y == -1 && z == -1) {storeDeplacement.modifier('lieux', 'prairie'); lieuxSet('Prairie');} //  entreer foret
+        if (x == -4 && y == -1 && z == -1) {storeDeplacement.modifier('lieux', 'foretENT'); lieuxSet('Foret du ENT');} //  entreer foret
 
     } else if (direction == 'haut') {
 
@@ -53,6 +53,7 @@ export const verificationCase = (direction, x, y, z, storeDeplacement, lieuxSet,
     } else if (direction == 'descendre') {
 
         if (x == 2 && y == -5 && z == 1) {storeDeplacement.modifier('zoneZ', 0); lieuxSet("Village d'Onche"); autorisation = false; mettreMusique('onche');} // retour franck
+        if (x == -4 && y == -1 && z == 0) {lieuxSet("Village d'Onche"); storeDeplacement.modifier('lieux', 'onche'); mettreMusique('onche');} // retour village
 
     } else if (direction == 'gauche') {
 

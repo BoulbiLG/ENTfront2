@@ -2,6 +2,38 @@ import create from 'zustand';
 
 const colisionStore = create((set) => ({
 
+  foretENT: [
+    {position: 'X8Y1Z0', mouvement: ['gauche']},      // y 1
+    {position: 'X7Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X6Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X5Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X4Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X3Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X2Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X1Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X0Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-1Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-2Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-3Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-4Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-5Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-6Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-7Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-8Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-9Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-10Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-11Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-12Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-13Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-14Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-15Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-16Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-17Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-18Y1Z0', mouvement: ['droite']},
+    {position: 'X-4Y0Z0', mouvement: ['haut','bas']},      // y 0
+    {position: 'X-4Y-1Z0', mouvement: ['haut','descendre']},      // y -1
+  ],
+
   tutoVillageNon: [
     {position: 'X0Y0Z0', mouvement: ['bas']},
     {position: 'X0Y-1Z0', mouvement: ['haut', 'gauche', 'droite', 'bas']},        // -1

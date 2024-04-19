@@ -106,6 +106,7 @@ export const verificationDialogue = async (nom, id, type, consequence, dialogueA
             setTimeout(() => {
                 storeCombat.modifier('combat', 'oui');
                 storeCombat.modifier('lieuPrecedent', 'onche');
+                storeCombat.modifier('typeEnnemi', 'PNJ');
                 storeCombat.ajouterNom('Blondin');
                 //storeCombat.ajouterNom('CleaMolette');
                 //storeCombat.ajouterNom('ChevalierMaudit');

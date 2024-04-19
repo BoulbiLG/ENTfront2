@@ -9,6 +9,7 @@ import miniMapStore from '../../variableGlobal/global/miniMap';
 import parametreStore from '../../variableGlobal/global/parametreStore';
 import musiqueStore from '../../variableGlobal/audio/musiqueStore';
 import inventaireStore from '../../variableGlobal/inventaire/inventaireStore';
+import combatStore from '../../variableGlobal/global/combatStore';
 
 import { verificationMusique } from './verificationMusique';
 import { verificationCase } from './verificationCase';
@@ -26,6 +27,7 @@ const Deplacement = () => {
 
 
 
+    const storeCombat = combatStore();
     const storeDeplacement = deplacementStore();
     const storeColision = colisionStore();
     const storeCelestin = CelestinStore();
@@ -145,53 +147,55 @@ const Deplacement = () => {
 
     return (
         <div className="limitation">
-            <div className='Deplacement'>
-                <div className="haut">
+            {storeCombat.combat === 'non' ? (
+                <div className='Deplacement'>
+                    <div className="haut">
 
-                    {mouvementChoix.includes('monter') ? (
-                        <button className='activer' onClick={() => {marcher('monter')}}>Monter</button>
-                    ) : (<button className='desactiver'>Monter</button>)}
-                    {mouvementChoix.includes('haut') ? (
-                                <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
-                            ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
-
+                        {mouvementChoix.includes('monter') ? (
+                            <button className='activer' onClick={() => {marcher('monter')}}>Monter</button>
+                        ) : (<button className='desactiver'>Monter</button>)}
+                        
+                        {mouvementChoix.includes('haut') ? (
+                                    <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
+                                ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
 {/*
-                    {storeCelestin.information.tuto === 'oui' && storeDeplacement.zoneX === 0 && storeDeplacement.zoneY === 0 && storeDeplacement.zoneZ === 0 ? (
-                        <>
-                            {mouvementChoix.includes('haut') ? (
-                                <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
-                            ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
-                        </>
-                    ) :
-                        <button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>
-                    }
-                */}
-                    {conclusion.egout === 'oui' && conclusion.piedBiche === 'oui' ? (
-                        <button className='activer' onClick={() => {marcher('descendre', conclusion)}}>Descendre</button>
-                    ) :
-                        <>
-                            {mouvementChoix.includes('descendre') ? (
-                                <button className='activer' onClick={() => {marcher('descendre')}}>Descendre</button>
-                            ) : (<button className='desactiver'>Descendre</button>)}
-                        </>
-                    }
+                        {storeCelestin.information.tuto === 'oui' && storeDeplacement.zoneX === 0 && storeDeplacement.zoneY === 0 && storeDeplacement.zoneZ === 0 ? (
+                            <>
+                                {mouvementChoix.includes('haut') ? (
+                                    <button className='activer' onClick={() => {marcher('haut')}}><span class="material-symbols-outlined">arrow_upward</span></button>
+                                ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>)}
+                            </>
+                        ) :
+                            <button className='desactiver'><span class="material-symbols-outlined">arrow_upward</span></button>
+                        }
+                    */}
+                        {conclusion.egout === 'oui' && conclusion.piedBiche === 'oui' ? (
+                            <button className='activer' onClick={() => {marcher('descendre', conclusion)}}>Descendre</button>
+                        ) :
+                            <>
+                                {mouvementChoix.includes('descendre') ? (
+                                    <button className='activer' onClick={() => {marcher('descendre')}}>Descendre</button>
+                                ) : (<button className='desactiver'>Descendre</button>)}
+                            </>
+                        }
 
+                    </div>
+                    <div className="bas">
+
+                        {mouvementChoix.includes('gauche') ? (
+                            <button className='activer' onClick={() => {marcher('gauche')}}><span class="material-symbols-outlined">arrow_back</span></button>
+                        ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_back</span></button>)}
+
+                        {mouvementChoix.includes('bas') ? (
+                            <button className='activer' onClick={() => {marcher('bas')}}><span class="material-symbols-outlined">arrow_downward</span></button>
+                        ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_downward</span></button>)}
+
+                        {mouvementChoix.includes('droite') ? (
+                            <button className='activer' onClick={() => {marcher('droite')}}><span class="material-symbols-outlined">arrow_right_alt</span></button>
+                        ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_right_alt</span></button>)}
+                    </div>
                 </div>
-                <div className="bas">
-
-                    {mouvementChoix.includes('gauche') ? (
-                        <button className='activer' onClick={() => {marcher('gauche')}}><span class="material-symbols-outlined">arrow_back</span></button>
-                    ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_back</span></button>)}
-
-                    {mouvementChoix.includes('bas') ? (
-                        <button className='activer' onClick={() => {marcher('bas')}}><span class="material-symbols-outlined">arrow_downward</span></button>
-                    ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_downward</span></button>)}
-
-                    {mouvementChoix.includes('droite') ? (
-                        <button className='activer' onClick={() => {marcher('droite')}}><span class="material-symbols-outlined">arrow_right_alt</span></button>
-                    ) : (<button className='desactiver'><span class="material-symbols-outlined">arrow_right_alt</span></button>)}
-                </div>
-            </div>
+            ) : null }
             <div className="indication">
                 <p>X : {storeDeplacement.zoneX}</p>
                 <p>Y : {storeDeplacement.zoneY}</p>

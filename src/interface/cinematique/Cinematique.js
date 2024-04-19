@@ -21,7 +21,6 @@ const Cinematique = () => {
     const { cinematique } = cinematiqueStore();
 
     useEffect(() => {
-        console.log('cinematique verification');
 
         if (storeCelestin.information.premiereCinematique === 'non') {
             storeCinematique.modifier('cinematique', 'oui');
@@ -32,7 +31,6 @@ const Cinematique = () => {
             setCinematiqueCourante('lz2omsaPcp8');
             storeParametre.modifier('volumeMusique', 1);
         }
-        console.log(storeCinematique.courant)
         if (storeCinematique.courant === 'goulag') {
             setCinematiqueCourante('gCVbLYlpDXk');
             storeParametre.modifier('volumeMusique', 1);

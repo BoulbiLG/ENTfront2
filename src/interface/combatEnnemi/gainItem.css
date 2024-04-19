@@ -1,0 +1,123 @@
+
+.GainItem {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    border: none;
+    border-radius: 0px;
+    z-index: 99;
+    padding: 0;
+    cursor: default;
+}
+
+.GainItem h2 {
+    text-align: center;
+}
+
+.GainItem .milieu {
+    display: flex;
+}
+
+.GainItem .gauche {
+    flex: 0.7;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(100, 100, 155);
+    box-shadow: 5px 5px 0px rgb(0, 0, 0);
+}
+
+.GainItem .milieu .milieu {
+    flex: 0.7;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(100, 100, 155);
+    box-shadow: 5px 5px 0px rgb(0, 0, 0);
+}
+
+.GainItem .droite {
+    flex: 1;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 1vh;
+    background-color: rgb(78, 78, 109);
+    box-shadow: 5px 5px 0px rgb(0, 0, 0);
+}
+
+.GainItem .droite .listeItem {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.GainItem .listeNomEnnemi {
+    height: 50vh;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.GainItem .listeExp {
+    width: 100%;
+}
+
+.GainItem .listeExp .carteNom {
+    display: flex;
+    flex-direction: column;
+}
+
+.GainItem .listeExp .hautCarte {
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+}
+
+.GainItem .listeExp .basCarte {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.GainItem .carteNom {
+    margin-bottom: 0.5vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.232);
+    padding: 1vh;
+    border-radius: 1vh;
+    justify-content: space-between;
+}
+
+.GainItem .carteNom img {
+    border-radius: 50%;
+}
+
+.GainItem .bas {
+    padding: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GainItem .bas button {
+    border: none;
+    border-radius: 1vh;
+    background-color: rgb(221, 24, 24);
+    color: white;
+    padding: 2vh;
+    width: 50vh;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.2rem;
+}
+
+.GainItem .bas button:hover {
+    filter: brightness(125%);
+}
+
+.GainItem .bas button:active {
+    filter: brightness(150%);
+}

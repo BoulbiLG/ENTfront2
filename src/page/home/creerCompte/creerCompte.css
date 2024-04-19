@@ -1,17 +1,61 @@
 
+* {
+    box-sizing: border-box;
+}
+
 .CreerCompte {
-    position: absolute;
+    z-index: 999;
+    position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
+    width: 100%;
     display: flex;
-    margin: 2vh;
+    justify-content: space-between;
+    background-color: rgb(28, 30, 35);
+    padding: 1vh;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.CreerCompte .milieu img {
+    width: 50px;
+}
+
+.CreerCompte .milieu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CreerCompte .milieu h1 {
+    font-size: 1.5rem;
+    margin-right: 1vh;
+    color: white;
+    font-weight: 400;
+}
+
+.CreerCompte .gauche span {
+    color: white;
+    scale: 120%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.CreerCompte .gauche span:hover {
+    scale: 130%;
+}
+
+.CreerCompte .droite {
+    display: flex;
+
 }
 
 .CreerCompte a {
     text-align: center;
     color: white;
-    background-color: rgb(103, 154, 179);
-    padding: 1vh 5vh;
+    background-color: rgb(74, 153, 233);
+    color: rgb(28, 30, 35);
+    padding: 1vh 1vh;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s;
@@ -20,10 +64,63 @@
 }
 
 .CreerCompte a:hover {
-    filter: brightness(125%);
-    box-shadow: 3px 3px 0px rgb(74, 111, 130);
+    color: white;
+    box-shadow: 3px 3px 0px rgb(128, 192, 255);
 }
 
 .CreerCompte a:active {
     filter: brightness(150%);
+}
+
+
+
+/* ========== MENU ==========*/
+
+
+
+.CreerCompte .menu {
+    box-sizing: border-box;
+    padding: 1vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(44, 46, 53);
+    width: 35vh;
+    height: 100vh;
+    animation: slideInFromLeft 0.2s ease-out forwards;
+}
+
+.CreerCompte .menu span {
+    scale: 120%;
+    margin: 2vh;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+}
+
+.CreerCompte .menu span:hover {
+    scale: 130%;
+}
+
+.CreerCompte .categorie {
+    display: flex;
+    flex-direction: column;
+}
+
+.CreerCompte .categorie a {
+    margin: 0;
+    width: 100%;
+    margin-bottom: 1vh;
+    font-weight: 500;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

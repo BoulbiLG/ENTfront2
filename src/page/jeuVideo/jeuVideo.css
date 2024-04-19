@@ -1,0 +1,49 @@
+
+.JeuVideo {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(11, 11, 12);
+}
+
+.JeuVideo .centralisation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.JeuVideo .sectionAffiche {
+    width: 70vw;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.JeuVideo .affiche {
+    position: relative;
+    display: block;
+    height: 300px;
+    width: 220px;
+    min-width: 220px;
+    background-size: cover !important;
+    border-radius: 1vh;
+    overflow: hidden;
+    border: 3px solid rgb(11, 11, 12);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.JeuVideo .affiche:hover {
+    border: 3px solid white;
+}
+
+.JeuVideo .affiche .haut {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(28, 30, 35);
+    padding: 1vh;
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+}

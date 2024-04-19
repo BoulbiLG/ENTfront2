@@ -45,7 +45,7 @@ const CelestinStore = create((set) => ({
   codeReduction: 'utilisable',
 
   information: {
-    tutoVillage: 'non',
+    tutoVillage: 'oui',
     premierCombat: 'non',
     premiereCinematique: 'non',
   },

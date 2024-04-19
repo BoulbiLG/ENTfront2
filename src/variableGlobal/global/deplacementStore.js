@@ -4,12 +4,12 @@ const px = 20;
 
 const deplacementStore = create((set) => ({
 
-  zoneX: -4,
-  zoneY: -1,
-  zoneZ: -1,
+  zoneX: 0,
+  zoneY: 0,
+  zoneZ: 0,
 
   lieux: 'onche',
-  tutoVillage: 'non',
+  tutoVillage: 'oui',
 
   fenetreOuverte: [],
 
@@ -28,8 +28,10 @@ const deplacementStore = create((set) => ({
     }));
   },
 
-  modifier: (champ, nouvelleValeur) => {
-    set({ [champ]: nouvelleValeur });
+  modifier: (champ, valeur) => {
+    set((state) => ({
+      [champ]: state[champ] = valeur,
+    }));
   },
 
 }));

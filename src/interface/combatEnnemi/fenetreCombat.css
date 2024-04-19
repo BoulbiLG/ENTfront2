@@ -1,0 +1,234 @@
+
+.FenetreCombat {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    animation: combat 2s forwards;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.FenetreCombat .tour {
+    
+}
+
+.FenetreCombat .listeEnnemi {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    position: absolute;
+    top: 25vh;
+    right: 45vh;
+    padding-right: 11vh;
+    overflow-x: scroll;
+    max-width: 150vh;
+}
+
+.FenetreCombat .info {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 1vh;
+    background-color: rgb(78, 78, 109);
+    color: white;
+    border-radius: 1vh;
+}
+
+.FenetreCombat .ennemi {
+    display: flex;
+    flex-direction: column;
+    margin: 1vh;
+}
+
+.FenetreCombat .hero {
+    position: absolute;
+    bottom: -2vh;
+    left: 70vh;
+}
+
+.FenetreCombat .listeEnnemi img {
+    height: 40vh;
+    width: auto;
+}
+
+.FenetreCombat .choix {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 30vh;
+    width: 60vh;
+    background-color: rgb(100, 100, 155);
+    color: white;
+    border-radius: 1vh;
+    box-shadow: 3px 3px 0px black;
+    overflow-y: scroll;
+    padding: 2vh;
+    margin: 2vh;
+}
+
+.FenetreCombat .nomJoueur {
+    width: 100%;
+    margin: 0.2vh 0;
+    padding: 0.5vh;
+    border-radius: 1vh;
+    outline: none;
+    border: none;
+    box-shadow: 3px 3px 0px black;
+    cursor: pointer;
+    background-color: rgb(161, 161, 229);
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.FenetreCombat .nomJoueur:hover {
+    filter: brightness(110%);
+}
+
+.FenetreCombat .nomJoueur:active {
+    filter: brightness(120%);
+}
+
+.FenetreCombat .listeJoueur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60vh;
+    background-color: rgb(100, 100, 155);
+    color: white;
+    box-shadow: 3px 3px 0px black;
+    overflow-y: scroll;
+    padding: 1vh;
+    padding-top: 8vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 25vh;
+}
+
+.FenetreCombat .carteJoueur {
+    display: flex;
+    background-color: rgb(78, 78, 109);
+    padding: 1vh;
+    border-radius: 1vh;
+    width: 40vh;
+    margin: 0.2vh;
+    max-height: 14.5vh;
+    max-width: 49vh;
+}
+
+.FenetreCombat .listeJoueur .gauche, .FenetreCombat .listeJoueur .gauche {
+    display: flex;
+}
+
+.FenetreCombat .listeJoueur .droite {
+    display: flex;
+}
+
+.FenetreCombat .listeJoueur hr {
+    margin: 0 1vh;
+}
+
+.FenetreCombat .carteJoueur hr {
+    margin: 0 1vh;
+    width: 0.3vh;
+    background-color: aliceblue;
+    border-radius: 25%;
+}
+
+.FenetreCombat .carteJoueur .gauche {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 135px;
+    height: 100px;
+}
+
+.FenetreCombat .carteJoueur .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.FenetreCombat .carteJoueur .texte {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreCombat .fenetreDetail {
+    background-color: rgb(78, 78, 109);
+    height: 50vh;
+    width: 50vh;
+    position: fixed;
+    box-shadow: 3px 3px 50px rgba(0, 0, 0, 0.54);
+    top: 20%;
+    left: 40%;
+    padding: 2vh;
+    border-radius: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.FenetreCombat .fenetreDetail .texte {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FenetreCombat .onglet {
+    display: flex;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.FenetreCombat .onglet button {
+    flex: 1;
+    padding: 1vh;
+    border: none;
+    outline: none;
+    background-color: rgb(126, 126, 192);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.FenetreCombat .onglet button:hover {
+    filter: brightness(120%);
+}
+
+.FenetreCombat .onglet button:active {
+    filter: brightness(140%);
+}
+
+.FenetreCombat .listeObjet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.FenetreCombat .listeObjet .haut {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@keyframes combat {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate3d(1, 1, 1, 0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate3d(1, 1, 1, 360deg);
+    }
+}

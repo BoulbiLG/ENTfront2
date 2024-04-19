@@ -4,8 +4,14 @@ import '../../css/classe/fenetre1.css';
 import onche from '../../asset/minimap/onche/onche.png';
 import miniMapStore from '../../variableGlobal/global/miniMap';
 import deplacementStore from '../../variableGlobal/global/deplacementStore';
+import combatStore from '../../variableGlobal/global/combatStore.js';
+import equipeStore from '../../variableGlobal/personnage/equipeStore.js';
+import ennemiStore from '../../variableGlobal/ennemi/ennemiStore.js';
+import musiqueStore from '../../variableGlobal/audio/musiqueStore.js';
 
 import { miniMapDonnee } from './miniMapDonne';
+
+import { verificationCombat } from './verificationCombat.js';
 
 const MiniMap = ({ refreshLocal }) => {
 
@@ -13,6 +19,10 @@ const MiniMap = ({ refreshLocal }) => {
     const { miniMapX } = deplacementStore();
     const { miniMapY } = deplacementStore();
     const storeDeplacement = deplacementStore();
+    const storeMusique = musiqueStore();
+    const storeEnnemi = ennemiStore();
+    const storeCombat = combatStore();
+    const storeEquipe = equipeStore();
 
     const storeMiniMap = miniMapStore();
     const [img, imgSet] = useState(onche);
@@ -22,7 +32,13 @@ const MiniMap = ({ refreshLocal }) => {
 
 
     useEffect(() => {
-        miniMapCouranteSet(miniMapDonnee[0].onche);
+        if (storeDeplacement.lieux === 'onche') {
+            miniMapCouranteSet(miniMapDonnee[0].onche);
+        }
+        if (storeDeplacement.lieux === 'foretENT') {
+            miniMapCouranteSet(miniMapDonnee[0].foretENT);
+        }
+        verificationCombat(miniMapCourante, storeDeplacement, storeCombat, storeEquipe, storeEnnemi, storeMusique);
     }, [lieux, miniMapX, miniMapY]);
 
     useEffect(() => {
@@ -51,23 +67,46 @@ const MiniMap = ({ refreshLocal }) => {
             */}
 
             <div className="caseListe">
-            {miniMapInverse.map(({x, y, z}) => (
+            {miniMapInverse.map(({x, y, type}) => (
                     <>
                         {x === storeDeplacement.zoneX && y === storeDeplacement.zoneY ? (
                             <div className="case" style={{
                                 position: 'absolute',
-                                backgroundColor: 'red',
+                                backgroundColor: 'green',
                                 top: `${-((y * 20) + miniMapY) - ancrage}px`,
                                 left: `${((x * 20) + miniMapX) - ancrage}px`,
                             }}>
                             </div>
                         ) :
-                            <div className="case" style={{
-                                position: 'absolute',
-                                top: `${-((y * 20) + miniMapY) - ancrage}px`,
-                                left: `${((x * 20) + miniMapX) - ancrage}px`,
-                            }}>
-                            </div>
+                            <>
+                                {type === 'combat' ? (
+                                    <div className="case" style={{
+                                        position: 'absolute',
+                                        backgroundColor: 'red',
+                                        top: `${-((y * 20) + miniMapY) - ancrage}px`,
+                                        left: `${((x * 20) + miniMapX) - ancrage}px`,
+                                    }}>
+                                    </div>
+                                ) : null }
+                                {type === 'entre' ? (
+                                    <div className="case" style={{
+                                        position: 'absolute',
+                                        backgroundColor: 'blue',
+                                        top: `${-((y * 20) + miniMapY) - ancrage}px`,
+                                        left: `${((x * 20) + miniMapX) - ancrage}px`,
+                                    }}>
+                                    </div>
+                                ) : null }
+                                {type === '' ? (
+                                    <div className="case" style={{
+                                        position: 'absolute',
+                                        backgroundColor: 'white',
+                                        top: `${-((y * 20) + miniMapY) - ancrage}px`,
+                                        left: `${((x * 20) + miniMapX) - ancrage}px`,
+                                    }}>
+                                    </div>
+                                ) : null }
+                            </>
                         }
                     </>
                 ))}

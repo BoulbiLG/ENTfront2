@@ -6,15 +6,17 @@ import Home from './page/home/Home';
 import Connexion from './page/home/creerCompte/Connexion';
 import Inscription from './page/home/creerCompte/Inscription';
 import Jeu from './page/jeu/Jeu';
+import JeuVideo from './page/jeuVideo/JeuVideo';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/jeu" element={<Jeu />} />
+        <Route path="/risiworld" element={<Jeu />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
+        <Route path="/jeu-video" element={<JeuVideo />} />
         {/*<Route path="/inscription" element={<Inscription />} />*/}
       </Routes>
     </Router>

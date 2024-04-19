@@ -3,10 +3,12 @@ import create from 'zustand';
 const combatStore = create((set) => ({
 
   combat: 'non',
+  typeEnnemi: '',
   type: '',
   tour: '',
   etat: '',
   lieuPrecedent: '',
+  fond: '',
   nombreEnnemi: 0,
 
   nom: [],

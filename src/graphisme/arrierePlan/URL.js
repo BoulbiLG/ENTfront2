@@ -43,7 +43,7 @@ export const arrierePlanURL = [
     {position: 'X-6Y1Z0', url: 'https://i.goopics.net/iu9xkf.png'},
     {position: 'X-5Y1Z0', url: 'https://i.goopics.net/m3lncf.png'},
     {position: 'X-4Y1Z0', url: 'https://i.goopics.net/u6pw89.png'},
-    {position: 'X-4Y0Z0', url: 'https://image.noelshack.com/fichiers/2024/08/5/1708721917-entree.jpg'},
+    {position: 'X-4Y0Z0', url: 'https://i.goopics.net/gxb70w.png'},
 
     // onche
     

@@ -1,0 +1,181 @@
+
+.FenetreCombat .quoi {
+    display: flex;
+    flex-direction: column;
+}
+
+.FenetreCombat .quoi button {
+    width: 100%;
+    background-color: rgb(126, 126, 192);
+    margin: 0 0 0.2vh 0;
+}
+
+.FenetreCombat .main {
+    display: flex;
+}
+
+.FenetreCombat .mainG {
+    flex: 1;
+    border-radius: 1vh 0 0 1vh;
+    background-color: white !important;
+    color: black;
+    transition: all 0.2s;
+}
+
+.FenetreCombat .mainG:hover {
+    flex: 2;
+}
+
+.FenetreCombat .mainD {
+    flex: 1;
+    border-radius: 0 1vh 1vh 0;
+    background-color: black !important;
+    color: white;
+    transition: all 0.2s;
+}
+
+.FenetreCombat .mainD:hover {
+    flex: 2;
+}
+
+.FenetreCombat .cible button {
+    width: 100%;
+    padding: 0.5vh;
+    border: none;
+    outline: none;
+    border-radius: 1vh;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin-bottom: 0.7vh;
+}
+
+.FenetreCombat .cible button:hover {
+    scale: 101%;
+    filter: brightness(125%);
+}
+
+.FenetreCombat .cible button:active {
+    filter: brightness(150%);
+}
+
+.FenetreCombat .cible .retour {
+    background-color: black;
+    color: white;
+}
+
+.FenetreCombat .historique {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: aliceblue;
+    max-height: 20vh;
+    width: 40vh;
+    overflow-y: scroll;
+    height: 100%;
+    background-color: rgb(100, 100, 155);
+    color: white;
+    border-radius: 1vh;
+    box-shadow: 3px 3px 0px rgb(0, 0, 0);
+    overflow-y: scroll;
+    padding: 2vh;
+    margin: 2vh;
+    scroll-behavior: smooth;
+}
+
+.FenetreCombat .historique .listeLigne {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.FenetreCombat .historique .ligne hr {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    border-radius: 50%;
+}
+
+.FenetreCombat .historique .ligne {
+    display: flex;
+    align-items: center;
+    padding: 0.5vh;
+    border-radius: 1vh;
+    margin-bottom: 0.3vh;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.FenetreCombat .ouvrirHistorique {
+    position: absolute;
+    margin: 2vh;
+    bottom: 0;
+    left: 0;
+
+}
+
+.FenetreCombat .fermerHistorique {
+    position: absolute;
+    top: 0;
+    border-radius: 30% 0 50% 0;
+    outline: none;
+    border: none;
+    width: 3vh;
+    left: 0;
+    background-color: rgb(225, 61, 61);
+    color: white;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.FenetreCombat .fermerHistorique:hover {
+    filter: brightness(125%);
+}
+
+.FenetreCombat .fermerHistorique:active {
+    filter: brightness(150%);
+}
+
+.FenetreCombat .parametreFenetre {
+    position: absolute;
+    top: 0;
+    color: white;
+    border-radius: 1vh;
+    z-index: 99;
+    left: 0;
+}
+
+.FenetreCombat .ongletHistorique {
+    position: absolute;
+    top: 0vh;
+    left: 4vh;
+    display: flex;
+}
+
+.FenetreCombat .ongletHistorique button {
+    padding: 0.5vh;
+    width: 15vh;
+    border: none;
+    background-color: rgb(39, 39, 57);
+    color: white;
+    border-radius: 0 0 1vh 1vh;
+    margin-right: 1vh;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.FenetreCombat .ongletHistorique button:hover {
+    scale: 105%;
+}
+
+.FenetreCombat .ongletHistorique button:active {
+    scale: 110%;
+}
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }

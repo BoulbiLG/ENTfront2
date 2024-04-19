@@ -11,11 +11,11 @@ const colisionStore = create((set) => ({
     {position: 'X3Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X2Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X1Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X0Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X0Y1Z0', mouvement: ['droite','gauche', 'bas']},
     {position: 'X-1Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-2Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-3Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X-4Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-4Y1Z0', mouvement: ['droite','gauche', 'bas']},
     {position: 'X-5Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-6Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-7Y1Z0', mouvement: ['droite','gauche']},
@@ -35,7 +35,7 @@ const colisionStore = create((set) => ({
   ],
 
   tutoVillageNon: [
-    {position: 'X0Y0Z0', mouvement: ['bas']},
+    {position: 'X0Y0Z0', mouvement: ['bas', 'haut']},
     {position: 'X0Y-1Z0', mouvement: ['haut', 'gauche', 'droite', 'bas']},        // -1
     {position: 'X-1Y-1Z0', mouvement: ['droite', 'bas', 'haut']},
     {position: 'X1Y-1Z-1', mouvement: ['gauche']},

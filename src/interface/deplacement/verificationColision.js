@@ -16,6 +16,7 @@ export const verificationColision = (lieux, storeCelestin, colision, storeDeplac
             }
 
         }
+        console.log("ouiii")
 
     }
 

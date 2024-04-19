@@ -7,6 +7,8 @@ import lidl from '../../audio/musique/lidl.mp3';
 import espoir from '../../audio/musique/espoir.mp3';
 import franckDubosc from '../../audio/musique/franckDubosc.mp3';
 import goulag from '../../audio/musique/goulag.mp3';
+import foretENT from '../../audio/musique/foretENT.mp3';
+import combatForet from '../../audio/musique/combat chepa.mp3';
 
 const audioSources = {
   onche: new Audio(test),
@@ -17,6 +19,8 @@ const audioSources = {
   victoireNormal: new Audio(espoir),
   franck: new Audio(franckDubosc),
   goulag: new Audio(goulag),
+  foretENT: new Audio(foretENT),
+  combatForet: new Audio(combatForet),
 };
 
 let currentAudio = audioSources.onche;

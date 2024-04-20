@@ -16,13 +16,17 @@ export const arrierePlanURL = [
 
     // foret
 
-    {position: 'X8Y1Z0', url: 'https://i.goopics.net/b7shne.png'},
-    {position: 'X7Y1Z0', url: 'https://i.goopics.net/1bjc2v.png'},
-    {position: 'X6Y1Z0', url: 'https://i.goopics.net/o7vy18.png'},
-    {position: 'X5Y1Z0', url: 'https://i.goopics.net/nnf8j4.png'},
-    {position: 'X4Y1Z0', url: 'https://i.goopics.net/20du51.png'},
-    {position: 'X3Y1Z0', url: 'https://i.goopics.net/gxb70w.png'},
-    {position: 'X2Y1Z0', url: 'https://i.goopics.net/2cd31i.png'},
+    {position: 'X-2Y4Z0', url: 'https://i.goopics.net/y6kilq.png'}, // y 4
+    {position: 'X0Y4Z0', url: 'https://i.goopics.net/y6kilq.png'},
+    {position: 'X-1Y3Z0', url: 'https://i.goopics.net/nnf8j4.png'}, // y 3
+    {position: 'X-2Y3Z0', url: 'https://i.goopics.net/20du51.png'},
+    {position: 'X0Y3Z0', url: 'https://i.goopics.net/20du51.png'},
+    {position: 'X0Y2Z0', url: 'https://i.goopics.net/2cd31i.png'}, // y 2
+    {position: 'X0Y3Z0', url: 'https://i.goopics.net/gxb70w.png'},
+    {position: 'X-1Y2Z0', url: 'https://i.goopics.net/gxb70w.png'},
+    {position: 'X-2Y2Z0', url: 'https://i.goopics.net/o7vy18.png'}, 
+    {position: 'X-3Y2Z0', url: 'https://i.goopics.net/1bjc2v.png'},
+    {position: 'X8Y1Z0', url: 'https://i.goopics.net/b7shne.png'},  // y 1
     {position: 'X1Y1Z0', url: 'https://i.goopics.net/qed6rj.png'},
     {position: 'X0Y1Z0', url: 'https://i.goopics.net/thau8o.png'},
     {position: 'X-1Y1Z0', url: 'https://i.goopics.net/je77oi.png'},
@@ -88,6 +92,7 @@ export const arrierePlanURL = [
 
     {position: 'X3Y-6Z0', url: 'https://image.noelshack.com/fichiers/2024/14/3/1712175072-x3y-6z0.jpg'},
 
+    {position: 'X12Y4Z999999', url: 'https://i.goopics.net/re31cn.png'},
     {position: 'X0Y-4Z999999', url: basique},
     {position: 'X3Y-5Z999999', url: basique},
     {position: 'X4Y-6Z999999', url: basique},

@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 70vh;
 }
 
 .JeuVideo .sectionAffiche {
@@ -47,3 +48,122 @@
     width: 100%;
     color: white;
 }
+
+
+
+/* =========== SECTION JEU =========== */
+
+
+
+.JeuVideo .sectionJeu {
+    color: white;
+    display: flex;
+}
+
+.JeuVideo .gaucheJeu {
+    padding: 0 3vh 0 3vh;
+}
+
+.JeuVideo .droiteJeu {
+    padding: 0 3vh 0 3vh;
+    height: 100%;
+}
+
+.JeuVideo .gaucheAffiche {
+    position: relative;
+    display: block;
+    height: 300px;
+    width: 220px;
+    min-width: 220px;
+    background-size: cover !important;
+    border-radius: 1vh;
+    overflow: hidden;
+    margin-right: 2vh;
+}
+
+.JeuVideo .hautSection {
+    display: flex;
+}
+
+.JeuVideo .droiteInfo {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.JeuVideo .retour {
+    padding: 1vh;
+    background-color: white;
+    color: black;
+    border-radius: 1vh;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+    scale: 100%;
+}
+
+.JeuVideo .retour:hover {
+    box-shadow: 3px 3px 0px rgb(207, 207, 207);
+    scale: 102%;
+}
+
+.JeuVideo .boutonBasique {
+    padding: 1vh;
+    background-color: rgb(44, 46, 53);
+    color: white;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    margin-bottom: 1vh;
+}
+
+.JeuVideo .boutonBasique:hover {
+    filter: brightness(150%);
+}
+
+.JeuVideo button.supprimer {
+    background-color: brown;
+}
+
+
+
+/* ========== COMMENTAIRE ========== */
+
+
+
+.JeuVideo .commentaireListe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 40vh;
+}
+
+.JeuVideo .commentaire {
+    color: white;
+    background-color: rgb(44, 46, 53);
+    width: 100%;
+    border-radius: 1vh;
+    padding: 2vh;
+    margin-bottom: 1vh;
+}
+
+.JeuVideo .publier {
+    background-color: darkblue;
+}
+
+.JeuVideo .poste textarea {
+    outline: none;
+    resize: none;
+    color: white;
+    background-color: rgb(44, 46, 53);
+    width: 100%;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+
+

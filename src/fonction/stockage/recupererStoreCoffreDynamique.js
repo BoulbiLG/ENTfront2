@@ -1,13 +1,16 @@
 
 import oncheStore from "../../variableGlobal/stockage/oncheStore";
+import foretENTStore from "../../variableGlobal/stockage/foretENTStore";
 
 export const recupererStoreCoffreDynamique = (lieux) => {
 
     const storeOnche = oncheStore();
+    const storeForetENT = foretENTStore();
     var storeJoueur;
 
     switch (lieux) {
         case 'onche':storeJoueur = storeOnche; break;
+        case 'foretENT':storeJoueur = storeForetENT; break;
         default: console.log('rien');
     }
 

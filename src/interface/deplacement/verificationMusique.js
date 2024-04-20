@@ -9,6 +9,7 @@ import franckDubosc from '../../audio/musique/franckDubosc.mp3';
 import goulag from '../../audio/musique/goulag.mp3';
 import foretENT from '../../audio/musique/foretENT.mp3';
 import combatForet from '../../audio/musique/combat chepa.mp3';
+import douceFrance from '../../audio/musique/douceFrance.mp3';
 
 const audioSources = {
   onche: new Audio(test),
@@ -21,6 +22,7 @@ const audioSources = {
   goulag: new Audio(goulag),
   foretENT: new Audio(foretENT),
   combatForet: new Audio(combatForet),
+  gaulois: new Audio(douceFrance),
 };
 
 let currentAudio = audioSources.onche;

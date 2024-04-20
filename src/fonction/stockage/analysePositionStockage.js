@@ -1,13 +1,25 @@
 import oncheStore from '../../variableGlobal/stockage/oncheStore';
+import foretENTStore from '../../variableGlobal/stockage/foretENTStore';
 
 export const analysePositionStockage = (x, y, z, lieux) => {
 
     const storeOnche = oncheStore();
+    const storeForetENT = foretENTStore();
 
     const listeStockage = [];
     if (lieux == 'onche') {
         for (let i = 0; i < storeOnche.stockage.length; i++) {
             const coffre = storeOnche.stockage[i];
+            //console.log('zoneX === ', x, ', zoneY :=== ', y, ', zoneZ === ', z);
+            if (coffre.zoneX == x && coffre.zoneY == y && coffre.zoneZ == z) {
+                listeStockage.push({x: coffre.x, y: coffre.y, id: coffre.idStockage,type: coffre.type,img: coffre.img,inventaire: coffre.inventaire,store: coffre,});
+            }
+        }
+    
+    }
+    if (lieux == 'foretENT') {
+        for (let i = 0; i < storeForetENT.stockage.length; i++) {
+            const coffre = storeForetENT.stockage[i];
             //console.log('zoneX === ', x, ', zoneY :=== ', y, ', zoneZ === ', z);
             if (coffre.zoneX == x && coffre.zoneY == y && coffre.zoneZ == z) {
                 listeStockage.push({x: coffre.x, y: coffre.y, id: coffre.idStockage,type: coffre.type,img: coffre.img,inventaire: coffre.inventaire,store: coffre,});

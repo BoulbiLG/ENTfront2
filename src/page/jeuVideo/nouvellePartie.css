@@ -1,0 +1,22 @@
+
+.JeuVideo .nouvellePartie {
+    width: 70vh;
+    height: 50vh;
+}
+
+.JeuVideo input {
+    outline: none;
+    resize: none;
+    color: white;
+    background-color: rgb(44, 46, 53);
+    width: 100%;
+    padding: 1.5vh;
+    border: none;
+}
+
+.JeuVideo .avertissement {
+    background-color: brown;
+    color: white;
+    padding: 1vh;
+    width: 100%;
+}

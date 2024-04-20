@@ -10,11 +10,15 @@ import LeobenStore from '../../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../../variableGlobal/personnage/VolutesStore';
 import ZosteraeStore from '../../variableGlobal/personnage/ZosteraeStore';
 import MothStore from '../../variableGlobal/personnage/MothStore';
+import ObelixStore from "../../variableGlobal/personnage/ObelixStore";
+import AsterixStore from "../../variableGlobal/personnage/AsterixStore";
 
 import combatStore from '../../variableGlobal/global/combatStore';
 
 export const recupererListeStoreCombat = () => {
 
+    const asterix = AsterixStore();
+    const obelix = ObelixStore();
     const celestin = CelestinStore();
     const benze = BenzemonstreStore();
     const chevalier = ChevalierMauditStore();
@@ -44,6 +48,8 @@ export const recupererListeStoreCombat = () => {
         if (store === 'Volutes') {listeStore.push(volutes);}
         if (store === 'Zosterae') {listeStore.push(zosterae);}
         if (store === 'Moth') {listeStore.push(moth);}
+        if (store === 'Zinzinsterixent') {listeStore.push(asterix);}
+        if (store === 'Grodebilixent') {listeStore.push(obelix);}
     }
 
     return listeStore;

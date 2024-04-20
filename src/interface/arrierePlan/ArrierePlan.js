@@ -87,7 +87,9 @@ const ArrierePlan = () => {
     return (
         <div className='ArrierePlan'>
             <img className='arrierePlan' src={arrierePlan} alt={arrierePlan} />
-            <img className='hero' src={heroURL} alt={heroURL} />
+            {combat === 'non' ? (
+                <img className='hero' src={heroURL} alt={heroURL} />
+            ) : null }
             <div className="listePersonnage">
                 {analysePosition.map((element, index) => (
                     <Personnage key={index} x={element.x} y={element.y} storePersonnage={element.store}/>

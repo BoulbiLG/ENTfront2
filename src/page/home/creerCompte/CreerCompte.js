@@ -37,11 +37,11 @@ const CreerCompte = () => {
                 <img src={logo} alt={logo} onClick={() => {navigate('/');}} style={{cursor: 'pointer'}}/>
             </div>
             <div className="droite">
-                <div className="connexion">
-                    <Link to="/connexion">Inscription</Link>
-                </div>
                 <div className="inscription">
-                    <Link to="/inscription">Connexion</Link>
+                    <Link to="/inscription">Inscription</Link>
+                </div>
+                <div className="connexion">
+                    <Link to="/connexion">Connexion</Link>
                 </div>
             </div>
         </div>

@@ -10,9 +10,13 @@ import LeobenStore from '../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../variableGlobal/personnage/VolutesStore';
 import ZosteraeStore from '../variableGlobal/personnage/ZosteraeStore';
 import MothStore from '../variableGlobal/personnage/MothStore';
+import ObelixStore from "../variableGlobal/personnage/ObelixStore";
+import AsterixStore from "../variableGlobal/personnage/AsterixStore";
 
 export const recupererStoreDynamique = (equipierCourant) => {
 
+    const asterix = AsterixStore();
+    const obelix = ObelixStore();
     const celestinStore = CelestinStore();
     const benzemonstreStore = BenzemonstreStore();
     const jouhnStore = JouhnStore();
@@ -41,6 +45,8 @@ export const recupererStoreDynamique = (equipierCourant) => {
         case 'Volutes':storeJoueur = volutes; break;
         case 'Zosterae':storeJoueur = zosterae; break;
         case 'Moth':storeJoueur = moth; break;
+        case 'Zinzinsterixent':storeJoueur = asterix; break;
+        case 'Grodebilixent':storeJoueur = obelix; break;
         default: console.log('rien');
     }
 

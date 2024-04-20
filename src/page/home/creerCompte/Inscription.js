@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './inscription.css';
 
+import CreerCompte from './CreerCompte';
+
 const Inscription = () => {
 
     const [pseudo, pseudoSet] = useState('');
@@ -26,11 +28,12 @@ const Inscription = () => {
 
     return (
         <div className='Inscription'>
+          <CreerCompte />
           <div className="formulaire">
             <h3>Inscription</h3>
             <input type="text" placeholder='Votre pseudo' value={pseudo} onChange={(event) => {pseudoSet(event.target.value)}} />
             <input type="text" placeholder='Votre mot de passe' value={mdp} onChange={(event) => {mdpSet(event.target.value)}} />
-            <button onClick={() => {seConnecter(pseudo, mdp)}}>Se connecter</button>
+            <button onClick={() => {seConnecter(pseudo, mdp)}}>S'inscrire</button>
           </div>
         </div>
     )

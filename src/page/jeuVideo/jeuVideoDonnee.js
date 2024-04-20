@@ -8,7 +8,7 @@ export const jeuVideoDonnee = [
         sousTitre: "Le monde des Ent's",
         affiche: afficheRisiworld,
         id: 1,
-        auteur: 'Bitler',
+        auteur: 'Bitler, Meego, Moth',
         lien: 'risiworld',
     },
 

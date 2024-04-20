@@ -9,9 +9,13 @@ import LeobenStore from "../variableGlobal/personnage/LeobenStore";
 import VolutesStore from "../variableGlobal/personnage/VolutesStore";
 import ZosteraeStore from "../variableGlobal/personnage/ZosteraeStore";
 import MothStore from "../variableGlobal/personnage/MothStore";
+import ObelixStore from "../variableGlobal/personnage/ObelixStore";
+import AsterixStore from "../variableGlobal/personnage/AsterixStore";
 
 export const analysePositionPNJ = (x, y, z) => {
 
+    const asterix = AsterixStore();
+    const obelix = ObelixStore();
     const benzemonstre = BenzemonstreStore();
     const jouhn = JouhnStore();
     const Chevalier = ChevalierMauditStore();
@@ -37,6 +41,8 @@ export const analysePositionPNJ = (x, y, z) => {
     if (x === volutes.zoneX && y === volutes.zoneY && z === volutes.zoneZ){listePNJ.push({x: volutes.x, y: volutes.y, store: volutes});}
     if (x === zosterae.zoneX && y === zosterae.zoneY && z === zosterae.zoneZ){listePNJ.push({x: zosterae.x, y: zosterae.y, store: zosterae});}
     if (x === moth.zoneX && y === moth.zoneY && z === moth.zoneZ){listePNJ.push({x: moth.x, y: moth.y, store: moth});}
+    if (x === asterix.zoneX && y === asterix.zoneY && z === asterix.zoneZ){listePNJ.push({x: asterix.x, y: asterix.y, store: asterix});}
+    if (x === obelix.zoneX && y === obelix.zoneY && z === obelix.zoneZ){listePNJ.push({x: obelix.x, y: obelix.y, store: obelix});}
 
     return listePNJ;
 

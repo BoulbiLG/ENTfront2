@@ -10,11 +10,15 @@ import LeobenStore from '../variableGlobal/personnage/LeobenStore';
 import VolutesStore from '../variableGlobal/personnage/VolutesStore';
 import ZosteraeStore from '../variableGlobal/personnage/ZosteraeStore';
 import MothStore from '../variableGlobal/personnage/MothStore';
+import ObelixStore from "../variableGlobal/personnage/ObelixStore";
+import AsterixStore from "../variableGlobal/personnage/AsterixStore";
 
 import equipeStore from '../variableGlobal/personnage/equipeStore';
 
 export const recupererListeStore = () => {
 
+    const asterix = AsterixStore();
+    const obelix = ObelixStore();
     const celestin = CelestinStore();
     const benze = BenzemonstreStore();
     const chevalier = ChevalierMauditStore();
@@ -38,12 +42,14 @@ export const recupererListeStore = () => {
         if (store === 'ChevalierMaudit') {listeStore.push(chevalier);}
         if (store === 'CleaMolette') {listeStore.push(cleamolette);}
         if (store === 'Blondin') {listeStore.push(blondin);}
-        if (sneaky === 'Sneaky') {listeStore.push(sneaky);}
-        if (sneaky === 'FranckDubosc') {listeStore.push(franck);}
-        if (sneaky === 'Leoben') {listeStore.push(leoben);}
-        if (sneaky === 'Volutes') {listeStore.push(volutes);}
-        if (sneaky === 'Zosterae') {listeStore.push(zosterae);}
-        if (sneaky === 'Moth') {listeStore.push(moth);}
+        if (store === 'Sneaky') {listeStore.push(sneaky);}
+        if (store === 'FranckDubosc') {listeStore.push(franck);}
+        if (store === 'Leoben') {listeStore.push(leoben);}
+        if (store === 'Volutes') {listeStore.push(volutes);}
+        if (store === 'Zosterae') {listeStore.push(zosterae);}
+        if (store === 'Moth') {listeStore.push(moth);}
+        if (store === 'Zinzinsterixent') {listeStore.push(asterix);}
+        if (store === 'Grodebilixent') {listeStore.push(obelix);}
     }
 
     return listeStore;

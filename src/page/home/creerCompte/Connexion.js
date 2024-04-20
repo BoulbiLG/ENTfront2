@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './connexion.css';
 
+import CreerCompte from './CreerCompte';
+
 const Connexion = () => {
 
     const [pseudo, pseudoSet] = useState('');
@@ -26,6 +28,7 @@ const Connexion = () => {
 
     return (
         <div className='Connexion'>
+          <CreerCompte />
           <div className="formulaire">
             <h3>Connexion</h3>
             <input type="text" placeholder='Votre pseudo' value={pseudo} onChange={(event) => {pseudoSet(event.target.value)}} />

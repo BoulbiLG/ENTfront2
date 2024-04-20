@@ -3,20 +3,23 @@ import create from 'zustand';
 const colisionStore = create((set) => ({
 
   foretENT: [
+    {position: 'X-2Y4Z0', mouvement: ['bas', 'haut']},      // y 4
+    {position: 'X12Y4Z999999', mouvement: ['bas']},
+    {position: 'X0Y3Z0', mouvement: ['bas', 'gauche', 'haut']},      // y 3
+    {position: 'X-1Y3Z0', mouvement: ['bas', 'gauche', 'haut', 'droite']},
+    {position: 'X-2Y3Z0', mouvement: ['bas', 'gauche', 'haut', 'droite']},
+    {position: 'X0Y2Z0', mouvement: ['bas', 'gauche', 'haut']},      // y 2
+    {position: 'X-1Y2Z0', mouvement: ['gauche', 'droite', 'haut', 'bas']},
+    {position: 'X-2Y2Z0', mouvement: ['gauche', 'droite', 'haut', 'bas']},
+    {position: 'X-3Y2Z0', mouvement: ['droite', 'bas']},
     {position: 'X8Y1Z0', mouvement: ['gauche']},      // y 1
-    {position: 'X7Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X6Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X5Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X4Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X3Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X2Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X1Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X0Y1Z0', mouvement: ['droite','gauche', 'bas']},
-    {position: 'X-1Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X-2Y1Z0', mouvement: ['droite','gauche']},
-    {position: 'X-3Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X0Y1Z0', mouvement: ['droite','gauche', 'bas', 'haut']},
+    {position: 'X-1Y1Z0', mouvement: ['droite','gauche', 'haut']},
+    {position: 'X-2Y1Z0', mouvement: ['droite','gauche', 'haut']},
+    {position: 'X-3Y1Z0', mouvement: ['droite','gauche', 'haut']},
     {position: 'X-4Y1Z0', mouvement: ['droite','gauche', 'bas']},
-    {position: 'X-5Y1Z0', mouvement: ['droite','gauche']},
+    {position: 'X-5Y1Z0', mouvement: ['droite','gauche', 'haut']},
     {position: 'X-6Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-7Y1Z0', mouvement: ['droite','gauche']},
     {position: 'X-8Y1Z0', mouvement: ['droite','gauche']},

@@ -31,11 +31,15 @@ const InterfaceTerminal = () => {
   return (
     <div className='InterfaceTerminale' >
         <ArrierePlan />
-        <Inventaire />
-        <Base />
-        <Stat />
-        <Parametre />
-        <Sauvegarde />
+        {combat === 'non' ? (
+          <>
+            <Inventaire />
+            <Base />
+            <Stat />
+            <Parametre />
+            <Sauvegarde />
+          </>
+        ) : null }
         <Deplacement />
         <FenetreCombat />
         <FenetreCombatEnnemi />

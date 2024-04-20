@@ -22,6 +22,12 @@ export const miniMapDonnee = [{
         {x: -4, y: -1, type: ''},
         */
 
+        {x: -2, y: 4, type: ''},
+        {x: 0, y: 3, type: ''},
+        {x: -1, y: 3, type: ''},
+        {x: -2, y: 3, type: ''},
+        {x: 0, y: 2, type: ''},
+        {x: -1, y: 2, type: ''},
         {x: 1, y: 1, type: ''},
         {x: -4, y: -1, type: 'entre'},
         {x: -4, y: 0, type: ''},

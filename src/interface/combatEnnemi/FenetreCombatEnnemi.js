@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import normal from '../../asset/plan/combat/normal.png';
 import hero from '../../asset/personnage/celestin/dos.png';
 
-import { recupererListeStoreCombat } from './recupererListeStoreCombat';
+import { recupererListeStoreCombat } from '../combat/recupererListeStoreCombat';
 import { recupererListeStore } from '../../fonction/recupererListeStore';
 import { calculVitesse } from './fonction/calculVitesse';
 import { attaquer } from './fonction/joueur/attaquer';
@@ -127,7 +127,7 @@ const FenetreCombatEnnemi = () => {
                 <div className='conteneurCombat'>
 
                     {storeCombat.combat === 'oui' ? (
-                        <div className='FenetreCombat' style={{background: `url(${fond})`}}>
+                        <div className='FenetreCombat'>
             
 
                             <div className="parametreFenetre"><Parametre /></div>
@@ -138,7 +138,7 @@ const FenetreCombatEnnemi = () => {
 
                             <div className="listeEnnemi">
                             {storeEnnemis.ennemi.map((element, index) => (
-                                <div className="ennemi" key={index}>
+                                <div className="ennemi"style={{color: 'white'}} key={index}>
                                     <div className="info">
                                         <p>{element.nom}</p>
                                         <p>Lvl {element.niveau}</p>

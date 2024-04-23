@@ -1,0 +1,29 @@
+
+.JeuVideo .commentaireListe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.JeuVideo .commentaire {
+    color: white;
+    background-color: rgb(44, 46, 53);
+    width: 100%;
+    border-radius: 1vh;
+    padding: 2vh;
+    margin-bottom: 1vh;
+}
+
+.JeuVideo .publier {
+    background-color: darkblue;
+}
+
+.JeuVideo .poste textarea {
+    outline: none;
+    resize: none;
+    color: white;
+    background-color: rgb(44, 46, 53);
+    width: 100%;
+    border-radius: 1vh;
+    padding: 1vh;
+}

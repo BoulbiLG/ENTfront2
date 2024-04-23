@@ -5,9 +5,13 @@ import './nouvellePartie.css';
 
 import { jeuVideoDonnee } from './jeuVideoDonnee';
 
-import refreshStore from '../home/creerCompte/refreshStore';
-
+import Commentaire from './Commentaire';
 import CreerCompte from '../home/creerCompte/CreerCompte';
+import NouvellePartie from './NouvellePartie';
+import ChargerPartie from './ChargerPartie';
+import CopierPartie from './CopierPartie';
+
+import refreshStore from '../home/creerCompte/refreshStore';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -24,75 +28,18 @@ const JeuVideo = () => {
 
     useEffect(() => {
         pseudo = sessionStorage.getItem('pseudo');
-        console.log(pseudo)
     }, [refresh]);
 
     const navigate = useNavigate();
 
     const [jeuCourant, jeuCourantSet] = useState([]);
     const [commentaire, commentaireSet] = useState([]);
+    const [partie, partieSet] = useState([]);
     const [jeuAffichage, jeuAffichageSet] = useState('false');
     const [avertissement, avertissementSet] = useState('');
     const [texte, texteSet] = useState('');
     const [nomPartie, nomPartieSet] = useState('');
-
-    const creerPartie = () => {
-        if (nomPartie === '') {
-            avertissementSet('Vous devez entrer un nom de partie');
-        } else {
-            avertissementSet('');
-            navigate(`/${jeuCourant.lien}`);
-        }
-    }
-
-    const posterCommentaire = async (pseudo, texte) => {
-
-        const id = jeuCourant.id;
-
-        try {
-            const response = await fetch(`${UrlOnline}/compte/posterCommentaire`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ pseudo, texte, id }),
-            });
-      
-            if (response.ok) {
-              console.log('posterCommentaire réussie !');
-              recupererCommentaire();
-            } else {
-              // Il y a eu une erreur, traite-la
-              const data = await response.json();
-              avertissementSet(data.message);
-            }
-        } catch (error) {
-        console.error('Error:', error);
-        avertissementSet('Une erreur est survenue lors de l\'inscription');
-        }
-    }
-
-    const recupererCommentaire = useCallback(async () => {
-        const id = jeuCourant.id;
-        try {
-            const response = await fetch(`${UrlOnline}/compte/recupererCommentaire/${id}`);
-            if (response.ok) {
-                const commentaires = await response.json();
-                console.log('Commentaires récupérés:', commentaires);
-                commentaireSet(commentaires);
-                // Traiter les commentaires récupérés
-            } else {
-                console.error('Erreur lors de la récupération des commentaires');
-            }
-        } catch (error) {
-            console.error('Erreur:', error);
-        }
-    }, [jeuCourant.id, commentaireSet]);
-
-    useEffect(() => {
-        recupererCommentaire();
-    }, [recupererCommentaire]);
-
+    
     return (
         <div className='JeuVideo'>
             <CreerCompte />
@@ -141,20 +88,26 @@ const JeuVideo = () => {
                                         </div>
                                     </div>
                                     <br />
-                                    <div className="bas">
+                                    {jeuCourant.type === 'grand' ? (
+                                        <div className="bas">
+                                            <button className='boutonBasique' onClick={() => {
+                                                jeuAffichageSet('nouvellePartie');
+                                            }}>Nouvelle partie</button>
+                                            <button className='boutonBasique' onClick={() => {
+                                                jeuAffichageSet('chargerPartie');
+                                            }}>Charger Une partie</button>
+                                            <button className='boutonBasique' onClick={() => {
+                                                jeuAffichageSet('copierPartie');
+                                            }}>Copier une partie</button>
+                                            <button className='boutonBasique supprimer' onClick={() => {
+                                                jeuAffichageSet('supprimerPartie');
+                                            }}>Supprimer une partie</button>
+                                        </div>
+                                    ) :
                                         <button className='boutonBasique' onClick={() => {
-                                            jeuAffichageSet('nouvellePartie');
-                                        }}>Nouvelle partie</button>
-                                        <button className='boutonBasique' onClick={() => {
-                                            jeuAffichageSet('false');
-                                        }}>Charger Une partie</button>
-                                        <button className='boutonBasique' onClick={() => {
-                                            jeuAffichageSet('false');
-                                        }}>Copier une partie</button>
-                                        <button className='boutonBasique supprimer' onClick={() => {
-                                            jeuAffichageSet('false');
-                                        }}>Supprimer une partie</button>
-                                    </div>
+                                            navigate(jeuCourant.lien);
+                                        }}>Jouer</button>
+                                    }
                                 </div>
                                 <hr />
                                 <div className="droiteJeu">
@@ -170,56 +123,34 @@ const JeuVideo = () => {
                             <div className="basUltime">
                                 <h2 style={{textAlign: 'Center'}}>Commentaire</h2>
                                 <br />
-                                <div className="commentaireListe">
-                                    {commentaire.map((element, index) => (
-                                        <div className="commentaire">
-                                            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                                                <p>{element.pseudo}</p>
-                                                <p style={{fontSize: '0.8rem', fontStyle: 'italic'}}>{element.date}</p>
-                                            </div>
-                                            <hr />
-                                            <br />
-                                            <p>{element.texte}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="poste">
-                                    <br />
-                                    <hr />
-                                    <br />
-                                    <h4>Poster un commentaire</h4>
-                                    <br />
-                                    <textarea name="" id="" cols="30" rows="5" value={texte} onChange={(e) => {texteSet(e.target.value)}}></textarea>
-                                    <button className='boutonBasique publier' onClick={() => {
-                                        posterCommentaire(pseudo, texte);
-                                    }} style={{maxWidth: '20vh'}}>Publier</button>
-                                </div>
+                                <Commentaire jeuCourant={jeuCourant}/>
                             </div>
                         </div>
                     </div>
                 ) : null }
-                {jeuAffichage === 'nouvellePartie' ? (
-                    <div className="nouvellePartie">
-                        <h3 style={{color: 'white', fontWeight: '500'}}>Créer une nouvelle partie sur {jeuCourant.titre}</h3>
-                        <br />
-                        <input placeholder='Entrez un nom de partie...' type="text" value={nomPartie} onChange={(e) => {nomPartieSet(e.target.value)}} />
-                        <br />
-                        <button className='boutonBasique publier' onClick={() => {
-                            creerPartie();
-                        }}>Créer la partie {nomPartie}</button>
-                        <br />
-                        <br />
-                        <button className='retour' onClick={() => {
-                            jeuAffichageSet('true');
-                        }}>Retour</button>
-                        <br />
-                        <br />
-                        {avertissement !== '' ? (
-                            <div className="avertissement">
-                                <p>{avertissement}</p>
+                {jeuCourant.type === 'grand' ? (
+                    <>
+                        {jeuAffichage === 'nouvellePartie' ? (
+                            <div className="nouvellePartie">
+                                <NouvellePartie jeuCourant={jeuCourant} jeuAffichageSet={jeuAffichageSet}/>
                             </div>
                         ) : null }
-                    </div>
+                        {jeuAffichage === 'chargerPartie' ? (
+                            <div className="chargerPartie">
+                                <ChargerPartie jeuCourant={jeuCourant} jeuAffichageSet={jeuAffichageSet}/>
+                            </div>
+                        ) : null }
+                        {jeuAffichage === 'copierPartie' ? (
+                            <div className="copierPartie">
+                                <CopierPartie jeuCourant={jeuCourant} jeuAffichageSet={jeuAffichageSet}/>
+                            </div>
+                        ) : null }
+                        {jeuAffichage === 'supprimerPartie' ? (
+                            <div className="supprimerPartie">
+                                <CopierPartie jeuCourant={jeuCourant} jeuAffichageSet={jeuAffichageSet}/>
+                            </div>
+                        ) : null }
+                    </>
                 ) : null }
             </div>
         </div>

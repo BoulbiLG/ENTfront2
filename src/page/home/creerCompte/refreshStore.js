@@ -2,7 +2,7 @@ import create from 'zustand';
 
 const refreshStore = create((set) => ({
   refresh: 0,
-  pseudo: '',
+  pseudo: null,
 
   ajouter: (champ, valeur) => {
     set((state) => ({

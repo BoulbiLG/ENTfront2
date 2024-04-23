@@ -1,0 +1,23 @@
+
+.JeuVideo .CopierPartie {
+    height: 100vh;
+    max-height: 80vh;
+    overflow-y: scroll;
+    padding: 1vh;
+}
+
+.JeuVideo .partieCopier {
+    color: white;
+    padding: 1vh;
+    background-color: rgb(28, 30, 35);
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 50vh;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+}
+
+.JeuVideo .partieCopier:hover {
+    filter: brightness(150%);
+}

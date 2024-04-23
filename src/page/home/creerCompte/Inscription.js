@@ -39,7 +39,7 @@ const Inscription = () => {
   const seConnecter = async (pseudo, mdp) => {
     if (pseudo !== '' && mdp !== '') {
       try {
-        const response = await fetch(`${UrlOnline}/compte/inscription`, {
+        const response = await fetch(`${UrlLocal}/compte/inscription`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const Inscription = () => {
         if (response.ok) {
           // L'inscription a réussi, redirige vers une autre page ou montre un message de succès
           console.log('Inscription réussie !');
-          sessionStorage.setItem('pseudo', JSON.stringify(pseudo));
+          sessionStorage.setItem('pseudo', pseudo);
           storeRefresh.ajouter('refresh', 1);
           storeRefresh.modifier('pseudo', pseudo);
           navigate('/');

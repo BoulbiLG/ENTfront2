@@ -7,6 +7,7 @@ import Connexion from './page/home/creerCompte/Connexion';
 import Inscription from './page/home/creerCompte/Inscription';
 import Jeu from './page/jeu/Jeu';
 import JeuVideo from './page/jeuVideo/JeuVideo';
+import Profil from './page/profil/Profil';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/jeu-video" element={<JeuVideo />} />
+        <Route path="/profil" element={<Profil />} />
         {/*<Route path="/inscription" element={<Inscription />} />*/}
       </Routes>
     </Router>

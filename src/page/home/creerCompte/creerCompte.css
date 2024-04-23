@@ -4,6 +4,8 @@
 }
 
 .CreerCompte {
+    max-height: 7vh;
+    height: 100%;
     z-index: 999;
     position: fixed;
     top: 0;
@@ -114,6 +116,18 @@
     width: 100%;
     margin-bottom: 1vh;
     font-weight: 500;
+}
+
+.CreerCompte .profil img {
+    transition: all 0.2s;
+    height: 50px;
+    width: 50px;
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+.CreerCompte .profil img:hover {
+    filter: brightness(125%);
 }
 
 @keyframes slideInFromLeft {

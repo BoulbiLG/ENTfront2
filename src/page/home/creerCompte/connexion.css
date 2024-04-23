@@ -52,3 +52,11 @@
 .Connexion .formulaire button:active {
     filter: brightness(150%);
 }
+
+.Connexion .avertissement {
+    background-color: brown;
+    color: white;
+    padding: 1vh;
+    border-radius: 1vh;
+    animation: apparition 0.2s forwards;
+}

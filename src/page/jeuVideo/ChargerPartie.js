@@ -52,9 +52,10 @@ const ChargerPartie = ({ jeuCourant, jeuAffichageSet }) => {
             <h3 style={{color: 'white', fontWeight: '500', textAlign: 'center'}}>Charger une partie sur {jeuCourant.titre}</h3>
             <br />
             {partie.map((element, index) =>(
-                <div className="partie">
-                    <p>{element.nomPartie}</p>
-                </div>
+                <button className='boutonBasique' onClick={() => {
+                    sessionStorage.setItem('partieEnCours', element.nomPartie);
+                    navigate(`/${jeuCourant.lien}`);
+                }}>{element.nomPartie}</button>
             ))}
             <br />
             <button className='retour' onClick={() => {
